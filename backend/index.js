@@ -7,7 +7,7 @@ app.use(express.json());
 
 // Example endpoint to get data
 app.get('/api/data', (req, res) => {
-  db.query('SELECT * FROM your_table_name', (err, results) => {
+  db.query('SELECT * FROM userDashboard', (err, results) => {
     if (err) {
       return res.status(500).json({ error: err.message });
     }
@@ -19,3 +19,5 @@ app.get('/api/data', (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });
+
+
