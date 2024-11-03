@@ -1,6 +1,5 @@
 {
     "build": {
-      "command": "npm install --prefix backend && npm start --prefix backend",
-      "ignore": ["frontend"]
-    }
+      "command": "npm install --prefix backend && npm start --prefix backend"
   }
+}
