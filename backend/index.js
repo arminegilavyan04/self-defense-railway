@@ -5,6 +5,11 @@ const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
 
+// Root route
+app.get('/', (req, res) => {
+  res.send('Welcome to my web app!');
+});
+
 // Example endpoint to get data
 app.get('/api/data', (req, res) => {
   db.query('SELECT * FROM userDashboard', (err, results) => {
@@ -19,5 +24,3 @@ app.get('/api/data', (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });
-
-
