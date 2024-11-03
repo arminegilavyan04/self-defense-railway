@@ -3,6 +3,11 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
+
+    "prebuild": "mv ../frontend ../frontend_temp",
+    "build": "npm install && npm start",
+    "postbuild": "mv ../frontend_temp ../frontend",
+
     "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

@@ -1,5 +1,5 @@
 {
     "build": {
-        "command": "cd backend && npm install && npm start"
+        "command": "cd backend && npm run prebuild && npm install && npm start && npm run postbuild"
     }
 }
