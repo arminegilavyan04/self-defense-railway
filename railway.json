@@ -1,4 +1,3 @@
-
 {
     "build": {
         "command": "cd backend && npm install && npm start"

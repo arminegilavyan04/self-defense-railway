@@ -1,2 +1,2 @@
 [build]
-  command = "mv frontend temp_frontend && cd backend && npm install && npm start && mv temp_frontend frontend"
+command = "cd backend && npm install && npm start"
