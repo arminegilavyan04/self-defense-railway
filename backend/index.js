@@ -12,7 +12,7 @@ app.get('/', (req, res) => {
 
 // Example endpoint to get data
 app.get('/api/data', (req, res) => {
-  db.query('SELECT * FROM userDashboard', (err, results) => {
+  db.query('SELECT * FROM usersDashboard', (err, results) => {
     if (err) {
       return res.status(500).json({ error: err.message });
     }
