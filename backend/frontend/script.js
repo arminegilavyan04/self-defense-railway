@@ -1,47 +1,46 @@
-document.getElementById('signup-form').addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const username = document.getElementById('signup-username').value;
-    const password = document.getElementById('signup-password').value;
+$(document).ready(function () {
+    // Switch between Sign Up and Login
+    $('#nav-signup').click(function () {
+        $('#signup').addClass('show active');
+        $('#login').removeClass('show active');
+    });
 
-    try {
-        const response = await fetch('/api/signup', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ username, password }),
+    $('#nav-login').click(function () {
+        $('#login').addClass('show active');
+        $('#signup').removeClass('show active');
+    });
+
+    // Handle Sign Up form submission
+    $('#signup-form').on('submit', function (e) {
+        e.preventDefault(); // Prevent default form submission
+
+        const username = $('#signup-username').val();
+        const password = $('#signup-password').val();
+
+        // Make an API request to your backend for sign up
+        $.post('/api/signup', { username, password }, function (data) {
+            // Handle success or error responses
+            alert('Sign Up successful!');
+            // Optionally redirect or clear form
+        }).fail(function (error) {
+            alert('Sign Up failed: ' + error.responseJSON.message);
         });
+    });
 
-        const data = await response.json();
-        if (!response.ok) throw new Error(data.error);
-        alert('Sign up successful!');
-        document.getElementById('signup-form').reset();
-    } catch (error) {
-        alert('Error: ' + error.message);
-    }
-});
+    // Handle Login form submission
+    $('#login-form').on('submit', function (e) {
+        e.preventDefault(); // Prevent default form submission
 
-document.getElementById('login-form').addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const username = document.getElementById('login-username').value;
-    const password = document.getElementById('login-password').value;
+        const username = $('#login-username').val();
+        const password = $('#login-password').val();
 
-    try {
-        const response = await fetch('/api/login', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ username, password }),
+        // Make an API request to your backend for login
+        $.post('/api/login', { username, password }, function (data) {
+            // Handle success or error responses
+            alert('Login successful!');
+            // Optionally redirect or clear form
+        }).fail(function (error) {
+            alert('Login failed: ' + error.responseJSON.message);
         });
-
-        const data = await response.json();
-        if (!response.ok) throw new Error(data.error);
-        alert('Login successful!');
-        document.getElementById('login-form').reset();
-    } catch (error) {
-        alert('Error: ' + error.message);
-    }
+    });
 });
-
-
