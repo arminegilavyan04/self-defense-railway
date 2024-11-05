@@ -15,16 +15,6 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'frontend', 'index.html'));
 });
 
-// Get data from usersDashboard
-app.get('/api/data', (req, res) => {
-  db.query('SELECT * FROM usersDashboard', (err, results) => {
-    if (err) {
-      return res.status(500).json({ error: err.message });
-    }
-    res.json(results);
-  });
-});
-
 // Sign Up route
 app.post('/api/signup', async (req, res) => {
   const { username, password } = req.body;
