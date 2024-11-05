@@ -1,7 +1,7 @@
 const express = require('express');
 const path = require('path');
 const db = require('./db'); // Your database connection file
-const bcrypt = require('bcrypt'); // For password hashing
+const bcrypt = require('bcryptjs');; // For password hashing
 const app = express();
 const PORT = process.env.PORT || 3000;
 
