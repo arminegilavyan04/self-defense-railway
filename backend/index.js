@@ -17,7 +17,7 @@ app.get('/', (req, res) => {
 
 // Sign Up route
 app.post('/api/signup', async (req, res) => {
-  const { username, password } = req.body;
+  const { username, email, password } = req.body;
 
   try {
     // Hash the password
@@ -25,8 +25,8 @@ app.post('/api/signup', async (req, res) => {
 
     // Insert the new user into the database
     db.query(
-      'INSERT INTO users (username, password) VALUES (?, ?)',
-      [username, hashedPassword],
+      'INSERT INTO users (username, email, password) VALUES (?, ?, ?)',
+      [username, email, hashedPassword],
       (err, results) => {
         if (err) {
           return res.status(500).json({ error: err.message });
@@ -41,10 +41,10 @@ app.post('/api/signup', async (req, res) => {
 
 // Login route
 app.post('/api/login', (req, res) => {
-  const { username, password } = req.body;
+  const { email, password } = req.body;
 
   // Find user by username
-  db.query('SELECT * FROM users WHERE username = ?', [username], async (err, results) => {
+  db.query('SELECT * FROM users WHERE username = ?', [email], async (err, results) => {
     if (err) {
       return res.status(500).json({ error: err.message });
     }
@@ -61,7 +61,7 @@ app.post('/api/login', (req, res) => {
       return res.status(401).json({ error: 'Invalid credentials' });
     }
 
-    res.json({ message: 'Login successful', user: { id: user.id, username: user.username } });
+    res.json({ message: 'Login successful', user: { id: user.id, email: user.email } });
   });
 });
 
