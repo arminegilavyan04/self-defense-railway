@@ -3,7 +3,7 @@ const path = require('path');
 const db = require('./db'); // Your database connection file
 const bcrypt = require('bcryptjs');; // For password hashing
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 4000;
 
 app.use(express.json());
 
