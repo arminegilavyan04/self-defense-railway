@@ -22,15 +22,18 @@
 const mysql = require('mysql2');
 require('dotenv').config();
 
-// Get the MySQL connection URL based on the environment
-const dbUrl = process.env.MYSQL_URL || process.env.MYSQL_PUBLIC_URL; // Prioritize private URL first
+// Check the environment to use the right MySQL URL
+const dbUrl = process.env.MYSQL_PUBLIC_URL || process.env.MYSQL_URL;  // Force fallback to the public URL
+
+// Log the URL being used for the database connection
+console.log('Using database connection URL:', dbUrl);
 
 if (!dbUrl) {
   console.error('No MySQL URL found. Please check your environment variables.');
   process.exit(1);
 }
 
-// Create the database connection using the selected URL
+// Create the MySQL connection
 const db = mysql.createConnection(dbUrl);
 
 // Connect to the database
