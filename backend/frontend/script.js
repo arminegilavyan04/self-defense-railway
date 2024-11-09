@@ -65,7 +65,8 @@ $(document).ready(function () {
             contentType: 'application/json', // Set content type to JSON
             data: JSON.stringify({ email, password }), // Send data as JSON
             success: function (data) {
-                alert('Login successful!');
+                window.location.href = 'home.html';
+                // alert('Login successful!');
                 // Optionally redirect or clear form
             },
             error: function (error) {
