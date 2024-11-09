@@ -44,7 +44,8 @@ $(document).ready(function () {
                 alert('Registration successful!');
                 // Optionally clear form or redirect to login
                 $('#registerFormContent')[0].reset();
-                $('#loginTab').click(); // Switch back to login tab after registration
+                // Switch back to login tab after registration
+                $('#loginTab').click(); 
             },
             error: function (error) {
                 // Handle error response
@@ -69,7 +70,7 @@ $(document).ready(function () {
             success: function (data) {
                 // Store login state and user data in localStorage
                 localStorage.setItem('userLoggedIn', true); // Mark user as logged in
-                localStorage.setItem('user', JSON.stringify(data.user)); // Save user data
+                localStorage.setItem('user', JSON.stringify(data.user)); // Save user data (without password)
 
                 // Redirect to home.html after successful login
                 window.location.href = 'home.html';
