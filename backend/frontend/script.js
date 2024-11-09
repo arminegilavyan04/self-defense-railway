@@ -42,7 +42,9 @@ $(document).ready(function () {
             data: JSON.stringify({ username, email, password }), // Send data as JSON
             success: function (data) {
                 alert('Registration successful!');
-                // Optionally redirect or clear form
+                // Optionally clear form or redirect to login
+                $('#registerFormContent')[0].reset();
+                $('#loginTab').click(); // Switch back to login tab after registration
             },
             error: function (error) {
                 // Handle error response
@@ -65,12 +67,11 @@ $(document).ready(function () {
             contentType: 'application/json', // Set content type to JSON
             data: JSON.stringify({ email, password }), // Send data as JSON
             success: function (data) {
-                console.log('Login successful', data);  // Debug the response
+                // Store login state and user data in localStorage
+                localStorage.setItem('userLoggedIn', true); // Mark user as logged in
+                localStorage.setItem('user', JSON.stringify(data.user)); // Save user data
 
-                // Store user data in localStorage
-                localStorage.setItem('user', JSON.stringify(data.user));
-    
-                // Redirect to home.html
+                // Redirect to home.html after successful login
                 window.location.href = 'home.html';
             },
             error: function (error) {
