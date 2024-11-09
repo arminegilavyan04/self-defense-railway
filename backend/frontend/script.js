@@ -1,15 +1,29 @@
 $(document).ready(function () {
     // Switch between Login and Registration forms using tabs
     $('#loginTab').click(function () {
+        // Show the Login Form and hide the Register Form
         $('#loginForm').addClass('show active');
         $('#registerForm').removeClass('show active');
-        $('#formTitle').text('Login'); // Update the form title to 'Login'
+
+        // Activate the Login Tab and deactivate the Register Tab
+        $('#loginTab').addClass('active');
+        $('#registerTab').removeClass('active');
+
+        // Update the form title to 'Login'
+        $('#formTitle').text('Login');
     });
 
     $('#registerTab').click(function () {
+        // Show the Register Form and hide the Login Form
         $('#registerForm').addClass('show active');
         $('#loginForm').removeClass('show active');
-        $('#formTitle').text('Register'); // Update the form title to 'Register'
+
+        // Activate the Register Tab and deactivate the Login Tab
+        $('#registerTab').addClass('active');
+        $('#loginTab').removeClass('active');
+
+        // Update the form title to 'Register'
+        $('#formTitle').text('Register');
     });
 
     // Handle Registration form submission
@@ -21,12 +35,19 @@ $(document).ready(function () {
         const password = $('#passwordReg').val();
 
         // Make an API request to your backend for registration
-        $.post('/api/signup', { username, email, password }, function (data) {
-            // Handle success or error responses
-            alert('Registration successful!');
-            // Optionally redirect or clear form
-        }).fail(function (error) {
-            alert('Registration failed: ' + error.responseJSON.message);
+        $.ajax({
+            url: '/api/signup',
+            type: 'POST',
+            contentType: 'application/json',  // Set content type to JSON
+            data: JSON.stringify({ username, email, password }), // Send data as JSON
+            success: function (data) {
+                alert('Registration successful!');
+                // Optionally redirect or clear form
+            },
+            error: function (error) {
+                // Handle error response
+                alert('Registration failed: ' + error.responseJSON.error);
+            }
         });
     });
 
@@ -38,12 +59,18 @@ $(document).ready(function () {
         const password = $('#password').val();
 
         // Make an API request to your backend for login
-        $.post('/api/login', { email, password }, function (data) {
-            // Handle success or error responses
-            alert('Login successful!');
-            // Optionally redirect or clear form
-        }).fail(function (error) {
-            alert('Login failed: ' + error.responseJSON.message);
+        $.ajax({
+            url: '/api/login',
+            type: 'POST',
+            contentType: 'application/json', // Set content type to JSON
+            data: JSON.stringify({ email, password }), // Send data as JSON
+            success: function (data) {
+                alert('Login successful!');
+                // Optionally redirect or clear form
+            },
+            error: function (error) {
+                alert('Login failed: ' + error.responseJSON.error);
+            }
         });
     });
 });
