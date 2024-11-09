@@ -93,6 +93,14 @@
 
 // module.exports = router;
 
+const express = require('express');
+const bcrypt = require('bcryptjs');
+const db = require('../db'); // Import your db connection
+
+// Initialize the router
+const router = express.Router();  // <-- This line was missing in your original code
+
+// Handle the Signup Route
 router.post('/signup', async (req, res) => {
   const { username, email, password } = req.body;
 
@@ -141,3 +149,41 @@ router.post('/signup', async (req, res) => {
   }
 });
 
+// Handle the Login Route
+router.post('/login', (req, res) => {
+  const { email, password } = req.body;
+
+  // Check if email and password are provided
+  if (!email || !password) {
+    return res.status(400).json({ error: 'Please provide both email and password' });
+  }
+
+  // Find the user by email
+  db.query('SELECT * FROM users WHERE email = ?', [email], async (err, results) => {
+    if (err) {
+      console.error('Error querying the database:', err);
+      return res.status(500).json({ error: 'Database error during login.' });
+    }
+
+    if (results.length === 0) {
+      return res.status(401).json({ error: 'Invalid credentials' });
+    }
+
+    const user = results[0];
+
+    // Compare the provided password with the hashed password in the database
+    const match = await bcrypt.compare(password, user.password);
+    if (!match) {
+      return res.status(401).json({ error: 'Invalid credentials' });
+    }
+
+    // Login successful
+    res.json({
+      message: 'Login successful',
+      user: { id: user.id, username: user.username, email: user.email },
+    });
+  });
+});
+
+// Export the router so it can be used in index.js
+module.exports = router;
