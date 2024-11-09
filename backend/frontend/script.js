@@ -65,9 +65,13 @@ $(document).ready(function () {
             contentType: 'application/json', // Set content type to JSON
             data: JSON.stringify({ email, password }), // Send data as JSON
             success: function (data) {
+                console.log('Login successful', data);  // Debug the response
+
+                // Store user data in localStorage
+                localStorage.setItem('user', JSON.stringify(data.user));
+    
+                // Redirect to home.html
                 window.location.href = 'home.html';
-                // alert('Login successful!');
-                // Optionally redirect or clear form
             },
             error: function (error) {
                 alert('Login failed: ' + error.responseJSON.error);
