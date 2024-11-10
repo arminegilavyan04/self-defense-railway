@@ -143,4 +143,18 @@ footer a {
         font-size: 14px;
         padding: 8px 16px; /* Reduce padding */
     }
+
+}  
+
+/* Custom image block styling */
+
+.custom-image {
+    width: 70%;      /* Adjust the image block width */
+    height: 100%;    /* Maintain aspect ratio */
+    border: 5px solid #333;
+    border-radius: 15px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    margin: 20px 0;
+    display: block;   /* Ensure the image is treated as a block-level element */
 }
+
