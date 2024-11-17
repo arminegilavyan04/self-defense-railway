@@ -150,14 +150,6 @@ p {
     color: #555;
     margin-bottom: 30px;
 }
-#dynamic-content {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;  /* Full viewport height */
-    padding: 20px;
-    box-sizing: border-box;
-}
 
 /* The quiz container itself */
 .quiz_container {
