@@ -19,8 +19,8 @@ function loadPage(page) {
         fileName = 'index.html'; // Home content
 
         // Ensure home page styles are applied
-        if (!document.querySelector('link[href="home.css"]')) {
-            stylesheetsToAdd.push('home.css');
+        if (!document.querySelector('link[href="canv.css"]')) {
+            stylesheetsToAdd.push('canv.css');
         }
 
         // Clear dynamic content and display home content
