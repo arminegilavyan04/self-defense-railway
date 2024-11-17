@@ -110,7 +110,6 @@ body {
     gap: 20px; /* Space between image and text */
 }
 #dynamic-content {
-    flex: 1; /* Takes up 2/3 of the space */
     max-width: 50%; /* Limit the max-width for better layout */
     padding: 0; /* Remove extra padding */
     display: flex; /* Use flexbox to align text vertically */
