@@ -2,8 +2,10 @@ function loadPage(page) {
     const contentContainer = document.getElementById("dynamic-content");
     const homeContent = document.getElementById("home-content");
 
-    // Clear the dynamic content container if not navigating to home
-    contentContainer.innerHTML = '';
+    // Clear the dynamic content container (unless it's home page)
+    if (page !== 'home') {
+        contentContainer.innerHTML = '';
+    }
 
     // Remove the active class from all nav links
     const navLinks = document.querySelectorAll('.nav-links a');
@@ -17,6 +19,8 @@ function loadPage(page) {
     // Determine the page and set the corresponding file
     if (page === 'home') {
         fileName = 'index.html';
+        homeContent.style.display = 'block';  // Ensure home content is visible
+        contentContainer.style.display = 'none';  // Hide dynamic content
     } else if (page === 'about') {
         fileName = 'about.html';
     } else if (page === 'vr') {
@@ -30,11 +34,9 @@ function loadPage(page) {
         shouldLoadStylesheet = true; // Indicate that login.css should be loaded
     }
 
-    // If we're on the home page, display it statically
+    // If we're on the home page, no need to load dynamic content again, return early
     if (page === 'home') {
-        homeContent.style.display = 'block';
-        contentContainer.style.display = 'none'; // Hide dynamic content
-        return; // Exit function without trying to load dynamic content
+        return; // Exit early without trying to load dynamic content
     }
 
     // Hide home content if we're not on the home page
@@ -51,7 +53,7 @@ function loadPage(page) {
         .then(response => response.text())
         .then(data => {
             contentContainer.innerHTML = data;
-            
+
             // After content is loaded, reattach event listeners for login/register tabs and form switching
             if (page === 'login' || page === 'getStarted') {
                 switchForm('login'); // Default to showing the login form
