@@ -121,6 +121,7 @@ body {
     height: auto;
     max-width: 800px; /* Limits the image size */
     border-radius: 10px;
+    padding: 120px 40px 40px 40px;
 }
 
 /* Text Styling */
@@ -151,10 +152,12 @@ p {
 }
 #dynamic-content {
     display: flex;
-    justify-content: center;
+    justify-content: center; /* Horizontal centering */
+    align-items: center; /* Vertical centering */
     height: 100vh;  /* Full viewport height */
     padding: 20px;
     box-sizing: border-box;
+    flex-direction: column; /* Stack content vertically */
 }
 
 /* The quiz container itself */
