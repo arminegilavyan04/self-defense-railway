@@ -44,6 +44,7 @@ body {
     margin-bottom: 20px; /* Space below tabs */
     padding: 0;
     gap: 10px; /* Ensure tabs have space between them */
+    list-style-type: none; /* Remove default list bullets */
 }
 
 .nav-tabs .nav-link {
@@ -98,7 +99,7 @@ form button {
     display: inline-block;
     text-decoration: none;
     background-color: red;
-    color: #ccc; /* White text */
+    color: white; /* White text */
     padding: 15px 30px;
     border-radius: 30px; /* Oval shape */
     font-size: 18px;
