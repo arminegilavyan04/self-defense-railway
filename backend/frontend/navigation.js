@@ -12,10 +12,16 @@ function loadPage(page) {
     });
 
     let fileName = '';
+    let stylesheetsToAdd = [];
+
     if (page === 'home') {
-        // We can choose to either load the home content dynamically or show static content.
-        // Here we load the home content dynamically (so it's only fetched when required)
+        // For home page, load the home content dynamically (or just show static content)
         fileName = 'index.html'; // Home content
+
+        // Ensure home page styles are applied
+        if (!document.querySelector('link[href="home.css"]')) {
+            stylesheetsToAdd.push('home.css');
+        }
     } else if (page === 'about') {
         fileName = 'about.html';
     } else if (page === 'vr') {
@@ -32,13 +38,16 @@ function loadPage(page) {
         addStylesheet('login.css');
     }
 
+    // Load the necessary stylesheets for the page
+    stylesheetsToAdd.forEach(addStylesheet);
+
     // If we're navigating to the home page, ensure we don't load it dynamically if it's already present
     if (page !== 'home') {
         fetch(fileName)
             .then(response => response.text())
             .then(data => {
                 contentContainer.innerHTML = data;
-                
+
                 // After content is loaded, reattach event listeners for login/register tabs and form switching
                 if (page === 'login' || page === 'getStarted') {
                     switchForm('login'); // Switch to the login form by default
@@ -53,7 +62,6 @@ function loadPage(page) {
 
     // Handle home page content visibility
     if (page === 'home') {
-        // If navigating to home, show static home content, do not load it dynamically
         homeContent.style.display = 'block'; // Show home page content
 
         // Optionally, reset or clear the dynamic content area to avoid duplication
@@ -105,26 +113,6 @@ function attachTabSwitchEventListeners() {
         registerTab.addEventListener('click', () => switchForm('register'));
     }
 }
-
-// Function to switch between Login and Register forms
-function switchForm(form) {
-    // Ensure the login and register forms are visible
-    document.getElementById('loginForm').style.display = 'none';
-    document.getElementById('registerForm').style.display = 'none';
-
-    // Show the selected form
-    if (form === 'login') {
-        document.getElementById('loginForm').style.display = 'block';
-        document.getElementById('loginTab').classList.add('active');
-        document.getElementById('registerTab').classList.remove('active');
-    } else if (form === 'register') {
-        document.getElementById('registerForm').style.display = 'block';
-        document.getElementById('registerTab').classList.add('active');
-        document.getElementById('loginTab').classList.remove('active');
-    }
-}
-
-
 
 // Function to switch between Login and Register forms
 function switchForm(form) {
