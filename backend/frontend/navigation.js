@@ -2,7 +2,7 @@ function loadPage(page) {
     const contentContainer = document.getElementById("dynamic-content");
     const homeContent = document.getElementById("home-content");
 
-    // Clear the dynamic content container
+    // Clear dynamic content container
     contentContainer.innerHTML = '';
 
     // Remove the active class from all nav links
@@ -13,6 +13,8 @@ function loadPage(page) {
 
     let fileName = '';
     if (page === 'home') {
+        // We can choose to either load the home content dynamically or show static content.
+        // Here we load the home content dynamically (so it's only fetched when required)
         fileName = 'index.html'; // Home content
     } else if (page === 'about') {
         fileName = 'about.html';
@@ -30,39 +32,34 @@ function loadPage(page) {
         addStylesheet('login.css');
     }
 
-    // Fetch the content dynamically
-    fetch(fileName)
-        .then(response => response.text())
-        .then(data => {
-            contentContainer.innerHTML = data;
-
-            // Trigger reflow or reapply styles to ensure correct layout after loading
-            setTimeout(() => {
-                resetLayout();
-            }, 0);
-            
-            // Reattach event listeners for the home page if needed
-            if (page === 'home') {
-                // Reapply any styles or layout fixes specific to home page
-                resetHomePageLayout();
-            }
-
-            // After content is loaded, reattach event listeners for login/register tabs and form switching
-            if (page === 'login' || page === 'getStarted') {
-                switchForm('login'); // Switch to the login form by default
-                attachTabSwitchEventListeners(); // Reattach tab switching listeners
-            }
-        })
-        .catch(error => {
-            contentContainer.innerHTML = "<p>Sorry, we couldn't load the requested page.</p>";
-            console.error('Error loading page content:', error);
-        });
+    // If we're navigating to the home page, ensure we don't load it dynamically if it's already present
+    if (page !== 'home') {
+        fetch(fileName)
+            .then(response => response.text())
+            .then(data => {
+                contentContainer.innerHTML = data;
+                
+                // After content is loaded, reattach event listeners for login/register tabs and form switching
+                if (page === 'login' || page === 'getStarted') {
+                    switchForm('login'); // Switch to the login form by default
+                    attachTabSwitchEventListeners(); // Reattach tab switching listeners
+                }
+            })
+            .catch(error => {
+                contentContainer.innerHTML = "<p>Sorry, we couldn't load the requested page.</p>";
+                console.error('Error loading page content:', error);
+            });
+    }
 
     // Handle home page content visibility
     if (page === 'home') {
-        homeContent.style.display = 'block';
+        // If navigating to home, show static home content, do not load it dynamically
+        homeContent.style.display = 'block'; // Show home page content
+
+        // Optionally, reset or clear the dynamic content area to avoid duplication
+        contentContainer.innerHTML = '';
     } else {
-        homeContent.style.display = 'none';
+        homeContent.style.display = 'none'; // Hide home content on other pages
     }
 
     // Add the active class to the clicked navigation link
@@ -76,27 +73,11 @@ function loadPage(page) {
     history.pushState({ page: page }, page, `#${page}`);
 }
 
-// Function to reset layout (reflow)
-function resetLayout() {
-    document.body.style.visibility = 'hidden';
-    setTimeout(() => {
-        document.body.style.visibility = 'visible';
-    }, 50);
-}
-
-// Function to reset specific home page layout (if necessary)
-function resetHomePageLayout() {
-    const homeContent = document.getElementById("home-content");
-    // You can reset any home-specific layout styles here (e.g., margins, paddings)
-    homeContent.style.margin = "0 auto";
-    homeContent.style.textAlign = "center";
-}
-
 // Function to add the stylesheet dynamically
 function addStylesheet(href) {
     const existingLink = document.querySelector(`link[href="${href}"]`);
     if (existingLink) {
-        return; // Don't add the stylesheet if it's already in the DOM
+        return;  // Don't add the stylesheet if it's already in the DOM
     }
 
     const link = document.createElement('link');
@@ -110,6 +91,39 @@ function addStylesheet(href) {
     };
     document.head.appendChild(link);
 }
+
+// Function to attach event listeners for switching between login and register forms
+function attachTabSwitchEventListeners() {
+    const loginTab = document.getElementById('loginTab');
+    const registerTab = document.getElementById('registerTab');
+
+    if (loginTab) {
+        loginTab.addEventListener('click', () => switchForm('login'));
+    }
+
+    if (registerTab) {
+        registerTab.addEventListener('click', () => switchForm('register'));
+    }
+}
+
+// Function to switch between Login and Register forms
+function switchForm(form) {
+    // Ensure the login and register forms are visible
+    document.getElementById('loginForm').style.display = 'none';
+    document.getElementById('registerForm').style.display = 'none';
+
+    // Show the selected form
+    if (form === 'login') {
+        document.getElementById('loginForm').style.display = 'block';
+        document.getElementById('loginTab').classList.add('active');
+        document.getElementById('registerTab').classList.remove('active');
+    } else if (form === 'register') {
+        document.getElementById('registerForm').style.display = 'block';
+        document.getElementById('registerTab').classList.add('active');
+        document.getElementById('loginTab').classList.remove('active');
+    }
+}
+
 
 
 // Function to switch between Login and Register forms
