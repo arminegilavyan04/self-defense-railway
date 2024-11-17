@@ -20,7 +20,7 @@ function loadPage(page) {
 
         // Ensure home page styles are applied
         if (!document.querySelector('link[href="canv.css"]')) {
-            stylesheetsToAdd.push('canv.css');
+            stylesheetsToAdd.push('canv.css'); // If home.css isn't in the head, add it
         }
 
         // Clear dynamic content and display home content
