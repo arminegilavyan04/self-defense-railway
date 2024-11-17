@@ -137,7 +137,7 @@ body {
 .quiz-container {
     flex: 0.5; /* Takes up 2/3 of the space */
     max-width: 50%; /* Limit the max-width for better layout */
-    padding: 0; /* Remove extra padding */
+    padding: 120px 120px 120px 120px; /* Remove extra padding */
     display: flex; /* Use flexbox to align text vertically */
     flex-direction: column; /* Stack elements vertically */
     justify-content: center; /* Vertically center the content */
