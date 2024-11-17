@@ -150,6 +150,25 @@ p {
     color: #555;
     margin-bottom: 30px;
 }
+#dynamic-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;  /* Full viewport height */
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* The quiz container itself */
+.quiz_container {
+    text-align: center;  /* Center the text */
+    max-width: 600px;  /* Limit the width */
+    width: 100%;  /* Allow it to be responsive */
+    padding: 20px;
+    border: 1px solid #ccc;  /* Optional border for styling */
+    border-radius: 8px;  /* Rounded corners */
+    background-color: #f9f9f9;  /* Light background color */
+}
 
 /* Start Quiz Button Styling */
 .start-quiz-btn {
