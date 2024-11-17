@@ -3,7 +3,7 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: grey;
+    background-color: rgb(250, 248, 248);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -15,7 +15,7 @@ body {
     max-width: 500px;
     width: 100%;
     padding: 20px;
-    background-color: grey;
+    background-color: rgb(250, 248, 248);
     border-radius: 10px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
@@ -36,15 +36,15 @@ body {
     cursor: pointer;
     padding: 10px 20px;
     font-size: 16px;
-    border: 1px solid grey;
+    border: 1px solid white;
     border-radius: 5px;
-    background-color: grey;
-    color: #007bff;
+    background-color: white;
+    color: grey;
 }
 
 .nav-tabs .nav-link.active {
     background-color: red;
-    color: grey;
+    color: white;
 }
 
 form {
@@ -62,7 +62,7 @@ form input, form button {
 form button {
     padding: 12px;
     background-color: red;
-    color: grey;
+    color: white;
     border: none;
     border-radius: 5px;
 }
