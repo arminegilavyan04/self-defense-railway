@@ -109,6 +109,16 @@ body {
     padding: 40px;
     gap: 20px; /* Space between image and text */
 }
+#dynamic-content {
+    flex: 0.5; /* Takes up 2/3 of the space */
+    max-width: 50%; /* Limit the max-width for better layout */
+    padding: 0; /* Remove extra padding */
+    display: flex; /* Use flexbox to align text vertically */
+    flex-direction: column; /* Stack elements vertically */
+    justify-content: center; /* Vertically center the content */
+    align-items: center; /* Horizontally center the content */
+    text-align: center; 
+}
 
 /* Image Styling */
 .image-container {
