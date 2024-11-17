@@ -170,9 +170,9 @@ p {
 
 /* Style for active navigation link */
 .nav-links a.active {
-    color: red;
-    border-bottom: 2px solid red;
-    padding-bottom: 8px;
+    color: red; /* Or any color you want for active link */
+    font-weight: bold;
+    border-bottom: 2px solid red; /* Or any style you want */
 }
 
 /* Optional: Active link hover effect */

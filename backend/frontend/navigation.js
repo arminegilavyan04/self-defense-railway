@@ -10,22 +10,22 @@ function loadPage(page) {
         link.classList.remove('active');
     });
 
-    // Define the file name for each page
+    // Load different content based on the page clicked
     let fileName = '';
     if (page === 'home') {
-        fileName = 'home.html';  // External file for home page
+        fileName = 'home.html'; // Assuming 'home.html' is a valid file
     } else if (page === 'about') {
-        fileName = 'about.html';  // External file for about page
+        fileName = 'about.html';
     } else if (page === 'vr') {
-        fileName = 'vr.html';  // External file for VR page
+        fileName = 'vr.html';
     } else if (page === 'chat') {
-        fileName = 'chat.html';  // External file for chat page
+        fileName = 'chat.html';
     } else if (page === 'quiz') {
-        fileName = 'quiz.html';  // External file for quiz page
+        fileName = 'quiz.html';
     } else if (page === 'login') {
-        fileName = 'login.html';  // External file for login page
+        fileName = 'login.html';
     } else if (page === 'getStarted') {
-        fileName = 'getStarted.html';  // External file for get started page
+        fileName = 'getStarted.html';
     }
 
     // Use fetch to load the content of the selected HTML file
@@ -39,14 +39,24 @@ function loadPage(page) {
             console.error('Error loading page content:', error);
         });
 
-    // Set the active class on the clicked navigation link
+    // Add the active class to the clicked navigation link
     navLinks.forEach(link => {
-        if (link.textContent.toLowerCase() === page) {
+        // Compare the page name with the text content of the links (like 'Home', 'About Us', etc.)
+        if (link.textContent.trim().toLowerCase() === page) {
             link.classList.add('active');
         }
     });
+
+    // Optionally, update the browser's history (so the URL changes without page reload)
+    history.pushState({ page: page }, page, `#${page}`);
 }
 
+// Listen for back/forward navigation and load content dynamically
+window.addEventListener('popstate', (event) => {
+    if (event.state && event.state.page) {
+        loadPage(event.state.page);
+    }
+});
 
 
    
