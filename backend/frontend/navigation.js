@@ -11,7 +11,6 @@ function loadPage(page) {
         link.classList.remove('active');
     });
 
-    // Handle content based on the page clicked
     let fileName = '';
     if (page === 'home') {
         fileName = 'index.html';  // We'll load home content dynamically, no need for static "home-content" div.
@@ -25,31 +24,34 @@ function loadPage(page) {
         fileName = 'quiz_1.html';
     } else if (page === 'login') {
         fileName = 'login.html';
-        addStylesheet('login.css');
+        addStylesheet('login.css'); // Dynamically load the login.css stylesheet
     } else if (page === 'getStarted') {
         fileName = 'login.html';
-        addStylesheet('login.css');
+        addStylesheet('login.css'); // Dynamically load the login.css stylesheet
     }
 
-    // If it's not the home page, load the dynamic content
-    if (page !== 'home') {
-        // Fetch the content dynamically
-        fetch(fileName)
-            .then(response => response.text())
-            .then(data => {
-                contentContainer.innerHTML = data;
-            })
-            .catch(error => {
-                contentContainer.innerHTML = "<p>Sorry, we couldn't load the requested page.</p>";
-                console.error('Error loading page content:', error);
-            });
-    }
+    // Fetch the content dynamically
+    fetch(fileName)
+        .then(response => response.text())
+        .then(data => {
+            contentContainer.innerHTML = data;
+            
+            // After content is loaded, reattach event listeners for login/register tabs and form switching
+            if (page === 'login' || page === 'getStarted') {
+                switchForm('login'); // Switch to the login form by default
+                attachTabSwitchEventListeners(); // Reattach tab switching listeners
+            }
+        })
+        .catch(error => {
+            contentContainer.innerHTML = "<p>Sorry, we couldn't load the requested page.</p>";
+            console.error('Error loading page content:', error);
+        });
 
-    // For the Home button, handle the special case where it loads static home content
+    // Handle home page content visibility
     if (page === 'home') {
-        homeContent.style.display = 'block';  // Display the home content.
+        homeContent.style.display = 'block';
     } else {
-        homeContent.style.display = 'none';   // Hide the home content if any other tab is clicked.
+        homeContent.style.display = 'none';
     }
 
     // Add the active class to the clicked navigation link
@@ -63,16 +65,40 @@ function loadPage(page) {
     history.pushState({ page: page }, page, `#${page}`);
 }
 
-// Listen for back/forward navigation and load content dynamically
-window.addEventListener('popstate', (event) => {
-    if (event.state && event.state.page) {
-        loadPage(event.state.page);
+// Function to add the stylesheet dynamically
+function addStylesheet(href) {
+    const existingLink = document.querySelector(`link[href="${href}"]`);
+    if (existingLink) {
+        return;  // Don't add the stylesheet if it's already in the DOM
     }
-});
 
-   
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = href;
+    link.onload = () => {
+        console.log(`${href} loaded successfully.`);
+    };
+    link.onerror = () => {
+        console.error(`Error loading ${href}`);
+    };
+    document.head.appendChild(link);
+}
 
-/// Function to switch between Login and Register forms
+// Function to attach event listeners for switching between login and register forms
+function attachTabSwitchEventListeners() {
+    const loginTab = document.getElementById('loginTab');
+    const registerTab = document.getElementById('registerTab');
+
+    if (loginTab) {
+        loginTab.addEventListener('click', () => switchForm('login'));
+    }
+
+    if (registerTab) {
+        registerTab.addEventListener('click', () => switchForm('register'));
+    }
+}
+
+// Function to switch between Login and Register forms
 function switchForm(form) {
     // Ensure the login and register forms are visible
     document.getElementById('loginForm').style.display = 'none';
