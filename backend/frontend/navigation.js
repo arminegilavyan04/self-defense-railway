@@ -14,18 +14,19 @@ function loadPage(page) {
     let fileName = '';
     let stylesheetsToAdd = [];
 
+    // Determine which page to load and ensure relevant styles are applied
     if (page === 'home') {
-        // For the home page, we want to ensure the home page CSS is applied
         fileName = 'index.html'; // Home content
 
-        // Ensure the home page styles are applied if not already present
+        // Ensure home page styles are applied
         if (!document.querySelector('link[href="home.css"]')) {
             stylesheetsToAdd.push('home.css');
         }
 
-        // If the home page content is already visible, we don't want to load it again, just ensure the layout is correct.
-        homeContent.style.display = 'block';  // Ensure home content is visible
-        contentContainer.innerHTML = ''; // Clear dynamic content to avoid duplication.
+        // Clear dynamic content and display home content
+        homeContent.style.display = 'block';  
+        contentContainer.innerHTML = '';  // Clear content
+
     } else if (page === 'about') {
         fileName = 'about.html';
     } else if (page === 'vr') {
@@ -42,7 +43,7 @@ function loadPage(page) {
         addStylesheet('login.css');
     }
 
-    // Load the necessary stylesheets for the page
+    // Apply the required stylesheets dynamically
     stylesheetsToAdd.forEach(addStylesheet);
 
     // Dynamically fetch content for non-home pages
