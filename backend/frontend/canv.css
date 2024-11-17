@@ -152,8 +152,7 @@ p {
 }
 #dynamic-content {
     display: flex;
-    justify-content: center; /* Horizontal centering */
-    align-items: center; /* Vertical centering */
+    justify-content: center; /* Horizontal centering */    
     height: 100vh;  /* Full viewport height */
     padding: 20px;
     box-sizing: border-box;
