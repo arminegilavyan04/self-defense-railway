@@ -154,22 +154,20 @@ p {
     display: flex;
     justify-content: center;
     align-items: center;
-    
     height: 100vh;  /* Full viewport height */
-    padding: 120px 40px 40px 40px;
+    padding: 20px;
     box-sizing: border-box;
 }
 
 /* The quiz container itself */
-.quiz-container {
-    display: flex;
-    justify-content: center;   /* Center horizontally */
-    align-items: center;  
-    text-align: center;      /* Center vertically */
-    height: 100vh;             /* Full height of the viewport */
-    padding: 120px 40px 40px 40px;           /* Add padding around the content */
-    box-sizing: border-box;    /* Include padding in width/height calculations */      /* Center text inside the container */
-    background-color: #f5f5f5; /* Optional, just for visual contrast */
+.quiz_container {
+    text-align: center;  /* Center the text */
+    max-width: 600px;  /* Limit the width */
+    width: 100%;  /* Allow it to be responsive */
+    padding: 20px;
+    border: 1px solid #ccc;  /* Optional border for styling */
+    border-radius: 8px;  /* Rounded corners */
+    background-color: #f9f9f9;  /* Light background color */
 }
 
 /* Start Quiz Button Styling */
