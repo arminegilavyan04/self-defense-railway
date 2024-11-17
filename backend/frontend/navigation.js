@@ -1,7 +1,8 @@
 function loadPage(page) {
     const contentContainer = document.getElementById("dynamic-content");
+    const homeContent = document.getElementById("home-content");
 
-    // Clear previous content in the dynamic content container
+    // Clear the dynamic content container
     contentContainer.innerHTML = '';
 
     // Remove the active class from all nav links
@@ -10,10 +11,10 @@ function loadPage(page) {
         link.classList.remove('active');
     });
 
-    // Load different content based on the page clicked
+    // Handle content based on the page clicked
     let fileName = '';
     if (page === 'home') {
-        fileName = 'index.html'; // Assuming 'home.html' is a valid file
+        fileName = 'index.html';  // We'll load home content dynamically, no need for static "home-content" div.
     } else if (page === 'about') {
         fileName = 'about.html';
     } else if (page === 'vr') {
@@ -28,20 +29,29 @@ function loadPage(page) {
         fileName = 'login.html';
     }
 
-    // Use fetch to load the content of the selected HTML file
-    fetch(fileName)
-        .then(response => response.text())  // Convert the response to text (HTML content)
-        .then(data => {
-            contentContainer.innerHTML = data;  // Insert the fetched content into the page
-        })
-        .catch(error => {
-            contentContainer.innerHTML = "<p>Sorry, we couldn't load the requested page.</p>";
-            console.error('Error loading page content:', error);
-        });
+    // If it's not the home page, load the dynamic content
+    if (page !== 'home') {
+        // Fetch the content dynamically
+        fetch(fileName)
+            .then(response => response.text())
+            .then(data => {
+                contentContainer.innerHTML = data;
+            })
+            .catch(error => {
+                contentContainer.innerHTML = "<p>Sorry, we couldn't load the requested page.</p>";
+                console.error('Error loading page content:', error);
+            });
+    }
+
+    // For the Home button, handle the special case where it loads static home content
+    if (page === 'home') {
+        homeContent.style.display = 'block';  // Display the home content.
+    } else {
+        homeContent.style.display = 'none';   // Hide the home content if any other tab is clicked.
+    }
 
     // Add the active class to the clicked navigation link
     navLinks.forEach(link => {
-        // Compare the page name with the text content of the links (like 'Home', 'About Us', etc.)
         if (link.textContent.trim().toLowerCase() === page) {
             link.classList.add('active');
         }
@@ -57,7 +67,6 @@ window.addEventListener('popstate', (event) => {
         loadPage(event.state.page);
     }
 });
-
 
    
 
