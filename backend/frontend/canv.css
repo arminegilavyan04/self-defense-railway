@@ -163,8 +163,8 @@ p {
 /* The quiz container itself */
 .quiz_container {
     text-align: center;  /* Center the text */
-    max-width: 400px;  /* Limit the width */
-    width: 100%;  /* Allow it to be responsive */
+    max-width: 600px;  /* Limit the width */
+    width: 50% ; /* Allow it to be responsive */
     padding: 20px;
     border: 1px solid #ccc;  /* Optional border for styling */
     border-radius: 8px;  /* Rounded corners */
