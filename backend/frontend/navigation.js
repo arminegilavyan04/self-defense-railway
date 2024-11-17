@@ -25,8 +25,10 @@ function loadPage(page) {
         fileName = 'quiz_1.html';
     } else if (page === 'login') {
         fileName = 'login.html';
+        addStylesheet('login.css');
     } else if (page === 'getStarted') {
         fileName = 'login.html';
+        addStylesheet('login.css');
     }
 
     // If it's not the home page, load the dynamic content

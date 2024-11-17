@@ -1,0 +1,72 @@
+/* General Styles for the Login and Register Forms */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: grey;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+}
+
+.container {
+    max-width: 500px;
+    width: 100%;
+    padding: 20px;
+    background-color: grey;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.card-body {
+    padding: 20px;
+    margin: 0;
+    border-radius: 10px;
+}
+
+.nav-tabs {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.nav-tabs .nav-link {
+    cursor: pointer;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: 1px solid grey;
+    border-radius: 5px;
+    background-color: grey;
+    color: #007bff;
+}
+
+.nav-tabs .nav-link.active {
+    background-color: red;
+    color: grey;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+}
+
+form input, form button {
+    font-size: 16px;
+    width: 100%;
+}
+
+form button {
+    padding: 12px;
+    background-color: red;
+    color: grey;
+    border: none;
+    border-radius: 5px;
+}
+
+form button:hover {
+    background-color: red;
+}
