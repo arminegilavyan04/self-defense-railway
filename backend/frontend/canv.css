@@ -121,14 +121,14 @@ body {
     height: auto;
     max-width: 800px; /* Limits the image size */
     border-radius: 10px;
-    padding: 0px;
+    padding: 40px 40px 120px 40px;
 }
 
 /* Text Styling */
 .text-container {
     flex: 0.5; /* Takes up 2/3 of the space */
     max-width: 50%; /* Limit the max-width for better layout */
-    padding: 0; /* Remove extra padding */
+    padding: 40px 40px 120px 40px;
     display: flex; /* Use flexbox to align text vertically */
     flex-direction: column; /* Stack elements vertically */
     justify-content: center; /* Vertically center the content */
