@@ -12,6 +12,7 @@ body {
     text-align: center;
 }
 
+/* Container for the form */
 .container {
     max-width: 500px;
     width: 100%;
@@ -19,28 +20,41 @@ body {
     background-color: #cecdcd;
     border-radius: 10px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column; /* Stack content vertically */
+    justify-content: flex-start; /* Align to the top */
+    margin-top: 20px; /* Space at the top */
 }
 
+/* Card body containing the form content */
 .card-body {
-    padding: 120px 40px 40px 40px;
+    padding: 30px 40px; /* Adjust padding for card */
     margin: 0;
     border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 20px; /* Add gap between sections */
 }
 
+/* Tab Styles */
 .nav-tabs {
     display: flex;
     justify-content: center;
-    margin-bottom: 20px;
+    margin-bottom: 20px; /* Space below tabs */
+    padding: 0;
+    gap: 10px; /* Ensure tabs have space between them */
 }
 
 .nav-tabs .nav-link {
     cursor: pointer;
     padding: 10px 20px;
     font-size: 16px;
-    border: 1px solid white;
+    border: 1px solid #ccc;
     border-radius: 5px;
-    background-color: white;
+    background-color: #ccc;
     color: grey;
+    transition: background-color 0.3s ease;
 }
 
 .nav-tabs .nav-link.active {
@@ -48,31 +62,80 @@ body {
     color: white;
 }
 
+.nav-tabs .nav-link:hover {
+    background-color: #e04d3a; /* Slightly lighter red on hover */
+    color: white;
+}
+
+/* Ensure title is spaced properly from tabs */
+h2 {
+    font-weight: 700;
+    font-size: 24px;
+    margin-bottom: 20px; /* Add space between title and tabs */
+}
+
+/* Form Styles */
 form {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 20px; /* Increased gap for better spacing between elements */
     align-items: center;
 }
 
-form input, form button {
+/* Form Input Fields */
+form input {
     font-size: 16px;
+    padding: 10px;
     width: 100%;
+    max-width: 400px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 5px;
 }
 
+/* Submit Button Styles */
 form button {
     display: inline-block;
     text-decoration: none;
     background-color: red;
-    color: white; /* White text */
+    color: #ccc; /* White text */
     padding: 15px 30px;
     border-radius: 30px; /* Oval shape */
     font-size: 18px;
     font-weight: bold;
     transition: background-color 0.3s ease;
-    
+    max-width: 400px; /* Button shouldn't exceed form input max-width */
 }
 
 form button:hover {
-    background-color: red;
+    background-color: #e04d3a; /* Lighter red on hover */
+}
+
+form button:active {
+    background-color: #cc4329; /* Even darker red on active */
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .container {
+        width: 90%;  /* Make the container responsive on smaller screens */
+        padding: 15px;
+    }
+
+    .card-body {
+        padding: 30px 20px;
+    }
+
+    .nav-tabs {
+        gap: 5px;
+    }
+
+    .nav-tabs .nav-link {
+        font-size: 14px;
+        padding: 8px 16px;
+    }
+
+    form input, form button {
+        font-size: 14px;
+    }
 }
