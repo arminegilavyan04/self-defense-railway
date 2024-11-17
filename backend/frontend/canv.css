@@ -62,7 +62,7 @@ body {
 /* Login/Register Button Styling */
 .login-register a {
     text-decoration: none;
-    background-color: red;
+    background-color: grey;
     color: white;
     padding: 12px 25px; /* Larger padding */
     border-radius: 30px;
@@ -91,7 +91,8 @@ body {
 .person-icon, .flag-icon {
     width: 50px;
     height: 50px;
-    background-color: #eee;
+    background-color: white;
+    color:red;
     border-radius: 50%;
     margin-left: 20px;
     overflow: hidden;
@@ -197,4 +198,3 @@ p {
         text-align: center;
     }
 }
-

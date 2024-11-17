@@ -1,31 +1,53 @@
-// Function to load the content dynamically
 function loadPage(page) {
     const contentContainer = document.getElementById("dynamic-content");
 
     // Clear previous content in the dynamic content container
     contentContainer.innerHTML = '';
 
-    if (page === 'login') {
-        // Load the login page content dynamically (in this case, login.html)
-        fetch('login.html')
-            .then(response => response.text())
-            .then(data => {
-                contentContainer.innerHTML = data; // Inject login.html content
+    // Remove the active class from all nav links
+    const navLinks = document.querySelectorAll('.nav-links a');
+    navLinks.forEach(link => {
+        link.classList.remove('active');
+    });
 
-                // Optionally, switch to the login form by default
-                switchForm('login'); // Show the login form by default
-            })
-            .catch(error => {
-                contentContainer.innerHTML = "<p>Sorry, we couldn't load the login form.</p>";
-            });
-    } else if (page === 'home') {
-        // Home page content can be loaded if necessary
-        contentContainer.innerHTML = "<h2>Welcome Home</h2><p>Home content goes here.</p>";
+    // Define the file name for each page
+    let fileName = '';
+    if (page === 'home') {
+        fileName = 'home.html';  // External file for home page
     } else if (page === 'about') {
-        contentContainer.innerHTML = "<h2>About Us</h2><p>About us content goes here.</p>";
+        fileName = 'about.html';  // External file for about page
+    } else if (page === 'vr') {
+        fileName = 'vr.html';  // External file for VR page
+    } else if (page === 'chat') {
+        fileName = 'chat.html';  // External file for chat page
+    } else if (page === 'quiz') {
+        fileName = 'quiz.html';  // External file for quiz page
+    } else if (page === 'login') {
+        fileName = 'login.html';  // External file for login page
+    } else if (page === 'getStarted') {
+        fileName = 'getStarted.html';  // External file for get started page
     }
-    // Add more cases for other sections like 'chat', etc.
+
+    // Use fetch to load the content of the selected HTML file
+    fetch(fileName)
+        .then(response => response.text())  // Convert the response to text (HTML content)
+        .then(data => {
+            contentContainer.innerHTML = data;  // Insert the fetched content into the page
+        })
+        .catch(error => {
+            contentContainer.innerHTML = "<p>Sorry, we couldn't load the requested page.</p>";
+            console.error('Error loading page content:', error);
+        });
+
+    // Set the active class on the clicked navigation link
+    navLinks.forEach(link => {
+        if (link.textContent.toLowerCase() === page) {
+            link.classList.add('active');
+        }
+    });
 }
+
+
 
    
 
