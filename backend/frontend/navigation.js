@@ -2,7 +2,7 @@ function loadPage(page) {
     const contentContainer = document.getElementById("dynamic-content");
     const homeContent = document.getElementById("home-content");
 
-    // Clear dynamic content container
+    // Clear dynamic content container to avoid content duplication
     contentContainer.innerHTML = '';
 
     // Remove the active class from all nav links
@@ -15,13 +15,17 @@ function loadPage(page) {
     let stylesheetsToAdd = [];
 
     if (page === 'home') {
-        // For home page, load the home content dynamically (or just show static content)
+        // For the home page, we want to ensure the home page CSS is applied
         fileName = 'index.html'; // Home content
 
-        // Ensure home page styles are applied
+        // Ensure the home page styles are applied if not already present
         if (!document.querySelector('link[href="home.css"]')) {
             stylesheetsToAdd.push('home.css');
         }
+
+        // If the home page content is already visible, we don't want to load it again, just ensure the layout is correct.
+        homeContent.style.display = 'block';  // Ensure home content is visible
+        contentContainer.innerHTML = ''; // Clear dynamic content to avoid duplication.
     } else if (page === 'about') {
         fileName = 'about.html';
     } else if (page === 'vr') {
@@ -41,7 +45,7 @@ function loadPage(page) {
     // Load the necessary stylesheets for the page
     stylesheetsToAdd.forEach(addStylesheet);
 
-    // If we're navigating to the home page, ensure we don't load it dynamically if it's already present
+    // Dynamically fetch content for non-home pages
     if (page !== 'home') {
         fetch(fileName)
             .then(response => response.text())
@@ -60,14 +64,9 @@ function loadPage(page) {
             });
     }
 
-    // Handle home page content visibility
-    if (page === 'home') {
-        homeContent.style.display = 'block'; // Show home page content
-
-        // Optionally, reset or clear the dynamic content area to avoid duplication
-        contentContainer.innerHTML = '';
-    } else {
-        homeContent.style.display = 'none'; // Hide home content on other pages
+    // Hide home content on non-home pages
+    if (page !== 'home') {
+        homeContent.style.display = 'none';
     }
 
     // Add the active class to the clicked navigation link
