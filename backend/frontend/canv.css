@@ -160,15 +160,15 @@ p {
 }
 
 /* The quiz container itself */
-.quiz_container {
-    text-align: center; 
-    align-items: center; /* Center the text */
-    max-width: 600px;  /* Limit the width */
-    width: 100%;  /* Allow it to be responsive */
-    padding: 20px;
-    border: 1px solid #ccc;  /* Optional border for styling */
-    border-radius: 8px;  /* Rounded corners */
-    background-color: #f9f9f9;  /* Light background color */
+
+
+.quiz-container {
+    display: flex;
+    justify-content: center;   /* Center horizontally */
+    align-items: center;       /* Center vertically */
+    height: 100vh;             /* Make sure it takes full height of the viewport */
+    text-align: center;        /* Center text inside elements */
+    flex-direction: column;    /* Align items in a column, if needed */
 }
 
 /* Start Quiz Button Styling */
