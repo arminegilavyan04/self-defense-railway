@@ -2,7 +2,7 @@ function loadPage(page) {
     const contentContainer = document.getElementById("dynamic-content");
     const homeContent = document.getElementById("home-content");
 
-    // Clear the dynamic content container
+    // Clear the dynamic content container if not navigating to home
     contentContainer.innerHTML = '';
 
     // Remove the active class from all nav links
@@ -12,8 +12,11 @@ function loadPage(page) {
     });
 
     let fileName = '';
+    let shouldLoadStylesheet = false;
+
+    // Determine the page and set the corresponding file
     if (page === 'home') {
-        fileName = 'index.html';  // We'll load home content dynamically, no need for static "home-content" div.
+        fileName = 'index.html';
     } else if (page === 'about') {
         fileName = 'about.html';
     } else if (page === 'vr') {
@@ -22,15 +25,28 @@ function loadPage(page) {
         fileName = 'chat.html';
     } else if (page === 'quiz') {
         fileName = 'quiz_1.html';
-    } else if (page === 'login') {
+    } else if (page === 'login' || page === 'getStarted') {
         fileName = 'login.html';
-        addStylesheet('login.css'); // Dynamically load the login.css stylesheet
-    } else if (page === 'getStarted') {
-        fileName = 'login.html';
-        addStylesheet('login.css'); // Dynamically load the login.css stylesheet
+        shouldLoadStylesheet = true; // Indicate that login.css should be loaded
     }
 
-    // Fetch the content dynamically
+    // If we're on the home page, display it statically
+    if (page === 'home') {
+        homeContent.style.display = 'block';
+        contentContainer.style.display = 'none'; // Hide dynamic content
+        return; // Exit function without trying to load dynamic content
+    }
+
+    // Hide home content if we're not on the home page
+    homeContent.style.display = 'none';
+    contentContainer.style.display = 'block';
+
+    // If login page or getStarted, load the stylesheet dynamically
+    if (shouldLoadStylesheet) {
+        addStylesheet('login.css');
+    }
+
+    // Fetch and load dynamic page content
     fetch(fileName)
         .then(response => response.text())
         .then(data => {
@@ -38,21 +54,14 @@ function loadPage(page) {
             
             // After content is loaded, reattach event listeners for login/register tabs and form switching
             if (page === 'login' || page === 'getStarted') {
-                switchForm('login'); // Switch to the login form by default
-                attachTabSwitchEventListeners(); // Reattach tab switching listeners
+                switchForm('login'); // Default to showing the login form
+                attachTabSwitchEventListeners(); // Reattach the tab switching event listeners
             }
         })
         .catch(error => {
             contentContainer.innerHTML = "<p>Sorry, we couldn't load the requested page.</p>";
             console.error('Error loading page content:', error);
         });
-
-    // Handle home page content visibility
-    if (page === 'home') {
-        homeContent.style.display = 'block';
-    } else {
-        homeContent.style.display = 'none';
-    }
 
     // Add the active class to the clicked navigation link
     navLinks.forEach(link => {
