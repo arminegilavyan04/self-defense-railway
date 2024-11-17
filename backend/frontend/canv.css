@@ -161,7 +161,8 @@ p {
 
 /* The quiz container itself */
 .quiz_container {
-    text-align: center;  /* Center the text */
+    text-align: center; 
+    align-items: center; /* Center the text */
     max-width: 600px;  /* Limit the width */
     width: 100%;  /* Allow it to be responsive */
     padding: 20px;
