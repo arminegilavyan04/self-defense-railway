@@ -81,7 +81,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Final submission button functionality
     document.getElementById('finalSubmissionButton').addEventListener('click', function() {
-        alert("Final Submission Completed.");
-        // Optionally, handle final submission action here, such as sending data to a server
+        loadPage('home');  // Assuming 'home' is the page identifier you've set up for the Home page
     });
 });
