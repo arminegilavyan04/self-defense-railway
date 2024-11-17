@@ -13,7 +13,7 @@ function loadPage(page) {
     // Load different content based on the page clicked
     let fileName = '';
     if (page === 'home') {
-        fileName = 'home.html'; // Assuming 'home.html' is a valid file
+        fileName = 'index.html'; // Assuming 'home.html' is a valid file
     } else if (page === 'about') {
         fileName = 'about.html';
     } else if (page === 'vr') {
@@ -21,11 +21,11 @@ function loadPage(page) {
     } else if (page === 'chat') {
         fileName = 'chat.html';
     } else if (page === 'quiz') {
-        fileName = 'quiz.html';
+        fileName = 'quiz_1.html';
     } else if (page === 'login') {
         fileName = 'login.html';
     } else if (page === 'getStarted') {
-        fileName = 'getStarted.html';
+        fileName = 'login.html';
     }
 
     // Use fetch to load the content of the selected HTML file
