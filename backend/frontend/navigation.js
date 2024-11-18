@@ -14,7 +14,7 @@ function loadPage(page) {
     let fileName = '';
     let stylesheetsToAdd = [];
 
-    // Determine which page to load and ensure relevant styles are applied
+    // Handle page content loading logic
     if (page === 'home') {
         fileName = 'index.html'; // Home content
 
@@ -32,7 +32,12 @@ function loadPage(page) {
     } else if (page === 'vr') {
         fileName = 'vr.html';
     } else if (page === 'chat') {
-        fileName = 'chat.html';
+        // If navigating to the "chat" section, scroll to the chat section directly
+        const chatSection = document.getElementById('chatSection');
+        if (chatSection) {
+            chatSection.scrollIntoView({ behavior: 'smooth' });
+        }
+        return; // Don't load external content for chat; just scroll to it
     } else if (page === 'quiz') {
         fileName = 'quiz_1.html';
     } else if (page === 'login') {
@@ -47,7 +52,7 @@ function loadPage(page) {
     stylesheetsToAdd.forEach(addStylesheet);
 
     // Dynamically fetch content for non-home pages
-    if (page !== 'home') {
+    if (page !== 'home' && page !== 'chat') {
         fetch(fileName)
             .then(response => response.text())
             .then(data => {
