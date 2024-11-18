@@ -30,8 +30,9 @@ function loadPage(page) {
     } else if (page === 'quiz') {
         fileName = 'quiz_1.html'; // Load quiz page
     } else if (page === 'login') {
+        // For the login page, dynamically load its content into the #dynamic-content section
         fileName = 'login.html';
-        addStylesheet('login.css');
+        addStylesheet('login.css'); // Add login.css dynamically if necessary
     }
 
     // Apply the required stylesheets dynamically
@@ -43,7 +44,10 @@ function loadPage(page) {
             .then(response => response.text())
             .then(data => {
                 contentContainer.innerHTML = data;
-                // You can add additional logic for each page as needed
+                // Ensure login form isn't toggled if it's already loaded
+                if (page === 'login') {
+                    document.getElementById('loginForm').style.display = 'block'; // Explicitly show login form if needed
+                }
             })
             .catch(error => {
                 contentContainer.innerHTML = "<p>Sorry, we couldn't load the requested page.</p>";
@@ -67,29 +71,18 @@ function loadPage(page) {
     history.pushState({ page: page }, page, `#${page}`);
 }
 
-// Function to add the stylesheet dynamically
-function addStylesheet(href) {
-    const existingLink = document.querySelector(`link[href="${href}"]`);
-    if (existingLink) {
-        return;  // Don't add the stylesheet if it's already in the DOM
-    }
-
-    const link = document.createElement('link');
-    link.rel = 'stylesheet';
-    link.href = href;
-    link.onload = () => {
-        console.log(`${href} loaded successfully.`);
-    };
-    link.onerror = () => {
-        console.error(`Error loading ${href}`);
-    };
-    document.head.appendChild(link);
-}
-
 
 // Function to switch between Login and Register forms
-function switchForm(form) {
-    // Ensure the login and register forms are visible
+ffunction switchForm(form) {
+    // Check if the login form is already visible (from dynamic content)
+    const loginFormVisible = document.getElementById('dynamic-content').querySelector('#loginForm') !== null;
+
+    // If it's already loaded via loadPage, don't switch forms
+    if (loginFormVisible && form === 'login') {
+        return; // Avoid toggling again
+    }
+
+    // Otherwise, ensure the login and register forms are visible
     document.getElementById('loginForm').style.display = 'none';
     document.getElementById('registerForm').style.display = 'none';
 
