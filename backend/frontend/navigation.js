@@ -14,36 +14,22 @@ function loadPage(page) {
     let fileName = '';
     let stylesheetsToAdd = [];
 
-    // Handle page content loading logic
+    // Determine which page to load and ensure relevant styles are applied
     if (page === 'home') {
         fileName = 'index.html'; // Home content
-
-        // Ensure home page styles are applied
         if (!document.querySelector('link[href="canv.css"]')) {
             stylesheetsToAdd.push('canv.css'); // If home.css isn't in the head, add it
         }
-
-        // Clear dynamic content and display home content
         homeContent.style.display = 'block';  
-        contentContainer.innerHTML = '';  // Clear content
-
     } else if (page === 'about') {
         fileName = 'about.html';
     } else if (page === 'vr') {
         fileName = 'vr.html';
     } else if (page === 'chat') {
-        // If navigating to the "chat" section, scroll to the chat section directly
-        const chatSection = document.getElementById('chatSection');
-        if (chatSection) {
-            chatSection.scrollIntoView({ behavior: 'smooth' });
-        }
-        return; // Don't load external content for chat; just scroll to it
+        fileName = 'chat.html'; // Load chat page
     } else if (page === 'quiz') {
-        fileName = 'quiz_1.html';
+        fileName = 'quiz.html'; // Load quiz page
     } else if (page === 'login') {
-        fileName = 'login.html';
-        addStylesheet('login.css');
-    } else if (page === 'getStarted') {
         fileName = 'login.html';
         addStylesheet('login.css');
     }
@@ -51,18 +37,13 @@ function loadPage(page) {
     // Apply the required stylesheets dynamically
     stylesheetsToAdd.forEach(addStylesheet);
 
-    // Dynamically fetch content for non-home pages
-    if (page !== 'home' && page !== 'chat') {
+    // Dynamically fetch content for non-home pages (excluding home)
+    if (page !== 'home') {
         fetch(fileName)
             .then(response => response.text())
             .then(data => {
                 contentContainer.innerHTML = data;
-
-                // After content is loaded, reattach event listeners for login/register tabs and form switching
-                if (page === 'login' || page === 'getStarted') {
-                    switchForm('login'); // Switch to the login form by default
-                    attachTabSwitchEventListeners(); // Reattach tab switching listeners
-                }
+                // You can add additional logic for each page as needed
             })
             .catch(error => {
                 contentContainer.innerHTML = "<p>Sorry, we couldn't load the requested page.</p>";
@@ -104,6 +85,7 @@ function addStylesheet(href) {
     };
     document.head.appendChild(link);
 }
+
 
 // Function to switch between Login and Register forms
 function switchForm(form) {

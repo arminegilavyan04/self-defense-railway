@@ -114,7 +114,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Final Submission event listener
     document.getElementById('finalSubmissionButton').addEventListener('click', function() {
-        // Trigger the chat section scroll
+        // Navigate to the "chat" section dynamically using the loadPage function
         loadPage('chat');
     });
 
