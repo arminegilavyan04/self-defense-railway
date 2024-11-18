@@ -17,36 +17,46 @@ function loadPage(page) {
     // Determine which page to load and ensure relevant styles are applied
     if (page === 'home') {
         fileName = 'index.html'; // Home content
+
+        // Ensure home page styles are applied
         if (!document.querySelector('link[href="canv.css"]')) {
             stylesheetsToAdd.push('canv.css'); // If home.css isn't in the head, add it
         }
+
+        // Clear dynamic content and display home content
         homeContent.style.display = 'block';  
+        contentContainer.innerHTML = '';  // Clear content
+
     } else if (page === 'about') {
         fileName = 'about.html';
     } else if (page === 'vr') {
         fileName = 'vr.html';
     } else if (page === 'chat') {
-        fileName = 'chat.html'; // Load chat page
+        fileName = 'chat.html';
     } else if (page === 'quiz') {
-        fileName = 'quiz_1.html'; // Load quiz page
+        fileName = 'quiz_1.html';
     } else if (page === 'login') {
-        // For the login page, dynamically load its content into the #dynamic-content section
         fileName = 'login.html';
-        addStylesheet('login.css'); // Add login.css dynamically if necessary
+        addStylesheet('login.css');
+    } else if (page === 'getStarted') {
+        fileName = 'login.html';
+        addStylesheet('login.css');
     }
 
     // Apply the required stylesheets dynamically
     stylesheetsToAdd.forEach(addStylesheet);
 
-    // Dynamically fetch content for non-home pages (excluding home)
+    // Dynamically fetch content for non-home pages
     if (page !== 'home') {
         fetch(fileName)
             .then(response => response.text())
             .then(data => {
                 contentContainer.innerHTML = data;
-                // Ensure login form isn't toggled if it's already loaded
-                if (page === 'login') {
-                    document.getElementById('loginForm').style.display = 'block'; // Explicitly show login form if needed
+
+                // After content is loaded, reattach event listeners for login/register tabs and form switching
+                if (page === 'login' || page === 'getStarted') {
+                    switchForm('login'); // Switch to the login form by default
+                    attachTabSwitchEventListeners(); // Reattach tab switching listeners
                 }
             })
             .catch(error => {
@@ -71,18 +81,42 @@ function loadPage(page) {
     history.pushState({ page: page }, page, `#${page}`);
 }
 
+// Function to add the stylesheet dynamically
+function addStylesheet(href) {
+    const existingLink = document.querySelector(`link[href="${href}"]`);
+    if (existingLink) {
+        return;  // Don't add the stylesheet if it's already in the DOM
+    }
+
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = href;
+    link.onload = () => {
+        console.log(`${href} loaded successfully.`);
+    };
+    link.onerror = () => {
+        console.error(`Error loading ${href}`);
+    };
+    document.head.appendChild(link);
+}
+
+// Function to attach event listeners for switching between login and register forms
+function attachTabSwitchEventListeners() {
+    const loginTab = document.getElementById('loginTab');
+    const registerTab = document.getElementById('registerTab');
+
+    if (loginTab) {
+        loginTab.addEventListener('click', () => switchForm('login'));
+    }
+
+    if (registerTab) {
+        registerTab.addEventListener('click', () => switchForm('register'));
+    }
+}
 
 // Function to switch between Login and Register forms
 function switchForm(form) {
-    // Check if the login form is already visible (from dynamic content)
-    const loginFormVisible = document.getElementById('dynamic-content').querySelector('#loginForm') !== null;
-
-    // If it's already loaded via loadPage, don't switch forms
-    if (loginFormVisible && form === 'login') {
-        return; // Avoid toggling again
-    }
-
-    // Otherwise, ensure the login and register forms are visible
+    // Ensure the login and register forms are visible
     document.getElementById('loginForm').style.display = 'none';
     document.getElementById('registerForm').style.display = 'none';
 
