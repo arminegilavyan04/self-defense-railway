@@ -28,7 +28,7 @@ function loadPage(page) {
     } else if (page === 'chat') {
         fileName = 'chat.html'; // Load chat page
     } else if (page === 'quiz') {
-        fileName = 'quiz.html'; // Load quiz page
+        fileName = 'quiz_1.html'; // Load quiz page
     } else if (page === 'login') {
         fileName = 'login.html';
         addStylesheet('login.css');
