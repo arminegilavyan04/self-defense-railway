@@ -20,17 +20,15 @@ function loadPage(page) {
         if (!document.querySelector('link[href="canv.css"]')) {
             stylesheetsToAdd.push('canv.css'); // If home.css isn't in the head, add it
         }
-        homeContent.style.display = 'block';
+        homeContent.style.display = 'block';  
     } else if (page === 'about') {
         fileName = 'about.html';
     } else if (page === 'vr') {
         fileName = 'vr.html';
     } else if (page === 'chat') {
-        fileName = 'chat.html'; // Do not reload content for chat, just show it dynamically
-        loadChatSection(); // Load the chat section dynamically here
+        fileName = 'chat.html'; // Load chat page
     } else if (page === 'quiz') {
-        fileName = 'quiz_1.html'; // Load quiz page dynamically without page refresh
-        loadQuizPage(); // This will load the quiz dynamically without reloading the page
+        fileName = 'quiz_1.html'; // Load quiz page
     } else if (page === 'login') {
         fileName = 'login.html';
         addStylesheet('login.css');
@@ -40,7 +38,7 @@ function loadPage(page) {
     stylesheetsToAdd.forEach(addStylesheet);
 
     // Dynamically fetch content for non-home pages (excluding home)
-    if (page !== 'home' && page !== 'quiz' && page !== 'chat') {
+    if (page !== 'home') {
         fetch(fileName)
             .then(response => response.text())
             .then(data => {
@@ -67,41 +65,6 @@ function loadPage(page) {
 
     // Optionally, update the browser's history (so the URL changes without page reload)
     history.pushState({ page: page }, page, `#${page}`);
-}
-
-function loadChatSection() {
-    const contentContainer = document.getElementById("dynamic-content");
-    contentContainer.innerHTML = `
-        <div id="chatSection" class="page-content">
-            <h2>Welcome to the Chat Section</h2>
-            <p>This is where the chat interface will appear.</p>
-            <!-- Insert your chat UI or app content here -->
-        </div>
-    `;
-
-    // Update the active navigation link for the "Chat" page
-    const navLinks = document.querySelectorAll('.nav-links a');
-    navLinks.forEach(link => {
-        link.classList.remove('active');
-    });
-    const chatLink = document.querySelector('a[href="javascript:void(0);"][onclick="loadPage(\'chat\')"]');
-    if (chatLink) chatLink.classList.add('active');
-}
-
-function loadQuizPage() {
-    // Dynamically load the quiz section here
-    const contentContainer = document.getElementById("dynamic-content");
-    contentContainer.innerHTML = `
-        <div id="quizContainer">
-            <!-- Quiz will be loaded here -->
-        </div>
-        <button id="nextButton" class="btn btn-primary" style="display:none;">Next</button>
-        <button id="retryButton" class="btn btn-secondary" style="display:none;">Retry</button>
-        <button id="finalSubmissionButton" class="btn btn-success" style="display:none;">Final Submission</button>
-        <div id="validationMessage" class="text-danger"></div>
-        <div id="result"></div>
-    `;
-    loadQuiz();  // Call the loadQuiz function to load the questions
 }
 
 // Function to add the stylesheet dynamically
