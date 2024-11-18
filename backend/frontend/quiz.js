@@ -114,9 +114,29 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Final Submission event listener
     document.getElementById('finalSubmissionButton').addEventListener('click', function() {
-        // Navigate to the "chat" section dynamically using the loadPage function
-        loadPage('chat');
+        // Instead of loading 'chat.html', show the chat section directly
+        loadChatSection();
     });
+
+    // Function to show the chat section
+    function loadChatSection() {
+        const contentContainer = document.getElementById("dynamic-content");
+        contentContainer.innerHTML = `
+            <div id="chatSection" class="page-content">
+                <h2>Welcome to the Chat Section</h2>
+                <p>This is where the chat interface will appear.</p>
+                <!-- Insert your chat UI or app content here -->
+            </div>
+        `;
+
+        // Update the active navigation link for the "Chat" page
+        const navLinks = document.querySelectorAll('.nav-links a');
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+        });
+        const chatLink = document.querySelector('a[href="javascript:void(0);"][onclick="loadPage(\'chat\')"]');
+        if (chatLink) chatLink.classList.add('active');
+    }
 
     // Retry the quiz
     document.getElementById('retryButton').addEventListener('click', function() {
