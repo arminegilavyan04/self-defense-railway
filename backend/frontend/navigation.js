@@ -31,7 +31,7 @@ function loadPage(page) {
         fileName = 'quiz_1.html'; // Load quiz page
     } else if (page === 'login') {
         fileName = 'login.html';
-        addStylesheet('login.css');
+        
     }
 
     // Apply the required stylesheets dynamically
