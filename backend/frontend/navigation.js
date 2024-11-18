@@ -73,7 +73,7 @@ function loadPage(page) {
 
 
 // Function to switch between Login and Register forms
-ffunction switchForm(form) {
+function switchForm(form) {
     // Check if the login form is already visible (from dynamic content)
     const loginFormVisible = document.getElementById('dynamic-content').querySelector('#loginForm') !== null;
 
