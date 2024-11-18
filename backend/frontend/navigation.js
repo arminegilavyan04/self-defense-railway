@@ -105,20 +105,6 @@ function addStylesheet(href) {
     document.head.appendChild(link);
 }
 
-// Function to attach event listeners for switching between login and register forms
-function attachTabSwitchEventListeners() {
-    const loginTab = document.getElementById('loginTab');
-    const registerTab = document.getElementById('registerTab');
-
-    if (loginTab) {
-        loginTab.addEventListener('click', () => switchForm('login'));
-    }
-
-    if (registerTab) {
-        registerTab.addEventListener('click', () => switchForm('register'));
-    }
-}
-
 // Function to switch between Login and Register forms
 function switchForm(form) {
     // Ensure the login and register forms are visible

@@ -103,32 +103,33 @@ document.addEventListener('DOMContentLoaded', function() {
         // Show Retry and Final Submission buttons
         document.getElementById('retryButton').style.display = 'inline-block';
         document.getElementById('finalSubmissionButton').style.display = 'inline-block';
-        document.getElementById('nextButton').style.display = 'none';  // Hide the Next button at the end
+        document.getElementById('nextButton').style.display = 'none';
     }
 
-    // Event listener for the next button
-    document.getElementById('nextButton').addEventListener('click', function() {
-        currentQuestionIndex++;  // Move to the next question
-        loadQuestion();  // Load the next question
+    // Move to the next question
+    function nextQuestion() {
+        currentQuestionIndex++;
+        loadQuestion();
+    }
+
+    // Final Submission event listener
+    document.getElementById('finalSubmissionButton').addEventListener('click', function() {
+        // Trigger the chat section scroll
+        loadPage('chat');
     });
 
-    // Event listener for the retry button
+    // Retry the quiz
     document.getElementById('retryButton').addEventListener('click', function() {
-        // Reset everything to restart the quiz
         currentQuestionIndex = 0;
         userAnswers = {};
         loadQuestion();
         document.getElementById('retryButton').style.display = 'none';
         document.getElementById('finalSubmissionButton').style.display = 'none';
-        document.getElementById('result').innerHTML = '';
     });
 
-    // Event listener for the final submission button
-    document.getElementById('finalSubmissionButton').addEventListener('click', function() {
-        // Scroll to the Chat section
-        document.getElementById('chatSection').scrollIntoView({ behavior: 'smooth' });
-    });
-
-    // Start quiz
+    // Initialize the quiz by loading the first question
     loadQuestion();
+
+    // Handle the next button click
+    document.getElementById('nextButton').addEventListener('click', nextQuestion);
 });
