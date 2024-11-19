@@ -1,3 +1,4 @@
+// Function to load pages dynamically
 function loadPage(page) {
     const contentContainer = document.getElementById("dynamic-content");
     const homeContent = document.getElementById("home-content");
@@ -16,16 +17,8 @@ function loadPage(page) {
 
     // Determine which page to load and ensure relevant styles are applied
     if (page === 'home') {
-        fileName = ''; // No need to fetch anything for the home page
-
-        // Ensure home page styles are applied
-        if (!document.querySelector('link[href="canv.css"]')) {
-            stylesheetsToAdd.push('canv.css'); // If home.css isn't in the head, add it
-        }
-
-        // Show home page content
-        homeContent.style.display = 'block';  
-        contentContainer.innerHTML = '';  // Clear content for home
+        contentContainer.innerHTML = homeContent.innerHTML;
+        homeContent.style.display = 'block'; // Show home content
     } else if (page === 'about') {
         fileName = 'about.html';
     } else if (page === 'vr') {
@@ -45,19 +38,23 @@ function loadPage(page) {
     // Apply the required stylesheets dynamically
     stylesheetsToAdd.forEach(addStylesheet);
 
-    // Dynamically fetch content for non-home pages (except "home")
+    // Dynamically fetch content for non-home pages
     if (page !== 'home') {
         fetch(fileName)
             .then(response => response.text())
             .then(data => {
                 contentContainer.innerHTML = data;
 
-                // If quiz page is loaded, handle quiz behavior
-                if (page === 'quiz') {
-                    setupQuizPage();  // This function will be used to set up quiz logic
+                // Initialize switchForm for login/register pages
+                if (page === 'login' || page === 'getStarted') {
+                    switchForm('login'); // Switch to login form by default
+                    attachTabSwitchEventListeners(); // Attach event listeners for tab switching
                 }
 
-                // Reattach necessary event listeners after dynamic content load
+                // Handle quiz setup logic when quiz page is loaded
+                if (page === 'quiz') {
+                    setupQuizPage(); // Set up the quiz page logic
+                }
             })
             .catch(error => {
                 contentContainer.innerHTML = "<p>Sorry, we couldn't load the requested page.</p>";
@@ -85,7 +82,7 @@ function loadPage(page) {
 function addStylesheet(href) {
     const existingLink = document.querySelector(`link[href="${href}"]`);
     if (existingLink) {
-        return;  // Don't add the stylesheet if it's already in the DOM
+        return; // Don't add the stylesheet if it's already in the DOM
     }
 
     const link = document.createElement('link');
@@ -100,61 +97,7 @@ function addStylesheet(href) {
     document.head.appendChild(link);
 }
 
-// Setup Quiz Page (Quiz behavior logic)
-function setupQuizPage() {
-    // When the Quiz page is loaded, only show the "Start Quiz" button initially
-    const startButton = document.querySelector('.start-quiz-btn');
-    startButton.style.display = 'block';
-    startButton.addEventListener('click', function() {
-        // Hide the "Start Quiz" button and show quiz questions dynamically
-        startButton.style.display = 'none';
-        loadQuizQuestions();  // This function will load the quiz questions
-    });
-}
-
-// Function to load quiz questions
-function loadQuizQuestions() {
-    const contentContainer = document.getElementById('dynamic-content');
-
-    fetch('quiz_content.html')  // Load the quiz content (questions, etc.)
-        .then(response => response.text())
-        .then(data => {
-            contentContainer.innerHTML = data;
-            // Initialize the quiz using the quiz.js file
-            initializeQuiz();  // This function will initialize the quiz logic
-        })
-        .catch(error => {
-            contentContainer.innerHTML = "<p>Sorry, we couldn't load the quiz content.</p>";
-            console.error('Error loading quiz content:', error);
-        });
-}
-
-// Function to initialize quiz (and handle final submission, etc.)
-function initializeQuiz() {
-    // You can add your quiz initialization logic here,
-    // such as displaying questions, handling the next button, etc.
-    // Once the quiz is completed, you can show the chat page:
-    
-    const finalSubmissionButton = document.getElementById('finalSubmissionButton');
-    finalSubmissionButton.addEventListener('click', function() {
-        // Show chat page content after final submission
-        loadChatPage();
-    });
-}
-
-// Function to load the chat page after quiz completion
-function loadChatPage() {
-    const contentContainer = document.getElementById('dynamic-content');
-    fetch('chat.html')
-        .then(response => response.text())
-        .then(data => {
-            contentContainer.innerHTML = data;
-        })
-        .catch(error => {
-            contentContainer.innerHTML = "<p>Sorry, we couldn't load the chat page.</p>";
-            console.error('Error loading chat content:', error);
-        });
-}
+// Function to attach event listeners for switching between login and register forms
 function attachTabSwitchEventListeners() {
     const loginTab = document.getElementById('loginTab');
     const registerTab = document.getElementById('registerTab');
