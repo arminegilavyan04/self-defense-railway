@@ -141,32 +141,31 @@
 // }
 // });
 document.addEventListener('DOMContentLoaded', function () {
-    // Load dynamic content into the page based on navigation
+    // Function to dynamically load content based on page selection
     function loadPage(page) {
-        // Get references to dynamic content and navbar placeholders
         const contentContainer = document.getElementById("dynamic-content");
         const navbarPlaceholder = document.getElementById("navbar-placeholder");
         const homeContent = document.getElementById("home-content");
 
-        // Check if the content container and navbar are available
         if (!contentContainer || !navbarPlaceholder) {
             console.error("Required DOM elements are missing: dynamic-content or navbar-placeholder");
             return; // Exit if critical elements are missing
         }
 
-        // Clear the dynamic content to prevent duplication
+        // Clear the dynamic content container to prevent duplication
         contentContainer.innerHTML = '';
 
-        // Remove 'active' class from all nav links
+        // Remove the active class from all nav links
         const navLinks = document.querySelectorAll('.nav-links a');
         navLinks.forEach(link => {
             link.classList.remove('active');
         });
 
-        // Set file name and additional stylesheets based on the page
+        // Set the file name and stylesheets based on the selected page
         let fileName = '';
         let stylesheetsToAdd = [];
 
+        // Determine which page to load
         if (page === 'home') {
             fileName = 'index.html'; // Home content
             if (!document.querySelector('link[href="canv.css"]')) {
@@ -186,7 +185,7 @@ document.addEventListener('DOMContentLoaded', function () {
             stylesheetsToAdd.push('login.css');
         }
 
-        // Add required stylesheets dynamically
+        // Add the required stylesheets dynamically
         stylesheetsToAdd.forEach(addStylesheet);
 
         // Dynamically load content for non-home pages
@@ -195,12 +194,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 .then(response => response.text())
                 .then(data => {
                     contentContainer.innerHTML = data; // Inject the content into dynamic-container
-
-                    // Reattach event listeners for dynamic content (e.g., login form)
-                    if (page === 'login' || page === 'getStarted') {
-                        switchForm('login'); // Switch to the login form by default
-                        attachTabSwitchEventListeners(); // Reattach form tab switching event listeners
-                    }
                 })
                 .catch(error => {
                     contentContainer.innerHTML = "<p>Sorry, we couldn't load the requested page.</p>";
@@ -224,7 +217,7 @@ document.addEventListener('DOMContentLoaded', function () {
         history.pushState({ page: page }, page, `#${page}`);
     }
 
-    // Function to dynamically add stylesheets to the document
+    // Function to add stylesheets dynamically
     function addStylesheet(href) {
         const existingLink = document.querySelector(`link[href="${href}"]`);
         if (existingLink) {
@@ -243,46 +236,51 @@ document.addEventListener('DOMContentLoaded', function () {
         document.head.appendChild(link);
     }
 
-    // Function to attach event listeners for switching between login and register forms
+    // Event delegation for navigation links to call loadPage when a link is clicked
+    document.getElementById('navbar-placeholder').addEventListener('click', function (event) {
+        if (event.target && event.target.matches('a')) {
+            const page = event.target.getAttribute('onclick').replace("loadPage('", "").replace("')", "");
+            loadPage(page); // Call loadPage function with the page name
+        }
+    });
+  
     function attachTabSwitchEventListeners() {
-        const loginTab = document.getElementById('loginTab');
-        const registerTab = document.getElementById('registerTab');
-
-        if (loginTab) {
-            loginTab.addEventListener('click', () => switchForm('login'));
-        }
-
-        if (registerTab) {
-            registerTab.addEventListener('click', () => switchForm('register'));
-        }
-    }
-
-    // Function to switch between Login and Register forms
-    function switchForm(form) {
-        const loginForm = document.getElementById('loginForm');
-        const registerForm = document.getElementById('registerForm');
-        const loginTab = document.getElementById('loginTab');
-        const registerTab = document.getElementById('registerTab');
-
-        if (loginForm && registerForm && loginTab && registerTab) {
-            loginForm.style.display = 'none';
-            registerForm.style.display = 'none';
-
-            if (form === 'login') {
-                loginForm.style.display = 'block';
-                loginTab.classList.add('active');
-                registerTab.classList.remove('active');
-            } else if (form === 'register') {
-                registerForm.style.display = 'block';
-                registerTab.classList.add('active');
-                loginTab.classList.remove('active');
+        // //     const loginTab = document.getElementById('loginTab');
+        // //     const registerTab = document.getElementById('registerTab');
+        
+        // //     if (loginTab) {
+        // //         loginTab.addEventListener('click', () => switchForm('login'));
+        // //     }
+        
+        // //     if (registerTab) {
+        // //         registerTab.addEventListener('click', () => switchForm('register'));
+        //     }
+        // }
+        
+        // // Function to switch between Login and Register forms
+        function switchForm(form) {
+            // Ensure the login and register forms are visible
+            const loginForm = document.getElementById('loginForm');
+            const registerForm = document.getElementById('registerForm');
+            const loginTab = document.getElementById('loginTab');
+            const registerTab = document.getElementById('registerTab');
+        
+            if (loginForm && registerForm && loginTab && registerTab) {
+                loginForm.style.display = 'none';
+                registerForm.style.display = 'none';
+        
+                // Show the selected form
+                if (form === 'login') {
+                    loginForm.style.display = 'block';
+                    loginTab.classList.add('active');
+                    registerTab.classList.remove('active');
+                } else if (form === 'register') {
+                    registerForm.style.display = 'block';
+                    registerTab.classList.add('active');
+                    loginTab.classList.remove('active');
+                }
             }
         }
     }
-
-    // You can now call loadPage() for different sections like:
-    // loadPage('home');
-    // loadPage('chat');
-    // loadPage('quiz');
-    // etc.
+    loadPage('home');
 });
