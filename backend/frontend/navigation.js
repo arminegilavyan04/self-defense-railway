@@ -40,12 +40,12 @@ function loadPage(page) {
     if (page === 'home') {
         fileName = 'index.html'; // Home content
         if (!document.querySelector('link[href="canv.css"]')) {
-            stylesheetsToAdd.push('canv.css'); // If home.css isn't in the head, add it
+            stylesheetsToAdd.push('canv.css'); // If canv.css isn't in the head, add it
         }
         if (homeContent) {
             homeContent.style.display = 'block';
         }
-        contentContainer.innerHTML = '';
+        contentContainer.innerHTML = ''; // Clear any dynamic content
     } else if (page === 'about') {
         fileName = 'about.html';
     } else if (page === 'vr') {
@@ -59,6 +59,7 @@ function loadPage(page) {
         addStylesheet('login.css');
     }
 
+    // Add stylesheets dynamically
     stylesheetsToAdd.forEach(addStylesheet);
 
     // Dynamically fetch content for non-home pages
@@ -74,13 +75,14 @@ function loadPage(page) {
             });
     }
 
+    // Hide home content if navigating to another page
     if (page !== 'home' && homeContent) {
         homeContent.style.display = 'none';
     }
 
     // Add the active class to the clicked navigation link
     navLinks.forEach(link => {
-        if (link.textContent.trim().toLowerCase() === page) {
+        if (link.textContent.trim().toLowerCase() === page.toLowerCase()) {
             link.classList.add('active');
         }
     });
@@ -88,40 +90,60 @@ function loadPage(page) {
     // Optionally, update the browser's history (so the URL changes without page reload)
     history.pushState({ page: page }, page, `#${page}`);
 
+    // If navigating to the login page, ensure form switching functionality is available
+    if (page === 'login') {
+        attachTabSwitchEventListeners(); // Ensure tab switches work on login page
+    }
+}
 
+// Add stylesheet dynamically
+function addStylesheet(href) {
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = href;
+    document.head.appendChild(link);
+}
 
-    function attachTabSwitchEventListeners() {
-        const loginTab = document.getElementById('loginTab');
-        const registerTab = document.getElementById('registerTab');
-        if (loginTab) {
-            loginTab.addEventListener('click', () => switchForm('login'));
-        }
-        if (registerTab) {
-            registerTab.addEventListener('click', () => switchForm('register'));
+// Switch between login and register forms
+function attachTabSwitchEventListeners() {
+    const loginTab = document.getElementById('loginTab');
+    const registerTab = document.getElementById('registerTab');
+    if (loginTab) {
+        loginTab.addEventListener('click', () => switchForm('login'));
+    }
+    if (registerTab) {
+        registerTab.addEventListener('click', () => switchForm('register'));
+    }
+}
+
+// Switch form visibility
+function switchForm(form) {
+    // Ensure the login and register forms are visible
+    const loginForm = document.getElementById('loginForm');
+    const registerForm = document.getElementById('registerForm');
+    const loginTab = document.getElementById('loginTab');
+    const registerTab = document.getElementById('registerTab');
+
+    if (loginForm && registerForm && loginTab && registerTab) {
+        loginForm.style.display = 'none';
+        registerForm.style.display = 'none';
+
+        // Show the selected form
+        if (form === 'login') {
+            loginForm.style.display = 'block';
+            loginTab.classList.add('active');
+            registerTab.classList.remove('active');
+        } else if (form === 'register') {
+            registerForm.style.display = 'block';
+            registerTab.classList.add('active');
+            loginTab.classList.remove('active');
         }
     }
-    
-    function switchForm(form) {
-        // Ensure the login and register forms are visible
-        const loginForm = document.getElementById('loginForm');
-        const registerForm = document.getElementById('registerForm');
-        const loginTab = document.getElementById('loginTab');
-        const registerTab = document.getElementById('registerTab');
-    
-        if (loginForm && registerForm && loginTab && registerTab) {
-            loginForm.style.display = 'none';
-            registerForm.style.display = 'none';
-    
-            // Show the selected form
-            if (form === 'login') {
-                loginForm.style.display = 'block';
-                loginTab.classList.add('active');
-                registerTab.classList.remove('active');
-            } else if (form === 'register') {
-                registerForm.style.display = 'block';
-                registerTab.classList.add('active');
-                loginTab.classList.remove('active');
-            }
-        }
-    }    
 }
+
+// Listen to the popstate event to handle browser back/forward navigation
+window.addEventListener('popstate', (event) => {
+    if (event.state && event.state.page) {
+        loadPage(event.state.page);
+    }
+});
