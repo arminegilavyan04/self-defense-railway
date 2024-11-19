@@ -49,26 +49,7 @@ function loadPage(page) {
 
     // Always load the navigation panel (navbar)
     const navbarPlaceholder = document.getElementById('navbar-placeholder');
-    navbarPlaceholder.innerHTML = `
-      <div class="logo">Logo/SelfSense</div>
-      <ul class="nav-links">
-          <li><a href="javascript:void(0);" onclick="loadPage('home')" class="active">Home</a></li>
-          <li><a href="javascript:void(0);" onclick="loadPage('about')">About Us</a></li>
-          <li><a href="javascript:void(0);" onclick="loadPage('vr')">VR Glasses</a></li>
-          <li><a href="javascript:void(0);" onclick="loadPage('chat')">Chat</a></li>
-          <li><a href="javascript:void(0);" onclick="loadPage('quiz')">Quiz</a></li>
-      </ul>
-      <div class="login-register">
-        <a href="javascript:void(0);" onclick="loadPage('login')">Login/Register</a>
-      </div>
-      <div class="person-icon">
-        <img src="person-icon.png" alt="Person Icon">
-      </div>
-      <div class="flag-icon">
-        <img src="armenian-flag.png" alt="Armenian Flag">
-      </div>
-    `;
-
+    
     let fileName = '';
     let stylesheetsToAdd = [];
 
