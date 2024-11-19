@@ -6,17 +6,21 @@ function addStylesheet(href) {
     document.head.appendChild(link);
 }
 
-// Switch between login and register forms
-// function attachTabSwitchEventListeners() {
-//     const loginTab = document.getElementById('loginTab');
-//     const registerTab = document.getElementById('registerTab');
-//     if (loginTab) {
-//         loginTab.addEventListener('click', () => switchForm('login'));
-//     }
-//     if (registerTab) {
-//         registerTab.addEventListener('click', () => switchForm('register'));
-//     }
-// }
+function attachTabSwitchEventListeners() {
+    const loginTab = document.getElementById('loginTab');
+    const registerTab = document.getElementById('registerTab');
+    
+    if (loginTab && !loginTab.hasEventListener) {
+        loginTab.addEventListener('click', () => switchForm('login'));
+    }
+
+    if (registerTab && !registerTab.hasEventListener) {
+        registerTab.addEventListener('click', () => switchForm('register'));
+    }
+}
+
+// Add a property to keep track of event listeners
+HTMLElement.prototype.hasEventListener = false;
 
 // Switch form visibility between login and register
 function switchForm(form) {
@@ -121,8 +125,4 @@ function loadPage(page) {
 }
 
 // Listen to the popstate event to handle browser back/forward navigation
-window.addEventListener('popstate', (event) => {
-    if (event.state && event.state.page) {
-        loadPage(event.state.page);
-    }
-});
+
