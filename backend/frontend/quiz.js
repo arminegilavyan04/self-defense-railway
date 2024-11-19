@@ -1,3 +1,4 @@
+// quiz.js
 document.addEventListener('DOMContentLoaded', function() {
     const answers = {
         q1: 'a',
@@ -52,6 +53,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     ];
 
+    // Function to load the quiz question
     function loadQuestion() {
         if (currentQuestionIndex >= totalQuestions) {
             displayResult();
@@ -74,30 +76,25 @@ document.addEventListener('DOMContentLoaded', function() {
         `;
 
         document.getElementById('quizContainer').innerHTML = questionHTML;
-
-        // Hide next button initially
         const nextButton = document.getElementById('nextButton');
-        nextButton.style.display = 'none';
-        nextButton.disabled = false;  // Ensure the button is enabled and clickable
-
+        if (nextButton) {
+            nextButton.style.display = 'none';
+        }
         document.getElementById('validationMessage').innerHTML = '';
 
         const radios = document.querySelectorAll(`input[name="${question.id}"]`);
         radios.forEach(radio => {
             radio.addEventListener('change', function() {
                 userAnswers[question.id] = this.value;
-                nextButton.style.display = 'inline-block'; // Show next button when an option is selected
+                nextButton.style.display = 'inline-block';
             });
         });
-
-        // Reattach the event listener for "Next" button after the question is loaded
-        nextButton.removeEventListener('click', nextQuestion);  // Remove any existing listeners
-        nextButton.addEventListener('click', nextQuestion);  // Re-add the listener to prevent duplicates
     }
 
+    // Display the result after quiz is completed
     function displayResult() {
-        // Calculate score once the user finishes
-        score = 0;
+        // Calculate score
+        score = 0;  
         for (let [question, answer] of Object.entries(userAnswers)) {
             if (answers[question] === answer) {
                 score++;
@@ -115,34 +112,42 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('nextButton').style.display = 'none';
     }
 
-    function nextQuestion() {
-        currentQuestionIndex++;
-        loadQuestion();
-    }
-
+    // Load the chat page when final submission is clicked
     document.getElementById('finalSubmissionButton').addEventListener('click', function() {
-        // Trigger the same page load logic as when "Chat" is clicked
-        loadPage('chat'); // Ensure the loadPage function is defined
+        loadChatSection();
     });
 
-    document.getElementById('retryButton').addEventListener('click', function() {
-        // Reset the quiz to start from the first question
-        currentQuestionIndex = 0;
-        userAnswers = {};
-        score = 0;  // Reset score for retry
+    // Function to handle loading of the chat section
+    function loadChatSection() {
+        // Save score to localStorage to use in the chat page
+        localStorage.setItem('quizScore', score);
 
-        // Clear result and prevent showing score
-        const result = document.getElementById('result');
-        result.innerHTML = '';  // Clear result message
-        result.classList.remove('correct', 'incorrect');
-
-        // Hide retry and final submission buttons
+        // Hide quiz buttons when transitioning to chat
+        document.getElementById('nextButton').style.display = 'none';
         document.getElementById('retryButton').style.display = 'none';
         document.getElementById('finalSubmissionButton').style.display = 'none';
 
+        // Load the chat page content
+        loadPage('chat');
+    }
+
+    // Retry the quiz by resetting the quiz state
+    document.getElementById('retryButton').addEventListener('click', function() {
+        currentQuestionIndex = 0;
+        userAnswers = {};
+        score = 0;
+        document.getElementById('result').innerHTML = '';
+        document.getElementById('retryButton').style.display = 'none';
+        document.getElementById('finalSubmissionButton').style.display = 'none';
         loadQuestion();
     });
 
-    // Initial question load
+    // Load the first question
     loadQuestion();
+
+    // Next question
+    document.getElementById('nextButton').addEventListener('click', function() {
+        currentQuestionIndex++;
+        loadQuestion();
+    });
 });
