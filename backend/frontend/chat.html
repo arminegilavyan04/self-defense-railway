@@ -8,13 +8,13 @@
     <link rel="stylesheet" href="canv.css"> <!-- External CSS -->
 </head>
 <body>
-    <!-- Navigation Panel (same as index.html) -->
+    <!-- Navigation Panel (dynamically loaded from index.html) -->
     <div id="navbar-placeholder"></div>
 
     <div class="container">
         <h1>Chat Section</h1>
 
-        <!-- Result display section -->
+        <!-- Result display section (this is dynamically shown based on sessionStorage) -->
         <div id="quiz-result" style="display: none;">
             <h2>Quiz Result</h2>
             <p id="quiz-score"></p>
@@ -28,25 +28,27 @@
     </div>
 
     <!-- Scripts -->
-    <script src="navigation.js"></script> <!-- Include navigation.js -->
+    <script src="navigation.js"></script> <!-- Load navigation logic -->
     <script>
-        // Dynamically load the navigation bar into #navbar-placeholder
+        // Dynamically load the navigation bar into #navbar-placeholder from index.html
         fetch('index.html')
             .then(response => response.text())
             .then(html => {
                 document.getElementById('navbar-placeholder').innerHTML = html;
-            });
+            })
+            .catch(err => console.warn('Error loading navigation: ', err));
 
-        // Check if quiz result exists in sessionStorage and show it
+        // On window load, check sessionStorage for quiz results
         window.onload = function() {
             const quizResult = sessionStorage.getItem('quizResult');
             if (quizResult) {
                 const result = JSON.parse(quizResult);
+                // Show quiz results section
                 document.getElementById('quiz-result').style.display = 'block';
                 document.getElementById('quiz-score').textContent = `You scored ${result.score} out of ${result.totalQuestions}`;
                 document.getElementById('quiz-status').textContent = result.score === result.totalQuestions ? 'Perfect score!' : 'Try again next time!';
             } else {
-                // If no quiz result, display message or handle gracefully
+                // If no quiz result, show a message or handle gracefully
                 document.getElementById('quiz-result').style.display = 'none';
             }
         };
