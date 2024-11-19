@@ -12,6 +12,7 @@
     <div id="navbar-placeholder"></div>
 
     <div class="container">
+        <!-- Chat Section Title -->
         <h1>Chat Section</h1>
 
         <!-- Result display section (this is dynamically shown based on sessionStorage) -->
@@ -21,14 +22,15 @@
             <p id="quiz-status"></p>
         </div>
 
-        <!-- Chat content will be here -->
-        <div id="chatContent">
+        <!-- Placeholder for dynamic chat content or any other section -->
+        <div id="dynamic-content">
+            <!-- Chat content or dynamic content will be loaded here -->
             <p>Start chatting here!</p>
         </div>
     </div>
 
     <!-- Scripts -->
-    <script src="navigation.js"></script> <!-- Load navigation logic -->
+    <script src="navigation.js"></script> <!-- Handles navigation and page load -->
     <script>
         // Dynamically load the navigation bar into #navbar-placeholder from index.html
         fetch('index.html')
