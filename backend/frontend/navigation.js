@@ -78,6 +78,10 @@ function loadPage(page) {
         fileName = 'login.html';
         addStylesheet('login.css');
     }
+    else if (page === 'getStarted') {
+        fileName = 'login.html';
+        addStylesheet('login.css');
+    }
 
     // Clear content container only when switching away from the home page
     contentContainer.innerHTML = '';
