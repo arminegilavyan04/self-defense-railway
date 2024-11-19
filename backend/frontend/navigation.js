@@ -23,10 +23,9 @@ function loadPage(page) {
             stylesheetsToAdd.push('canv.css'); // If home.css isn't in the head, add it
         }
 
-        // Clear dynamic content and display home content
-        homeContent.style.display = 'block';  
-        contentContainer.innerHTML = '';  // Clear content
-
+        // Show home content (don't clear content container)
+        homeContent.style.display = 'block';
+        contentContainer.innerHTML = ''; // Clear only the dynamic content area
     } else if (page === 'about') {
         fileName = 'about.html';
     } else if (page === 'vr') {
@@ -78,12 +77,12 @@ function loadPage(page) {
     });
 
     // Optionally, update the browser's history (so the URL changes without page reload)
-    history.pushState({ page: page }, page, #${page});
+    history.pushState({ page: page }, page, `#${page}`);
 }
 
 // Function to add the stylesheet dynamically
 function addStylesheet(href) {
-    const existingLink = document.querySelector(link[href="${href}"]);
+    const existingLink = document.querySelector(`link[href="${href}"]`);
     if (existingLink) {
         return;  // Don't add the stylesheet if it's already in the DOM
     }
@@ -92,10 +91,10 @@ function addStylesheet(href) {
     link.rel = 'stylesheet';
     link.href = href;
     link.onload = () => {
-        console.log(${href} loaded successfully.);
+        console.log(`${href} loaded successfully.`);
     };
     link.onerror = () => {
-        console.error(Error loading ${href});
+        console.error(`Error loading ${href}`);
     };
     document.head.appendChild(link);
 }
@@ -117,17 +116,24 @@ function attachTabSwitchEventListeners() {
 // Function to switch between Login and Register forms
 function switchForm(form) {
     // Ensure the login and register forms are visible
-    document.getElementById('loginForm').style.display = 'none';
-    document.getElementById('registerForm').style.display = 'none';
+    const loginForm = document.getElementById('loginForm');
+    const registerForm = document.getElementById('registerForm');
+    const loginTab = document.getElementById('loginTab');
+    const registerTab = document.getElementById('registerTab');
 
-    // Show the selected form
-    if (form === 'login') {
-        document.getElementById('loginForm').style.display = 'block';
-        document.getElementById('loginTab').classList.add('active');
-        document.getElementById('registerTab').classList.remove('active');
-    } else if (form === 'register') {
-        document.getElementById('registerForm').style.display = 'block';
-        document.getElementById('registerTab').classList.add('active');
-        document.getElementById('loginTab').classList.remove('active');
+    if (loginForm && registerForm && loginTab && registerTab) {
+        loginForm.style.display = 'none';
+        registerForm.style.display = 'none';
+
+        // Show the selected form
+        if (form === 'login') {
+            loginForm.style.display = 'block';
+            loginTab.classList.add('active');
+            registerTab.classList.remove('active');
+        } else if (form === 'register') {
+            registerForm.style.display = 'block';
+            registerTab.classList.add('active');
+            loginTab.classList.remove('active');
+        }
     }
 }
