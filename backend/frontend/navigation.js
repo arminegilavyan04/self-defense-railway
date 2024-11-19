@@ -1,8 +1,18 @@
 // Function to dynamically add a stylesheet
 function addStylesheet(href) {
+    const existingLink = document.querySelector(`link[href="${href}"]`);
+    if (existingLink) {
+        return;  // Don't add the stylesheet if it's already in the DOM
+    }
     const link = document.createElement('link');
     link.rel = 'stylesheet';
     link.href = href;
+    link.onload = () => {
+        console.log(`${href} loaded successfully.`);
+    };
+    link.onerror = () => {
+        console.error(`Error loading ${href}`);
+    };
     document.head.appendChild(link);
 }
 
