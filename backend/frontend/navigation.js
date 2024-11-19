@@ -30,7 +30,7 @@ function loadPage(page) {
     } else if (page === 'about') {
         fileName = 'about.html';
     } else if (page === 'vr') {
-        fileName = 'vr.html';
+        fileName = 'vr-glasses.html';
     } else if (page === 'chat') {
         fileName = 'chat.html';
     } else if (page === 'quiz') {
