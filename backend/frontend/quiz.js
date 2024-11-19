@@ -114,6 +114,15 @@ document.addEventListener('DOMContentLoaded', function() {
         currentQuestionIndex++;
         loadQuestion();
     }
+    document.addEventListener('DOMContentLoaded', function() {
+        // Check if the #dynamic-content exists; if not, create it
+        let dynamicContent = document.getElementById('dynamic-content');
+        
+        if (!dynamicContent) {
+            dynamicContent = document.createElement('div');
+            dynamicContent.id = 'dynamic-content';
+            document.body.appendChild(dynamicContent); // Append it to the body (or other suitable container)
+        }
 
     document.getElementById('finalSubmissionButton').addEventListener('click', function() {
         console.log("Final Submission button clicked");  // Debugging line
