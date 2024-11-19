@@ -100,4 +100,39 @@ function loadPage(page) {
 
     // Optionally, update the browser's history (so the URL changes without page reload)
     history.pushState({ page: page }, page, `#${page}`);
+
+    function attachTabSwitchEventListeners() {
+        const loginTab = document.getElementById('loginTab');
+        const registerTab = document.getElementById('registerTab');
+        if (loginTab) {
+            loginTab.addEventListener('click', () => switchForm('login'));
+        }
+        if (registerTab) {
+            registerTab.addEventListener('click', () => switchForm('register'));
+        }
+    }
+    
+    function switchForm(form) {
+        // Ensure the login and register forms are visible
+        const loginForm = document.getElementById('loginForm');
+        const registerForm = document.getElementById('registerForm');
+        const loginTab = document.getElementById('loginTab');
+        const registerTab = document.getElementById('registerTab');
+    
+        if (loginForm && registerForm && loginTab && registerTab) {
+            loginForm.style.display = 'none';
+            registerForm.style.display = 'none';
+    
+            // Show the selected form
+            if (form === 'login') {
+                loginForm.style.display = 'block';
+                loginTab.classList.add('active');
+                registerTab.classList.remove('active');
+            } else if (form === 'register') {
+                registerForm.style.display = 'block';
+                registerTab.classList.add('active');
+                loginTab.classList.remove('active');
+            }
+        }
+    }    
 }
