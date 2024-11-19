@@ -11,13 +11,19 @@ body {
 }
 
 /* Form Container Styling */
-.quiz-container {
-    background-color: #fff;
-    padding: 50px 30px 30px;  /* Increase top padding */
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 600px;
+#quiz-container {
+    /* Ensure the container has some space */
+    width: 80%; 
+    margin: 0 auto; /* Center it horizontally */
+    padding: 20px;
+    box-sizing: border-box;
+    background-color: grey;
+    border-radius: 10px;
+
+    /* For proper layout */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 /* Header Styling */
