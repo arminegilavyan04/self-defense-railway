@@ -112,11 +112,7 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('nextButton').style.display = 'none';
     }
 
-    // Load the chat page when final submission is clicked
-    document.getElementById('finalSubmissionButton').addEventListener('click', function() {
-        loadChatSection();
-    });
-
+    
     // Function to handle loading of the chat section
     document.getElementById('finalSubmissionButton').addEventListener('click', function() {
         // Store the quiz result in sessionStorage before navigating
