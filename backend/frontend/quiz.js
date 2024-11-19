@@ -130,7 +130,7 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('result').innerHTML = '';  // Clear the result text
     
         // Navigate to the chat section (load the chat.html content)
-        loadPage('chat');  
+        loadPage('quiz');  
     });
     
 
