@@ -14,11 +14,19 @@ function loadPage(page) {
     let fileName = '';
     let stylesheetsToAdd = [];
 
-    // Determine which page to load
+    // Determine which page to load and ensure relevant styles are applied
     if (page === 'home') {
+        fileName = 'index.html'; // Home content
+
+        // Ensure home page styles are applied
+        if (!document.querySelector('link[href="canv.css"]')) {
+            stylesheetsToAdd.push('canv.css'); // If home.css isn't in the head, add it
+        }
+
+        // Clear dynamic content and display home content
         homeContent.style.display = 'block';  
-        contentContainer.innerHTML = '';  // Clear content for dynamic loading
-        return;
+        contentContainer.innerHTML = '';  // Clear content
+
     } else if (page === 'about') {
         fileName = 'about.html';
     } else if (page === 'vr') {
@@ -26,8 +34,7 @@ function loadPage(page) {
     } else if (page === 'chat') {
         fileName = 'chat.html';
     } else if (page === 'quiz') {
-        loadQuiz();  // Directly load the quiz content here without fetch
-        return;
+        fileName = 'quiz.html';
     } else if (page === 'login') {
         fileName = 'login.html';
         addStylesheet('login.css');
@@ -36,53 +43,26 @@ function loadPage(page) {
         addStylesheet('login.css');
     }
 
-    // Dynamically fetch content for non-home pages (except quiz)
-    if (page !== 'home' && page !== 'quiz') {
+    // Apply the required stylesheets dynamically
+    stylesheetsToAdd.forEach(addStylesheet);
+
+    // Dynamically fetch content for non-home pages
+    if (page !== 'home') {
         fetch(fileName)
             .then(response => response.text())
             .then(data => {
                 contentContainer.innerHTML = data;
+
+                // After content is loaded, reattach event listeners for login/register tabs and form switching
+                if (page === 'login' || page === 'getStarted') {
+                    switchForm('login'); // Switch to the login form by default
+                    attachTabSwitchEventListeners(); // Reattach tab switching listeners
+                }
             })
             .catch(error => {
-                contentContainer.innerHTML = `<p>Sorry, we couldn't load the requested page. Error: ${error.message}</p>`;
+                contentContainer.innerHTML = "<p>Sorry, we couldn't load the requested page.</p>";
                 console.error('Error loading page content:', error);
             });
-    }
-
-    // Function to add a stylesheet if not already added
-    function addStylesheet(href) {
-        const existingLink = document.querySelector(`link[href="${href}"]`);
-        if (existingLink) {
-            return;  // Don't add the stylesheet if it's already in the DOM
-        }
-
-        const link = document.createElement('link');
-        link.rel = 'stylesheet';
-        link.href = href;
-        link.onload = () => {
-            console.log(`${href} loaded successfully.`);
-        };
-        link.onerror = () => {
-            console.error(`Error loading ${href}`);
-        };
-        document.head.appendChild(link);
-    }
-
-    // Function to load the quiz content dynamically
-    function loadQuiz() {
-        contentContainer.innerHTML = `
-            <div id="quizPage" class="page-content">
-                <h2>Self-Defense Quiz</h2>
-                <div id="quizContainer"></div>
-                <div id="validationMessage"></div>
-                <div id="nextButton" style="display:none;" onclick="nextQuestion()">Next Question</div>
-                <div id="retryButton" style="display:none;" onclick="retryQuiz()">Retry Quiz</div>
-                <div id="finalSubmissionButton" style="display:none;" onclick="submitQuiz()">Submit Quiz</div>
-                <div id="result"></div>
-            </div>
-        `;
-        // Initialize the quiz after injecting the HTML content
-        initializeQuiz();
     }
 
     // Hide home content on non-home pages
@@ -97,26 +77,57 @@ function loadPage(page) {
         }
     });
 
-    // Optionally, update the browser's history
-    history.pushState({ page: page }, page, `#${page}`);
+    // Optionally, update the browser's history (so the URL changes without page reload)
+    history.pushState({ page: page }, page, #${page});
 }
 
-    // Function to switch between Login and Register forms
-    function switchForm(form) {
-        // Ensure the login and register forms are visible
-        document.getElementById('loginForm').style.display = 'none';
-        document.getElementById('registerForm').style.display = 'none';
-    
-        // Show the selected form
-        if (form === 'login') {
-            document.getElementById('loginForm').style.display = 'block';
-            document.getElementById('loginTab').classList.add('active');
-            document.getElementById('registerTab').classList.remove('active');
-        } else if (form === 'register') {
-            document.getElementById('registerForm').style.display = 'block';
-            document.getElementById('registerTab').classList.add('active');
-            document.getElementById('loginTab').classList.remove('active');
-        }
+// Function to add the stylesheet dynamically
+function addStylesheet(href) {
+    const existingLink = document.querySelector(link[href="${href}"]);
+    if (existingLink) {
+        return;  // Don't add the stylesheet if it's already in the DOM
     }
 
-    
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = href;
+    link.onload = () => {
+        console.log(${href} loaded successfully.);
+    };
+    link.onerror = () => {
+        console.error(Error loading ${href});
+    };
+    document.head.appendChild(link);
+}
+
+// Function to attach event listeners for switching between login and register forms
+function attachTabSwitchEventListeners() {
+    const loginTab = document.getElementById('loginTab');
+    const registerTab = document.getElementById('registerTab');
+
+    if (loginTab) {
+        loginTab.addEventListener('click', () => switchForm('login'));
+    }
+
+    if (registerTab) {
+        registerTab.addEventListener('click', () => switchForm('register'));
+    }
+}
+
+// Function to switch between Login and Register forms
+function switchForm(form) {
+    // Ensure the login and register forms are visible
+    document.getElementById('loginForm').style.display = 'none';
+    document.getElementById('registerForm').style.display = 'none';
+
+    // Show the selected form
+    if (form === 'login') {
+        document.getElementById('loginForm').style.display = 'block';
+        document.getElementById('loginTab').classList.add('active');
+        document.getElementById('registerTab').classList.remove('active');
+    } else if (form === 'register') {
+        document.getElementById('registerForm').style.display = 'block';
+        document.getElementById('registerTab').classList.add('active');
+        document.getElementById('loginTab').classList.remove('active');
+    }
+}

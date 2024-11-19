@@ -60,26 +60,26 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         const question = questions[currentQuestionIndex];
-        const questionHTML = `
+        const questionHTML = 
             <div class="question">
                 <h3>${question.question}</h3>
                 <div>
-                    ${question.options.map((option, index) => `
+                    ${question.options.map((option, index) => 
                         <div>
                             <input type="radio" name="${question.id}" value="${String.fromCharCode(97 + index)}" id="${question.id}-option-${index}">
                             <label for="${question.id}-option-${index}">${option}</label>
                         </div>
-                    `).join('')}
+                    ).join('')}
                 </div>
             </div>
-        `;
+        ;
 
         document.getElementById('quizContainer').innerHTML = questionHTML;
         document.getElementById('nextButton').style.display = 'none';
         document.getElementById('validationMessage').innerHTML = '';
 
         // Enable next button when an option is selected
-        const radios = document.querySelectorAll(`input[name="${question.id}"]`);
+        const radios = document.querySelectorAll(input[name="${question.id}"]);
         radios.forEach(radio => {
             radio.addEventListener('change', function() {
                 userAnswers[question.id] = this.value;
@@ -97,7 +97,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
         const result = document.getElementById('result');
-        result.innerHTML = `You scored ${score} out of ${totalQuestions}.`;
+        result.innerHTML = You scored ${score} out of ${totalQuestions}.;
         result.classList.add(score === totalQuestions ? 'correct' : 'incorrect');
 
         // Show Retry and Final Submission buttons
@@ -110,6 +110,32 @@ document.addEventListener('DOMContentLoaded', function() {
     function nextQuestion() {
         currentQuestionIndex++;
         loadQuestion();
+    }
+
+    // Final Submission event listener
+    document.getElementById('finalSubmissionButton').addEventListener('click', function() {
+        // Instead of loading 'chat.html', show the chat section directly
+        loadChatSection();
+    });
+
+    // Function to show the chat section
+    function loadChatSection() {
+        const contentContainer = document.getElementById("dynamic-content");
+        contentContainer.innerHTML = 
+            <div id="chatSection" class="page-content">
+                <h2>Welcome to the Chat Section</h2>
+                <p>This is where the chat interface will appear.</p>
+                <!-- Insert your chat UI or app content here -->
+            </div>
+        ;
+
+        // Update the active navigation link for the "Chat" page
+        const navLinks = document.querySelectorAll('.nav-links a');
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+        });
+        const chatLink = document.querySelector('a[href="javascript:void(0);"][onclick="loadPage(\'chat\')"]');
+        if (chatLink) chatLink.classList.add('active');
     }
 
     // Retry the quiz
