@@ -7,16 +7,16 @@ function addStylesheet(href) {
 }
 
 // Switch between login and register forms
-function attachTabSwitchEventListeners() {
-    const loginTab = document.getElementById('loginTab');
-    const registerTab = document.getElementById('registerTab');
-    if (loginTab) {
-        loginTab.addEventListener('click', () => switchForm('login'));
-    }
-    if (registerTab) {
-        registerTab.addEventListener('click', () => switchForm('register'));
-    }
-}
+// function attachTabSwitchEventListeners() {
+//     const loginTab = document.getElementById('loginTab');
+//     const registerTab = document.getElementById('registerTab');
+//     if (loginTab) {
+//         loginTab.addEventListener('click', () => switchForm('login'));
+//     }
+//     if (registerTab) {
+//         registerTab.addEventListener('click', () => switchForm('register'));
+//     }
+// }
 
 // Switch form visibility between login and register
 function switchForm(form) {
