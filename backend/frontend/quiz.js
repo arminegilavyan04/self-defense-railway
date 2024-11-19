@@ -119,16 +119,24 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Function to handle loading of the chat section
     document.getElementById('finalSubmissionButton').addEventListener('click', function() {
-        // Store quiz result in sessionStorage before navigating to the chat section
+        // Store the quiz result in sessionStorage before navigating
         const result = {
-            score: score,  // the user's score from the quiz
-            totalQuestions: totalQuestions  // the total number of questions
+            score: score,  // The user's score from the quiz
+            totalQuestions: totalQuestions  // The total number of questions
         };
         sessionStorage.setItem('quizResult', JSON.stringify(result));
     
-        // Now navigate to the chat section
-        loadPage('chat');
+        // Now, clear any quiz-related elements before navigating to the chat page
+        document.getElementById('quizContainer').innerHTML = '';  // Clear the quiz container
+        document.getElementById('nextButton').style.display = 'none';
+        document.getElementById('retryButton').style.display = 'none';
+        document.getElementById('finalSubmissionButton').style.display = 'none';
+        document.getElementById('result').innerHTML = '';  // Clear the result text
+    
+        // Navigate to the chat section (load the chat.html content)
+        loadPage('chat');  
     });
+    
 
     // Retry the quiz by resetting the quiz state
     document.getElementById('retryButton').addEventListener('click', function() {
