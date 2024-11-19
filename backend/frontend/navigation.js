@@ -14,9 +14,8 @@ function loadPage(page) {
     let fileName = '';
     let stylesheetsToAdd = [];
 
-    // Determine which page to load and ensure relevant styles are applied
+    // Determine which page to load
     if (page === 'home') {
-        // Ensure home page content is shown (we don't fetch this)
         homeContent.style.display = 'block';  
         contentContainer.innerHTML = '';  // Clear content for dynamic loading
         return;
@@ -27,9 +26,8 @@ function loadPage(page) {
     } else if (page === 'chat') {
         fileName = 'chat.html';
     } else if (page === 'quiz') {
-        // Directly load the quiz page logic
-        loadQuiz(); 
-        return;  // Avoid loading the page through fetch
+        loadQuiz();  // Directly load the quiz content here without fetch
+        return;
     } else if (page === 'login') {
         fileName = 'login.html';
         addStylesheet('login.css');
@@ -38,8 +36,8 @@ function loadPage(page) {
         addStylesheet('login.css');
     }
 
-    // Dynamically fetch content for non-home pages
-    if (page !== 'home') {
+    // Dynamically fetch content for non-home pages (except quiz)
+    if (page !== 'home' && page !== 'quiz') {
         fetch(fileName)
             .then(response => response.text())
             .then(data => {
@@ -70,14 +68,21 @@ function loadPage(page) {
         document.head.appendChild(link);
     }
 
-    // Load the quiz dynamically
+    // Function to load the quiz content dynamically
     function loadQuiz() {
         contentContainer.innerHTML = `
             <div id="quizPage" class="page-content">
-                <!-- Quiz content will be inserted here dynamically from quiz.js -->
+                <h2>Self-Defense Quiz</h2>
+                <div id="quizContainer"></div>
+                <div id="validationMessage"></div>
+                <div id="nextButton" style="display:none;" onclick="nextQuestion()">Next Question</div>
+                <div id="retryButton" style="display:none;" onclick="retryQuiz()">Retry Quiz</div>
+                <div id="finalSubmissionButton" style="display:none;" onclick="submitQuiz()">Submit Quiz</div>
+                <div id="result"></div>
             </div>
         `;
-        // Call your quiz.js logic here if you need additional initialization
+        // Initialize the quiz after injecting the HTML content
+        initializeQuiz();
     }
 
     // Hide home content on non-home pages
@@ -92,7 +97,7 @@ function loadPage(page) {
         }
     });
 
-    // Optionally, update the browser's history (so the URL changes without page reload)
+    // Optionally, update the browser's history
     history.pushState({ page: page }, page, `#${page}`);
 }
 
