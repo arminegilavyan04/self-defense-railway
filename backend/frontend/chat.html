@@ -32,28 +32,22 @@
     <!-- Scripts -->
     <script src="navigation.js"></script> <!-- Handles navigation and page load -->
     <script>
-        // Dynamically load the navigation bar into #navbar-placeholder from index.html
-        fetch('index.html')
-            .then(response => response.text())
-            .then(html => {
-                document.getElementById('navbar-placeholder').innerHTML = html;
-            })
-            .catch(err => console.warn('Error loading navigation: ', err));
-
-        // On window load, check sessionStorage for quiz results
-        window.onload = function() {
-            const quizResult = sessionStorage.getItem('quizResult');
-            if (quizResult) {
-                const result = JSON.parse(quizResult);
-                // Show quiz results section
-                document.getElementById('quiz-result').style.display = 'block';
-                document.getElementById('quiz-score').textContent = `You scored ${result.score} out of ${result.totalQuestions}`;
-                document.getElementById('quiz-status').textContent = result.score === result.totalQuestions ? 'Perfect score!' : 'Try again next time!';
-            } else {
-                // If no quiz result, show a message or handle gracefully
-                document.getElementById('quiz-result').style.display = 'none';
+        document.addEventListener('DOMContentLoaded', function() {
+            // Retrieve quiz result from sessionStorage
+            const result = JSON.parse(sessionStorage.getItem('quizResult'));
+            
+            if (result) {
+                const { score, totalQuestions } = result;
+                const resultContainer = document.getElementById('result');
+                resultContainer.innerHTML = `You scored ${score} out of ${totalQuestions}.`;
+    
+                if (score === totalQuestions) {
+                    resultContainer.classList.add('correct');
+                } else {
+                    resultContainer.classList.add('incorrect');
+                }
             }
-        };
+        });
     </script>
 </body>
 </html>

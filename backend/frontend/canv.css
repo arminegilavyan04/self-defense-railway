@@ -200,6 +200,15 @@ p {
 .nav-links a.active:hover {
     background-color: #f8f8f8; /* Light background when hovering over active link */
 }
+.correct {
+    color: green;
+    font-weight: bold;
+}
+
+.incorrect {
+    color: red;
+    font-weight: bold;
+}
 
 /* Mobile Responsiveness */
 @media (max-width: 768px) {

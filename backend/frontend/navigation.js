@@ -1,23 +1,3 @@
-// Function to add the stylesheet dynamically
-function addStylesheet(href) {
-    const existingLink = document.querySelector(`link[href="${href}"]`);
-    if (existingLink) {
-        return;  // Don't add the stylesheet if it's already in the DOM
-    }
-
-    const link = document.createElement('link');
-    link.rel = 'stylesheet';
-    link.href = href;
-    link.onload = () => {
-        console.log(`${href} loaded successfully.`);
-    };
-    link.onerror = () => {
-        console.error(`Error loading ${href}`);
-    };
-    document.head.appendChild(link);
-}
-
-// Your loadPage function
 function loadPage(page) {
     const contentContainer = document.getElementById("dynamic-content");
     const homeContent = document.getElementById("home-content");
@@ -31,23 +11,41 @@ function loadPage(page) {
         link.classList.remove('active');
     });
 
+    // Always load the navigation panel (navbar)
+    const navbarPlaceholder = document.getElementById('navbar-placeholder');
+    navbarPlaceholder.innerHTML = `
+      <div class="logo">Logo/SelfSense</div>
+      <ul class="nav-links">
+          <li><a href="javascript:void(0);" onclick="loadPage('home')" class="active">Home</a></li>
+          <li><a href="javascript:void(0);" onclick="loadPage('about')">About Us</a></li>
+          <li><a href="javascript:void(0);" onclick="loadPage('vr')">VR Glasses</a></li>
+          <li><a href="javascript:void(0);" onclick="loadPage('chat')">Chat</a></li>
+          <li><a href="javascript:void(0);" onclick="loadPage('quiz')">Quiz</a></li>
+      </ul>
+      <div class="login-register">
+        <a href="javascript:void(0);" onclick="loadPage('login')">Login/Register</a>
+      </div>
+      <div class="person-icon">
+        <img src="person-icon.png" alt="Person Icon">
+      </div>
+      <div class="flag-icon">
+        <img src="armenian-flag.png" alt="Armenian Flag">
+      </div>
+    `;
+
     let fileName = '';
     let stylesheetsToAdd = [];
 
     // Determine which page to load and ensure relevant styles are applied
     if (page === 'home') {
         fileName = 'index.html'; // Home content
-
-        // Ensure home page styles are applied
         if (!document.querySelector('link[href="canv.css"]')) {
             stylesheetsToAdd.push('canv.css'); // If home.css isn't in the head, add it
         }
-
-        // Show home content (don't clear content container)
-        if (homeContent) { // Check if homeContent exists
+        if (homeContent) {
             homeContent.style.display = 'block';
         }
-        contentContainer.innerHTML = ''; // Clear only the dynamic content area
+        contentContainer.innerHTML = '';
     } else if (page === 'about') {
         fileName = 'about.html';
     } else if (page === 'vr') {
@@ -59,12 +57,8 @@ function loadPage(page) {
     } else if (page === 'login') {
         fileName = 'login.html';
         addStylesheet('login.css');
-    } else if (page === 'getStarted') {
-        fileName = 'login.html';
-        addStylesheet('login.css');
     }
 
-    // Apply the required stylesheets dynamically
     stylesheetsToAdd.forEach(addStylesheet);
 
     // Dynamically fetch content for non-home pages
@@ -73,12 +67,6 @@ function loadPage(page) {
             .then(response => response.text())
             .then(data => {
                 contentContainer.innerHTML = data;
-
-                // After content is loaded, reattach event listeners for login/register tabs and form switching
-                if (page === 'login' || page === 'getStarted') {
-                    switchForm('login'); // Switch to the login form by default
-                    attachTabSwitchEventListeners(); // Reattach tab switching listeners
-                }
             })
             .catch(error => {
                 contentContainer.innerHTML = "<p>Sorry, we couldn't load the requested page.</p>";
@@ -86,7 +74,6 @@ function loadPage(page) {
             });
     }
 
-    // Hide home content on non-home pages
     if (page !== 'home' && homeContent) {
         homeContent.style.display = 'none';
     }
@@ -100,6 +87,8 @@ function loadPage(page) {
 
     // Optionally, update the browser's history (so the URL changes without page reload)
     history.pushState({ page: page }, page, `#${page}`);
+
+
 
     function attachTabSwitchEventListeners() {
         const loginTab = document.getElementById('loginTab');
