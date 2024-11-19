@@ -118,18 +118,17 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Function to handle loading of the chat section
-    function loadChatSection() {
-        // Save score to localStorage to use in the chat page
-        localStorage.setItem('quizScore', score);
-
-        // Hide quiz buttons when transitioning to chat
-        document.getElementById('nextButton').style.display = 'none';
-        document.getElementById('retryButton').style.display = 'none';
-        document.getElementById('finalSubmissionButton').style.display = 'none';
-
-        // Load the chat page content
+    document.getElementById('finalSubmissionButton').addEventListener('click', function() {
+        // Store quiz result in sessionStorage before navigating to the chat section
+        const result = {
+            score: score,  // the user's score from the quiz
+            totalQuestions: totalQuestions  // the total number of questions
+        };
+        sessionStorage.setItem('quizResult', JSON.stringify(result));
+    
+        // Now navigate to the chat section
         loadPage('chat');
-    }
+    });
 
     // Retry the quiz by resetting the quiz state
     document.getElementById('retryButton').addEventListener('click', function() {
