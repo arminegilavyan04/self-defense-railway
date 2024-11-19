@@ -116,8 +116,8 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     document.getElementById('finalSubmissionButton').addEventListener('click', function() {
-        // loadChatSection();
-        loadPage('chat');
+        console.log("Final Submission button clicked");  // Debugging line
+        loadPage('chat');  // Trigger the page change to chat
     });
 
     function loadChatSection() {
