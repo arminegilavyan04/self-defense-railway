@@ -27,6 +27,7 @@
         </div>
     </div>
 
+    <!-- Scripts -->
     <script src="navigation.js"></script> <!-- Include navigation.js -->
     <script>
         // Dynamically load the navigation bar into #navbar-placeholder
@@ -44,6 +45,9 @@
                 document.getElementById('quiz-result').style.display = 'block';
                 document.getElementById('quiz-score').textContent = `You scored ${result.score} out of ${result.totalQuestions}`;
                 document.getElementById('quiz-status').textContent = result.score === result.totalQuestions ? 'Perfect score!' : 'Try again next time!';
+            } else {
+                // If no quiz result, display message or handle gracefully
+                document.getElementById('quiz-result').style.display = 'none';
             }
         };
     </script>
