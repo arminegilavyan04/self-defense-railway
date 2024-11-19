@@ -1,4 +1,3 @@
-
 document.addEventListener('DOMContentLoaded', function() {
     const answers = {
         q1: 'a',
@@ -13,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let currentQuestionIndex = 0;
     const totalQuestions = Object.keys(answers).length;
     let userAnswers = {};
-    let score = 0;  // Track score internally
+    let score = 0;
 
     const questions = [
         {
@@ -91,74 +90,42 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function displayResult() {
-        // Calculate score once the user finishes
-        score = 0;
+        // Calculate score
+        score = 0;  
         for (let [question, answer] of Object.entries(userAnswers)) {
             if (answers[question] === answer) {
                 score++;
             }
         }
-    
-        // Display score and results only at the end
+
         const result = document.getElementById('result');
         result.innerHTML = `You scored ${score} out of ${totalQuestions}.`;
-        result.classList.add(score === totalQuestions ? 'correct' : 'incorrect');
-    
-        // Show "Retry" and "Submit" buttons after quiz is complete
+
+        // Show "Retry" and "Submit" buttons
         document.getElementById('retryButton').style.display = 'inline-block';
         document.getElementById('finalSubmissionButton').style.display = 'inline-block';
         document.getElementById('nextButton').style.display = 'none';
-    
-        // Store the result in sessionStorage for use in the chat section
-        sessionStorage.setItem('quizResult', JSON.stringify({ score, totalQuestions }));
-    
-        // Hide quiz questions once the quiz is complete
-        document.getElementById('quizContainer').style.display = 'none';
-    }
-    
-
-    function nextQuestion() {
-        currentQuestionIndex++;
-        loadQuestion();
     }
 
+    // Final Submission button logic
     document.getElementById('finalSubmissionButton').addEventListener('click', function() {
-        console.log("Final Submission button clicked");  // Debugging line
-        loadPage('chat');  // Trigger the page change to chat
-    });
-
-    function loadChatSection() {
-        const contentContainer = document.getElementById("dynamic-content");
-        contentContainer.innerHTML = `
-            <div id="chatSection" class="page-content">
-                <h2>Welcome to the Chat Section</h2>
-                <p>This is where the chat interface will appear.</p>
-            </div>
-        `;
-
-        const navLinks = document.querySelectorAll('.nav-links a');
-        navLinks.forEach(link => link.classList.remove('active'));
-        const chatLink = document.querySelector('a[href="javascript:void(0);"][onclick="loadPage(\'chat\')"]');
-        if (chatLink) {
-            chatLink.classList.add('active');
-        }
-    }
-
-    document.getElementById('retryButton').addEventListener('click', function() {
-        // Reset the quiz to start from the first question
-        currentQuestionIndex = 0;
-        userAnswers = {};
-        score = 0;  // Reset score for retry
-
-        // Clear result and prevent showing score
-        const result = document.getElementById('result');
-        result.innerHTML = '';  // Clear result message
-        result.classList.remove('correct', 'incorrect');
-
-        // Hide retry and final submission buttons
+        // Hide the retry and final submission buttons
         document.getElementById('retryButton').style.display = 'none';
         document.getElementById('finalSubmissionButton').style.display = 'none';
 
+        // Pass the score to the chat page
+        localStorage.setItem('score', score); // Store score in localStorage
+
+        // Load the chat page
+        loadPage('chat');
+    });
+
+    document.getElementById('retryButton').addEventListener('click', function() {
+        // Reset the quiz for retry
+        currentQuestionIndex = 0;
+        userAnswers = {};
+        score = 0;
+        document.getElementById('result').innerHTML = ''; // Clear result
         loadQuestion();
     });
 
