@@ -1,8 +1,6 @@
-document.addEventListener('DOMContentLoaded', function () {
-    // Your loadPage logic here
-    function loadPage(page) {
-        const contentContainer = document.getElementById("dynamic-content");
-        const homeContent = document.getElementById("home-content");
+ function loadPage(page) {
+    const contentContainer = document.getElementById("dynamic-content");
+    const homeContent = document.getElementById("home-content");
 
     // Clear dynamic content container to avoid content duplication
     contentContainer.innerHTML = '';
@@ -139,4 +137,3 @@ function switchForm(form) {
         }
     }
 }
-});
