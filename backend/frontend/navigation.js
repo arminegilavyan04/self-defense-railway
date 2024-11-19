@@ -29,23 +29,21 @@ function switchForm(form) {
     const loginTab = document.getElementById('loginTab');
     const registerTab = document.getElementById('registerTab');
 
-    if (loginForm && registerForm && loginTab && registerTab) {
-        loginForm.style.display = 'none';
-        registerForm.style.display = 'none';
+    // Hide both forms first
+    if (loginForm) loginForm.style.display = 'none';
+    if (registerForm) registerForm.style.display = 'none';
 
-        // Show the selected form
-        if (form === 'login') {
-            loginForm.style.display = 'block';
-            loginTab.classList.add('active');
-            registerTab.classList.remove('active');
-        } else if (form === 'register') {
-            registerForm.style.display = 'block';
-            registerTab.classList.add('active');
-            loginTab.classList.remove('active');
-        }
+    // Switch to the selected form
+    if (form === 'login' && loginForm) {
+        loginForm.style.display = 'block'; // Show login form
+        loginTab.classList.add('active');
+        registerTab.classList.remove('active');
+    } else if (form === 'register' && registerForm) {
+        registerForm.style.display = 'block'; // Show register form
+        registerTab.classList.add('active');
+        loginTab.classList.remove('active');
     }
 }
-
 // Handle page loading and dynamic content insertion
 function loadPage(page) {
     const contentContainer = document.getElementById("dynamic-content");
