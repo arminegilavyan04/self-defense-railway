@@ -55,11 +55,14 @@ h1 {
     position: relative;
 }
 
+/* Radio button input styling */
 .question input[type="radio"] {
-    position: absolute;
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%);
+    margin-right: 10px; /* Add space between the radio button and label */
+    /* Remove absolute positioning */
+    display: inline-block; /* Make sure it appears inline with the label */
+    width: 20px; /* Control the size of the radio button */
+    height: 20px; /* Control the size of the radio button */
+    margin-left: 5px; /* Optional: Add some left margin for spacing */
 }
 
 /* Submit and Retry Buttons Styling */
