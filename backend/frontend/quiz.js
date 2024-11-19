@@ -115,9 +115,8 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     document.getElementById('finalSubmissionButton').addEventListener('click', function() {
-            // Trigger the same page load logic as when "Chat" is clicked
-            loadPage('chat');
-        });
+        // loadChatSection();
+        loadPage('chat');
     });
 
     function loadChatSection() {
