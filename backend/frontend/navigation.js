@@ -5,13 +5,7 @@ function loadPage(page) {
 
     // Debug: Log the elements to check if they exist
     console.log('Content container:', contentContainer);
-    console.log('Navbar placeholder:', navbarPlaceholder);
-
-    // Check if the elements are found
-    if (!contentContainer || !navbarPlaceholder) {
-        console.error("Error: One or both of the required elements are not in the DOM.");
-        return; // Exit early if elements aren't found
-    }
+    
     // Clear dynamic content container to avoid content duplication
     contentContainer.innerHTML = '';
 
@@ -23,6 +17,13 @@ function loadPage(page) {
 
     // Always load the navigation panel (navbar)
     const navbarPlaceholder = document.getElementById('navbar-placeholder');
+    console.log('Navbar placeholder:', navbarPlaceholder);
+
+    // Check if the elements are found
+    if (!contentContainer || !navbarPlaceholder) {
+        console.error("Error: One or both of the required elements are not in the DOM.");
+        return; // Exit early if elements aren't found
+    }
     navbarPlaceholder.innerHTML = `
       <div class="logo">Logo/SelfSense</div>
       <ul class="nav-links">
