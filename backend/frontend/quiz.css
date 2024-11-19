@@ -34,38 +34,49 @@ h1 {
     margin-bottom: 20px;
 }
 
-/* Question Styling */
 .question {
+    width: 100%; /* Ensure questions take the full width of the container */
     margin-bottom: 20px;
+    display: flex;
+    flex-direction: column; /* Stack the question text and inputs vertically */
+    align-items: flex-start; /* Align items to the left */
 }
 
+/* Question Text Styling */
 .question p {
     font-size: 18px;
     color: #333;
+    margin-bottom: 10px; /* Space between the question and options */
 }
 
 /* Radio button label styling */
 .question label {
-    display: block;
-    padding: 8px 0;
+    display: flex; /* Align radio button and label text horizontally */
+    align-items: center; /* Vertically center the radio button with the label */
     font-size: 16px;
     cursor: pointer;
     color: #555;
     padding-left: 25px;
-    position: relative;
+    margin-bottom: 10px; /* Add some space between the options */
 }
 
 /* Radio button input styling */
 .question input[type="radio"] {
-    margin-right: 10px; /* Add space between the radio button and label */
-    /* Remove absolute positioning */
-    display: inline-block; /* Make sure it appears inline with the label */
-    width: 20px; /* Control the size of the radio button */
-    height: 20px; /* Control the size of the radio button */
-    margin-left: 5px; /* Optional: Add some left margin for spacing */
+    margin-right: 10px; /* Space between radio button and label */
+    width: 20px; /* Size of the radio button */
+    height: 20px; /* Size of the radio button */
+    margin-left: 5px; /* Optional: Adds some space to the left of the radio button */
 }
 
-/* Submit and Retry Buttons Styling */
+/* Optional: Add some extra styling to make sure the options look better */
+.question input[type="radio"]:focus {
+    outline: none; /* Remove the outline when the radio button is focused */
+}
+
+.question input[type="radio"]:checked {
+    background-color: #4CAF50; /* Change color when the radio button is checked */
+}
+
 button {
     background-color: red;
     color: white;
