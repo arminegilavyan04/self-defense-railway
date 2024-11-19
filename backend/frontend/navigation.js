@@ -101,3 +101,40 @@ function loadPage(page) {
     // Optionally, update the browser's history (so the URL changes without page reload)
     history.pushState({ page: page }, page, `#${page}`);
 }
+
+// Function to attach event listeners for switching between Login and Register forms
+function attachTabSwitchEventListeners() {
+    const loginTab = document.getElementById('loginTab');
+    const registerTab = document.getElementById('registerTab');
+
+    if (loginTab) {
+        loginTab.addEventListener('click', () => switchForm('login'));
+    }
+
+    if (registerTab) {
+        registerTab.addEventListener('click', () => switchForm('register'));
+    }
+}
+
+// Function to switch between Login and Register forms
+function switchForm(form) {
+    const loginForm = document.getElementById('loginForm');
+    const registerForm = document.getElementById('registerForm');
+    const loginTab = document.getElementById('loginTab');
+    const registerTab = document.getElementById('registerTab');
+
+    // Hide both forms first
+    if (loginForm) loginForm.style.display = 'none';
+    if (registerForm) registerForm.style.display = 'none';
+
+    // Switch to the selected form
+    if (form === 'login' && loginForm) {
+        loginForm.style.display = 'block'; // Show login form
+        loginTab.classList.add('active');
+        registerTab.classList.remove('active');
+    } else if (form === 'register' && registerForm) {
+        registerForm.style.display = 'block'; // Show register form
+        registerTab.classList.add('active');
+        loginTab.classList.remove('active');
+    }
+}
