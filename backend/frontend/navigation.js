@@ -1,4 +1,4 @@
- function loadPage(page) {
+function loadPage(page) {
     const contentContainer = document.getElementById("dynamic-content");
     const homeContent = document.getElementById("home-content");
 
@@ -24,7 +24,9 @@
         }
 
         // Show home content (don't clear content container)
-        homeContent.style.display = 'block';
+        if (homeContent) { // Check if homeContent exists
+            homeContent.style.display = 'block';
+        }
         contentContainer.innerHTML = ''; // Clear only the dynamic content area
     } else if (page === 'about') {
         fileName = 'about.html';
@@ -65,7 +67,7 @@
     }
 
     // Hide home content on non-home pages
-    if (page !== 'home') {
+    if (page !== 'home' && homeContent) {
         homeContent.style.display = 'none';
     }
 
@@ -78,62 +80,4 @@
 
     // Optionally, update the browser's history (so the URL changes without page reload)
     history.pushState({ page: page }, page, `#${page}`);
-}
-
-// Function to add the stylesheet dynamically
-function addStylesheet(href) {
-    const existingLink = document.querySelector(`link[href="${href}"]`);
-    if (existingLink) {
-        return;  // Don't add the stylesheet if it's already in the DOM
-    }
-
-    const link = document.createElement('link');
-    link.rel = 'stylesheet';
-    link.href = href;
-    link.onload = () => {
-        console.log(`${href} loaded successfully.`);
-    };
-    link.onerror = () => {
-        console.error(`Error loading ${href}`);
-    };
-    document.head.appendChild(link);
-}
-
-// Function to attach event listeners for switching between login and register forms
-function attachTabSwitchEventListeners() {
-    const loginTab = document.getElementById('loginTab');
-    const registerTab = document.getElementById('registerTab');
-
-    if (loginTab) {
-        loginTab.addEventListener('click', () => switchForm('login'));
-    }
-
-    if (registerTab) {
-        registerTab.addEventListener('click', () => switchForm('register'));
-    }
-}
-
-// Function to switch between Login and Register forms
-function switchForm(form) {
-    // Ensure the login and register forms are visible
-    const loginForm = document.getElementById('loginForm');
-    const registerForm = document.getElementById('registerForm');
-    const loginTab = document.getElementById('loginTab');
-    const registerTab = document.getElementById('registerTab');
-
-    if (loginForm && registerForm && loginTab && registerTab) {
-        loginForm.style.display = 'none';
-        registerForm.style.display = 'none';
-
-        // Show the selected form
-        if (form === 'login') {
-            loginForm.style.display = 'block';
-            loginTab.classList.add('active');
-            registerTab.classList.remove('active');
-        } else if (form === 'register') {
-            registerForm.style.display = 'block';
-            registerTab.classList.add('active');
-            loginTab.classList.remove('active');
-        }
-    }
 }
