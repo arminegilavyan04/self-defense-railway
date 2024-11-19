@@ -9,7 +9,7 @@
 </head>
 <body>
     <!-- Navigation Panel (dynamically loaded from index.html) -->
-    <div id="navbar"></div>
+    <div id="navbar-placeholder"></div>
 
     <div class="container">
         <h1>Chat Section</h1>
@@ -34,7 +34,7 @@
         fetch('index.html')
             .then(response => response.text())
             .then(html => {
-                document.getElementById('navbar').innerHTML = html;
+                document.getElementById('navbar-placeholder').innerHTML = html;
             })
             .catch(err => console.warn('Error loading navigation: ', err));
 
