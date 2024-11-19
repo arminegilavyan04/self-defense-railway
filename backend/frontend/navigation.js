@@ -2,6 +2,16 @@ function loadPage(page) {
     const contentContainer = document.getElementById("dynamic-content");
     const homeContent = document.getElementById("home-content");
 
+
+    // Debug: Log the elements to check if they exist
+    console.log('Content container:', contentContainer);
+    console.log('Navbar placeholder:', navbarPlaceholder);
+
+    // Check if the elements are found
+    if (!contentContainer || !navbarPlaceholder) {
+        console.error("Error: One or both of the required elements are not in the DOM.");
+        return; // Exit early if elements aren't found
+    }
     // Clear dynamic content container to avoid content duplication
     contentContainer.innerHTML = '';
 
