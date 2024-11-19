@@ -1,4 +1,4 @@
-export function loadPage(page) {
+ function loadPage(page) {
     const contentContainer = document.getElementById("dynamic-content");
     const homeContent = document.getElementById("home-content");
 
