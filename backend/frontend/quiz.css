@@ -15,7 +15,7 @@ body {
     /* Ensure the container has some space */
     width: 80%; 
     margin: 0 auto; /* Center it horizontally */
-    padding: 120px 40px 40px 40px;
+    padding: 20x;
     box-sizing: border-box;
     background-color: grey;
     border-radius: 10px;
