@@ -27,7 +27,9 @@ function loadPage(page) {
     } else if (page === 'chat') {
         fileName = 'chat.html';
     } else if (page === 'quiz') {
-        fileName = 'quiz.html';
+        // Directly load the quiz page logic
+        loadQuiz(); 
+        return;  // Avoid loading the page through fetch
     } else if (page === 'login') {
         fileName = 'login.html';
         addStylesheet('login.css');
@@ -42,12 +44,6 @@ function loadPage(page) {
             .then(response => response.text())
             .then(data => {
                 contentContainer.innerHTML = data;
-
-                // After content is loaded, reattach event listeners for login/register tabs and form switching
-                if (page === 'login' || page === 'getStarted') {
-                    switchForm('login'); // Switch to the login form by default
-                    attachTabSwitchEventListeners(); // Reattach tab switching listeners
-                }
             })
             .catch(error => {
                 contentContainer.innerHTML = `<p>Sorry, we couldn't load the requested page. Error: ${error.message}</p>`;
@@ -74,19 +70,31 @@ function loadPage(page) {
         document.head.appendChild(link);
     }
 
-    // Function to attach event listeners for switching between login and register forms
-    function attachTabSwitchEventListeners() {
-        const loginTab = document.getElementById('loginTab');
-        const registerTab = document.getElementById('registerTab');
-    
-        if (loginTab) {
-            loginTab.addEventListener('click', () => switchForm('login'));
-        }
-    
-        if (registerTab) {
-            registerTab.addEventListener('click', () => switchForm('register'));
-        }
+    // Load the quiz dynamically
+    function loadQuiz() {
+        contentContainer.innerHTML = `
+            <div id="quizPage" class="page-content">
+                <!-- Quiz content will be inserted here dynamically from quiz.js -->
+            </div>
+        `;
+        // Call your quiz.js logic here if you need additional initialization
     }
+
+    // Hide home content on non-home pages
+    if (page !== 'home') {
+        homeContent.style.display = 'none';
+    }
+
+    // Add the active class to the clicked navigation link
+    navLinks.forEach(link => {
+        if (link.textContent.trim().toLowerCase() === page) {
+            link.classList.add('active');
+        }
+    });
+
+    // Optionally, update the browser's history (so the URL changes without page reload)
+    history.pushState({ page: page }, page, `#${page}`);
+}
 
     // Function to switch between Login and Register forms
     function switchForm(form) {
@@ -106,18 +114,4 @@ function loadPage(page) {
         }
     }
 
-    // Hide home content on non-home pages
-    if (page !== 'home') {
-        homeContent.style.display = 'none';
-    }
-
-    // Add the active class to the clicked navigation link
-    navLinks.forEach(link => {
-        if (link.textContent.trim().toLowerCase() === page) {
-            link.classList.add('active');
-        }
-    });
-
-    // Optionally, update the browser's history (so the URL changes without page reload)
-    history.pushState({ page: page }, page, `#${page}`);
-}
+    

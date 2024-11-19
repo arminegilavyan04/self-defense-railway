@@ -153,7 +153,7 @@
 //     // Handle the next button click
 //     document.getElementById('nextButton').addEventListener('click', nextQuestion);
 // });
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', function() {
     const answers = {
         q1: 'a',
         q2: 'a',
@@ -207,35 +207,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     ];
 
-    // Function to load the Home page content (index.html content)
-    function loadHome() {
-        const contentContainer = document.getElementById("dynamic-content");
-        contentContainer.innerHTML = `
-            <h1>Welcome to the Home Page</h1>
-            <p>This is the home page content. It will remain the same when you navigate here.</p>
-        `;
-    }
-
-    // Function to load the Quiz page (start the quiz)
-    function loadQuiz() {
-        const contentContainer = document.getElementById("dynamic-content");
-        contentContainer.innerHTML = `
-            <div>
-                <button id="startQuizButton">Start Quiz</button>
-            </div>
-        `;
-        document.getElementById('startQuizButton').addEventListener('click', function () {
-            startQuiz(); // Start the quiz when the button is clicked
-        });
-    }
-
-    // Function to start the quiz and load the questions
-    function startQuiz() {
-        const contentContainer = document.getElementById("dynamic-content");
-        loadQuestion(); // Load the first question when the quiz starts
-    }
-
-    // Load the current quiz question dynamically
+    // Load the question dynamically
     function loadQuestion() {
         if (currentQuestionIndex >= totalQuestions) {
             displayResult();
@@ -257,14 +229,14 @@ document.addEventListener('DOMContentLoaded', function () {
             </div>
         `;
 
-        document.getElementById('dynamic-content').innerHTML = questionHTML;
+        document.getElementById('quizContainer').innerHTML = questionHTML;
         document.getElementById('nextButton').style.display = 'none';
         document.getElementById('validationMessage').innerHTML = '';
 
         // Enable next button when an option is selected
         const radios = document.querySelectorAll(`input[name="${question.id}"]`);
         radios.forEach(radio => {
-            radio.addEventListener('change', function () {
+            radio.addEventListener('change', function() {
                 userAnswers[question.id] = this.value;
                 document.getElementById('nextButton').style.display = 'inline-block';
             });
@@ -296,27 +268,31 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // Final Submission event listener
-    document.getElementById('finalSubmissionButton').addEventListener('click', function () {
-        loadChatSection(); // Directly load the chat section after final submission
+    document.getElementById('finalSubmissionButton').addEventListener('click', function() {
+        loadChatSection(); // Load the chat section after quiz submission
     });
 
-    // Function to show the chat section (via dynamic content)
+    // Function to show the chat section
     function loadChatSection() {
         const contentContainer = document.getElementById("dynamic-content");
         contentContainer.innerHTML = `
             <div id="chatSection" class="page-content">
                 <h2>Welcome to the Chat Section</h2>
                 <p>This is where the chat interface will appear.</p>
-                <!-- Insert your chat UI or app content here -->
             </div>
         `;
 
         // Update the active navigation link for the "Chat" page
-        updateNavLink('chat');
+        const navLinks = document.querySelectorAll('.nav-links a');
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+        });
+        const chatLink = document.querySelector('a[href="javascript:void(0);"][onclick="loadPage(\'chat\')"]');
+        if (chatLink) chatLink.classList.add('active');
     }
 
     // Retry the quiz
-    document.getElementById('retryButton').addEventListener('click', function () {
+    document.getElementById('retryButton').addEventListener('click', function() {
         currentQuestionIndex = 0;
         userAnswers = {};
         loadQuestion();
@@ -324,13 +300,9 @@ document.addEventListener('DOMContentLoaded', function () {
         document.getElementById('finalSubmissionButton').style.display = 'none';
     });
 
-    // Utility function to update active navigation link
-    function updateNavLink(page) {
-        const navLinks = document.querySelectorAll('.nav-links a');
-        navLinks.forEach(link => {
-            link.classList.remove('active');
-        });
-        const targetLink = document.querySelector(`a[href="javascript:void(0);"][onclick="loadPage('${page}')"]`);
-        if (targetLink) targetLink.classList.add('active');
-    }
-})
+    // Initialize the quiz by loading the first question
+    loadQuestion();
+
+    // Handle the next button click
+    document.getElementById('nextButton').addEventListener('click', nextQuestion);
+});
