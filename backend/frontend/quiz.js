@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let currentQuestionIndex = 0;
     const totalQuestions = Object.keys(answers).length;
     let userAnswers = {};
+    let score = 0;  // Track score internally
 
     const questions = [
         {
@@ -89,16 +90,20 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function displayResult() {
-        let score = 0;
+        // Calculate score once the user finishes
+        score = 0;  
         for (let [question, answer] of Object.entries(userAnswers)) {
             if (answers[question] === answer) {
                 score++;
             }
         }
+
+        // Display score and results only at the end
         const result = document.getElementById('result');
         result.innerHTML = `You scored ${score} out of ${totalQuestions}.`;
         result.classList.add(score === totalQuestions ? 'correct' : 'incorrect');
 
+        // Show "Retry" and "Submit" buttons after quiz is complete
         document.getElementById('retryButton').style.display = 'inline-block';
         document.getElementById('finalSubmissionButton').style.display = 'inline-block';
         document.getElementById('nextButton').style.display = 'none';
@@ -131,11 +136,21 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     document.getElementById('retryButton').addEventListener('click', function() {
+        // Reset the quiz to start from the first question
         currentQuestionIndex = 0;
         userAnswers = {};
-        loadQuestion();
+        score = 0;  // Reset score for retry
+
+        // Clear result and prevent showing score
+        const result = document.getElementById('result');
+        result.innerHTML = '';  // Clear result message
+        result.classList.remove('correct', 'incorrect');
+
+        // Hide retry and final submission buttons
         document.getElementById('retryButton').style.display = 'none';
         document.getElementById('finalSubmissionButton').style.display = 'none';
+
+        loadQuestion();
     });
 
     loadQuestion();
