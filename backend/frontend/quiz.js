@@ -125,7 +125,6 @@ document.addEventListener('DOMContentLoaded', function() {
             <div id="chatSection" class="page-content">
                 <h2>Welcome to the Chat Section</h2>
                 <p>This is where the chat interface will appear.</p>
-                <!-- Insert your chat UI or app content here -->
             </div>
         ;
 
