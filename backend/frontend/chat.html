@@ -1,26 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chat</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="canv.css"> <!-- External CSS -->
 </head>
-
 <body>
-    <div class="container my-5">
-        <h2 class="text-center">Chat</h2>
-        <p>This is where the chat feature will be.</p>
+    <!-- Navigation Panel (same as index.html) -->
+    <div id="navbar-placeholder"></div>
+
+    <div class="container">
+        <h1>Chat Section</h1>
+
+        <!-- Result display section -->
+        <div id="quiz-result" style="display: none;">
+            <h2>Quiz Result</h2>
+            <p id="quiz-score"></p>
+            <p id="quiz-status"></p>
+        </div>
+
+        <!-- Chat content will be here -->
+        <div id="chatContent">
+            <!-- Chat UI elements -->
+            <p>Start chatting here!</p>
+        </div>
     </div>
 
-    <footer class="bg-light py-4">
-        <div class="container text-center">
-            <p>&copy; 2024 Brand Name. All Rights Reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms</a></p>
-        </div>
-    </footer>
+    <script src="navigation.js"></script>
+    <script>
+        // Dynamically load the navigation bar into #navbar-placeholder
+        fetch('index.html')
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById('navbar-placeholder').innerHTML = html;
+            });
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+        // Check if quiz result exists in sessionStorage and show it
+        window.onload = function() {
+            const quizResult = sessionStorage.getItem('quizResult');
+            if (quizResult) {
+                const result = JSON.parse(quizResult);
+                document.getElementById('quiz-result').style.display = 'block';
+                document.getElementById('quiz-score').textContent = `You scored ${result.score} out of ${result.totalQuestions}`;
+                document.getElementById('quiz-status').textContent = result.score === result.totalQuestions ? 'Perfect score!' : 'Try again next time!';
+            }
+        };
+    </script>
 </body>
-
 </html>

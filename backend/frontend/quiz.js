@@ -92,23 +92,30 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function displayResult() {
         // Calculate score once the user finishes
-        score = 0;  
+        score = 0;
         for (let [question, answer] of Object.entries(userAnswers)) {
             if (answers[question] === answer) {
                 score++;
             }
         }
-
+    
         // Display score and results only at the end
         const result = document.getElementById('result');
         result.innerHTML = `You scored ${score} out of ${totalQuestions}.`;
         result.classList.add(score === totalQuestions ? 'correct' : 'incorrect');
-
+    
         // Show "Retry" and "Submit" buttons after quiz is complete
         document.getElementById('retryButton').style.display = 'inline-block';
         document.getElementById('finalSubmissionButton').style.display = 'inline-block';
         document.getElementById('nextButton').style.display = 'none';
+    
+        // Store the result in sessionStorage for use in the chat section
+        sessionStorage.setItem('quizResult', JSON.stringify({ score, totalQuestions }));
+    
+        // Hide quiz questions once the quiz is complete
+        document.getElementById('quizContainer').style.display = 'none';
     }
+    
 
     function nextQuestion() {
         currentQuestionIndex++;
