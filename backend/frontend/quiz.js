@@ -123,11 +123,19 @@ document.addEventListener('DOMContentLoaded', function() {
             dynamicContent.id = 'dynamic-content';
             document.body.appendChild(dynamicContent); // Append it to the body (or other suitable container)
         }
-
-    document.getElementById('finalSubmissionButton').addEventListener('click', function() {
-        console.log("Final Submission button clicked");  // Debugging line
-        loadPage('chat');  // Trigger the page change to chat
+    
+        // Your quiz logic here...
+        document.getElementById('finalSubmissionButton').addEventListener('click', function() {
+            console.log("Final Submission button clicked");  // Debugging line
+            loadPage('chat');  // Should trigger loadPage function
+        });
     });
+    
+
+    // document.getElementById('finalSubmissionButton').addEventListener('click', function() {
+    //     console.log("Final Submission button clicked");  // Debugging line
+    //     loadPage('chat');  // Trigger the page change to chat
+    // });
 
     function loadChatSection() {
         const contentContainer = document.getElementById("dynamic-content");
