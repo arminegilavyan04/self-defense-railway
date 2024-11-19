@@ -1,3 +1,5 @@
+
+import { loadPage } from './navigation.js'
 document.addEventListener('DOMContentLoaded', function() {
     const answers = {
         q1: 'a',
