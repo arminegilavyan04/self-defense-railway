@@ -65,8 +65,8 @@ h1 {
 /* Radio button input styling */
 .question input[type="radio"] {
     margin-right: 10px; /* Space between radio button and label */
-    width: 20px; /* Size of the radio button */
-    height: 20px; /* Size of the radio button */
+    width: 10px; /* Size of the radio button */
+    height: 10px; /* Size of the radio button */
 }
 
 /* Style when the radio button is checked */
@@ -76,18 +76,15 @@ h1 {
 
 /* Button Styling */
 .btn-primary, .btn-secondary, .btn-success {
+    text-decoration: none;
     background-color: red;
     color: white;
-    border: none;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    width: 48%;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-    margin: 10px 1%;
+    padding: 12px 25px; /* Larger padding */
+    border-radius: 30px;
+    font-size: 18px; /* Increased font size */
+    font-weight: bold;
+    margin-right: 20px; 
 }
-
 /* Button hover effects */
 .btn-primary:hover, .btn-secondary:hover, .btn-success:hover {
     background-color: darkred;
