@@ -7,20 +7,17 @@ body {
     display: flex;
     justify-content: center;
     align-items: flex-start;  /* Align to the top of the screen instead of center */
-    min-height: 100vh;  /* Use min-height to ensure content fits */
+    min-height: 100vh;  /* Ensure content fits */
 }
 
 /* Form Container Styling */
 #container {
-    /* Ensure the container has some space */
-    width: 80%; 
+    width: 80%;
     margin: 0 auto; /* Center it horizontally */
     padding: 20px;
     box-sizing: border-box;
     background-color: grey;
     border-radius: 10px;
-
-    /* For proper layout */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -43,10 +40,17 @@ h1 {
 }
 
 /* Question Text Styling */
-.question p {
+.question h3 {
     font-size: 18px;
     color: #333;
     margin-bottom: 10px; /* Space between the question and options */
+}
+
+/* Option Styling */
+.question div {
+    display: flex;
+    flex-direction: column; /* Stack radio buttons and labels vertically */
+    gap: 10px; /* Space between the options */
 }
 
 /* Radio button label styling */
@@ -56,7 +60,6 @@ h1 {
     font-size: 16px;
     cursor: pointer;
     color: #555;
-    margin-bottom: 10px; /* Add some space between the options */
 }
 
 /* Radio button input styling */
@@ -64,7 +67,6 @@ h1 {
     margin-right: 10px; /* Space between radio button and label */
     width: 20px; /* Size of the radio button */
     height: 20px; /* Size of the radio button */
-    margin-left: 5px; /* Optional: Adds some space to the left of the radio button */
 }
 
 /* Style when the radio button is checked */
@@ -88,7 +90,7 @@ h1 {
 
 /* Button hover effects */
 .btn-primary:hover, .btn-secondary:hover, .btn-success:hover {
-    background-color: red;
+    background-color: darkred;
 }
 
 /* Buttons container */
