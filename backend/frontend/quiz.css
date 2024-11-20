@@ -11,7 +11,7 @@ body {
 }
 
 /* Form Container Styling */
-#container {
+#quiz-content {
     width: 80%;
     margin: 0 auto; /* Center it horizontally */
     padding: 20px;
