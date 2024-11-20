@@ -115,87 +115,6 @@ body {
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-/* Quiz Content Styling */
-.quiz-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    width: 100%;
-}
-
-/* Quiz Question Styling */
-h1 {
-    text-align: center;
-    color: #333;
-    font-size: 24px;
-    margin-bottom: 20px;
-}
-
-/* Question Styling */
-.question {
-    width: 100%;
-    margin-bottom: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-}
-
-/* Question Text Styling */
-.question h3 {
-    font-size: 18px;
-    color: #333;
-    margin-bottom: 10px;
-}
-
-/* Option Styling */
-.question div {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-/* Radio button label styling */
-.question label {
-    display: flex;
-    align-items: center;
-    font-size: 16px;
-    cursor: pointer;
-    color: #555;
-}
-
-/* Radio button input styling */
-.question input[type="radio"] {
-    margin-right: 10px;
-    width: 10px;
-    height: 10px;
-}
-
-/* Button Styling */
-button {
-    font-size: 16px;
-    padding: 12px 25px;
-    border-radius: 30px;
-    background-color: red;
-    color: white;
-    font-weight: bold;
-    margin-top: 20px;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: darkred;
-}
-
-/* Result Text Styling */
-#result {
-    margin-top: 20px;
-    font-size: 18px;
-    font-weight: bold;
-    text-align: center;
-}
-
 /* Responsive Design */
 @media (max-width: 768px) {
     /* Adjust Navbar */
@@ -208,12 +127,11 @@ button:hover {
         width: 90%;
     }
 
-    /* Adjust Quiz Container */
-    .quiz-container {
-        padding: 10px;
+    /* Adjust Font Sizes */
+    .nav-links a {
+        font-size: 16px;
     }
 
-    /* Adjust Font Sizes */
     h1 {
         font-size: 20px;
     }
