@@ -112,48 +112,41 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('nextButton').style.display = 'none';
     }
 
-    
-    // Function to handle loading of the chat section
-    document.getElementById('finalSubmissionButton').addEventListener('click', function() {
-        // Store the quiz result in sessionStorage before navigating
-        const result = {
-            score: score,  // The user's score from the quiz
-            totalQuestions: totalQuestions  // The total number of questions
-        };
-        sessionStorage.setItem('quizResult', JSON.stringify(result));
-    
-        // Now, clear any quiz-related elements before updating the result
-        document.getElementById('quizContainer').innerHTML = '';  // Clear the quiz container
+    // Cleanup function to reset everything when navigating away from the quiz
+    function cleanupQuiz() {
+        // Remove event listeners for buttons and quiz interactions
+        const nextButton = document.getElementById('nextButton');
+        if (nextButton) {
+            nextButton.removeEventListener('click', nextButtonHandler);
+        }
+
+        const retryButton = document.getElementById('retryButton');
+        if (retryButton) {
+            retryButton.removeEventListener('click', retryButtonHandler);
+        }
+
+        const finalSubmissionButton = document.getElementById('finalSubmissionButton');
+        if (finalSubmissionButton) {
+            finalSubmissionButton.removeEventListener('click', finalSubmissionButtonHandler);
+        }
+
+        // Clear the content
+        document.getElementById('quizContainer').innerHTML = '';
+        document.getElementById('result').innerHTML = '';
         document.getElementById('nextButton').style.display = 'none';
         document.getElementById('retryButton').style.display = 'none';
         document.getElementById('finalSubmissionButton').style.display = 'none';
-    
-        // Clear any previous result
-        document.getElementById('result').innerHTML = '';
-    
-        // Calculate and display the score
-        const scoreMessage = `Your score is ${score} out of ${totalQuestions}.`;
-        let personalizedMessage = '';
-    
-        // Conditionally generate a message based on the score
-        if (score >= 6) {
-            personalizedMessage = 'Excellent job! Keep up the great work!';
-        } else if (score >= 4) {
-            personalizedMessage = 'Good effort! You’re almost there!';
-        } else {
-            personalizedMessage = 'Please contact our coach, Devis More, for further assistance.';
-        }
-    
-        // Display the result and personalized message
-        document.getElementById('result').innerHTML = `<p>${scoreMessage}</p><p>${personalizedMessage}</p>`;
-    
-        // Optionally, you can also hide other elements or show something specific depending on your needs
-    });
-    
-    
+        document.getElementById('validationMessage').innerHTML = '';
+    }
+
+    // Next question handler
+    function nextButtonHandler() {
+        currentQuestionIndex++;
+        loadQuestion();
+    }
 
     // Retry the quiz by resetting the quiz state
-    document.getElementById('retryButton').addEventListener('click', function() {
+    function retryButtonHandler() {
         currentQuestionIndex = 0;
         userAnswers = {};
         score = 0;
@@ -161,14 +154,46 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('retryButton').style.display = 'none';
         document.getElementById('finalSubmissionButton').style.display = 'none';
         loadQuestion();
-    });
+    }
+
+    // Final submission handler
+    function finalSubmissionButtonHandler() {
+        const result = {
+            score: score,
+            totalQuestions: totalQuestions
+        };
+        sessionStorage.setItem('quizResult', JSON.stringify(result));
+
+        // Clear quiz content and show results
+        document.getElementById('quizContainer').innerHTML = '';
+        document.getElementById('nextButton').style.display = 'none';
+        document.getElementById('retryButton').style.display = 'none';
+        document.getElementById('finalSubmissionButton').style.display = 'none';
+
+        const scoreMessage = `Your score is ${score} out of ${totalQuestions}.`;
+        let personalizedMessage = '';
+
+        if (score >= 6) {
+            personalizedMessage = 'Excellent job! Keep up the great work!';
+        } else if (score >= 4) {
+            personalizedMessage = 'Good effort! You’re almost there!';
+        } else {
+            personalizedMessage = 'Please contact our coach, Devis More, for further assistance.';
+        }
+
+        document.getElementById('result').innerHTML = `<p>${scoreMessage}</p><p>${personalizedMessage}</p>`;
+    }
+
+    // Attach event listeners to buttons
+    document.getElementById('nextButton').addEventListener('click', nextButtonHandler);
+    document.getElementById('retryButton').addEventListener('click', retryButtonHandler);
+    document.getElementById('finalSubmissionButton').addEventListener('click', finalSubmissionButtonHandler);
 
     // Load the first question
     loadQuestion();
 
-    // Next question
-    document.getElementById('nextButton').addEventListener('click', function() {
-        currentQuestionIndex++;
-        loadQuestion();
+    // Ensure cleanup of quiz state on page navigation (via the navigation logic)
+    window.addEventListener('beforeunload', function() {
+        cleanupQuiz();
     });
 });
