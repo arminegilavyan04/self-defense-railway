@@ -15,7 +15,7 @@ body {
     /* Ensure the container has some space */
     width: 80%; 
     margin: 0 auto; /* Center it horizontally */
-    padding: 20x;
+    padding: 20px;
     box-sizing: border-box;
     background-color: grey;
     border-radius: 10px;
@@ -56,7 +56,6 @@ h1 {
     font-size: 16px;
     cursor: pointer;
     color: #555;
-    padding-left: 25px;
     margin-bottom: 10px; /* Add some space between the options */
 }
 
@@ -68,13 +67,13 @@ h1 {
     margin-left: 5px; /* Optional: Adds some space to the left of the radio button */
 }
 
-
-
+/* Style when the radio button is checked */
 .question input[type="radio"]:checked {
     background-color: #4CAF50; /* Change color when the radio button is checked */
 }
 
-btn-primary ,  btn-secondary,  btn-success{
+/* Button Styling */
+.btn-primary, .btn-secondary, .btn-success {
     background-color: red;
     color: white;
     border: none;
@@ -87,7 +86,8 @@ btn-primary ,  btn-secondary,  btn-success{
     margin: 10px 1%;
 }
 
-btn-primary ,  btn-secondary, btn-success:hover {
+/* Button hover effects */
+.btn-primary:hover, .btn-secondary:hover, .btn-success:hover {
     background-color: red;
 }
 
