@@ -1,10 +1,17 @@
-/* Ensure the body takes the full height of the screen and has a proper flex layout */
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body Styling */
 body {
     font-family: Arial, sans-serif;
     background-color: #cecdcd;
+    height: 100vh; /* Full viewport height */
     display: flex;
-    flex-direction: column;  /* Stack elements vertically */
-    height: 100vh;  /* Full height of viewport */
+    flex-direction: column; /* Stack navbar and content vertically */
     margin: 0;  /* Remove default body margin */
 }
 
@@ -15,16 +22,81 @@ body {
     align-items: center;
     justify-content: space-between;
     background-color: rgb(102, 100, 100); 
-    padding: 20px 40px;
+    padding: 20px 40px; /* Increased padding for navbar */
     width: 100%;  /* Ensure navbar stretches the full width */
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    height: 100px;
+    height: 100px; /* Adjust height for larger navbar */
 }
 
-/* Main container for the page's content */
+/* Logo Styling */
+.logo {
+    background-color: red;
+    color: white;
+    padding: 15px 25px; /* Increased padding for logo */
+    font-weight: bold;
+    font-size: 24px; /* Increased font size for better visibility */
+    margin-right: auto; 
+}
+
+/* Navigation Links Styling */
+.nav-links {
+    display: flex;
+    list-style: none;
+    flex-grow: 1; 
+    justify-content: center; 
+}
+
+.nav-links li {
+    margin: 0 20px; /* Increased space between items */
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: white;
+    font-size: 18px; /* Increased font size for better readability */
+    padding: 12px 20px; /* Increased padding for larger clickable area */
+}
+
+.nav-links a:hover {
+    color: red;
+}
+
+/* Login/Register Button Styling */
+.login-register a {
+    text-decoration: none;
+    background-color: red;
+    color: white;
+    padding: 12px 25px; /* Larger padding */
+    border-radius: 30px;
+    font-size: 18px; /* Increased font size */
+    font-weight: bold;
+    margin-right: 20px; 
+}
+
+.login-register a:hover {
+    background-color: darkred;
+}
+
+/* Person Icon Styling */
+.person-icon, .flag-icon {
+    width: 50px;
+    height: 50px;
+    background-color: #eee;
+    border-radius: 50%;
+    margin-left: 20px;
+    overflow: hidden;
+}
+
+.person-icon img, .flag-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Main Content Styling */
 #dynamic-content {
     display: flex;
-    flex-direction: column;  /* Stack the quiz content vertically */
+    flex-direction: column;  /* Stack elements vertically */
     align-items: center;  /* Horizontally center the content */
     justify-content: center;  /* Vertically center the content */
     width: 100%;  /* Ensure this container takes full width */
@@ -33,7 +105,7 @@ body {
     overflow: auto;  /* Make sure content fits on screen */
 }
 
-/* Style for the quiz container */
+/* Styling for the quiz content */
 #quizContent {
     width: 80%;  /* Ensure quiz content takes up 80% of screen width */
     max-width: 1000px;  /* Max width for large screens */
@@ -76,6 +148,95 @@ button:hover {
     font-size: 18px;
     font-weight: bold;
     text-align: center;
+}
+
+/* Question Styling */
+h1 {
+    text-align: center;
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.question {
+    width: 100%; /* Ensure questions take the full width of the container */
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column; /* Stack the question text and inputs vertically */
+    align-items: flex-start; /* Align items to the left */
+}
+
+/* Question Text Styling */
+.question h3 {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 10px; /* Space between the question and options */
+}
+
+/* Option Styling */
+.question div {
+    display: flex;
+    flex-direction: column; /* Stack radio buttons and labels vertically */
+    gap: 10px; /* Space between the options */
+}
+
+/* Radio button label styling */
+.question label {
+    display: flex; /* Align radio button and label text horizontally */
+    align-items: center; /* Vertically center the radio button with the label */
+    font-size: 16px;
+    cursor: pointer;
+    color: #555;
+}
+
+/* Radio button input styling */
+.question input[type="radio"] {
+    margin-right: 10px; /* Space between radio button and label */
+    width: 10px; /* Size of the radio button */
+    height: 10px; /* Size of the radio button */
+}
+
+/* Style when the radio button is checked */
+.question input[type="radio"]:checked {
+    background-color: #4CAF50; /* Change color when the radio button is checked */
+}
+
+/* Buttons Styling */
+.btn-primary, .btn-secondary, .btn-success {
+    text-decoration: none;
+    background-color: red;
+    color: white;
+    padding: 12px 25px; /* Larger padding */
+    border-radius: 30px;
+    font-size: 18px; /* Increased font size */
+    font-weight: bold;
+    margin-right: 20px; 
+}
+
+/* Button hover effects */
+.btn-primary:hover, .btn-secondary:hover, .btn-success:hover {
+    background-color: darkred;
+}
+
+/* Buttons container */
+.buttons-container {
+    text-align: center;
+}
+
+/* Result Styling */
+.result {
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.result.correct {
+    color: green;
+}
+
+.result.incorrect {
+    color: red;
 }
 
 /* Responsive Design */
