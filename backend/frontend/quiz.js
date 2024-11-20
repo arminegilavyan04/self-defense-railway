@@ -190,7 +190,7 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('finalSubmissionButton').addEventListener('click', finalSubmissionButtonHandler);
 
     // Load the first question
-    loadQuestion();
+    cleanupQuiz();
 
     // Ensure cleanup of quiz state on page navigation (via the navigation logic)
     window.addEventListener('beforeunload', function() {
