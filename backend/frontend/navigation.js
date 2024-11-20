@@ -48,7 +48,8 @@ function loadPage(page) {
             homeContent.style.display = 'block';
         }
         contentContainer.innerHTML = ''; // Clear only the dynamic content area
-    } else if (page === 'about') {
+    } 
+    else if (page === 'about') {
         fileName = 'about.html';
     } else if (page === 'vr') {
         fileName = 'vr-glasses.html';
@@ -62,6 +63,14 @@ function loadPage(page) {
     } else if (page === 'getStarted') {
         fileName = 'login.html';
         addStylesheet('login.css');
+    } else {
+        // Clear quiz content when navigating away from the quiz
+        document.getElementById('quizContainer').innerHTML = '';
+        document.getElementById('result').innerHTML = '';
+        document.getElementById('nextButton').style.display = 'none';
+        document.getElementById('retryButton').style.display = 'none';
+        document.getElementById('finalSubmissionButton').style.display = 'none';
+        document.getElementById('validationMessage').innerHTML = '';
     }
 
     // Apply the required stylesheets dynamically
