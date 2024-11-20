@@ -12,9 +12,9 @@ body {
 
 /* Form Container Styling */
 #quiz-content {
-    width: 80%;
+    width: 100%;
     margin: 0 auto; /* Center it horizontally */
-    padding: 20px;
+    padding: 40px 40px 40px 40px;
     box-sizing: border-box;
     background-color: grey;
     border-radius: 10px;
