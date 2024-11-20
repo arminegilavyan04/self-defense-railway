@@ -249,16 +249,106 @@ button {
     border-radius: 10px;
 }
 
-/* Result Styling */
-#result {
-    margin-top: 20px;
-    font-size: 18px;
-    font-weight: bold;
-}
-
 /* Validation Message Styling */
 #validationMessage {
     color: red;
     font-size: 16px;
     margin-top: 20px;
+}
+h1 {
+    text-align: center;
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.question {
+    width: 100%; /* Ensure questions take the full width of the container */
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column; /* Stack the question text and inputs vertically */
+    align-items: flex-start; /* Align items to the left */
+}
+
+/* Question Text Styling */
+.question h3 {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 10px; /* Space between the question and options */
+}
+
+/* Option Styling */
+.question div {
+    display: flex;
+    flex-direction: column; /* Stack radio buttons and labels vertically */
+    gap: 10px; /* Space between the options */
+}
+
+/* Radio button label styling */
+.question label {
+    display: flex; /* Align radio button and label text horizontally */
+    align-items: center; /* Vertically center the radio button with the label */
+    font-size: 16px;
+    cursor: pointer;
+    color: #555;
+}
+
+/* Radio button input styling */
+.question input[type="radio"] {
+    margin-right: 10px; /* Space between radio button and label */
+    width: 10px; /* Size of the radio button */
+    height: 10px; /* Size of the radio button */
+}
+
+/* Style when the radio button is checked */
+.question input[type="radio"]:checked {
+    background-color: #4CAF50; /* Change color when the radio button is checked */
+}
+
+/* Button Styling */
+.btn-primary, .btn-secondary, .btn-success {
+    text-decoration: none;
+    background-color: red;
+    color: white;
+    padding: 12px 25px; /* Larger padding */
+    border-radius: 30px;
+    font-size: 18px; /* Increased font size */
+    font-weight: bold;
+    margin-right: 20px; 
+}
+/* Button hover effects */
+.btn-primary:hover, .btn-secondary:hover, .btn-success:hover {
+    background-color: darkred;
+}
+
+/* Buttons container */
+.buttons-container {
+    text-align: center;
+}
+
+/* Result Styling */
+.result {
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.result.correct {
+    color: green;
+}
+
+.result.incorrect {
+    color: red;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    .quiz-container {
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 20px;
+    }
 }
