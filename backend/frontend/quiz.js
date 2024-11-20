@@ -122,16 +122,34 @@ document.addEventListener('DOMContentLoaded', function() {
         };
         sessionStorage.setItem('quizResult', JSON.stringify(result));
     
-        // Now, clear any quiz-related elements before navigating to the chat page
+        // Now, clear any quiz-related elements before updating the result
         document.getElementById('quizContainer').innerHTML = '';  // Clear the quiz container
         document.getElementById('nextButton').style.display = 'none';
         document.getElementById('retryButton').style.display = 'none';
         document.getElementById('finalSubmissionButton').style.display = 'none';
-        document.getElementById('result').innerHTML = '';  // Clear the result text
     
-        // Navigate to the chat section (load the chat.html content)
-        loadPage('chat');  
+        // Clear any previous result
+        document.getElementById('result').innerHTML = '';
+    
+        // Calculate and display the score
+        const scoreMessage = `Your score is ${score} out of ${totalQuestions}.`;
+        let personalizedMessage = '';
+    
+        // Conditionally generate a message based on the score
+        if (score >= 6) {
+            personalizedMessage = 'Excellent job! Keep up the great work!';
+        } else if (score >= 4) {
+            personalizedMessage = 'Good effort! You’re almost there!';
+        } else {
+            personalizedMessage = 'Please contact our coach, Devis More, for further assistance.';
+        }
+    
+        // Display the result and personalized message
+        document.getElementById('result').innerHTML = `<p>${scoreMessage}</p><p>${personalizedMessage}</p>`;
+    
+        // Optionally, you can also hide other elements or show something specific depending on your needs
     });
+    
     
 
     // Retry the quiz by resetting the quiz state
