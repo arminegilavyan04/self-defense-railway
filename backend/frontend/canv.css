@@ -109,13 +109,7 @@ body {
     padding: 40px;
     gap: 20px; /* Space between image and text */
 }
-#quiz-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 40px;
-    gap: 20px; /* Space between image and text */
-}
+
 #dynamic-content {
     max-width: 100%; /* Remove max-width limitation */
     width: 100%; /* Ensure content takes up full width of the container */
