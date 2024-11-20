@@ -68,16 +68,13 @@ h1 {
     margin-left: 5px; /* Optional: Adds some space to the left of the radio button */
 }
 
-/* Optional: Add some extra styling to make sure the options look better */
-.question input[type="radio"]:focus {
-    outline: none; /* Remove the outline when the radio button is focused */
-}
+
 
 .question input[type="radio"]:checked {
     background-color: #4CAF50; /* Change color when the radio button is checked */
 }
 
-btn btn-primary , btn btn-secondary, btn btn-success{
+btn-primary ,  btn-secondary,  btn-success{
     background-color: red;
     color: white;
     border: none;
@@ -90,7 +87,7 @@ btn btn-primary , btn btn-secondary, btn btn-success{
     margin: 10px 1%;
 }
 
-btn btn-primary , btn btn-secondary, btn btn-success:hover {
+btn-primary ,  btn-secondary, btn-success:hover {
     background-color: red;
 }
 
