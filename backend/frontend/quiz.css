@@ -11,7 +11,7 @@ body {
 }
 
 /* Form Container Styling */
-#quiz-container {
+#container {
     /* Ensure the container has some space */
     width: 80%; 
     margin: 0 auto; /* Center it horizontally */
@@ -77,7 +77,7 @@ h1 {
     background-color: #4CAF50; /* Change color when the radio button is checked */
 }
 
-button {
+btn btn-primary , btn btn-secondary, btn btn-success{
     background-color: red;
     color: white;
     border: none;
@@ -90,7 +90,7 @@ button {
     margin: 10px 1%;
 }
 
-button:hover {
+btn btn-primary , btn btn-secondary, btn btn-success:hover {
     background-color: red;
 }
 
