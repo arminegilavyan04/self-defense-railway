@@ -5,89 +5,45 @@ General Reset
     box-sizing: border-box;
 }
 
-/* Body Styling */
 body {
     font-family: Arial, sans-serif;
     background-color: #cecdcd;
-    height: 100vh; /* Full viewport height */
+    height: 100vh; 
     display: flex;
-    flex-direction: column; /* Stack navbar and content vertically */
+    flex-direction: column; 
+}
+h1 {
+    font-size: 28px; 
+    color: #333;
+    font-weight: bold;
+    margin-bottom: 20px;
 }
 
-/* Navigation Bar Styling */
+p {
+    font-size: 18px; 
+    color: #555;
+    margin-bottom: 30px;
+}
+
 .navbar {
     font-size: 20px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     background-color: rgb(102, 100, 100); 
-    padding: 20px 40px; /* Increased padding for navbar */
+    padding: 20px 40px; 
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    height: 100px; /* Adjust height for larger navbar */
+    height: 100px; 
 }
 
-/* Logo Styling */
 .logo {
     background-color: red;
     color: white;
-    padding: 15px 25px; /* Increased padding for logo */
+    padding: 15px 25px; 
     font-weight: bold;
-    font-size: 24px; /* Increased font size for better visibility */
+    font-size: 24px; 
     margin-right: auto; 
 }
-
-/* Navigation Links Styling */
-.nav-links {
-    display: flex;
-    list-style: none;
-    flex-grow: 1; 
-    justify-content: center; 
-}
-
-.nav-links li {
-    margin: 0 20px; /* Increased space between items */
-}
-
-.nav-links a {
-    text-decoration: none;
-    color: white;
-    font-size: 18px; /* Increased font size for better readability */
-    padding: 12px 20px; /* Increased padding for larger clickable area */
-}
-
-.nav-links a:hover {
-    color: red;
-}
-
-/* Login/Register Button Styling */
-.login-register a {
-    text-decoration: none;
-    background-color: red;
-    color: white;
-    padding: 12px 25px; /* Larger padding */
-    border-radius: 30px;
-    font-size: 18px; /* Increased font size */
-    font-weight: bold;
-    margin-right: 20px; 
-}
-
-.login-register a:hover {
-    background-color: darkred;
-}
-
-/* Get Started Button Styling */
-.get-started-btn {
-    text-decoration: none;
-    background-color: red;
-    color: white;
-    font-size: 18px;
-    padding: 12px 25px; /* Larger padding */
-    border-radius: 30px;
-    font-weight: bold;
-    margin-top: 20px; 
-}
-
-/* Person Icon Styling */
 .person-icon, .flag-icon {
     width: 50px;
     height: 50px;
@@ -102,12 +58,61 @@ body {
     height: 100%;
     object-fit: cover;
 }
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    flex-grow: 1; 
+    justify-content: center; 
+}
+
+.nav-links li {
+    margin: 0 20px; 
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: white;
+    font-size: 18px; 
+    padding: 12px 20px; 
+}
+
+.nav-links a:hover {
+    color: red;
+}
+
+.login-register a {
+    text-decoration: none;
+    background-color: red;
+    color: white;
+    padding: 12px 25px; 
+    border-radius: 30px;
+    font-size: 18px; 
+    font-weight: bold;
+    margin-right: 20px; 
+}
+
+.login-register a:hover {
+    background-color: darkred;
+}
+
+.get-started-btn {
+    text-decoration: none;
+    background-color: red;
+    color: white;
+    font-size: 18px;
+    padding: 12px 25px; /* Larger padding */
+    border-radius: 30px;
+    font-weight: bold;
+    margin-top: 20px; 
+}
+
 #home-content {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 40px;
-    gap: 20px; /* Space between image and text */
+    gap: 20px; 
 }
 
 #dynamic-content {
@@ -132,56 +137,39 @@ body {
 .image {
     width: 100%;
     height: auto;
-    max-width: 800px; /* Limits the image size */
+    max-width: 800px; 
     border-radius: 10px;
     padding: 120px 40px 40px 40px;
 }
 
-/* Text Styling */
 .text-container {
-    flex: 0.5; /* Takes up 2/3 of the space */
-    max-width: 50%; /* Limit the max-width for better layout */
-    padding: 0; /* Remove extra padding */
-    display: flex; /* Use flexbox to align text vertically */
-    flex-direction: column; /* Stack elements vertically */
-    justify-content: center; /* Vertically center the content */
-    align-items: center; /* Horizontally center the content */
-    text-align: center; /* Center text horizontally */
+    flex: 0.5; 
+    max-width: 50%; 
+    padding: 0; 
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center; 
+    text-align: center; 
 }
 .quiz-container {
-    flex: 0.5; /* Takes up 2/3 of the space */
-    max-width: 50%; /* Limit the max-width for better layout */
-    padding: 120px 120px 120px 120px; /* Remove extra padding */
-    display: flex; /* Use flexbox to align text vertically */
-    flex-direction: column; /* Stack elements vertically */
-    justify-content: center; /* Vertically center the content */
-    align-items: center; /* Horizontally center the content */
-    text-align: center; /* Center text horizontally */
+    flex: 0.5; 
+    max-width: 50%; 
+    padding: 120px 120px 120px 120px; 
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center; 
+    text-align: center; 
 }
 
-
-
-h1 {
-    font-size: 28px; /* Larger header size */
-    color: #333;
-    font-weight: bold;
-    margin-bottom: 20px;
-}
-
-p {
-    font-size: 18px; /* Increased font size for better readability */
-    color: #555;
-    margin-bottom: 30px;
-}
-
-/* Start Quiz Button Styling */
 .start-quiz-btn {
     display: inline-block;
     text-decoration: none;
-    background-color: black; /* Black background */
-    color: white; /* White text */
+    background-color: black; 
+    color: white; 
     padding: 15px 30px;
-    border-radius: 30px; /* Oval shape */
+    border-radius: 30px; 
     font-size: 18px;
     font-weight: bold;
     transition: background-color 0.3s ease;
@@ -191,16 +179,14 @@ p {
     background-color: darkgray; 
 }
 
-/* Style for active navigation link */
 .nav-links a.active {
     color: red;
     border-bottom: 2px solid red;
     padding-bottom: 8px;
 }
 
-/* Optional: Active link hover effect */
 .nav-links a.active:hover {
-    background-color: #f8f8f8; /* Light background when hovering over active link */
+    background-color: #f8f8f8; 
 }
 .correct {
     color: green;
@@ -212,7 +198,6 @@ p {
     font-weight: bold;
 }
 
-/* Mobile Responsiveness */
 @media (max-width: 768px) {
     .main-content {
         flex-direction: column; 
@@ -231,14 +216,13 @@ p {
     }
 }
 
-/* Quiz Content Styling */
 .quiz-content {
     display: flex;
-    justify-content: center; /* Horizontally center content */
-    align-items: center; /* Vertically center content */
-    flex-direction: column; /* Stack content vertically */
-    height: 100vh; /* Full viewport height */
-    text-align: center; /* Center text */
+    justify-content: center; 
+    align-items: center; 
+    flex-direction: column; 
+    height: 100vh; 
+    text-align: center; 
     padding: 20px;
 }
 
@@ -249,84 +233,54 @@ button {
     border-radius: 10px;
 }
 
-/* Validation Message Styling */
-#validationMessage {
-    color: red;
-    font-size: 16px;
-    margin-top: 20px;
-}
-h1 {
-    text-align: center;
-    color: #333;
-    font-size: 24px;
-    margin-bottom: 20px;
-}
-
-.question {
-    width: 100%; /* Ensure questions take the full width of the container */
-    margin-bottom: 20px;
-    display: flex;
-    flex-direction: column; /* Stack the question text and inputs vertically */
-    align-items: flex-start; /* Align items to the left */
-}
-
-/* Question Text Styling */
 .question h3 {
     font-size: 18px;
     color: #333;
-    margin-bottom: 10px; /* Space between the question and options */
+    margin-bottom: 10px; 
 }
-
-/* Option Styling */
 .question div {
     display: flex;
-    flex-direction: column; /* Stack radio buttons and labels vertically */
-    gap: 10px; /* Space between the options */
+    flex-direction: column; 
+    gap: 10px; 
 }
 
-/* Radio button label styling */
 .question label {
-    display: flex; /* Align radio button and label text horizontally */
-    align-items: center; /* Vertically center the radio button with the label */
+    display: flex; 
+    align-items: center; 
     font-size: 16px;
     cursor: pointer;
     color: #555;
 }
 
-/* Radio button input styling */
 .question input[type="radio"] {
-    margin-right: 10px; /* Space between radio button and label */
-    width: 10px; /* Size of the radio button */
-    height: 10px; /* Size of the radio button */
+    margin-right: 10px; 
+    width: 10px; 
+    height: 10px;
 }
 
-/* Style when the radio button is checked */
 .question input[type="radio"]:checked {
-    background-color: #4CAF50; /* Change color when the radio button is checked */
+    background-color: #4CAF50; 
 }
 
-/* Button Styling */
 .btn-primary, .btn-secondary, .btn-success {
     text-decoration: none;
     background-color: red;
     color: white;
-    padding: 12px 25px; /* Larger padding */
+    font-size: 18px;
+    padding: 12px 25px; 
     border-radius: 30px;
-    font-size: 18px; /* Increased font size */
     font-weight: bold;
-    margin-right: 20px; 
+    margin-top: 20px; 
 }
-/* Button hover effects */
+
 .btn-primary:hover, .btn-secondary:hover, .btn-success:hover {
     background-color: darkred;
 }
 
-/* Buttons container */
 .buttons-container {
     text-align: center;
 }
 
-/* Result Styling */
 .result {
     margin-top: 20px;
     font-size: 18px;
@@ -334,21 +288,14 @@ h1 {
     text-align: center;
 }
 
-.result.correct {
-    color: green;
+#result {
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: bold;
 }
 
-.result.incorrect {
+#validationMessage {
     color: red;
-}
-
-/* Responsive Design */
-@media (max-width: 600px) {
-    .quiz-container {
-        padding: 15px;
-    }
-
-    h1 {
-        font-size: 20px;
-    }
+    font-size: 16px;
+    margin-top: 20px;
 }
