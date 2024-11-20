@@ -1,4 +1,3 @@
-// quiz.js
 document.addEventListener('DOMContentLoaded', function() {
     const answers = {
         q1: 'a',
@@ -190,10 +189,15 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('finalSubmissionButton').addEventListener('click', finalSubmissionButtonHandler);
 
     // Load the first question
-    cleanupQuiz();
+    loadQuestion();
 
     // Ensure cleanup of quiz state on page navigation (via the navigation logic)
     window.addEventListener('beforeunload', function() {
+        cleanupQuiz();
+    });
+
+    // Add cleanup when navigating away (from a different page)
+    window.addEventListener('popstate', function() {
         cleanupQuiz();
     });
 });
