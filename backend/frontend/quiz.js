@@ -139,16 +139,18 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('result').innerHTML = '';  // Clear the result
         document.getElementById('retryButton').style.display = 'none';  // Hide the Retry button
         document.getElementById('finalSubmissionButton').style.display = 'none';  // Hide the Final Submission button
-
-        // Enable all radio buttons before starting the quiz over
+    
+        // Reset all radio buttons to be enabled and unchecked for the retry
         const allRadios = document.querySelectorAll('input[type="radio"]');
         allRadios.forEach(radio => {
             radio.disabled = false;  // Re-enable all radio buttons for the retry
             radio.checked = false;   // Uncheck any previously selected options
+            console.log(`Radio button with ID: ${radio.id}, Enabled: ${radio.disabled}, Checked: ${radio.checked}`);
         });
-
+    
         loadQuestion();  // Reload the first question
     }
+    
    
     // Display the result after quiz is completed
     function displayResult() {
