@@ -1,7 +1,15 @@
 
 document.addEventListener('DOMContentLoaded', function() {
-    console.log("Script is loaded and running!"); 
-    // Answer key for validation
+    
+    console.log("Script loaded");
+
+    // Start Quiz Button Click Handler
+    const startQuizButton = document.getElementById('startQuizButton');
+
+    startQuizButton.addEventListener('click', function() {
+        console.log('Start Quiz button clicked');
+        startQuiz();
+    });
     const answers = {
         q1: 'a',
         q2: 'a',
