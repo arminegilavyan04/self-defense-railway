@@ -15,6 +15,7 @@ function addStylesheet(href) {
     };
     document.head.appendChild(link);
 }
+
 function cleanupQuiz() {
     // Reset quiz-related content and state
     const quizContainer = document.getElementById('quizContainer');
