@@ -76,17 +76,20 @@ document.addEventListener('DOMContentLoaded', function() {
         `;
 
         document.getElementById('quizContainer').innerHTML = questionHTML;
-        const nextButton = document.getElementById('nextButton');
-        if (nextButton) {
-            nextButton.style.display = 'none';
-        }
         document.getElementById('validationMessage').innerHTML = '';
+
+        // Hide the buttons initially
+        document.getElementById('nextButton').style.display = 'none';
+        document.getElementById('retryButton').style.display = 'none';
+        document.getElementById('finalSubmissionButton').style.display = 'none';
 
         const radios = document.querySelectorAll(`input[name="${question.id}"]`);
         radios.forEach(radio => {
             radio.addEventListener('change', function() {
                 userAnswers[question.id] = this.value;
-                nextButton.style.display = 'inline-block';
+
+                // Show the "Next" button when an answer is selected
+                document.getElementById('nextButton').style.display = 'inline-block';
             });
         });
     }
@@ -132,7 +135,9 @@ document.addEventListener('DOMContentLoaded', function() {
     // Next question handler
     function nextButtonHandler() {
         currentQuestionIndex++;
-        loadQuestion();
+        if (currentQuestionIndex < totalQuestions) {
+            loadQuestion(); // Load the next question
+        }
     }
 
     // Retry the quiz by resetting the quiz state
@@ -172,16 +177,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         document.getElementById('result').innerHTML = `<p>${scoreMessage}</p><p>${personalizedMessage}</p>`;
-    }
-
-    // Attach event listener for beforeunload to clean up
-    window.addEventListener('beforeunload', function() {
-        cleanupQuiz();
-    });
-
-    // Cleanup quiz state on page exit or navigation
-    function cleanupQuiz() {
-        // Your cleanup logic if needed
     }
 
     // Attach the startQuiz function to the button
