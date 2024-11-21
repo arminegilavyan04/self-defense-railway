@@ -56,13 +56,19 @@ function loadPage(page) {
 
         // Ensure home page styles are applied
         if (!document.querySelector('link[href="canv.css"]')) {
-            stylesheetsToAdd.push('canv.css'); // If home.css isn't in the head, add it
+            stylesheetsToAdd.push('canv.css'); // If canv.css isn't in the head, add it
         }
 
-        // Show home content (don't clear content container)
-        if (homeContent) { // Check if homeContent exists
-            homeContent.style.display = 'block';  // Ensure home content is shown
-        }
+        // Dynamically fetch the index.html content for the home page
+        fetch(fileName)
+            .then(response => response.text())
+            .then(data => {
+                contentContainer.innerHTML = data; // Inject the home page content into the container
+            })
+            .catch(error => {
+                contentContainer.innerHTML = "<p>Sorry, we couldn't load the home page.</p>";
+                console.error('Error loading home content:', error);
+            });
     } else if (page === 'about') {
         fileName = 'about.html';
     } else if (page === 'vr') {
@@ -99,11 +105,6 @@ function loadPage(page) {
                 contentContainer.innerHTML = "<p>Sorry, we couldn't load the requested page.</p>";
                 console.error('Error loading page content:', error);
             });
-    }
-
-    // Hide home content on non-home pages
-    if (page !== 'home' && homeContent) {
-        homeContent.style.display = 'none';  // Ensure home content is hidden on non-home pages
     }
 
     // Add the active class to the clicked navigation link
