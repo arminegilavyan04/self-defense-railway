@@ -197,17 +197,6 @@ document.addEventListener('DOMContentLoaded', function() {
         loadQuestion();
     }
 
-    // // Retry the quiz by resetting the quiz state
-    // function retryButtonHandler() {
-    //     currentQuestionIndex = 0;  // Start from the first question
-    //     userAnswers = {};          // Reset the answers
-    //     score = 0;                 // Reset the score
-    //     document.getElementById('result').innerHTML = '';  // Clear the result
-    //     document.getElementById('retryButton').style.display = 'none';  // Hide the Retry button
-    //     document.getElementById('finalSubmissionButton').style.display = 'none';  // Hide the Final Submission button
-    //     loadQuestion();  // Reload the first question
-    // }
-
     // Final submission handler
     function finalSubmissionButtonHandler() {
         const result = {
