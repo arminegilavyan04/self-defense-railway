@@ -117,6 +117,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Start the quiz (hide Start button and show quiz content)
     function startQuiz() {
+
+    console.log("Start Quiz button clicked");
         // Hide the Start button
         document.getElementById('startQuizButton').style.display = 'none';
 
