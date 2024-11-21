@@ -35,7 +35,7 @@
     </nav>
     <div id="dynamic-content"></div>
     <div id="result"></div>
-    <button onclick="goTo()">Start Chatting</button>
+    <button onclick="loadPage('chat')">Start Chatting</button>
 
     <script>
         // Retrieve quiz results from sessionStorage
@@ -59,8 +59,8 @@
         }
 
         function goTo() {
-            // Redirect back to the quiz page (assuming it’s the home page)
-            window.location.href = 'chat.html';  // Change to your actual quiz page URL
+           loadPage('chat') // Redirect back to the quiz page (assuming it’s the home page)
+            // Change to your actual quiz page URL
         }
     </script>
 </body>
