@@ -100,11 +100,12 @@ document.addEventListener('DOMContentLoaded', function() {
         // Handle disabling of the radio buttons after "Next" is clicked on the last question
         if (isLastQuestion()) {
             nextButton.addEventListener('click', function() {
-                // Disable radio buttons only after clicking "Next" on the last question
+                // Disable the radio buttons only after clicking "Next" on the last question
                 const radios = document.querySelectorAll(`input[name="${question.id}"]`);
                 radios.forEach(radio => {
                     radio.disabled = true;  // Disable the radio buttons
                 });
+                nextButton.style.display = 'none';  // Hide the "Next" button after it's clicked
             });
         }
     }
@@ -112,8 +113,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Helper function to check if it's the last question
     function isLastQuestion() {
         return currentQuestionIndex === totalQuestions - 1;
-    }
-    
+    }    
     
 
     // Display the result after quiz is completed
