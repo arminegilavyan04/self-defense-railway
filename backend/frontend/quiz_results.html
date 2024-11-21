@@ -1,0 +1,18 @@
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Retrieve quiz result from sessionStorage
+        const result = JSON.parse(sessionStorage.getItem('quizResult'));
+        
+        if (result) {
+            const { score, totalQuestions } = result;
+            const resultContainer = document.getElementById('result');
+            resultContainer.innerHTML = `You scored ${score} out of ${totalQuestions}.`;
+
+            if (score === totalQuestions) {
+                resultContainer.classList.add('correct');
+            } else {
+                resultContainer.classList.add('incorrect');
+            }
+        }
+    });
+</script>

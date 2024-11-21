@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // Answer key for validation
     const answers = {
         q1: 'a',
         q2: 'a',
@@ -111,31 +112,11 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('nextButton').style.display = 'none';
     }
 
-    // Cleanup function to reset everything when navigating away from the quiz
-    function cleanupQuiz() {
-        // Remove event listeners for buttons and quiz interactions
-        const nextButton = document.getElementById('nextButton');
-        if (nextButton) {
-            nextButton.removeEventListener('click', nextButtonHandler);
-        }
-
-        const retryButton = document.getElementById('retryButton');
-        if (retryButton) {
-            retryButton.removeEventListener('click', retryButtonHandler);
-        }
-
-        const finalSubmissionButton = document.getElementById('finalSubmissionButton');
-        if (finalSubmissionButton) {
-            finalSubmissionButton.removeEventListener('click', finalSubmissionButtonHandler);
-        }
-
-        // Clear the content
-        document.getElementById('quizContainer').innerHTML = '';
-        document.getElementById('result').innerHTML = '';
-        document.getElementById('nextButton').style.display = 'none';
-        document.getElementById('retryButton').style.display = 'none';
-        document.getElementById('finalSubmissionButton').style.display = 'none';
-        document.getElementById('validationMessage').innerHTML = '';
+    // Start the quiz (hide Start button and show quiz content)
+    function startQuiz() {
+        document.getElementById('startQuizButton').style.display = 'none'; // Hide the Start Quiz button
+        document.getElementById('quizContainer').style.display = 'block';  // Show quiz content
+        loadQuestion(); // Load the first question
     }
 
     // Next question handler
@@ -188,16 +169,13 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('retryButton').addEventListener('click', retryButtonHandler);
     document.getElementById('finalSubmissionButton').addEventListener('click', finalSubmissionButtonHandler);
 
-    // Load the first question
-    loadQuestion();
-
-    // Ensure cleanup of quiz state on page navigation (via the navigation logic)
+    // Attach event listener for beforeunload to clean up
     window.addEventListener('beforeunload', function() {
         cleanupQuiz();
     });
 
-    // Add cleanup when navigating away (from a different page)
-    window.addEventListener('popstate', function() {
-        cleanupQuiz();
-    });
+    // Cleanup quiz state on page exit or navigation
+    function cleanupQuiz() {
+        // Your cleanup logic if needed
+    }
 });
