@@ -114,9 +114,19 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Start the quiz (hide Start button and show quiz content)
     function startQuiz() {
-        document.getElementById('startQuizButton').style.display = 'none'; // Hide the Start Quiz button
-        document.getElementById('quizContainer').style.display = 'block';  // Show quiz content
-        loadQuestion(); // Load the first question
+        // Hide the Start button
+        document.getElementById('startQuizButton').style.display = 'none';
+
+        // Show the quiz content
+        document.getElementById('quizContainer').style.display = 'block';
+
+        // Load the first question
+        loadQuestion();
+
+        // Attach event listeners for buttons after quiz content is loaded
+        document.getElementById('nextButton').addEventListener('click', nextButtonHandler);
+        document.getElementById('retryButton').addEventListener('click', retryButtonHandler);
+        document.getElementById('finalSubmissionButton').addEventListener('click', finalSubmissionButtonHandler);
     }
 
     // Next question handler
@@ -164,11 +174,6 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('result').innerHTML = `<p>${scoreMessage}</p><p>${personalizedMessage}</p>`;
     }
 
-    // Attach event listeners to buttons
-    document.getElementById('nextButton').addEventListener('click', nextButtonHandler);
-    document.getElementById('retryButton').addEventListener('click', retryButtonHandler);
-    document.getElementById('finalSubmissionButton').addEventListener('click', finalSubmissionButtonHandler);
-
     // Attach event listener for beforeunload to clean up
     window.addEventListener('beforeunload', function() {
         cleanupQuiz();
@@ -178,4 +183,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function cleanupQuiz() {
         // Your cleanup logic if needed
     }
+
+    // Attach the startQuiz function to the button
+    document.getElementById('startQuizButton').addEventListener('click', startQuiz);
 });
