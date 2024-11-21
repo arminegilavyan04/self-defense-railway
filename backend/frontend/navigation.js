@@ -1,4 +1,3 @@
-// Function to add the stylesheet dynamically
 function addStylesheet(href) {
     const existingLink = document.querySelector(`link[href="${href}"]`);
     if (existingLink) {
@@ -16,7 +15,22 @@ function addStylesheet(href) {
     };
     document.head.appendChild(link);
 }
-
+function cleanupQuiz() {
+    // Reset quiz-related content and state
+    const quizContainer = document.getElementById('quizContainer');
+    if (quizContainer) {
+        quizContainer.innerHTML = '';  // Clear quiz questions and options
+    }
+    const resultContainer = document.getElementById('result');
+    if (resultContainer) {
+        resultContainer.innerHTML = '';  // Clear any displayed result
+    }
+    // Hide or reset any quiz-related buttons
+    document.getElementById('nextButton').style.display = 'none';
+    document.getElementById('retryButton').style.display = 'none';
+    document.getElementById('finalSubmissionButton').style.display = 'none';
+    document.getElementById('validationMessage').innerHTML = '';
+}
 
 // Your loadPage function
 function loadPage(page) {
@@ -35,9 +49,7 @@ function loadPage(page) {
     let fileName = '';
     let stylesheetsToAdd = [];
 
-    if (page !== 'quiz') {
-        cleanupQuiz();  // Ensure we call cleanupQuiz when leaving quiz
-    }
+    // Determine which page to load and ensure relevant styles are applied
     if (page === 'home') {
         fileName = 'index.html'; // Home content
 
