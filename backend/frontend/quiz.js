@@ -53,12 +53,14 @@ document.addEventListener('DOMContentLoaded', function() {
     ];
 
     // Function to load the quiz question
+    // The function that loads a question
     function loadQuestion() {
+        // If all questions have been answered, show the result
         if (currentQuestionIndex >= totalQuestions) {
-            displayResult();  // Show results if all questions answered
+            displayResult();
             return;
         }
-    
+
         const question = questions[currentQuestionIndex];  // Get the current question
         const questionHTML = `
             <div class="question">
@@ -73,22 +75,36 @@ document.addEventListener('DOMContentLoaded', function() {
                 </div>
             </div>
         `;
-    
+
         // Display the question HTML inside the quiz container
         document.getElementById('quizContainer').innerHTML = questionHTML;
-    
+
         // Get the "Next" button and initially hide it
         const nextButton = document.getElementById('nextButton');
         if (nextButton) {
             nextButton.style.display = 'none';
         }
-    
+
         // Clear any validation messages (if any)
         document.getElementById('validationMessage').innerHTML = '';
-    
+
         // Get all radio buttons for the current question
         const radios = document.querySelectorAll(`input[name="${question.id}"]`);
-    
+
+        // Handle resetting the radio buttons for the retry scenario
+        if (isLastQuestion()) {
+            // If it's the last question, reset the radio buttons to be enabled and unchecked
+            radios.forEach(radio => {
+                radio.disabled = false;  // Enable radio buttons
+                radio.checked = false;   // Uncheck any previously selected options
+            });
+        } else {
+            // For non-last questions, make sure the radio buttons are enabled
+            radios.forEach(radio => {
+                radio.disabled = false;  // Ensure buttons are enabled on non-last questions
+            });
+        }
+
         // Add a listener to each radio button to handle the answer selection
         radios.forEach(radio => {
             radio.addEventListener('change', function() {
@@ -96,24 +112,24 @@ document.addEventListener('DOMContentLoaded', function() {
                 nextButton.style.display = 'inline-block';  // Show the "Next" button
             });
         });
-    
+
         // Handle disabling of the radio buttons after "Next" is clicked on the last question
         if (isLastQuestion()) {
             nextButton.addEventListener('click', function() {
                 // Disable the radio buttons only after clicking "Next" on the last question
                 const radios = document.querySelectorAll(`input[name="${question.id}"]`);
                 radios.forEach(radio => {
-                    radio.disabled = true;  // Disable the radio buttons
+                    radio.disabled = true;  // Disable the radio buttons after clicking "Next"
                 });
                 nextButton.style.display = 'none';  // Hide the "Next" button after it's clicked
             });
         }
     }
-    
-    // Helper function to check if it's the last question
-    function isLastQuestion() {
-        return currentQuestionIndex === totalQuestions - 1;
-    }    
+        
+        // Helper function to check if it's the last question
+        function isLastQuestion() {
+            return currentQuestionIndex === totalQuestions - 1;
+        }    
     
 
     // Display the result after quiz is completed
@@ -172,13 +188,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Retry the quiz by resetting the quiz state
     function retryButtonHandler() {
-        currentQuestionIndex = 0;
-        userAnswers = {};
-        score = 0;
-        document.getElementById('result').innerHTML = '';
-        document.getElementById('retryButton').style.display = 'none';
-        document.getElementById('finalSubmissionButton').style.display = 'none';
-        loadQuestion();
+        currentQuestionIndex = 0;  // Start from the first question
+        userAnswers = {};          // Reset the answers
+        score = 0;                 // Reset the score
+        document.getElementById('result').innerHTML = '';  // Clear the result
+        document.getElementById('retryButton').style.display = 'none';  // Hide the Retry button
+        document.getElementById('finalSubmissionButton').style.display = 'none';  // Hide the Final Submission button
+        loadQuestion();  // Reload the first question
     }
 
     // Final submission handler
