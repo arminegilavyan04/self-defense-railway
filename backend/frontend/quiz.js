@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', function() {
             displayResult();
             return;
         }
-
+    
         const question = questions[currentQuestionIndex];
         const questionHTML = `
             <div class="question">
@@ -66,22 +66,27 @@ document.addEventListener('DOMContentLoaded', function() {
                 <div>
                     ${question.options.map((option, index) => 
                         `<div>
-                            <input type="radio" name="${question.id}" value="${String.fromCharCode(97 + index)}" id="${question.id}-option-${index}">
+                            <input type="radio" name="${question.id}" value="${String.fromCharCode(97 + index)}" id="${question.id}-option-${index}" ${isLastQuestion() ? 'disabled' : ''}>
                             <label for="${question.id}-option-${index}">${option}</label>
                         </div>`
                     ).join('')}
                 </div>
             </div>
         `;
-
+    
         document.getElementById('quizContainer').innerHTML = questionHTML;
+    
+        // Get the next button and initially hide it
         const nextButton = document.getElementById('nextButton');
         if (nextButton) {
             nextButton.style.display = 'none';
         }
         document.getElementById('validationMessage').innerHTML = '';
-
+    
+        // Get all radio buttons for this question
         const radios = document.querySelectorAll(`input[name="${question.id}"]`);
+    
+        // Add change event listeners to enable the next button when an option is selected
         radios.forEach(radio => {
             radio.addEventListener('change', function() {
                 userAnswers[question.id] = this.value;
@@ -89,6 +94,12 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
     }
+    
+    // Helper function to check if it's the last question
+    function isLastQuestion() {
+        return currentQuestionIndex === totalQuestions - 1;
+    }
+    
 
     // Display the result after quiz is completed
     function displayResult() {
