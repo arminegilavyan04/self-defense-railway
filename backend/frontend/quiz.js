@@ -149,14 +149,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         loadQuestion();  // Reload the first question
     }
-
-        
-        // Helper function to check if it's the last question
-    function isLastQuestion() {
-        return currentQuestionIndex === totalQuestions - 1;
-    }    
-    
-
+   
     // Display the result after quiz is completed
     function displayResult() {
         // Calculate score
