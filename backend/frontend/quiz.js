@@ -1,5 +1,6 @@
-console.log("Script is loaded and running!"); 
+
 document.addEventListener('DOMContentLoaded', function() {
+    console.log("Script is loaded and running!"); 
     // Answer key for validation
     const answers = {
         q1: 'a',
