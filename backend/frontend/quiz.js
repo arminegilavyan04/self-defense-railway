@@ -209,7 +209,7 @@ function finalSubmissionButtonHandler() {
     sessionStorage.setItem('quizResult', JSON.stringify(result));
 
     // Redirect to a results page
-    window.location.href = 'quiz-results.html';  // Change 'quiz-results.html' to your actual results page URL
+    window.location.href = 'quiz_results.html';  // Change 'quiz-results.html' to your actual results page URL
 }
 
 
