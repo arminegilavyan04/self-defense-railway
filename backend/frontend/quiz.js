@@ -55,18 +55,18 @@ document.addEventListener('DOMContentLoaded', function() {
     // Function to load the quiz question
     function loadQuestion() {
         if (currentQuestionIndex >= totalQuestions) {
-            displayResult();
+            displayResult();  // Show results if all questions answered
             return;
         }
     
-        const question = questions[currentQuestionIndex];
+        const question = questions[currentQuestionIndex];  // Get the current question
         const questionHTML = `
             <div class="question">
                 <h3>${question.question}</h3>
                 <div>
                     ${question.options.map((option, index) => 
                         `<div>
-                            <input type="radio" name="${question.id}" value="${String.fromCharCode(97 + index)}" id="${question.id}-option-${index}" ${isLastQuestion() ? 'disabled' : ''}>
+                            <input type="radio" name="${question.id}" value="${String.fromCharCode(97 + index)}" id="${question.id}-option-${index}">
                             <label for="${question.id}-option-${index}">${option}</label>
                         </div>`
                     ).join('')}
@@ -74,31 +74,46 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
         `;
     
+        // Display the question HTML inside the quiz container
         document.getElementById('quizContainer').innerHTML = questionHTML;
     
-        // Get the next button and initially hide it
+        // Get the "Next" button and initially hide it
         const nextButton = document.getElementById('nextButton');
         if (nextButton) {
             nextButton.style.display = 'none';
         }
+    
+        // Clear any validation messages (if any)
         document.getElementById('validationMessage').innerHTML = '';
     
-        // Get all radio buttons for this question
+        // Get all radio buttons for the current question
         const radios = document.querySelectorAll(`input[name="${question.id}"]`);
     
-        // Add change event listeners to enable the next button when an option is selected
+        // Add a listener to each radio button to handle the answer selection
         radios.forEach(radio => {
             radio.addEventListener('change', function() {
-                userAnswers[question.id] = this.value;
-                nextButton.style.display = 'inline-block';
+                userAnswers[question.id] = this.value;  // Store the user's answer
+                nextButton.style.display = 'inline-block';  // Show the "Next" button
             });
         });
+    
+        // Handle disabling of the radio buttons after "Next" is clicked on the last question
+        if (isLastQuestion()) {
+            nextButton.addEventListener('click', function() {
+                // Disable radio buttons only after clicking "Next" on the last question
+                const radios = document.querySelectorAll(`input[name="${question.id}"]`);
+                radios.forEach(radio => {
+                    radio.disabled = true;  // Disable the radio buttons
+                });
+            });
+        }
     }
     
     // Helper function to check if it's the last question
     function isLastQuestion() {
         return currentQuestionIndex === totalQuestions - 1;
     }
+    
     
 
     // Display the result after quiz is completed
