@@ -198,32 +198,20 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Final submission handler
-    function finalSubmissionButtonHandler() {
-        const result = {
-            score: score,
-            totalQuestions: totalQuestions
-        };
-        sessionStorage.setItem('quizResult', JSON.stringify(result));
+    // Final submission handler
+function finalSubmissionButtonHandler() {
+    const result = {
+        score: score,
+        totalQuestions: totalQuestions
+    };
 
-        // Clear quiz content and show results
-        document.getElementById('quizContainer').innerHTML = '';
-        document.getElementById('nextButton').style.display = 'none';
-        document.getElementById('retryButton').style.display = 'none';
-        document.getElementById('finalSubmissionButton').style.display = 'none';
+    // Store the result in sessionStorage
+    sessionStorage.setItem('quizResult', JSON.stringify(result));
 
-        const scoreMessage = `Your score is ${score} out of ${totalQuestions}.`;
-        let personalizedMessage = '';
+    // Redirect to a results page
+    window.location.href = 'quiz-results.html';  // Change 'quiz-results.html' to your actual results page URL
+}
 
-        if (score >= 6) {
-            personalizedMessage = 'Excellent job! Keep up the great work!';
-        } else if (score >= 4) {
-            personalizedMessage = 'Good effort! You’re almost there!';
-        } else {
-            personalizedMessage = 'Please contact our coach, Devis More, for further assistance.';
-        }
-
-        document.getElementById('result').innerHTML = `<p>${scoreMessage}</p><p>${personalizedMessage}</p>`;
-    }
 
     // Attach event listeners to buttons
     document.getElementById('nextButton').addEventListener('click', nextButtonHandler);
