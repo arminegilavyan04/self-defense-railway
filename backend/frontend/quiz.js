@@ -151,6 +151,8 @@ document.addEventListener('DOMContentLoaded', function() {
     
         loadQuestion();  // Reload the first question
     }
+    document.getElementById('retryButton').addEventListener('click', retryButtonHandler);
+
     
    
     // Display the result after quiz is completed
