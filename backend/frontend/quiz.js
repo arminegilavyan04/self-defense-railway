@@ -1,15 +1,4 @@
-
 document.addEventListener('DOMContentLoaded', function() {
-    
-    console.log("Script loaded");
-
-    // Start Quiz Button Click Handler
-    const startQuizButton = document.getElementById('startQuizButton');
-
-    startQuizButton.addEventListener('click', function() {
-        console.log('Start Quiz button clicked');
-        startQuiz();
-    });
     const answers = {
         q1: 'a',
         q2: 'a',
@@ -86,20 +75,17 @@ document.addEventListener('DOMContentLoaded', function() {
         `;
 
         document.getElementById('quizContainer').innerHTML = questionHTML;
+        const nextButton = document.getElementById('nextButton');
+        if (nextButton) {
+            nextButton.style.display = 'none';
+        }
         document.getElementById('validationMessage').innerHTML = '';
-
-        // Hide the buttons initially
-        document.getElementById('nextButton').style.display = 'none';
-        document.getElementById('retryButton').style.display = 'none';
-        document.getElementById('finalSubmissionButton').style.display = 'none';
 
         const radios = document.querySelectorAll(`input[name="${question.id}"]`);
         radios.forEach(radio => {
             radio.addEventListener('change', function() {
                 userAnswers[question.id] = this.value;
-
-                // Show the "Next" button when an answer is selected
-                document.getElementById('nextButton').style.display = 'inline-block';
+                nextButton.style.display = 'inline-block';
             });
         });
     }
@@ -125,31 +111,37 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('nextButton').style.display = 'none';
     }
 
-    // Start the quiz (hide Start button and show quiz content)
-    function startQuiz() {
+    // Cleanup function to reset everything when navigating away from the quiz
+    function cleanupQuiz() {
+        // Remove event listeners for buttons and quiz interactions
+        const nextButton = document.getElementById('nextButton');
+        if (nextButton) {
+            nextButton.removeEventListener('click', nextButtonHandler);
+        }
 
-    console.log("Start Quiz button clicked");
-        // Hide the Start button
-        document.getElementById('startQuizButton').style.display = 'none';
+        const retryButton = document.getElementById('retryButton');
+        if (retryButton) {
+            retryButton.removeEventListener('click', retryButtonHandler);
+        }
 
-        // Show the quiz content
-        document.getElementById('quizContainer').style.display = 'block';
+        const finalSubmissionButton = document.getElementById('finalSubmissionButton');
+        if (finalSubmissionButton) {
+            finalSubmissionButton.removeEventListener('click', finalSubmissionButtonHandler);
+        }
 
-        // Load the first question
-        loadQuestion();
-
-        // Attach event listeners for buttons after quiz content is loaded
-        document.getElementById('nextButton').addEventListener('click', nextButtonHandler);
-        document.getElementById('retryButton').addEventListener('click', retryButtonHandler);
-        document.getElementById('finalSubmissionButton').addEventListener('click', finalSubmissionButtonHandler);
+        // Clear the content
+        document.getElementById('quizContainer').innerHTML = '';
+        document.getElementById('result').innerHTML = '';
+        document.getElementById('nextButton').style.display = 'none';
+        document.getElementById('retryButton').style.display = 'none';
+        document.getElementById('finalSubmissionButton').style.display = 'none';
+        document.getElementById('validationMessage').innerHTML = '';
     }
 
     // Next question handler
     function nextButtonHandler() {
         currentQuestionIndex++;
-        if (currentQuestionIndex < totalQuestions) {
-            loadQuestion(); // Load the next question
-        }
+        loadQuestion();
     }
 
     // Retry the quiz by resetting the quiz state
@@ -191,6 +183,21 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('result').innerHTML = `<p>${scoreMessage}</p><p>${personalizedMessage}</p>`;
     }
 
-    // Attach the startQuiz function to the button
-    document.getElementById('startQuizButton').addEventListener('click', startQuiz);
+    // Attach event listeners to buttons
+    document.getElementById('nextButton').addEventListener('click', nextButtonHandler);
+    document.getElementById('retryButton').addEventListener('click', retryButtonHandler);
+    document.getElementById('finalSubmissionButton').addEventListener('click', finalSubmissionButtonHandler);
+
+    // Load the first question
+    loadQuestion();
+
+    // Ensure cleanup of quiz state on page navigation (via the navigation logic)
+    window.addEventListener('beforeunload', function() {
+        cleanupQuiz();
+    });
+
+    // Add cleanup when navigating away (from a different page)
+    window.addEventListener('popstate', function() {
+        cleanupQuiz();
+    });
 });
