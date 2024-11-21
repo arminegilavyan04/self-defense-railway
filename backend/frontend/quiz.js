@@ -54,6 +54,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Function to load the quiz question
     // The function that loads a question
+    // The function that loads a question
     function loadQuestion() {
         // If all questions have been answered, show the result
         if (currentQuestionIndex >= totalQuestions) {
@@ -91,11 +92,10 @@ document.addEventListener('DOMContentLoaded', function() {
         // Get all radio buttons for the current question
         const radios = document.querySelectorAll(`input[name="${question.id}"]`);
 
-        // Handle resetting the radio buttons for the retry scenario
+        // Reset the radio buttons when retrying, but only for the last question
         if (isLastQuestion()) {
-            // If it's the last question, reset the radio buttons to be enabled and unchecked
             radios.forEach(radio => {
-                radio.disabled = false;  // Enable radio buttons
+                radio.disabled = false;  // Enable radio buttons on retry
                 radio.checked = false;   // Uncheck any previously selected options
             });
         } else {
@@ -125,11 +125,36 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
     }
+
+    // Helper function to check if it's the last question
+    function isLastQuestion() {
+        return currentQuestionIndex === totalQuestions - 1;
+    }
+
+    // Retry button handler
+    function retryButtonHandler() {
+        currentQuestionIndex = 0;  // Start from the first question
+        userAnswers = {};          // Reset the answers
+        score = 0;                 // Reset the score
+        document.getElementById('result').innerHTML = '';  // Clear the result
+        document.getElementById('retryButton').style.display = 'none';  // Hide the Retry button
+        document.getElementById('finalSubmissionButton').style.display = 'none';  // Hide the Final Submission button
+
+        // Enable all radio buttons before starting the quiz over
+        const allRadios = document.querySelectorAll('input[type="radio"]');
+        allRadios.forEach(radio => {
+            radio.disabled = false;  // Re-enable all radio buttons for the retry
+            radio.checked = false;   // Uncheck any previously selected options
+        });
+
+        loadQuestion();  // Reload the first question
+    }
+
         
         // Helper function to check if it's the last question
-        function isLastQuestion() {
-            return currentQuestionIndex === totalQuestions - 1;
-        }    
+    function isLastQuestion() {
+        return currentQuestionIndex === totalQuestions - 1;
+    }    
     
 
     // Display the result after quiz is completed
@@ -186,16 +211,16 @@ document.addEventListener('DOMContentLoaded', function() {
         loadQuestion();
     }
 
-    // Retry the quiz by resetting the quiz state
-    function retryButtonHandler() {
-        currentQuestionIndex = 0;  // Start from the first question
-        userAnswers = {};          // Reset the answers
-        score = 0;                 // Reset the score
-        document.getElementById('result').innerHTML = '';  // Clear the result
-        document.getElementById('retryButton').style.display = 'none';  // Hide the Retry button
-        document.getElementById('finalSubmissionButton').style.display = 'none';  // Hide the Final Submission button
-        loadQuestion();  // Reload the first question
-    }
+    // // Retry the quiz by resetting the quiz state
+    // function retryButtonHandler() {
+    //     currentQuestionIndex = 0;  // Start from the first question
+    //     userAnswers = {};          // Reset the answers
+    //     score = 0;                 // Reset the score
+    //     document.getElementById('result').innerHTML = '';  // Clear the result
+    //     document.getElementById('retryButton').style.display = 'none';  // Hide the Retry button
+    //     document.getElementById('finalSubmissionButton').style.display = 'none';  // Hide the Final Submission button
+    //     loadQuestion();  // Reload the first question
+    // }
 
     // Final submission handler
     function finalSubmissionButtonHandler() {
