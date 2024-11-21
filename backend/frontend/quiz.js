@@ -133,6 +133,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Retry button handler
     function retryButtonHandler() {
+        console.log("-------------------------------------")
         currentQuestionIndex = 0;  // Start from the first question
         userAnswers = {};          // Reset the answers
         score = 0;                 // Reset the score
