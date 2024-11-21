@@ -133,24 +133,31 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Retry button handler
     function retryButtonHandler() {
-        console.log("-------------------------------------")
-        currentQuestionIndex = 0;  // Start from the first question
-        userAnswers = {};          // Reset the answers
-        score = 0;                 // Reset the score
-        document.getElementById('result').innerHTML = '';  // Clear the result
-        document.getElementById('retryButton').style.display = 'none';  // Hide the Retry button
-        document.getElementById('finalSubmissionButton').style.display = 'none';  // Hide the Final Submission button
+        console.log('Retry button clicked!');  // Log when Retry is clicked
     
-        // Reset all radio buttons to be enabled and unchecked for the retry
+        currentQuestionIndex = 0;  // Reset to the first question
+        userAnswers = {};          // Reset answers
+        score = 0;                 // Reset score
+        document.getElementById('result').innerHTML = '';  // Clear results
+        document.getElementById('retryButton').style.display = 'none';  // Hide Retry button
+        document.getElementById('finalSubmissionButton').style.display = 'none';  // Hide Final Submission button
+    
+        // Get all radio buttons and log their current state
         const allRadios = document.querySelectorAll('input[type="radio"]');
         allRadios.forEach(radio => {
-            radio.disabled = false;  // Re-enable all radio buttons for the retry
+            console.log(`Before reset - ID: ${radio.id}, Disabled: ${radio.disabled}, Checked: ${radio.checked}`);
+        });
+    
+        // Reset all radio buttons to be enabled and unchecked for retry
+        allRadios.forEach(radio => {
+            radio.disabled = false;  // Re-enable all radio buttons
             radio.checked = false;   // Uncheck any previously selected options
-            console.log(`Radio button with ID: ${radio.id}, Enabled: ${radio.disabled}, Checked: ${radio.checked}`);
+            console.log(`After reset - ID: ${radio.id}, Disabled: ${radio.disabled}, Checked: ${radio.checked}`);
         });
     
         loadQuestion();  // Reload the first question
     }
+    
     document.getElementById('retryButton').addEventListener('click', retryButtonHandler);
 
     
