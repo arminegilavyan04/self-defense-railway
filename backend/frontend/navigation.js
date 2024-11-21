@@ -56,19 +56,14 @@ function loadPage(page) {
 
         // Ensure home page styles are applied
         if (!document.querySelector('link[href="canv.css"]')) {
-            stylesheetsToAdd.push('canv.css'); // If canv.css isn't in the head, add it
+            stylesheetsToAdd.push('canv.css'); // If home.css isn't in the head, add it
         }
 
-        // Dynamically fetch the index.html content for the home page
-        fetch(fileName)
-            .then(response => response.text())
-            .then(data => {
-                contentContainer.innerHTML = data; // Inject the home page content into the container
-            })
-            .catch(error => {
-                contentContainer.innerHTML = "<p>Sorry, we couldn't load the home page.</p>";
-                console.error('Error loading home content:', error);
-            });
+        // Show home content (don't clear content container)
+        if (homeContent) { // Check if homeContent exists
+            homeContent.style.display = 'block';
+        }
+        contentContainer.innerHTML = ''; // Clear only the dynamic content area
     } else if (page === 'about') {
         fileName = 'about.html';
     } else if (page === 'vr') {
@@ -107,6 +102,11 @@ function loadPage(page) {
             });
     }
 
+    // Hide home content on non-home pages
+    if (page !== 'home' && homeContent) {
+        homeContent.style.display = 'none';
+    }
+
     // Add the active class to the clicked navigation link
     navLinks.forEach(link => {
         if (link.textContent.trim().toLowerCase() === page) {
@@ -117,7 +117,6 @@ function loadPage(page) {
     // Optionally, update the browser's history (so the URL changes without page reload)
     history.pushState({ page: page }, page, `#${page}`);
 }
-
 
 // Function to attach event listeners for switching between Login and Register forms
 function attachTabSwitchEventListeners() {
