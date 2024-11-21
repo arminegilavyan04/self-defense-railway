@@ -51,17 +51,15 @@ document.addEventListener('DOMContentLoaded', function() {
             id: 'q7'
         }
     ];
-
-    // Function to load the quiz question
-    // The function that loads a question
-    // The function that loads a question
+    
     function loadQuestion() {
-        // If all questions have been answered, show the result
+        console.log('Loading Question...');
+    
         if (currentQuestionIndex >= totalQuestions) {
-            displayResult();
+            displayResult();  // Display the result when all questions are answered
             return;
         }
-
+    
         const question = questions[currentQuestionIndex];  // Get the current question
         const questionHTML = `
             <div class="question">
@@ -76,62 +74,45 @@ document.addEventListener('DOMContentLoaded', function() {
                 </div>
             </div>
         `;
-
-        // Display the question HTML inside the quiz container
-        document.getElementById('quizContainer').innerHTML = questionHTML;
-
-        // Get the "Next" button and initially hide it
+    
+        document.getElementById('quizContainer').innerHTML = questionHTML;  // Display the question HTML
+    
+        // Ensure all radio buttons are enabled for the current question
+        const allRadios = document.querySelectorAll('input[type="radio"]');
+        allRadios.forEach(radio => {
+            radio.disabled = false;  // Explicitly enable the radio buttons
+            radio.checked = false;   // Uncheck them
+            console.log(`Radio button with ID: ${radio.id}, Disabled: ${radio.disabled}, Checked: ${radio.checked}`);
+        });
+    
         const nextButton = document.getElementById('nextButton');
         if (nextButton) {
             nextButton.style.display = 'none';
         }
-
-        // Clear any validation messages (if any)
+    
         document.getElementById('validationMessage').innerHTML = '';
-
-        // Get all radio buttons for the current question
+    
+        // Add event listeners for the radio buttons to update answers and show next button
         const radios = document.querySelectorAll(`input[name="${question.id}"]`);
-
-        // Reset the radio buttons when retrying, but only for the last question
-        if (isLastQuestion()) {
-            radios.forEach(radio => {
-                radio.disabled = false;  // Enable radio buttons on retry
-                radio.checked = false;   // Uncheck any previously selected options
-            });
-        } else {
-            // For non-last questions, make sure the radio buttons are enabled
-            radios.forEach(radio => {
-                radio.disabled = false;  // Ensure buttons are enabled on non-last questions
-            });
-        }
-
-        // Add a listener to each radio button to handle the answer selection
         radios.forEach(radio => {
             radio.addEventListener('change', function() {
-                userAnswers[question.id] = this.value;  // Store the user's answer
-                nextButton.style.display = 'inline-block';  // Show the "Next" button
+                userAnswers[question.id] = this.value;
+                nextButton.style.display = 'inline-block';
             });
         });
-
-        // Handle disabling of the radio buttons after "Next" is clicked on the last question
-        if (isLastQuestion()) {
+    
+        // Check if it's the last question, and if so, disable radio buttons when next is clicked
+        if (currentQuestionIndex === totalQuestions - 1) {
             nextButton.addEventListener('click', function() {
-                // Disable the radio buttons only after clicking "Next" on the last question
-                const radios = document.querySelectorAll(`input[name="${question.id}"]`);
-                radios.forEach(radio => {
-                    radio.disabled = true;  // Disable the radio buttons after clicking "Next"
+                // Disable all radio buttons when on the last question
+                allRadios.forEach(radio => {
+                    radio.disabled = true;  // Disable the radio buttons after Next is clicked
                 });
-                nextButton.style.display = 'none';  // Hide the "Next" button after it's clicked
+                console.log('Radio buttons disabled on the last question');
             });
         }
     }
-
-    // Helper function to check if it's the last question
-    function isLastQuestion() {
-        return currentQuestionIndex === totalQuestions - 1;
-    }
-
-    // Retry button handler
+    
     function retryButtonHandler() {
         console.log('Retry button clicked!');  // Log when Retry is clicked
     
