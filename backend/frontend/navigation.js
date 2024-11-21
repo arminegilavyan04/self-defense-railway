@@ -61,9 +61,8 @@ function loadPage(page) {
 
         // Show home content (don't clear content container)
         if (homeContent) { // Check if homeContent exists
-            homeContent.style.display = 'block';
+            homeContent.style.display = 'block';  // Ensure home content is shown
         }
-        contentContainer.innerHTML = ''; // Clear only the dynamic content area
     } else if (page === 'about') {
         fileName = 'about.html';
     } else if (page === 'vr') {
@@ -104,7 +103,7 @@ function loadPage(page) {
 
     // Hide home content on non-home pages
     if (page !== 'home' && homeContent) {
-        homeContent.style.display = 'none';
+        homeContent.style.display = 'none';  // Ensure home content is hidden on non-home pages
     }
 
     // Add the active class to the clicked navigation link
@@ -117,6 +116,7 @@ function loadPage(page) {
     // Optionally, update the browser's history (so the URL changes without page reload)
     history.pushState({ page: page }, page, `#${page}`);
 }
+
 
 // Function to attach event listeners for switching between Login and Register forms
 function attachTabSwitchEventListeners() {
