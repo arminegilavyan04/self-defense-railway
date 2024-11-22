@@ -6,6 +6,7 @@ General Reset
 }
 
 body {
+    padding-top: 100px;
     font-family: Arial, sans-serif;
     background-color: #cecdcd;
     height: 100vh; 
