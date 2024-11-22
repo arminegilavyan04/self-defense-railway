@@ -146,28 +146,55 @@ p {
 .image {
     width: 100%;
     height: auto;
-    max-width: 800px; 
+    max-width: 2000px; 
     border-radius: 10px;
     padding: 120px 40px 40px 40px;
 }
-.image-vr{
-    border-radius: 20px; /* Makes the image oval/circular if the aspect ratio is equal */
-    border: 5px solid #000;
-    width: 100%;
-    height: auto;
-    max-width: 800px;     
-    padding: 0;
+/* Container for the image and text */
+.vr-content {
+    display: flex; /* Enables Flexbox layout */
+    justify-content: space-between; /* Aligns items to the left and right */
+    align-items: center; /* Vertically centers the items */
+    height: 100vh; /* Full viewport height to center vertically */
+    padding: 20px; /* Optional padding */
 }
-.vr-content{
-    flex: 0.5; 
-    max-width: 50%; 
-    padding: 0; 
-    display: flex; 
-    flex-direction: column; 
-    justify-content: center; 
-    align-items: center; 
-    text-align: left; 
- } 
+
+/* Image container (left side) */
+.vr-image-container {
+    flex: 1; /* Takes up half the space of the container */
+    display: flex; /* Use Flexbox to center the image */
+    justify-content: center; /* Centers the image horizontally */
+    align-items: center; /* Centers the image vertically */
+}
+
+/* Image styling */
+.vr-image {
+    height: auto;
+    max-width: 100%;
+    border-radius: 20px;
+}
+
+/* Text container (right side) */
+.vr-text-container {
+    flex: 1; /* Takes up the other half of the space */
+    display: flex;
+    flex-direction: column; /* Stack the text vertically */
+    justify-content: center; /* Vertically center the text */
+    align-items: center; /* Align text to the left */
+    padding-left: 20px; /* Add space between the text and image */
+}
+
+/* Styling for the text */
+.vr-text-container h2 {
+    font-size: 36px; /* Large title font size */
+    margin-bottom: 10px; /* Space between the title and paragraph */
+}
+
+.vr-text-container p {
+    font-size: 18px; /* Regular paragraph font size */
+    color: red; /* Red color for the construction message */
+}
+
 
 .text-container {
     flex: 0.5; 
