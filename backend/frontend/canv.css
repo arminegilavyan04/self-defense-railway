@@ -38,15 +38,14 @@ p {
 
 .logo {
     background-image: url('logo.png');
-    background-size: contain; /* Ensures the logo is scaled within the div */
+    background-size: contain; /* Ensures the image is contained */
     background-repeat: no-repeat;
-    background-position: center; /* Centers the logo */
-    width: 100%; /* Make the width of the logo container flexible */
-    max-width: 200px; /* Optional: sets the max width for the logo */
-    height: auto; /* Maintains aspect ratio */
-    max-height: 80px; /* Optional: adjusts max height based on navbar size */
+    background-position: center; /* Centers the image */
+    width: auto; /* Maintain the logo's natural width */
+    height: 100%; /* Fill the navbar height, but scale according to its aspect ratio */
+    max-height: 80px; /* Optional: restricts max height of logo */
+    max-width: 100%; /* Prevents logo from becoming too wide */
 }
-
   
 .person-icon, .flag-icon {
     width: 50px;
