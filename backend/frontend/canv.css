@@ -151,7 +151,7 @@ p {
     padding: 120px 40px 40px 40px;
 }
 .image-vr{
-    border-radius: 5%; /* Makes the image oval/circular if the aspect ratio is equal */
+    border-radius: 10px; /* Makes the image oval/circular if the aspect ratio is equal */
     border: 5px solid #000;
     width: 100%;
     height: auto;

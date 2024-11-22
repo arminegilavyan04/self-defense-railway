@@ -7,14 +7,33 @@
     <title>VR Glasses</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="canv.css">
+    <script src="navigation.js" defer></script> 
 </head>
 
-<body>
-    <div class="container my-5">
+<body>        
+    <nav class="navbar" id="navbar-placeholder">
+        <img src="logo.png" alt="Logo" class="logo">
+        <ul class="nav-links">
+            <li><a href="javascript:void(0);" onclick="loadPage('home')" class="active">Home</a></li>
+            <li><a href="javascript:void(0);" onclick="loadPage('about')">About Us</a></li>
+            <li><a href="javascript:void(0);" onclick="loadPage('vr')">VR Glasses</a></li>
+            <li><a href="javascript:void(0);" onclick="loadPage('chat')">Chat</a></li>
+            <li><a href="javascript:void(0);" onclick="loadPage('quiz')">Quiz</a></li>
+        </ul>
+        <div class="login-register">
+          <a href="javascript:void(0);" onclick="loadPage('login')">Login/Register</a>
+        </div>
+        <div class="person-icon">
+          <img src="person-icon.png" alt="Person Icon">
+        </div>
+        <div class="flag-icon">
+          <img src="armenian-flag.png" alt="Armenian Flag">
+        </div>
+      </nav>
+    <div id="dynamic-content"></div>
         <h2 class="text-center">VR Glasses</h2>
-        <p class="text-center">The page is still under construction</p>
-    </div>
-    <div class="home-content">
+        <p class="text-center" span style="color: red;">The page is still under construction</p>
+        <div class="image-container"></div>
         <img src="vr_glasses.png" alt="Coach Image" class="image-vr">
     </div>
 
