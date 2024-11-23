@@ -38,7 +38,7 @@ function loadPage(page) {
     console.log('Loading page:', page);
     const contentContainer = document.getElementById("dynamic-content");
     const homeContent = document.getElementById("home-content");
-    const indexContent = document.getElementById("index-content");
+    const mainContent = document.getElementById("main-content");
 
     
     // Clear dynamic content container to avoid duplication
@@ -56,7 +56,7 @@ function loadPage(page) {
     // Handle page loading logic
     if (page === 'home') {
         // Instead of fetching 'home.html', just show the home content
-        contentContainer.innerHTML = indexContent.innerHTML;
+        contentContainer.innerHTML = mainContent.innerHTML;
         history.pushState({ page: page }, page, `#${page}`);  // Update URL without reloading
     } else if (page === 'about') {
         fileName = 'about.html';
