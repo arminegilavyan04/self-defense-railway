@@ -52,7 +52,7 @@ function loadPage(page) {
 
     // Determine which page to load and ensure relevant styles are applied
     if (page === 'home') {
-        fileName = 'index.html'; // Home content
+        fileName = 'home.html'; // Home content
 
         // Ensure home page styles are applied
         if (!document.querySelector('link[href="canv.css"]')) {
@@ -78,8 +78,8 @@ function loadPage(page) {
     } else if (page === 'logout') {
             fileName = 'index.html';
     } else if (page === 'getStarted') {
-        fileName = 'login.html';
-        addStylesheet('login.css');
+        fileName = 'quiz.html';
+    
     }
 
     // Apply the required stylesheets dynamically
@@ -93,7 +93,7 @@ function loadPage(page) {
                 contentContainer.innerHTML = data;
 
                 // After content is loaded, reattach event listeners for login/register tabs and form switching
-                if (page === 'login' || page === 'getStarted') {
+                if (page === 'login') {
                     switchForm('login'); // Switch to the login form by default
                     attachTabSwitchEventListeners(); // Reattach tab switching listeners
                 }
