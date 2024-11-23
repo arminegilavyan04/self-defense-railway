@@ -119,6 +119,14 @@ p {
     padding: 40px;
     gap: 20px; 
 }
+#page-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 40px;
+    gap: 20px; 
+}
+
 
 #dynamic-content {
     max-width: 100%; /* Remove max-width limitation */
