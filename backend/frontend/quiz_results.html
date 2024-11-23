@@ -6,15 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quiz</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="canv.css"> <!-- External CSS -->
-   
-    
-    <script src="navigation.js" defer></script> <!-- External JavaScript file -->
+    <link rel="stylesheet" href="canv.css"> 
+    <link rel="stylesheet" href="quiz-results.css"> 
+    <script src="navigation.js" defer></script> 
     <script src="quiz.js"></script>   
-    
 </head>
+
 <body>
-    <nav class="navbar"  id="navbar-placeholder">
+    <nav class="navbar" id="navbar-placeholder">
         <div class="logo"></div>
         <ul class="nav-links">
             <li><a href="javascript:void(0);" onclick="loadPage('home')" class="active">Home</a></li>
@@ -33,11 +32,15 @@
           <img src="armenian-flag.png" alt="Armenian Flag">
         </div>
     </nav>
-    <div id="dynamic-content"></div>
-    <div id="result"></div>
-    <div class="image-container">
-        <img src="coach.png" alt="Coach Image" class="image">
-      </div>
+
+    <div class="quiz-result-content">
+        <div class="coach-image-container">
+            <img src="coach.png" alt="Coach Image" class="coach-image">
+        </div>
+        <div class="result-text-container" id="result"> </div>
+        <div class> </div>
+    </div>
+
     <button class="btn btn-primary" onclick="loadPage('chat')">Start Chatting</button>
 
     <script>
@@ -62,9 +65,9 @@
         }
 
         function goTo() {
-           loadPage('chat') // Redirect back to the quiz page (assuming it’s the home page)
-            // Change to your actual quiz page URL
+            loadPage('chat'); // Redirect to the chat page (adjust URL accordingly)
         }
     </script>
+
 </body>
 </html>
