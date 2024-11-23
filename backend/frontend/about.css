@@ -6,7 +6,7 @@
     padding: 20px; /* Optional padding for spacing */
 }
 #dynamic-content * {
-    all: unset; /* Resets all inherited styles */
+    justify-content: unset; /* Resets all inherited styles */
 }
 
 /* Image container (left side) */
