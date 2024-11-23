@@ -155,6 +155,33 @@ p {
     border-radius: 10px;
     padding: 120px 40px 40px 40px;
 }
+.main-text-container {
+    flex: 4;
+    max-width: 50%;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.main-image-container {
+    flex: 1;
+    border-radius: 10px;
+    padding: 20px; /* Optional padding */
+    display: flex;
+    justify-content: center; /* Center the image horizontally */
+    align-items: center; /* Center the image vertically */
+}
+
+.main-image {
+    width: 100%; /* Ensure the image takes up the full width of its container */
+    height: auto; /* Maintain aspect ratio */
+    max-width: 500px; /* Limit the image size */
+    border-top-left-radius: 20px; /* Apply border-radius to the top left corner */
+    border-top-right-radius: 20px; /* Apply border-radius to the top right corner */
+    border-radius: 10px; /* Apply a general border-radius for all other corners */
+}
 /* Container for the image and text */
 .vr-content {
     display: flex; /* Enables Flexbox layout */
