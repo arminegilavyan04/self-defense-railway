@@ -37,11 +37,11 @@ function cleanupQuiz() {
 function loadPage(page) {
     const contentContainer = document.getElementById("dynamic-content");
     const homeContent = document.getElementById("home-content");
-
-    // Clear dynamic content container to avoid content duplication
+    
+    // Clear dynamic content container to avoid duplication
     contentContainer.innerHTML = '';
 
-    // Remove the active class from all nav links
+    // Remove active class from all nav links
     const navLinks = document.querySelectorAll('.nav-links a');
     navLinks.forEach(link => {
         link.classList.remove('active');
@@ -50,20 +50,35 @@ function loadPage(page) {
     let fileName = '';
     let stylesheetsToAdd = [];
 
-    // Determine which page to load and ensure relevant styles are applied
+    // Handle page loading logic
     if (page === 'home') {
-        fileName = 'home.html'; // Home content
+        fileName = 'home.html'; // Home content file
 
         // Ensure home page styles are applied
         if (!document.querySelector('link[href="canv.css"]')) {
-            stylesheetsToAdd.push('canv.css'); // If home.css isn't in the head, add it
+            stylesheetsToAdd.push('canv.css'); // Add styles if not present
         }
 
-        // Show home content (don't clear content container)
-        if (homeContent) { // Check if homeContent exists
-            homeContent.style.display = 'block';
-        }
-        contentContainer.innerHTML = ''; // Clear only the dynamic content area
+        // Fetch and display home.html
+        fetch(fileName)
+            .then(response => response.text())
+            .then(data => {
+                contentContainer.innerHTML = data;  // Inject home.html content
+
+                // Add the active class to the clicked navigation link
+                navLinks.forEach(link => {
+                    if (link.textContent.trim().toLowerCase() === 'home') {
+                        link.classList.add('active');
+                    }
+                });
+
+                // Optionally update URL without reload
+                history.pushState({ page: page }, page, `#${page}`);
+            })
+            .catch(error => {
+                contentContainer.innerHTML = "<p>Sorry, we couldn't load the requested page.</p>";
+                console.error('Error loading page content:', error);
+            });
     } else if (page === 'about') {
         fileName = 'about.html';
     } else if (page === 'vr') {
