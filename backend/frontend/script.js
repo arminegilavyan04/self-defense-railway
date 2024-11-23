@@ -1,3 +1,4 @@
+console.log('script.js is loaded');
 $(document).ready(function () {
     // Switch between Login and Registration forms using tabs
     $('#loginTab').click(function () {
