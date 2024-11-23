@@ -19,9 +19,7 @@
         <li><a href="javascript:void(0);" onclick="loadPage('chat')">Chat</a></li>
         <li><a href="javascript:void(0);" onclick="loadPage('quiz')">Quiz</a></li>
     </ul>
-    <div class="logout">
-      <a href="javascript:void(0);" onclick="loadPage('logout')">Log out</a>
-    </div>
+    
     <div class="person-icon">
       <img src="person-icon.png" alt="Person Icon">
     </div>
@@ -34,7 +32,10 @@
   <div id="dynamic-content"></div> <!-- This will contain the dynamic content -->
 
   <!-- Static Home Content (only shown when "Home" is clicked) -->
-  <div id="index-content" class="page-content">
+  <div id="main-content" class="page-content">
+    <div class="logout">
+        <a href="javascript:void(0);" onclick="loadPage('logout')">Log out</a>
+      </div>
     <div class="image-container">
       <img src="home.png" alt="Self-defense Image" class="image">
     </div>
