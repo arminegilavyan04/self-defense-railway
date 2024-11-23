@@ -30,7 +30,7 @@
     padding-left: 20px; /* Optional padding between the image and text */
     display: flex;
     flex-direction: column; /* Stack text vertically */
-    justify-content: center; /* Vertically center the text */
+    /* Vertically center the text */
 }
 
 /* Heading and Paragraph styling */
