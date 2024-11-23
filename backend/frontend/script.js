@@ -74,7 +74,7 @@ $(document).ready(function () {
                 localStorage.setItem('userLoggedIn', true); // Mark user as logged in
                 localStorage.setItem('user', JSON.stringify(data.user)); // Save user data (without password)
 
-                // Redirect to home.html after successful login
+                console.log("-----------------------------------")
                 window.location.href = 'home.html';
             },
             error: function (error) {
