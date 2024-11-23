@@ -53,33 +53,9 @@ function loadPage(page) {
 
     // Handle page loading logic
     if (page === 'home') {
-        fileName = 'home.html'; // Home content file
-
-        // Ensure home page styles are applied
-        if (!document.querySelector('link[href="canv.css"]')) {
-            stylesheetsToAdd.push('canv.css'); // Add styles if not present
-        }
-
-        // Fetch and display home.html
-        fetch(fileName)
-            .then(response => response.text())
-            .then(data => {
-                contentContainer.innerHTML = data;  // Inject home.html content
-
-                // Add the active class to the clicked navigation link
-                navLinks.forEach(link => {
-                    if (link.textContent.trim().toLowerCase() === 'home') {
-                        link.classList.add('active');
-                    }
-                });
-
-                // Optionally update URL without reload
-                history.pushState({ page: page }, page, `#${page}`);
-            })
-            .catch(error => {
-                contentContainer.innerHTML = "<p>Sorry, we couldn't load the requested page.</p>";
-                console.error('Error loading page content:', error);
-            });
+        // Instead of fetching 'home.html', just show the home content
+        contentContainer.innerHTML = homeContent.innerHTML;
+        history.pushState({ page: page }, page, `#${page}`);  // Update URL without reloading
     } else if (page === 'about') {
         fileName = 'about.html';
     } else if (page === 'vr') {
@@ -92,10 +68,9 @@ function loadPage(page) {
         fileName = 'login.html';
         addStylesheet('login.css');
     } else if (page === 'logout') {
-            fileName = 'index.html';
+        fileName = 'index.html';
     } else if (page === 'getStarted') {
         fileName = 'quiz.html';
-    
     }
 
     // Apply the required stylesheets dynamically
@@ -135,6 +110,7 @@ function loadPage(page) {
     // Optionally, update the browser's history (so the URL changes without page reload)
     history.pushState({ page: page }, page, `#${page}`);
 }
+
 
 // Function to attach event listeners for switching between Login and Register forms
 function attachTabSwitchEventListeners() {

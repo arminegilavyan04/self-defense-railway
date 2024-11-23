@@ -81,5 +81,6 @@ $(document).ready(function () {
                 alert('Login failed: ' + error.responseJSON.error);
             }
         });
+        
     });
 });
