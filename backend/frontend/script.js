@@ -57,6 +57,7 @@ $(document).ready(function () {
     // Handle Login form submission
     $('#loginFormContent').on('submit', function (e) {
         e.preventDefault(); // Prevent default form submission
+        console.log('Login form submitted'); 
 
         const email = $('#email').val();
         const password = $('#password').val();

@@ -35,6 +35,7 @@ function cleanupQuiz() {
 
 // Your loadPage function
 function loadPage(page) {
+    console.log('Loading page:', page);
     const contentContainer = document.getElementById("dynamic-content");
     const homeContent = document.getElementById("home-content");
     
