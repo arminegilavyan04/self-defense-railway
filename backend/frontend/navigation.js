@@ -75,6 +75,8 @@ function loadPage(page) {
     } else if (page === 'login') {
         fileName = 'login.html';
         addStylesheet('login.css');
+    } else if (page === 'logout') {
+            fileName = 'index.html';
     } else if (page === 'getStarted') {
         fileName = 'login.html';
         addStylesheet('login.css');
