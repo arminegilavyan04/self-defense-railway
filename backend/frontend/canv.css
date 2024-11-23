@@ -136,7 +136,7 @@ p {
     flex-direction: column; /* Stack elements vertically */
      
     align-items: center; /* Horizontally center the content */
-    text-align: center; /* Center text */
+     /* Center text */
     height: 100vh; /* Make sure it takes up the full viewport height */
     overflow: auto; 
 }
