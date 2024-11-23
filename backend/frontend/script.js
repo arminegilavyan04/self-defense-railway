@@ -67,20 +67,27 @@ $(document).ready(function () {
         $.ajax({
             url: '/api/login',
             type: 'POST',
-            contentType: 'application/json', // Set content type to JSON
-            data: JSON.stringify({ email, password }), // Send data as JSON
+            contentType: 'application/json',
+            data: JSON.stringify({ email, password }),
             success: function (data) {
+                // Log successful login
+                console.log('Login successful:', data);
+        
                 // Store login state and user data in localStorage
                 localStorage.setItem('userLoggedIn', true); // Mark user as logged in
                 localStorage.setItem('user', JSON.stringify(data.user)); // Save user data (without password)
-
-                console.log("-----------------------------------")
+        
+                // Redirect to home.html
+                console.log('Redirecting to home.html');
                 window.location.href = 'home.html';
             },
             error: function (error) {
-                alert('Login failed: ' + error.responseJSON.error);
+                // Log the error for debugging
+                console.error('Login failed:', error);
+                alert('Login failed: ' + (error.responseJSON ? error.responseJSON.error : 'Unknown error'));
             }
         });
+        
         
     });
 });
