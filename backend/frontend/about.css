@@ -5,6 +5,9 @@
     align-items: flex-start; /* Aligns the image and text to the top */
     padding: 20px; /* Optional padding for spacing */
 }
+#dynamic-content * {
+    all: unset; /* Resets all inherited styles */
+}
 
 /* Image container (left side) */
 .about-image-container {
