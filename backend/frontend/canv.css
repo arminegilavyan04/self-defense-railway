@@ -166,7 +166,7 @@ p {
 
 /* Image container (left side) */
 .vr-image-container {
-    flex: 1; /* Takes up half the space of the container */
+    flex: 2; /* Takes up half the space of the container */
     display: flex; /* Use Flexbox to center the image */
     justify-content: center; /* Centers the image horizontally */
     align-items: center; /* Centers the image vertically */
