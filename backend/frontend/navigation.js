@@ -32,29 +32,50 @@ function cleanupQuiz() {
     document.getElementById('finalSubmissionButton').style.display = 'none';
     document.getElementById('validationMessage').innerHTML = '';
 }
-function addScript(src) {
+function addScript(src, callback) {
     // Check if the script is already loaded
     const existingScript = document.querySelector(`script[src="${src}"]`);
     if (existingScript) {
+        console.log(`${src} is already loaded.`);
         return;  // Don't add the script if it's already in the DOM
     }
 
-    // Check if jQuery is loaded, and if not, load it first
+    // If the script being added is script.js, ensure jQuery is loaded first
     if (src === 'script.js' && !window.jQuery) {
-        addScript('https://code.jquery.com/jquery-3.6.0.min.js');  // Load jQuery
+        console.log("jQuery is not loaded, loading jQuery first...");
+        
+        // If jQuery is not loaded, load it first
+        const jqueryScript = document.createElement('script');
+        jqueryScript.src = 'https://code.jquery.com/jquery-3.6.0.min.js';
+        
+        // Log when jQuery is loaded
+        jqueryScript.onload = function() {
+            console.log("jQuery loaded successfully.");
+            // Once jQuery is loaded, load script.js
+            addScript(src, callback);
+        };
+
+        jqueryScript.onerror = function() {
+            console.error('Error loading jQuery');
+        };
+
+        document.body.appendChild(jqueryScript);
+        return;  // Prevent adding script.js until jQuery is loaded
     }
 
-    // Now add the requested script (whether it's script.js or another)
+    // Now add the requested script
     const script = document.createElement('script');
     script.src = src;
-    script.onload = () => {
+    script.onload = function() {
         console.log(`${src} loaded successfully.`);
+        if (callback) callback();  // Call the callback when the script is loaded
     };
-    script.onerror = () => {
+    script.onerror = function() {
         console.error(`Error loading ${src}`);
     };
     document.body.appendChild(script);
 }
+
 
 
 
