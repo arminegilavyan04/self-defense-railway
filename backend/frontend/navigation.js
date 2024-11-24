@@ -42,11 +42,17 @@ function addScript(src, callback) {
     // If the script being added is script.js, ensure jQuery is loaded first
     if (src === 'script.js' && !window.jQuery) {
         // If jQuery is not loaded, load it first
-        addScript('https://code.jquery.com/jquery-3.6.0.min.js', function() {
-            // Once jQuery is loaded, load the script.js file
+        const jqueryScript = document.createElement('script');
+        jqueryScript.src = 'https://code.jquery.com/jquery-3.6.0.min.js';
+        jqueryScript.onload = function() {
+            // Once jQuery is loaded, load script.js
             addScript(src, callback);
-        });
-        return; // Prevent adding script.js until jQuery is loaded
+        };
+        jqueryScript.onerror = function() {
+            console.error('Error loading jQuery');
+        };
+        document.body.appendChild(jqueryScript);
+        return;  // Prevent adding script.js until jQuery is loaded
     }
 
     // Now add the requested script
@@ -54,14 +60,13 @@ function addScript(src, callback) {
     script.src = src;
     script.onload = function() {
         console.log(`${src} loaded successfully.`);
-        if (callback) callback(); // Call the callback when the script is loaded
+        if (callback) callback();  // Call the callback when the script is loaded
     };
-    script.onerror = () => {
+    script.onerror = function() {
         console.error(`Error loading ${src}`);
     };
     document.body.appendChild(script);
 }
-
 
 
 
@@ -101,6 +106,7 @@ function loadPage(page) {
     } else if (page === 'login') {
         fileName = 'login.html';
         addStylesheet('login.css');
+
         addScript('script.js');
     } else if (page === 'logout') {
         fileName = 'index.html';
