@@ -56,12 +56,15 @@ p {
     border-radius: 50%;
     margin-left: 20px;
     overflow: hidden;
+    position: relative; /* Make the person icon position relative */
+   
 }
 
 .person-icon img, .flag-icon img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    
 }
 .dropdown-menu {
     display: none; /* Hidden by default */
