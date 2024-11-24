@@ -62,9 +62,7 @@ function addScript(src, callback) {
     document.body.appendChild(script);
 }
 
-
-
-
+// The loadPage function with a fix to reattach event listeners
 function loadPage(page) {
     console.log('Loading page:', page);
     const contentContainer = document.getElementById("dynamic-content");
@@ -104,7 +102,11 @@ function loadPage(page) {
     } else if (page === 'login') {
         fileName = 'login.html';
         addStylesheet('login.css');
-        addScript('script.js');
+        addScript('script.js', function() {
+            // After loading script.js, switch to the login form and attach event listeners
+            switchForm('login');  // This function switches the form to 'login' by default
+            attachTabSwitchEventListeners();  // Reattach event listeners for tab switching
+        });
     } else if (page === 'logout') {
         fileName = 'index.html';
     }
@@ -119,10 +121,11 @@ function loadPage(page) {
             .then(data => {
                 contentContainer.innerHTML = data;
 
-                // After content is loaded, reattach event listeners for login/register tabs and form switching
+                // Reattach event listeners if necessary after content is loaded
                 if (page === 'login') {
-                    switchForm('login'); // Switch to the login form by default
-                    attachTabSwitchEventListeners(); // Reattach tab switching listeners
+                    // Ensure the login form and register tab switching functionality is available
+                    switchForm('login');  // Set default form to login
+                    attachTabSwitchEventListeners();  // Reattach tab switching listeners
                 }
             })
             .catch(error => {
