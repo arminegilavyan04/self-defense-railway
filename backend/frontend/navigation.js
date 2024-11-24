@@ -161,7 +161,7 @@ function loadPage(page) {
     if (page === 'home' && homeContent) {
         homeContent.style.display = 'block';
     
-
+    }
        // Add the active class to the clicked navigation link
     navLinks.forEach(link => {
         if (link.textContent.trim().toLowerCase() === page) {
