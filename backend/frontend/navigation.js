@@ -79,11 +79,9 @@ function addScript(src, callback) {
 function loadPage(page) {
     console.log('Loading page:', page);
     const contentContainer = document.getElementById("dynamic-content");
-    const homeContent = document.getElementById("home-content");
-    const mainContent = document.getElementById("main-content");
 
-    // Clear dynamic content container before loading new content
-    contentContainer.innerHTML = ''; 
+    // Clear dynamic content container to avoid duplication
+    contentContainer.innerHTML = ''; // Clear any previous content
 
     // Remove active class from all nav links
     const navLinks = document.querySelectorAll('.nav-links a');
@@ -96,9 +94,7 @@ function loadPage(page) {
 
     // Handle page loading logic
     if (page === 'home') {
-        // Show the home content
-        contentContainer.innerHTML = mainContent.innerHTML;
-        history.pushState({ page: page }, page, `#${page}`); // Update URL without reloading
+        fileName = 'home.html';
     } else if (page === 'about') {
         fileName = 'about.html';
     } else if (page === 'vr') {
@@ -128,6 +124,7 @@ function loadPage(page) {
                 contentContainer.innerHTML = "<p>Sorry, we couldn't load the requested page.</p>";
                 console.error('Error loading login page:', error);
             });
+        return; // Exit early since login page is loaded dynamically
     } else if (page === 'logout') {
         fileName = 'index.html';
     } else if (page === 'getStarted') {
@@ -142,26 +139,12 @@ function loadPage(page) {
         fetch(fileName)
             .then(response => response.text())
             .then(data => {
-                // Clear dynamic content again in case there was any leftover content
-                contentContainer.innerHTML = data;
-
-                // Trigger a reflow for the new content to be rendered
-                contentContainer.offsetHeight; // Forces reflow/repaint for better rendering
+                contentContainer.innerHTML = data; // Replace content with the new page
             })
             .catch(error => {
                 contentContainer.innerHTML = "<p>Sorry, we couldn't load the requested page.</p>";
                 console.error('Error loading page content:', error);
             });
-    }
-
-    // Hide home content on non-home pages
-    if (page !== 'home' && homeContent) {
-        homeContent.style.display = 'none';
-    }
-
-    // Show home content if navigating back to home
-    if (page === 'home' && homeContent) {
-        homeContent.style.display = 'block';
     }
 
     // Add the active class to the clicked navigation link
@@ -174,6 +157,7 @@ function loadPage(page) {
     // Optionally, update the browser's history (so the URL changes without page reload)
     history.pushState({ page: page }, page, `#${page}`);
 }
+
 
 
 // Function to attach event listeners for switching between Login and Register forms
