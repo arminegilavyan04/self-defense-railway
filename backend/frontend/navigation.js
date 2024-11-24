@@ -62,11 +62,16 @@ function addScript(src, callback) {
     document.body.appendChild(script);
 }
 
-// The loadPage function with a fix to reattach event listeners
+
+
+
+// Your loadPage function
 function loadPage(page) {
     console.log('Loading page:', page);
     const contentContainer = document.getElementById("dynamic-content");
-    const homeContent = document.getElementById("main-content");
+    const homeContent = document.getElementById("home-content");
+    const mainContent = document.getElementById("main-content");
+
     
     // Clear dynamic content container to avoid duplication
     contentContainer.innerHTML = '';
@@ -82,33 +87,25 @@ function loadPage(page) {
 
     // Handle page loading logic
     if (page === 'home') {
-        // Show home content and hide dynamic content
-        contentContainer.innerHTML = homeContent.innerHTML;
-        contentContainer.style.display = 'block';  // Make sure dynamic content area is shown
-        homeContent.style.display = 'block'; // Show home content
+        // Instead of fetching 'home.html', just show the home content
+        contentContainer.innerHTML = mainContent.innerHTML;
         history.pushState({ page: page }, page, `#${page}`);  // Update URL without reloading
     } else if (page === 'about') {
-        // Dynamically load About Us content
         fileName = 'about.html';
     } else if (page === 'vr') {
-        // Dynamically load VR Glasses content
         fileName = 'vr-glasses.html';
     } else if (page === 'chat') {
-        // Dynamically load Chat content
         fileName = 'chat.html';
     } else if (page === 'quiz') {
-        // Dynamically load Quiz content
         fileName = 'quiz.html';
     } else if (page === 'login') {
         fileName = 'login.html';
         addStylesheet('login.css');
-        addScript('script.js', function() {
-            // After loading script.js, switch to the login form and attach event listeners
-            switchForm('login');  // This function switches the form to 'login' by default
-            attachTabSwitchEventListeners();  // Reattach event listeners for tab switching
-        });
+        addScript('script.js');
     } else if (page === 'logout') {
         fileName = 'index.html';
+    } else if (page === 'getStarted') {
+        fileName = 'quiz.html';
     }
 
     // Apply the required stylesheets dynamically
@@ -121,11 +118,10 @@ function loadPage(page) {
             .then(data => {
                 contentContainer.innerHTML = data;
 
-                // Reattach event listeners if necessary after content is loaded
+                // After content is loaded, reattach event listeners for login/register tabs and form switching
                 if (page === 'login') {
-                    // Ensure the login form and register tab switching functionality is available
-                    switchForm('login');  // Set default form to login
-                    attachTabSwitchEventListeners();  // Reattach tab switching listeners
+                    switchForm('login'); // Switch to the login form by default
+                    attachTabSwitchEventListeners(); // Reattach tab switching listeners
                 }
             })
             .catch(error => {
@@ -136,12 +132,7 @@ function loadPage(page) {
 
     // Hide home content on non-home pages
     if (page !== 'home' && homeContent) {
-        homeContent.style.display = 'none'; // Hide home content when on other pages
-    }
-
-    // Show dynamic content when on non-home pages
-    if (page !== 'home' && contentContainer) {
-        contentContainer.style.display = 'block'; // Show the dynamic content container
+        homeContent.style.display = 'none';
     }
 
     // Add the active class to the clicked navigation link
