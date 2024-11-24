@@ -32,37 +32,25 @@ function cleanupQuiz() {
     document.getElementById('finalSubmissionButton').style.display = 'none';
     document.getElementById('validationMessage').innerHTML = '';
 }
-function addScript(src, callback) {
+function addScript(src) {
     // Check if the script is already loaded
     const existingScript = document.querySelector(`script[src="${src}"]`);
     if (existingScript) {
         return;  // Don't add the script if it's already in the DOM
     }
 
-    // If the script being added is script.js, ensure jQuery is loaded first
+    // Check if jQuery is loaded, and if not, load it first
     if (src === 'script.js' && !window.jQuery) {
-        // If jQuery is not loaded, load it first
-        const jqueryScript = document.createElement('script');
-        jqueryScript.src = 'https://code.jquery.com/jquery-3.6.0.min.js';
-        jqueryScript.onload = function() {
-            // Once jQuery is loaded, load script.js
-            addScript(src, callback);
-        };
-        jqueryScript.onerror = function() {
-            console.error('Error loading jQuery');
-        };
-        document.body.appendChild(jqueryScript);
-        return;  // Prevent adding script.js until jQuery is loaded
+        addScript('https://code.jquery.com/jquery-3.6.0.min.js');  // Load jQuery
     }
 
-    // Now add the requested script
+    // Now add the requested script (whether it's script.js or another)
     const script = document.createElement('script');
     script.src = src;
-    script.onload = function() {
+    script.onload = () => {
         console.log(`${src} loaded successfully.`);
-        if (callback) callback();  // Call the callback when the script is loaded
     };
-    script.onerror = function() {
+    script.onerror = () => {
         console.error(`Error loading ${src}`);
     };
     document.body.appendChild(script);
@@ -71,13 +59,13 @@ function addScript(src, callback) {
 
 
 // Your loadPage function
-// Function to load pages dynamically
 function loadPage(page) {
     console.log('Loading page:', page);
     const contentContainer = document.getElementById("dynamic-content");
-    const homeContent = document.getElementById("home-content"); // Used for the initial index.html content
-    const mainContent = document.getElementById("main-content");  // This is used for home.html's content
+    const homeContent = document.getElementById("home-content");
+    const mainContent = document.getElementById("main-content");
 
+    
     // Clear dynamic content container to avoid duplication
     contentContainer.innerHTML = '';
 
@@ -92,7 +80,7 @@ function loadPage(page) {
 
     // Handle page loading logic
     if (page === 'home') {
-        // After login, load 'home.html' content
+        // Instead of fetching 'home.html', just show the home content
         contentContainer.innerHTML = mainContent.innerHTML;
         history.pushState({ page: page }, page, `#${page}`);  // Update URL without reloading
     } else if (page === 'about') {
@@ -117,13 +105,13 @@ function loadPage(page) {
     stylesheetsToAdd.forEach(addStylesheet);
 
     // Dynamically fetch content for non-home pages
-    if (page !== 'home' && page !== 'login') {  // Skip login and home page (home.html)
+    if (page !== 'home') {
         fetch(fileName)
             .then(response => response.text())
             .then(data => {
                 contentContainer.innerHTML = data;
 
-                // After content is loaded, reattach event listeners if necessary
+                // After content is loaded, reattach event listeners for login/register tabs and form switching
                 if (page === 'login') {
                     switchForm('login'); // Switch to the login form by default
                     attachTabSwitchEventListeners(); // Reattach tab switching listeners
@@ -135,9 +123,9 @@ function loadPage(page) {
             });
     }
 
-    // Optionally, hide home content on non-home pages
-    if (homeContent && page !== 'home') {
-        homeContent.style.display = 'none'; // Hide home content on non-home pages
+    // Hide home content on non-home pages
+    if (page !== 'home' && homeContent) {
+        homeContent.style.display = 'none';
     }
 
     // Add the active class to the clicked navigation link
