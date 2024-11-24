@@ -71,13 +71,13 @@ function addScript(src, callback) {
 
 
 // Your loadPage function
+// Function to load pages dynamically
 function loadPage(page) {
     console.log('Loading page:', page);
     const contentContainer = document.getElementById("dynamic-content");
-    const homeContent = document.getElementById("home-content");
-    const mainContent = document.getElementById("main-content");
+    const homeContent = document.getElementById("home-content"); // Used for the initial index.html content
+    const mainContent = document.getElementById("main-content");  // This is used for home.html's content
 
-    
     // Clear dynamic content container to avoid duplication
     contentContainer.innerHTML = '';
 
@@ -92,7 +92,7 @@ function loadPage(page) {
 
     // Handle page loading logic
     if (page === 'home') {
-        // Instead of fetching 'home.html', just show the home content
+        // After login, load 'home.html' content
         contentContainer.innerHTML = mainContent.innerHTML;
         history.pushState({ page: page }, page, `#${page}`);  // Update URL without reloading
     } else if (page === 'about') {
@@ -106,7 +106,6 @@ function loadPage(page) {
     } else if (page === 'login') {
         fileName = 'login.html';
         addStylesheet('login.css');
-
         addScript('script.js');
     } else if (page === 'logout') {
         fileName = 'index.html';
@@ -118,13 +117,13 @@ function loadPage(page) {
     stylesheetsToAdd.forEach(addStylesheet);
 
     // Dynamically fetch content for non-home pages
-    if (page !== 'home') {
+    if (page !== 'home' && page !== 'login') {  // Skip login and home page (home.html)
         fetch(fileName)
             .then(response => response.text())
             .then(data => {
                 contentContainer.innerHTML = data;
 
-                // After content is loaded, reattach event listeners for login/register tabs and form switching
+                // After content is loaded, reattach event listeners if necessary
                 if (page === 'login') {
                     switchForm('login'); // Switch to the login form by default
                     attachTabSwitchEventListeners(); // Reattach tab switching listeners
@@ -136,9 +135,9 @@ function loadPage(page) {
             });
     }
 
-    // Hide home content on non-home pages
-    if (page !== 'home' && homeContent) {
-        homeContent.style.display = 'none';
+    // Optionally, hide home content on non-home pages
+    if (homeContent && page !== 'home') {
+        homeContent.style.display = 'none'; // Hide home content on non-home pages
     }
 
     // Add the active class to the clicked navigation link
