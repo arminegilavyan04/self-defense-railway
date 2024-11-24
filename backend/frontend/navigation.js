@@ -58,7 +58,6 @@ function addScript(src) {
 
 
 
-// Your loadPage function
 function loadPage(page) {
     console.log('Loading page:', page);
     const contentContainer = document.getElementById("dynamic-content");
@@ -82,7 +81,7 @@ function loadPage(page) {
     if (page === 'home') {
         // Instead of fetching 'home.html', just show the home content
         contentContainer.innerHTML = mainContent.innerHTML;
-        history.pushState({ page: page }, page, `#${page}`);  // Update URL without reloading
+        history.pushState({ page: page }, page, #${page});  // Update URL without reloading
     } else if (page === 'about') {
         fileName = 'about.html';
     } else if (page === 'vr') {
@@ -94,6 +93,7 @@ function loadPage(page) {
     } else if (page === 'login') {
         fileName = 'login.html';
         addStylesheet('login.css');
+
         addScript('script.js');
     } else if (page === 'logout') {
         fileName = 'index.html';
@@ -136,9 +136,8 @@ function loadPage(page) {
     });
 
     // Optionally, update the browser's history (so the URL changes without page reload)
-    history.pushState({ page: page }, page, `#${page}`);
+    history.pushState({ page: page }, page, #${page});
 }
-
 
 // Function to attach event listeners for switching between Login and Register forms
 function attachTabSwitchEventListeners() {
