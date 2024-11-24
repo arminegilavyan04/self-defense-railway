@@ -85,7 +85,6 @@ function loadPage(page) {
     const homeContent = document.getElementById("home-content");
     const mainContent = document.getElementById("main-content");
 
-    
     // Clear dynamic content container to avoid duplication
     contentContainer.innerHTML = '';
 
@@ -113,9 +112,25 @@ function loadPage(page) {
         fileName = 'quiz.html';
     } else if (page === 'login') {
         fileName = 'login.html';
-        addStylesheet('login.css');
+        addStylesheet('login.css');  // Add login page specific styles
 
-        addScript('script.js');
+        // Fetch login page content dynamically
+        fetch(fileName)
+            .then(response => response.text())
+            .then(data => {
+                contentContainer.innerHTML = data;
+
+                // Add script.js dynamically after loading the login page content
+                addScript('script.js', function () {
+                    console.log('script.js loaded successfully');
+                    switchForm('login'); // Switch to the login form by default
+                    attachTabSwitchEventListeners(); // Reattach tab switching listeners
+                });
+            })
+            .catch(error => {
+                contentContainer.innerHTML = "<p>Sorry, we couldn't load the requested page.</p>";
+                console.error('Error loading login page:', error);
+            });
     } else if (page === 'logout') {
         fileName = 'index.html';
     } else if (page === 'getStarted') {
@@ -126,17 +141,11 @@ function loadPage(page) {
     stylesheetsToAdd.forEach(addStylesheet);
 
     // Dynamically fetch content for non-home pages
-    if (page !== 'home') {
+    if (page !== 'home' && page !== 'login') {
         fetch(fileName)
             .then(response => response.text())
             .then(data => {
                 contentContainer.innerHTML = data;
-
-                // After content is loaded, reattach event listeners for login/register tabs and form switching
-                if (page === 'login') {
-                    switchForm('login'); // Switch to the login form by default
-                    attachTabSwitchEventListeners(); // Reattach tab switching listeners
-                }
             })
             .catch(error => {
                 contentContainer.innerHTML = "<p>Sorry, we couldn't load the requested page.</p>";
