@@ -82,10 +82,8 @@ function loadPage(page) {
     const homeContent = document.getElementById("home-content");
     const mainContent = document.getElementById("main-content");
 
-    // Clear dynamic content container to avoid duplication only for non-home pages
-    if (page !== 'home') {
-        contentContainer.innerHTML = '';
-    }
+    // Clear dynamic content container before loading new content
+    contentContainer.innerHTML = ''; 
 
     // Remove active class from all nav links
     const navLinks = document.querySelectorAll('.nav-links a');
@@ -98,7 +96,7 @@ function loadPage(page) {
 
     // Handle page loading logic
     if (page === 'home') {
-        // Instead of fetching 'home.html', just show the home content
+        // Show the home content
         contentContainer.innerHTML = mainContent.innerHTML;
         history.pushState({ page: page }, page, `#${page}`); // Update URL without reloading
     } else if (page === 'about') {
@@ -144,11 +142,11 @@ function loadPage(page) {
         fetch(fileName)
             .then(response => response.text())
             .then(data => {
+                // Clear dynamic content again in case there was any leftover content
                 contentContainer.innerHTML = data;
 
-                // Manually trigger reflow to ensure that the new content is rendered
-                // This forces the browser to re-render the new content
-                contentContainer.offsetHeight; // Trigger reflow (this doesn't modify anything)
+                // Trigger a reflow for the new content to be rendered
+                contentContainer.offsetHeight; // Forces reflow/repaint for better rendering
             })
             .catch(error => {
                 contentContainer.innerHTML = "<p>Sorry, we couldn't load the requested page.</p>";
