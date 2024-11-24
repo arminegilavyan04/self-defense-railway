@@ -158,7 +158,7 @@ function loadPage(page) {
         homeContent.style.display = 'none';
     }
 
-    // Add the active class to the clicked navigation link
+       // Add the active class to the clicked navigation link
     navLinks.forEach(link => {
         if (link.textContent.trim().toLowerCase() === page) {
             link.classList.add('active');
