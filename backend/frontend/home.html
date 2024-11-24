@@ -19,8 +19,11 @@
         <li><a href="javascript:void(0);" onclick="loadPage('quiz')">Quiz</a></li>
     </ul>
     
-    <div class="person-icon">
-      <img src="person-icon.png" alt="Person Icon">
+    <div class="person-icon" onclick="toggleDropdown()">
+        <img src="person-icon.png" alt="Person Icon" style="width: 40px; height: 40px;">
+        <div class="dropdown-menu" id="dropdown-menu">
+          <a href="javascript:void(0);" onclick="loadPage('logout')">Log out</a>
+        </div>
     </div>
     <div class="flag-icon">
       <img src="armenian-flag.png" alt="Armenian Flag">
