@@ -76,17 +76,16 @@ function addScript(src, callback) {
     document.body.appendChild(script);
 }
 
-
-
-
 function loadPage(page) {
     console.log('Loading page:', page);
     const contentContainer = document.getElementById("dynamic-content");
     const homeContent = document.getElementById("home-content");
     const mainContent = document.getElementById("main-content");
 
-    // Clear dynamic content container to avoid duplication
-    contentContainer.innerHTML = '';
+    // Clear dynamic content container to avoid duplication only for non-home pages
+    if (page !== 'home') {
+        contentContainer.innerHTML = '';
+    }
 
     // Remove active class from all nav links
     const navLinks = document.querySelectorAll('.nav-links a');
@@ -146,6 +145,10 @@ function loadPage(page) {
             .then(response => response.text())
             .then(data => {
                 contentContainer.innerHTML = data;
+
+                // Manually trigger reflow to ensure that the new content is rendered
+                // This forces the browser to re-render the new content
+                contentContainer.offsetHeight; // Trigger reflow (this doesn't modify anything)
             })
             .catch(error => {
                 contentContainer.innerHTML = "<p>Sorry, we couldn't load the requested page.</p>";
@@ -158,11 +161,12 @@ function loadPage(page) {
         homeContent.style.display = 'none';
     }
 
+    // Show home content if navigating back to home
     if (page === 'home' && homeContent) {
         homeContent.style.display = 'block';
-    
     }
-       // Add the active class to the clicked navigation link
+
+    // Add the active class to the clicked navigation link
     navLinks.forEach(link => {
         if (link.textContent.trim().toLowerCase() === page) {
             link.classList.add('active');
@@ -172,6 +176,7 @@ function loadPage(page) {
     // Optionally, update the browser's history (so the URL changes without page reload)
     history.pushState({ page: page }, page, `#${page}`);
 }
+
 
 // Function to attach event listeners for switching between Login and Register forms
 function attachTabSwitchEventListeners() {
