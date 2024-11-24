@@ -32,22 +32,37 @@ function cleanupQuiz() {
     document.getElementById('finalSubmissionButton').style.display = 'none';
     document.getElementById('validationMessage').innerHTML = '';
 }
-function addScript(src) {
+ffunction addScript(src, callback) {
+    // Check if the script is already loaded
     const existingScript = document.querySelector(`script[src="${src}"]`);
     if (existingScript) {
         return;  // Don't add the script if it's already in the DOM
     }
 
+    // If the script being added is script.js, ensure jQuery is loaded first
+    if (src === 'script.js' && !window.jQuery) {
+        // If jQuery is not loaded, load it first
+        addScript('https://code.jquery.com/jquery-3.6.0.min.js', function() {
+            // Once jQuery is loaded, load the script.js file
+            addScript(src, callback);
+        });
+        return; // Prevent adding script.js until jQuery is loaded
+    }
+
+    // Now add the requested script
     const script = document.createElement('script');
     script.src = src;
-    script.onload = () => {
+    script.onload = function() {
         console.log(`${src} loaded successfully.`);
+        if (callback) callback(); // Call the callback when the script is loaded
     };
     script.onerror = () => {
         console.error(`Error loading ${src}`);
     };
     document.body.appendChild(script);
 }
+
+
 
 
 // Your loadPage function
