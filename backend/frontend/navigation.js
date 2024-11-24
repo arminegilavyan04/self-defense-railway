@@ -32,6 +32,23 @@ function cleanupQuiz() {
     document.getElementById('finalSubmissionButton').style.display = 'none';
     document.getElementById('validationMessage').innerHTML = '';
 }
+function addScript(src) {
+    const existingScript = document.querySelector(`script[src="${src}"]`);
+    if (existingScript) {
+        return;  // Don't add the script if it's already in the DOM
+    }
+
+    const script = document.createElement('script');
+    script.src = src;
+    script.onload = () => {
+        console.log(`${src} loaded successfully.`);
+    };
+    script.onerror = () => {
+        console.error(`Error loading ${src}`);
+    };
+    document.body.appendChild(script);
+}
+
 
 // Your loadPage function
 function loadPage(page) {
@@ -69,6 +86,7 @@ function loadPage(page) {
     } else if (page === 'login') {
         fileName = 'login.html';
         addStylesheet('login.css');
+        addScript('script.js');
     } else if (page === 'logout') {
         fileName = 'index.html';
     } else if (page === 'getStarted') {
