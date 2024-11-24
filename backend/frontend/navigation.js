@@ -32,7 +32,7 @@ function cleanupQuiz() {
     document.getElementById('finalSubmissionButton').style.display = 'none';
     document.getElementById('validationMessage').innerHTML = '';
 }
-ffunction addScript(src, callback) {
+function addScript(src, callback) {
     // Check if the script is already loaded
     const existingScript = document.querySelector(`script[src="${src}"]`);
     if (existingScript) {
