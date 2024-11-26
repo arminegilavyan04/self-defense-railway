@@ -79,8 +79,10 @@ function addScript(src, callback) {
 function loadPage(page) {
     console.log('Loading page:', page);
     const contentContainer = document.getElementById("dynamic-content");
+    // const indexContent = document.getElementById("index-content");
     const homeContent = document.getElementById("home-content");
-    const mainContent = document.getElementById("main-content");
+    const aboutContent = document.getElementById("about-content");
+
 
     // Clear the dynamic content container before loading new content
     contentContainer.innerHTML = ''; 
@@ -97,20 +99,16 @@ function loadPage(page) {
     // Handle page loading logic
     if (page === 'home') {
         // Show the home content
-        contentContainer.innerHTML = mainContent.innerHTML;
+        contentContainer.innerHTML = homeContentContent.innerHTML;
         history.pushState({ page: page }, page, `#${page}`); // Update URL without reloading
     } else if (page === 'about') {
-        contentContainer.innerHTML = ''; 
-        fileName = 'about.html';
+        contentContainer.innerHTML = aboutContentContent.innerHTML;
+        history.pushState({ page: page }, page, `#${page}`);
     } else if (page === 'vr') {
-        contentContainer.innerHTML = ''; 
         fileName = 'vr-glasses.html';
     } else if (page === 'chat') {
-        contentContainer.innerHTML = ''; 
         fileName = 'chat.html';
-        contentContainer.innerHTML = ''; 
     } else if (page === 'quiz') {
-        contentContainer.innerHTML = ''; 
         fileName = 'quiz.html';
     } else if (page === 'login') {
         fileName = 'login.html';
