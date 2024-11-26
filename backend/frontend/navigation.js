@@ -77,122 +77,13 @@ function addScript(src, callback) {
     document.body.appendChild(script);
 }
 
-function loadPage(page) {
-    console.log('Loading page:', page);
-    const contentContainer = document.getElementById("dynamic-content");
-    const homeContent = document.getElementById("home-content");
-    const mainContent = document.getElementById("main-content");
-
-    // Clear dynamic content container before loading new content
-    contentContainer.innerHTML = ''; 
-
-    // Remove active class from all nav links
-    const navLinks = document.querySelectorAll('.nav-links a');
-    navLinks.forEach(link => {
-        link.classList.remove('active');
-    });
-
-    let fileName = '';
-    let stylesheetsToAdd = [];
-
-    // Handle page loading logic
-    if (page === 'home') {
-        // Show the home content
-        contentContainer.innerHTML = mainContent.innerHTML;
-        history.pushState({ page: page }, page, `#${page}`); // Update URL without reloading
-    } else if (page === 'about') {
-        fileName = 'about.html';  // Set the file name to 'about.html'
-    } else if (page === 'vr') {
-        fileName = 'vr-glasses.html';
-    } else if (page === 'chat') {
-        fileName = 'chat.html';
-    } else if (page === 'quiz') {
-        fileName = 'quiz.html';
-    } else if (page === 'login') {
-        fileName = 'login.html';
-        addStylesheet('login.css');  // Add login page specific styles
-
-        // Fetch login page content dynamically
-        fetch(fileName)
-            .then(response => response.text())
-            .then(data => {
-                contentContainer.innerHTML = data;
-
-                // Add script.js dynamically after loading the login page content
-                addScript('script.js', function () {
-                    console.log('script.js loaded successfully');
-                    switchForm('login'); // Switch to the login form by default
-                    attachTabSwitchEventListeners(); // Reattach tab switching listeners
-                });
-            })
-            .catch(error => {
-                contentContainer.innerHTML = "<p>Sorry, we couldn't load the requested page.</p>";
-                console.error('Error loading login page:', error);
-            });
-    } else if (page === 'logout') {
-        // Perform any necessary logout operations
-        localStorage.removeItem('userLoggedIn');
-        localStorage.removeItem('user');
-
-        // Redirect to the index.html page
-        window.location.href = 'index.html';
-        return;  // Stop further processing of the page load function
-    } else if (page === 'getStarted') {
-        fileName = 'quiz.html';
+document.body.addEventListener('click', function(event) {
+    const navLink = event.target.closest('.nav-links a');
+    if (navLink) {
+        // Handle click on a navigation link
+        navLink.classList.add('active');
     }
-
-    // Apply the required stylesheets dynamically
-    stylesheetsToAdd.forEach(addStylesheet);
-
-    // Dynamically fetch content for non-home pages
-    if (page === 'about') {
-        // Fetch about.html dynamically and insert it into the content container
-        fetch(fileName)
-            .then(response => response.text())
-            .then(data => {
-                // Insert the fetched content into the content container
-                contentContainer.innerHTML = data;
-
-                // Optionally, trigger a reflow for the new content to be rendered
-                contentContainer.offsetHeight; // Forces reflow/repaint for better rendering
-            })
-            .catch(error => {
-                contentContainer.innerHTML = "<p>Sorry, we couldn't load the requested page.</p>";
-                console.error('Error loading about page:', error);
-            });
-    }
-
-    // Hide home content on non-home pages
-    if (page !== 'home' && homeContent) {
-        homeContent.style.display = 'none';
-    }
-
-    // Show home content if navigating back to home
-    if (page === 'home' && homeContent) {
-        homeContent.style.display = 'block';
-    }
-
-    // Add the active class to the clicked navigation link
-    navLinks.forEach(link => {
-        if (link.textContent.trim().toLowerCase() === page) {
-            link.classList.add('active');
-        }
-    });
-
-    // Optionally, update the browser's history (so the URL changes without page reload)
-    history.pushState({ page: page }, page, `#${page}`);
-
-    document.body.addEventListener('click', function(event) {
-        const navLink = event.target.closest('.nav-links a');
-        if (navLink) {
-            // Handle click on a navigation link
-            navLink.classList.add('active');
-        }
-    });
-}
-
-
-
+});
 
 // Function to attach event listeners for switching between Login and Register forms
 function attachTabSwitchEventListeners() {
