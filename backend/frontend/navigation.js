@@ -34,65 +34,64 @@ function cleanupQuiz() {
 }
 
 function addScript(src, callback) {
-    // Check if the script is already loaded
-    const existingScript = document.querySelector(`script[src="${src}"]`);
-    if (existingScript) {
-        console.log(`${src} is already loaded.`);
-        if (callback) callback();  // Call the callback immediately if the script is already loaded
-        return;  // Don't add the script if it's already in the DOM
-    }
-
-    // If the script being added is script.js, ensure jQuery is loaded first
-    if (src === 'script.js' && !window.jQuery) {
-        console.log("jQuery is not loaded, loading jQuery first...");
-        
-        // If jQuery is not loaded, load it first
-        const jqueryScript = document.createElement('script');
-        jqueryScript.src = 'https://code.jquery.com/jquery-3.6.0.min.js';
-        
-        // Log when jQuery is loaded
-        jqueryScript.onload = function() {
-            console.log("jQuery loaded successfully.");
-            // Once jQuery is loaded, load script.js
-            addScript(src, callback);
+        if (typeof jQuery === 'undefined') {
+            console.error('jQuery is not loaded!');
+            // Optionally, you can stop executing the rest of the script if jQuery is not available.
+        } else {
+            // Your script logic that uses jQuery
+            $(document).ready(function() {
+                // Your existing jQuery-dependent code goes here
+            });
+        }
+   
+        const existingScript = document.querySelector(`script[src="${src}"]`);
+        if (existingScript) {
+            console.log(`${src} is already loaded.`);
+            if (callback) callback();  // Call the callback immediately if the script is already loaded
+            return;  // Don't add the script if it's already in the DOM
+        }
+    
+        // If the script being added is script.js, ensure jQuery is loaded first
+        if (src === 'script.js' && !window.jQuery) {
+            console.log("jQuery is not loaded, loading jQuery first...");
+    
+            // If jQuery is not loaded, load it first
+            const jqueryScript = document.createElement('script');
+            jqueryScript.src = 'https://code.jquery.com/jquery-3.6.0.min.js';
+    
+            // Ensure script.js is only loaded after jQuery is fully loaded
+            jqueryScript.onload = function() {
+                console.log("jQuery loaded successfully.");
+                // Once jQuery is loaded, load script.js
+                addScript(src, callback);
+            };
+    
+            jqueryScript.onerror = function() {
+                console.error('Error loading jQuery');
+            };
+    
+            document.body.appendChild(jqueryScript);
+            return;  // Prevent adding script.js until jQuery is loaded
+        }
+    
+        // Now add the requested script
+        const script = document.createElement('script');
+        script.src = src;
+    
+        // Define the load and error handlers
+        script.onload = function() {
+            console.log(`${src} loaded successfully.`);
+            if (callback) callback();  // Execute the callback when the script is loaded
         };
-
-        jqueryScript.onerror = function() {
-            console.error('Error loading jQuery');
+    
+        script.onerror = function() {
+            console.error(`Error loading ${src}`);
         };
-
-        document.body.appendChild(jqueryScript);
-        return;  // Prevent adding script.js until jQuery is loaded
+    
+        // Append the script to the document body
+        document.body.appendChild(script);
     }
-
-    // Now add the requested script
-    const script = document.createElement('script');
-    script.src = src;
-
-    // Define the load and error handlers
-    script.onload = function() {
-        console.log(`${src} loaded successfully.`);
-        if (callback) callback();  // Execute the callback when the script is loaded
-    };
-
-    script.onerror = function() {
-        console.error(`Error loading ${src}`);
-    };
-
-    // Append the script to the document body
-    document.body.appendChild(script);
-}
-
-
-document.body.addEventListener('click', function(event) {
-    const navLink = event.target.closest('.nav-links a');
-    if (navLink) {
-        // Handle click on a navigation link
-        navLink.classList.add('active');
-    }
-});
-
-// Function to attach event listeners for switching between Login and Register forms
+   
 function attachTabSwitchEventListeners() {
     const loginTab = document.getElementById('loginTab');
     const registerTab = document.getElementById('registerTab');
