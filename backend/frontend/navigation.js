@@ -76,42 +76,113 @@ function addScript(src, callback) {
     document.body.appendChild(script);
 }
 
-// Function to dynamically load content from external HTML files
 function loadPage(page) {
-    const contentDiv = document.getElementById('dynamic-content');
-    const url = `${page}.html`;  // Assuming your page files are named like 'home.html', 'about.html', etc.
-  
-    fetch(url) // Fetch the HTML content for the specific page
-      .then(response => {
-        if (response.ok) {
-          return response.text(); // If the response is OK, return the text (HTML content)
-        } else {
-          throw new Error('Page not found'); // Handle errors (e.g., if the file doesn't exist)
-        }
-      })
-      .then(data => {
-        contentDiv.innerHTML = data; // Inject the fetched content into the dynamic content div
-      })
-      .catch(error => {
-        contentDiv.innerHTML = `<h1>${error.message}</h1>`; // Display error message if something goes wrong
-      });
-  }
-  
-  // Dropdown toggle for the person icon
-  function toggleDropdown() {
-    const dropdown = document.getElementById('dropdown-menu');
-    dropdown.classList.toggle('show');
-  }
-  
-  // Close dropdown if clicked outside of the person icon
-  window.onclick = function(event) {
-    const dropdown = document.getElementById('dropdown-menu');
-    const personIcon = document.querySelector('.person-icon');
-    if (!personIcon.contains(event.target)) {
-      dropdown.classList.remove('show');
+    console.log('Loading page:', page);
+    const contentContainer = document.getElementById("dynamic-content");
+    const homeContent = document.getElementById("home-content");
+    const mainContent = document.getElementById("main-content");
+
+    // Clear the dynamic content container before loading new content
+    contentContainer.innerHTML = ''; 
+
+    // Remove active class from all nav links
+    const navLinks = document.querySelectorAll('.nav-links a');
+    navLinks.forEach(link => {
+        link.classList.remove('active');
+    });
+
+    let fileName = '';
+    let stylesheetsToAdd = [];
+
+    // Handle page loading logic
+    if (page === 'home') {
+        // Show the home content
+        contentContainer.innerHTML = mainContent.innerHTML;
+        history.pushState({ page: page }, page, `#${page}`); // Update URL without reloading
+    } else if (page === 'about') {
+        contentContainer.innerHTML = ''; 
+        fileName = 'about.html';
+    } else if (page === 'vr') {
+        contentContainer.innerHTML = ''; 
+        fileName = 'vr-glasses.html';
+    } else if (page === 'chat') {
+        contentContainer.innerHTML = ''; 
+        fileName = 'chat.html';
+        contentContainer.innerHTML = ''; 
+    } else if (page === 'quiz') {
+        contentContainer.innerHTML = ''; 
+        fileName = 'quiz.html';
+    } else if (page === 'login') {
+        fileName = 'login.html';
+        addStylesheet('login.css');  // Add login page specific styles
+
+        // Fetch login page content dynamically
+        fetch(fileName)
+            .then(response => response.text())
+            .then(data => {
+                contentContainer.innerHTML = data;
+
+                // Add script.js dynamically after loading the login page content
+                addScript('script.js', function () {
+                    console.log('script.js loaded successfully');
+                    switchForm('login'); // Switch to the login form by default
+                    attachTabSwitchEventListeners(); // Reattach tab switching listeners
+                });
+            })
+            .catch(error => {
+                contentContainer.innerHTML = "<p>Sorry, we couldn't load the requested page.</p>";
+                console.error('Error loading login page:', error);
+            });
+    } else if (page === 'logout') {
+        // Clear dynamic content and reset to the homepage (index.html)
+        contentContainer.innerHTML = '';  // Remove any previous content
+        window.location.href = 'index.html'; // Redirect to index.html after logging out
+    } else if (page === 'getStarted') {
+        contentContainer.innerHTML = ''; 
+        fileName = 'quiz.html';
     }
-  };
-  
+
+    // Apply the required stylesheets dynamically
+    stylesheetsToAdd.forEach(addStylesheet);
+
+    // Dynamically fetch content for non-home pages
+    if (page !== 'home' && page !== 'login' && page !== 'logout') {
+        fetch(fileName)
+            .then(response => response.text())
+            .then(data => {
+                // Clear dynamic content again in case there was any leftover content
+                contentContainer.innerHTML = data;
+
+                // Trigger a reflow for the new content to be rendered
+                contentContainer.offsetHeight; // Forces reflow/repaint for better rendering
+            })
+            .catch(error => {
+                contentContainer.innerHTML = "<p>Sorry, we couldn't load the requested page.</p>";
+                console.error('Error loading page content:', error);
+            });
+    }
+
+    // Hide home content on non-home pages
+    if (page !== 'home' && homeContent) {
+        homeContent.style.display = 'none';
+    }
+
+    // Show home content if navigating back to home
+    if (page === 'home' && homeContent) {
+        homeContent.style.display = 'block';
+    }
+
+    // Add the active class to the clicked navigation link
+    navLinks.forEach(link => {
+        if (link.textContent.trim().toLowerCase() === page) {
+            link.classList.add('active');
+        }
+    });
+
+    // Optionally, update the browser's history (so the URL changes without page reload)
+    history.pushState({ page: page }, page, `#${page}`);
+}
+
 
 
 // Function to attach event listeners for switching between Login and Register forms
