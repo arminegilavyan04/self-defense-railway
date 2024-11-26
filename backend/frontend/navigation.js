@@ -142,13 +142,13 @@ function toggleDropdown() {
   }
 
   function loadPage(page) {
-    console.log('Navigating to page:', page);
+    
     const contentContainer = document.getElementById("dynamic-content");
     const homeContent = document.getElementById("home-content");
     const mainContent = document.getElementById("main-content");
 
-    // Clear dynamic content container before loading new content
     contentContainer.innerHTML = ''; 
+    console.log("Content container cleared", contentContainer.innerHTML);
 
     // Remove active class from all nav links
     const navLinks = document.querySelectorAll('.nav-links a');
