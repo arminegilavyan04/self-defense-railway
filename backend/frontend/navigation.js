@@ -211,39 +211,64 @@ function toggleDropdown() {
 
     // Dynamically fetch content for non-home pages (including chat)
     if (page !== 'home') {
+    //     fetch(fileName)
+    //         .then(response => response.text())
+    //         .then(data => {
+    //             // Replace dynamic content with new page content
+    //             contentContainer.innerHTML = data;
+
+    //             // Trigger a reflow for the new content to be rendered
+    //             contentContainer.offsetHeight; // Forces reflow/repaint for better rendering
+    //         })
+    //         .catch(error => {
+    //             contentContainer.innerHTML = "<p>Sorry, we couldn't load the requested page.</p>";
+    //             console.error('Error loading page content:', error);
+    //         });
+    // }
+
         fetch(fileName)
-            .then(response => response.text())
-            .then(data => {
-                // Replace dynamic content with new page content
-                contentContainer.innerHTML = data;
+        .then(response => {
+            console.log("Fetched content for:", fileName);  // Log successful fetch
+            if (!response.ok) {
+                throw new Error(`Failed to load ${fileName}: ${response.status}`);
+            }
+            return response.text();
+        })
+        .then(data => {
+            console.log("Page content fetched:", data);  // Log the fetched content
 
-                // Trigger a reflow for the new content to be rendered
-                contentContainer.offsetHeight; // Forces reflow/repaint for better rendering
-            })
-            .catch(error => {
-                contentContainer.innerHTML = "<p>Sorry, we couldn't load the requested page.</p>";
-                console.error('Error loading page content:', error);
-            });
-    }
+            contentContainer.innerHTML = data;
+            console.log("Page content inserted");
 
-    // Hide home content on non-home pages
-    if (page !== 'home' && homeContent) {
-        homeContent.style.display = 'none';
-    }
+            // Optionally trigger a reflow
+            contentContainer.offsetHeight; // Forces reflow/repaint for better rendering
 
-    // Show home content if navigating back to home
-    if (page === 'home' && homeContent) {
-        homeContent.style.display = 'block';
-    }
-
-    // Add the active class to the clicked navigation link
-    navLinks.forEach(link => {
-        if (link.textContent.trim().toLowerCase() === page) {
-            link.classList.add('active');
+            // Initialize page-specific scripts after content insertion
+            initializePageScripts(page);
+        })
+        .catch(error => {
+            contentContainer.innerHTML = "<p>Sorry, we couldn't load the requested page.</p>";
+            console.error('Error loading page content:', error);
+        });
+        // Hide home content on non-home pages
+        if (page !== 'home' && homeContent) {
+            homeContent.style.display = 'none';
         }
-    });
 
-    // Optionally, update the browser's history (so the URL changes without page reload)
-    history.pushState({ page: page }, page, `#${page}`);
-}
+        // Show home content if navigating back to home
+        if (page === 'home' && homeContent) {
+            homeContent.style.display = 'block';
+        }
 
+        // Add the active class to the clicked navigation link
+        navLinks.forEach(link => {
+            if (link.textContent.trim().toLowerCase() === page) {
+                link.classList.add('active');
+            }
+        });
+
+        // Optionally, update the browser's history (so the URL changes without page reload)
+        history.pushState({ page: page }, page, `#${page}`);
+    }
+
+  }
