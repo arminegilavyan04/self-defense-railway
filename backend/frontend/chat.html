@@ -3,34 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <title>Chat</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"> -->
-    <link rel="stylesheet" href="canv.css"> <!-- External CSS -->
+    <title>Chat</title>
+    <link rel="stylesheet" href="canv.css"> 
 </head>
 <body>
-    <!-- Navigation Panel (dynamically loaded from index.html) -->
     <div id="navbar-placeholder"></div>
-    <div id="dynamic-content"></div>
-    <div class="container">
-        <!-- Chat Section Title -->
-        <h1>Chat Section</h1>
+    <div id="chat-content" class="container">
+        <p class="text-container">Make sure you pass the quiz first.</p>
+        <p class="btn-secondary">Start chatting here</p>
 
-        <!-- Result display section (this is dynamically shown based on sessionStorage) -->
-        <div id="quiz-result" style="display: none;">
-            <h2>Quiz Result</h2>
-            <p id="quiz-score"></p>
-            <p id="quiz-status"></p>
-        </div>
-
-        <!-- Placeholder for dynamic chat content or any other section -->
-        <div id="chat-content">
-            <!-- Chat content or dynamic content will be loaded here -->
-            <p>Start chatting here!</p>
-        </div>
-    </div>
-
-    <!-- Scripts -->
-    <script src="navigation.js"></script> <!-- Handles navigation and page load -->
+    <script>
+            // Function to dynamically load the navbar
+            function loadNavbar() {
+                fetch('navbar.html')
+                    .then(response => response.text())
+                    .then(data => {
+                        document.getElementById('navbar-placeholder').innerHTML = data;
+                    });
+            }
+    
+            // Load the navbar when the page loads
+            window.onload = loadNavbar;
+    </script>    
+    <script src="navigation.js"></script> 
     
 </body>
 </html>
