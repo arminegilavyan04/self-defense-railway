@@ -79,10 +79,10 @@ function addScript(src, callback) {
 function loadPage(page) {
     console.log('Loading page:', page);
     const contentContainer = document.getElementById("dynamic-content");
-    const indexContent = document.getElementById("index-content");
     const homeContent = document.getElementById("home-content");
+    const mainContent = document.getElementById("main-content");
 
-    // Clear the dynamic content container before loading new content
+    // Clear dynamic content container before loading new content
     contentContainer.innerHTML = ''; 
 
     // Remove active class from all nav links
@@ -97,20 +97,15 @@ function loadPage(page) {
     // Handle page loading logic
     if (page === 'home') {
         // Show the home content
-        contentContainer.innerHTML = homeContent.innerHTML;
+        contentContainer.innerHTML = mainContent.innerHTML;
         history.pushState({ page: page }, page, `#${page}`); // Update URL without reloading
     } else if (page === 'about') {
-        contentContainer.innerHTML = ''; 
         fileName = 'about.html';
     } else if (page === 'vr') {
-        contentContainer.innerHTML = ''; 
         fileName = 'vr-glasses.html';
     } else if (page === 'chat') {
-        contentContainer.innerHTML = ''; 
         fileName = 'chat.html';
-        contentContainer.innerHTML = ''; 
     } else if (page === 'quiz') {
-        contentContainer.innerHTML = ''; 
         fileName = 'quiz.html';
     } else if (page === 'login') {
         fileName = 'login.html';
@@ -134,11 +129,8 @@ function loadPage(page) {
                 console.error('Error loading login page:', error);
             });
     } else if (page === 'logout') {
-        // Clear dynamic content and reset to the homepage (index.html)
-        contentContainer.innerHTML = '';  // Remove any previous content
-        window.location.href = 'index.html'; // Redirect to index.html after logging out
+        fileName = 'index.html';
     } else if (page === 'getStarted') {
-        contentContainer.innerHTML = ''; 
         fileName = 'quiz.html';
     }
 
@@ -146,7 +138,7 @@ function loadPage(page) {
     stylesheetsToAdd.forEach(addStylesheet);
 
     // Dynamically fetch content for non-home pages
-    if (page !== 'home' && page !== 'login' && page !== 'logout') {
+    if (page !== 'home' && page !== 'login') {
         fetch(fileName)
             .then(response => response.text())
             .then(data => {
@@ -182,7 +174,6 @@ function loadPage(page) {
     // Optionally, update the browser's history (so the URL changes without page reload)
     history.pushState({ page: page }, page, `#${page}`);
 }
-
 
 
 // Function to attach event listeners for switching between Login and Register forms
