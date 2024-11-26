@@ -147,8 +147,10 @@ function toggleDropdown() {
     const homeContent = document.getElementById("home-content");
     const mainContent = document.getElementById("main-content");
 
-    // Clear dynamic content container before loading new content
-    contentContainer.innerHTML = ''; 
+    // Clear dynamic content container before loading new content (except for home)
+    if (page !== 'home') {
+        contentContainer.innerHTML = '';  // Clear content container for non-home pages
+    }
 
     // Remove active class from all nav links
     const navLinks = document.querySelectorAll('.nav-links a');
@@ -161,9 +163,12 @@ function toggleDropdown() {
 
     // Handle page loading logic
     if (page === 'home') {
-        // Show the home content
-        contentContainer.innerHTML = mainContent.innerHTML;
-        history.pushState({ page: page }, page, `#${page}`); // Update URL without reloading
+        if (mainContent) {
+            contentContainer.innerHTML = mainContent.innerHTML; // Show main content
+            history.pushState({ page: page }, page, `#${page}`); // Update URL without reloading
+        } else {
+            console.error('Main content not found!');
+        }
     } else if (page === 'about') {
         fileName = 'about.html';
     } else if (page === 'vr') {
@@ -210,7 +215,6 @@ function toggleDropdown() {
         fetch(fileName)
             .then(response => response.text())
             .then(data => {
-                // Clear dynamic content again in case there was any leftover content
                 contentContainer.innerHTML = data;
 
                 // Trigger a reflow for the new content to be rendered
