@@ -134,3 +134,102 @@ function toggleDropdown() {
       dropdown.classList.remove('show'); // Hide dropdown if click is outside the icon
     }
   }
+
+  function loadPage(page) {
+    console.log('Loading page:', page);
+    const contentContainer = document.getElementById("dynamic-content");
+    const homeContent = document.getElementById("home-content");
+    const mainContent = document.getElementById("main-content");
+
+    // Clear dynamic content container before loading new content
+    contentContainer.innerHTML = ''; 
+
+    // Remove active class from all nav links
+    const navLinks = document.querySelectorAll('.nav-links a');
+    navLinks.forEach(link => {
+        link.classList.remove('active');
+    });
+
+    let fileName = '';
+    let stylesheetsToAdd = [];
+
+    // Handle page loading logic
+    if (page === 'home') {
+        // Show the home content
+        contentContainer.innerHTML = mainContent.innerHTML;
+        history.pushState({ page: page }, page, `#${page}`); // Update URL without reloading
+    } else if (page === 'about') {
+        fileName = 'about.html';
+    } else if (page === 'vr') {
+        fileName = 'vr-glasses.html';
+    } else if (page === 'chat') {
+        fileName = 'chat.html';
+    } else if (page === 'quiz') {
+        fileName = 'quiz.html';
+    } else if (page === 'login') {
+        fileName = 'login.html';
+        addStylesheet('login.css');  // Add login page specific styles
+
+        // Fetch login page content dynamically
+        fetch(fileName)
+            .then(response => response.text())
+            .then(data => {
+                contentContainer.innerHTML = data;
+
+                // Add script.js dynamically after loading the login page content
+                addScript('script.js', function () {
+                    console.log('script.js loaded successfully');
+                    switchForm('login'); // Switch to the login form by default
+                    attachTabSwitchEventListeners(); // Reattach tab switching listeners
+                });
+            })
+            .catch(error => {
+                contentContainer.innerHTML = "<p>Sorry, we couldn't load the requested page.</p>";
+                console.error('Error loading login page:', error);
+            });
+    } else if (page === 'logout') {
+        fileName = 'index.html';
+    } else if (page === 'getStarted') {
+        fileName = 'quiz.html';
+    }
+
+    // Apply the required stylesheets dynamically
+    stylesheetsToAdd.forEach(addStylesheet);
+
+    // Dynamically fetch content for non-home pages
+    if (page !== 'home' && page !== 'login') {
+        fetch(fileName)
+            .then(response => response.text())
+            .then(data => {
+                // Clear dynamic content again in case there was any leftover content
+                contentContainer.innerHTML = data;
+
+                // Trigger a reflow for the new content to be rendered
+                contentContainer.offsetHeight; // Forces reflow/repaint for better rendering
+            })
+            .catch(error => {
+                contentContainer.innerHTML = "<p>Sorry, we couldn't load the requested page.</p>";
+                console.error('Error loading page content:', error);
+            });
+    }
+
+    // Hide home content on non-home pages
+    if (page !== 'home' && homeContent) {
+        homeContent.style.display = 'none';
+    }
+
+    // Show home content if navigating back to home
+    if (page === 'home' && homeContent) {
+        homeContent.style.display = 'block';
+    }
+
+    // Add the active class to the clicked navigation link
+    navLinks.forEach(link => {
+        if (link.textContent.trim().toLowerCase() === page) {
+            link.classList.add('active');
+        }
+    });
+
+    // Optionally, update the browser's history (so the URL changes without page reload)
+    history.pushState({ page: page }, page, `#${page}`);
+}
