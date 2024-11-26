@@ -216,6 +216,14 @@ function toggleDropdown() {
             .then(data => {
                 // Replace dynamic content with new page content
                 contentContainer.innerHTML = data;
+                console.log("Page content inserted. Checking visibility...");
+
+                const newContent = contentContainer.querySelector('div'); // Check for any div inside the container
+                if (newContent) {
+                    console.log('New content is visible:', newContent.style.display !== 'none');
+                } else {
+                    console.log('No content found inside the container');
+                }
 
                 // Trigger a reflow for the new content to be rendered
                 contentContainer.offsetHeight; // Forces reflow/repaint for better rendering
