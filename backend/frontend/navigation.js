@@ -142,13 +142,13 @@ function toggleDropdown() {
   }
 
   function loadPage(page) {
-    console.log('Navigating to page:', page);  // This will confirm if the function is being called
+    console.log('Navigating to page:', page);
     const contentContainer = document.getElementById("dynamic-content");
     const homeContent = document.getElementById("home-content");
     const mainContent = document.getElementById("main-content");
 
-    console.log('mainContent:', mainContent); 
-   
+    // Clear dynamic content container before loading new content
+    contentContainer.innerHTML = ''; 
 
     // Remove active class from all nav links
     const navLinks = document.querySelectorAll('.nav-links a');
@@ -162,18 +162,18 @@ function toggleDropdown() {
     // Handle page loading logic
     if (page === 'home') {
         if (mainContent) {
-            // console.log("-----------------------")
-            contentContainer.innerHTML = mainContent.innerHTML; // Show main content
+            console.log("-----------------------");
+            contentContainer.innerHTML = mainContent.innerHTML; // Show home content
             history.pushState({ page: page }, page, `#${page}`); // Update URL without reloading
         } else {
             console.error('Main content not found!');
         }
     } else if (page === 'about') {
         fileName = 'about.html';
+    } else if (page === 'chat') {
+        fileName = 'chat.html';  // Set the chat page filename
     } else if (page === 'vr') {
         fileName = 'vr-glasses.html';
-    } else if (page === 'chat') {
-        fileName = 'chat.html';
     } else if (page === 'quiz') {
         fileName = 'quiz.html';
     } else if (page === 'login') {
@@ -209,11 +209,12 @@ function toggleDropdown() {
     // Apply the required stylesheets dynamically
     stylesheetsToAdd.forEach(addStylesheet);
 
-    // Dynamically fetch content for non-home pages
-    if (page !== 'home' && page !== 'login') {
+    // Dynamically fetch content for non-home pages (including chat)
+    if (page !== 'home') {
         fetch(fileName)
             .then(response => response.text())
             .then(data => {
+                // Replace dynamic content with new page content
                 contentContainer.innerHTML = data;
 
                 // Trigger a reflow for the new content to be rendered
@@ -245,3 +246,4 @@ function toggleDropdown() {
     // Optionally, update the browser's history (so the URL changes without page reload)
     history.pushState({ page: page }, page, `#${page}`);
 }
+
