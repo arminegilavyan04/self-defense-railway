@@ -38,6 +38,7 @@ function addScript(src, callback) {
     const existingScript = document.querySelector(`script[src="${src}"]`);
     if (existingScript) {
         console.log(`${src} is already loaded.`);
+        if (callback) callback();  // Call the callback immediately if the script is already loaded
         return;  // Don't add the script if it's already in the DOM
     }
 
@@ -67,15 +68,21 @@ function addScript(src, callback) {
     // Now add the requested script
     const script = document.createElement('script');
     script.src = src;
+
+    // Define the load and error handlers
     script.onload = function() {
         console.log(`${src} loaded successfully.`);
-        if (callback) callback();  // Call the callback when the script is loaded
+        if (callback) callback();  // Execute the callback when the script is loaded
     };
+
     script.onerror = function() {
         console.error(`Error loading ${src}`);
     };
+
+    // Append the script to the document body
     document.body.appendChild(script);
 }
+
 
 document.body.addEventListener('click', function(event) {
     const navLink = event.target.closest('.nav-links a');
