@@ -133,7 +133,10 @@ function loadPage(page) {
         // Perform any necessary logout operations
         localStorage.removeItem('userLoggedIn');
         localStorage.removeItem('user');
-        fileName = 'index.html';
+
+        // Redirect to the index.html page
+        window.location.href = 'index.html';
+        return;  // Stop further processing of the page load function
     } else if (page === 'getStarted') {
         fileName = 'quiz.html';
     }
@@ -178,6 +181,7 @@ function loadPage(page) {
     // Optionally, update the browser's history (so the URL changes without page reload)
     history.pushState({ page: page }, page, `#${page}`);
 }
+
 
 
 // Function to attach event listeners for switching between Login and Register forms
