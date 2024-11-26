@@ -82,6 +82,7 @@ function loadPage(page) {
     const contentContainer = document.getElementById("dynamic-content");
     const homeContent = document.getElementById("home-content");
     const mainContent = document.getElementById("main-content");
+    const aboutContent = document.getElementById("about-content");
 
     // Clear dynamic content container before loading new content
     contentContainer.innerHTML = ''; 
@@ -101,6 +102,8 @@ function loadPage(page) {
         contentContainer.innerHTML = mainContent.innerHTML;
         history.pushState({ page: page }, page, `#${page}`); // Update URL without reloading
     } else if (page === 'about') {
+        contentContainer.innerHTML = aboutContent.innerHTML;
+        history.pushState({ page: page }, page, `#${page}`); 
         fileName = 'about.html';
     } else if (page === 'vr') {
         fileName = 'vr-glasses.html';
