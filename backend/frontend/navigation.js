@@ -82,7 +82,6 @@ function loadPage(page) {
     const contentContainer = document.getElementById("dynamic-content");
     const homeContent = document.getElementById("home-content");
     const mainContent = document.getElementById("main-content");
-    const aboutContent = document.getElementById("about-content");
 
     // Clear dynamic content container before loading new content
     contentContainer.innerHTML = ''; 
@@ -102,9 +101,7 @@ function loadPage(page) {
         contentContainer.innerHTML = mainContent.innerHTML;
         history.pushState({ page: page }, page, `#${page}`); // Update URL without reloading
     } else if (page === 'about') {
-        contentContainer.innerHTML = aboutContent.innerHTML;
-        history.pushState({ page: page }, page, `#${page}`); 
-        fileName = 'about.html';
+        fileName = 'about.html';  // Set the file name to 'about.html'
     } else if (page === 'vr') {
         fileName = 'vr-glasses.html';
     } else if (page === 'chat') {
@@ -148,19 +145,20 @@ function loadPage(page) {
     stylesheetsToAdd.forEach(addStylesheet);
 
     // Dynamically fetch content for non-home pages
-    if (page !== 'home' && page !== 'login') {
+    if (page === 'about') {
+        // Fetch about.html dynamically and insert it into the content container
         fetch(fileName)
             .then(response => response.text())
             .then(data => {
-                // Clear dynamic content again in case there was any leftover content
+                // Insert the fetched content into the content container
                 contentContainer.innerHTML = data;
 
-                // Trigger a reflow for the new content to be rendered
+                // Optionally, trigger a reflow for the new content to be rendered
                 contentContainer.offsetHeight; // Forces reflow/repaint for better rendering
             })
             .catch(error => {
                 contentContainer.innerHTML = "<p>Sorry, we couldn't load the requested page.</p>";
-                console.error('Error loading page content:', error);
+                console.error('Error loading about page:', error);
             });
     }
 
@@ -184,6 +182,7 @@ function loadPage(page) {
     // Optionally, update the browser's history (so the URL changes without page reload)
     history.pushState({ page: page }, page, `#${page}`);
 }
+
 
 
 
