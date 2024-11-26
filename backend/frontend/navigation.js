@@ -164,6 +164,7 @@ function toggleDropdown() {
     // Handle page loading logic
     if (page === 'home') {
         if (mainContent) {
+            console.log("-----------------------")
             contentContainer.innerHTML = mainContent.innerHTML; // Show main content
             history.pushState({ page: page }, page, `#${page}`); // Update URL without reloading
         } else {
