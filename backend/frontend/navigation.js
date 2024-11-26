@@ -142,15 +142,13 @@ function toggleDropdown() {
   }
 
   function loadPage(page) {
-    console.log('Loading page:', page);
+    console.log('Navigating to page:', page);  // This will confirm if the function is being called
     const contentContainer = document.getElementById("dynamic-content");
     const homeContent = document.getElementById("home-content");
     const mainContent = document.getElementById("main-content");
 
-    // Clear dynamic content container before loading new content (except for home)
-    if (page !== 'home') {
-        contentContainer.innerHTML = '';  // Clear content container for non-home pages
-    }
+    console.log('mainContent:', mainContent); 
+   
 
     // Remove active class from all nav links
     const navLinks = document.querySelectorAll('.nav-links a');
@@ -164,7 +162,7 @@ function toggleDropdown() {
     // Handle page loading logic
     if (page === 'home') {
         if (mainContent) {
-            console.log("-----------------------")
+            // console.log("-----------------------")
             contentContainer.innerHTML = mainContent.innerHTML; // Show main content
             history.pushState({ page: page }, page, `#${page}`); // Update URL without reloading
         } else {
