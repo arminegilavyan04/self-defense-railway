@@ -82,7 +82,7 @@ function loadPage(page) {
     const homeContent = document.getElementById("home-content");
     const mainContent = document.getElementById("main-content");
 
-    // Clear dynamic content container before loading new content
+    // Clear the dynamic content container before loading new content
     contentContainer.innerHTML = ''; 
 
     // Remove active class from all nav links
@@ -129,7 +129,9 @@ function loadPage(page) {
                 console.error('Error loading login page:', error);
             });
     } else if (page === 'logout') {
-        fileName = 'index.html';
+        // Clear dynamic content and reset to the homepage (index.html)
+        contentContainer.innerHTML = '';  // Remove any previous content
+        window.location.href = 'index.html'; // Redirect to index.html after logging out
     } else if (page === 'getStarted') {
         fileName = 'quiz.html';
     }
@@ -138,7 +140,7 @@ function loadPage(page) {
     stylesheetsToAdd.forEach(addStylesheet);
 
     // Dynamically fetch content for non-home pages
-    if (page !== 'home' && page !== 'login') {
+    if (page !== 'home' && page !== 'login' && page !== 'logout') {
         fetch(fileName)
             .then(response => response.text())
             .then(data => {
@@ -174,6 +176,7 @@ function loadPage(page) {
     // Optionally, update the browser's history (so the URL changes without page reload)
     history.pushState({ page: page }, page, `#${page}`);
 }
+
 
 
 // Function to attach event listeners for switching between Login and Register forms
