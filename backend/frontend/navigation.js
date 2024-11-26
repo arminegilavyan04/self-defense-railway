@@ -220,3 +220,16 @@ function switchForm(form) {
         loginTab.classList.remove('active');
     }
 }
+function toggleDropdown() {
+    const dropdown = document.getElementById('dropdown-menu');
+    dropdown.classList.toggle('show'); // Toggle the "show" class to show/hide the menu
+  }
+
+  // Close dropdown if clicked outside the dropdown
+  window.onclick = function(event) {
+    const dropdown = document.getElementById('dropdown-menu');
+    const personIcon = document.querySelector('.person-icon');
+    if (!personIcon.contains(event.target)) {
+      dropdown.classList.remove('show'); // Hide dropdown if click is outside the icon
+    }
+  }
