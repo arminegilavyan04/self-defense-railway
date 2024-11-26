@@ -76,7 +76,7 @@ $(document).ready(function () {
             },
             error: function (error) {
 
-                console.error('Login failed:_____________________________', error);
+                console.error('Login failed:', error);
                 alert('Login failed: ' + (error.responseJSON ? error.responseJSON.error : 'Unknown error'));
             }
         });

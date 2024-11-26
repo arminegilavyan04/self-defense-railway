@@ -25,7 +25,7 @@ p {
     margin-bottom: 30px;
 }
 
-.navbar {
+/* .navbar {
     font-size: 20px;
     display: flex;
     align-items: center;
@@ -34,6 +34,13 @@ p {
     padding: 20px 40px; 
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     height: 100px; 
+} */
+.navbar {
+    display: flex; /* Use flexbox for horizontal layout */
+    align-items: center; /* Center items vertically */
+    justify-content: space-between; /* Space items apart */
+    padding: 10px 20px;
+    background-color: rgb(102, 100, 100); ;
 }
 
 .logo {
@@ -49,23 +56,27 @@ p {
 
   }
   
-.person-icon, .flag-icon {
+/* Person Icon Container */
+.person-icon {
     width: 50px;
     height: 50px;
     background-color: #eee;
     border-radius: 50%;
     margin-left: 20px;
-    overflow: hidden;
-    position: relative; /* Make the person icon position relative */
-   
+    display: flex; /* Flexbox ensures image is centered */
+    justify-content: center; /* Centers image horizontally */
+    align-items: center; /* Centers image vertically */
+    position: relative; /* Keep dropdown position relative to this container */
 }
 
-.person-icon img, .flag-icon img {
+/* Person Icon Image */
+.person-icon img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    
+    object-fit: cover; /* Ensures the image covers the entire container */
 }
+
+/* Dropdown Menu */
 .dropdown-menu {
     display: none; /* Hidden by default */
     position: absolute;
@@ -78,24 +89,39 @@ p {
     width: 150px;
     padding: 10px;
     border-radius: 5px;
-    z-index: 1000; /* Ensure it's on top */
-  }
+    z-index: 1000; /* Ensure it's on top of other elements */
+}
 
-  .dropdown-menu a {
+/* Dropdown Links */
+.dropdown-menu a {
     display: block;
     padding: 8px;
     text-decoration: none;
     color: #333;
-  }
+}
 
-  .dropdown-menu a:hover {
-    background-color: #f1f1f1;
-  }
-
-  /* Show dropdown menu when active */
-  .dropdown-menu.show {
+/* Show the dropdown when the class "show" is added */
+.dropdown-menu.show {
     display: block;
-  }
+}
+
+/* Flag Icon (No changes needed here, just maintaining the current style) */
+.flag-icon {
+    width: 50px;
+    height: 50px;
+    background-color: #eee;
+    border-radius: 50%;
+    margin-left: 20px;
+    overflow: hidden;
+    position: relative;
+}
+
+.flag-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
 
 .nav-links {
     display: flex;
@@ -407,4 +433,33 @@ button {
     color: red;
     font-size: 16px;
     margin-top: 20px;
+}
+
+#chat-content p {
+    font-size: 30px;
+    color: #555;
+    margin-bottom: 200px;  /* Adds margin to the bottom to space out elements */
+}
+
+#chat-content .btn-secondary {
+    display: inline-block;
+    text-decoration: none;
+    background-color: red;
+    color: white;
+    padding: 12px 25px;
+    border-radius: 30px;
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 20px;  /* Adds margin on top to prevent overlap with the text */
+}
+
+#chat-content {
+    display: flex;
+    flex-direction: column;  /* Stack the text and button vertically */
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 60px); /* Ensures it takes up the full viewport height */
+    padding: 20px;
+    box-sizing: border-box;
+    text-align: center;
 }
