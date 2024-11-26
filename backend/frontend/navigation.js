@@ -181,6 +181,14 @@ function loadPage(page) {
 
     // Optionally, update the browser's history (so the URL changes without page reload)
     history.pushState({ page: page }, page, `#${page}`);
+
+    document.body.addEventListener('click', function(event) {
+        const navLink = event.target.closest('.nav-links a');
+        if (navLink) {
+            // Handle click on a navigation link
+            navLink.classList.add('active');
+        }
+    });
 }
 
 
