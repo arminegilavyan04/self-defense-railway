@@ -32,6 +32,7 @@ function cleanupQuiz() {
     document.getElementById('finalSubmissionButton').style.display = 'none';
     document.getElementById('validationMessage').innerHTML = '';
 }
+
 function addScript(src, callback) {
     // Check if the script is already loaded
     const existingScript = document.querySelector(`script[src="${src}"]`);
@@ -129,6 +130,9 @@ function loadPage(page) {
                 console.error('Error loading login page:', error);
             });
     } else if (page === 'logout') {
+        // Perform any necessary logout operations
+        localStorage.removeItem('userLoggedIn');
+        localStorage.removeItem('user');
         fileName = 'index.html';
     } else if (page === 'getStarted') {
         fileName = 'quiz.html';
