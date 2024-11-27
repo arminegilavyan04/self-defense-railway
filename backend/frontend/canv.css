@@ -25,7 +25,7 @@ p {
     margin-bottom: 30px;
 }
 
-/* .navbar {
+.navbar {
     font-size: 20px;
     display: flex;
     align-items: center;
@@ -34,13 +34,6 @@ p {
     padding: 20px 40px; 
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     height: 100px; 
-} */
-.navbar {
-    display: flex; /* Use flexbox for horizontal layout */
-    align-items: center; /* Center items vertically */
-    justify-content: space-between; /* Space items apart */
-    padding: 10px 20px;
-    background-color: rgb(102, 100, 100); ;
 }
 
 .logo {
@@ -56,72 +49,20 @@ p {
 
   }
   
-/* Person Icon Container */
-.person-icon {
-    width: 50px;
-    height: 50px;
-    background-color: #eee;
-    border-radius: 50%;
-    margin-left: 20px;
-    display: flex; /* Flexbox ensures image is centered */
-    justify-content: center; /* Centers image horizontally */
-    align-items: center; /* Centers image vertically */
-    position: relative; /* Keep dropdown position relative to this container */
-}
-
-/* Person Icon Image */
-.person-icon img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* Ensures the image covers the entire container */
-}
-
-/* Dropdown Menu */
-.dropdown-menu {
-    display: none; /* Hidden by default */
-    position: absolute;
-    top: 60px; /* Position below the person icon */
-    right: 0;
-    background-color: #fff;
-    color: #333;
-    border: 1px solid #ccc;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    width: 150px;
-    padding: 10px;
-    border-radius: 5px;
-    z-index: 1000; /* Ensure it's on top of other elements */
-}
-
-/* Dropdown Links */
-.dropdown-menu a {
-    display: block;
-    padding: 8px;
-    text-decoration: none;
-    color: #333;
-}
-
-/* Show the dropdown when the class "show" is added */
-.dropdown-menu.show {
-    display: block;
-}
-
-/* Flag Icon (No changes needed here, just maintaining the current style) */
-.flag-icon {
+.person-icon, .flag-icon {
     width: 50px;
     height: 50px;
     background-color: #eee;
     border-radius: 50%;
     margin-left: 20px;
     overflow: hidden;
-    position: relative;
 }
 
-.flag-icon img {
+.person-icon img, .flag-icon img {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
-
 
 .nav-links {
     display: flex;
@@ -178,14 +119,6 @@ p {
     padding: 40px;
     gap: 20px; 
 }
-#page-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 40px;
-    gap: 20px; 
-}
-
 
 #dynamic-content {
     max-width: 100%; /* Remove max-width limitation */
@@ -193,9 +126,9 @@ p {
     padding: 0; /* Remove extra padding */
     display: flex; /* Use flexbox to align text vertically */
     flex-direction: column; /* Stack elements vertically */
-     
+    justify-content: center; /* Vertically center the content */
     align-items: center; /* Horizontally center the content */
-     /* Center text */
+    text-align: center; /* Center text */
     height: 100vh; /* Make sure it takes up the full viewport height */
     overflow: auto; 
 }
@@ -214,7 +147,6 @@ p {
     border-radius: 10px;
     padding: 120px 40px 40px 40px;
 }
-
 /* Container for the image and text */
 .vr-content {
     display: flex; /* Enables Flexbox layout */
@@ -226,7 +158,7 @@ p {
 
 /* Image container (left side) */
 .vr-image-container {
-    flex: 2; /* Takes up half the space of the container */
+    flex: 1; /* Takes up half the space of the container */
     display: flex; /* Use Flexbox to center the image */
     justify-content: center; /* Centers the image horizontally */
     align-items: center; /* Centers the image vertically */
@@ -433,33 +365,4 @@ button {
     color: red;
     font-size: 16px;
     margin-top: 20px;
-}
-
-#chat-content p {
-    font-size: 30px;
-    color: #555;
-    margin-bottom: 200px;  /* Adds margin to the bottom to space out elements */
-}
-
-#chat-content .btn-secondary {
-    display: inline-block;
-    text-decoration: none;
-    background-color: red;
-    color: white;
-    padding: 12px 25px;
-    border-radius: 30px;
-    font-size: 18px;
-    font-weight: bold;
-    margin-top: 20px;  /* Adds margin on top to prevent overlap with the text */
-}
-
-#chat-content {
-    display: flex;
-    flex-direction: column;  /* Stack the text and button vertically */
-    justify-content: center;
-    align-items: center;
-    height: calc(100vh - 60px); /* Ensures it takes up the full viewport height */
-    padding: 20px;
-    box-sizing: border-box;
-    text-align: center;
 }
