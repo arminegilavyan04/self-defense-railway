@@ -140,24 +140,4 @@ form button:active {
         font-size: 14px;
     }
 }
-#login-warning {
-    display: none;
-    position: fixed;
-    top: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: #f8d7da;
-    color: #721c24;
-    padding: 10px 20px;
-    border-radius: 5px;
-    z-index: 1000;
-}
 
-#login-warning button {
-    background: none;
-    border: none;
-    color: #721c24;
-    font-size: 16px;
-    margin-left: 10px;
-    cursor: pointer;
-}
