@@ -13,6 +13,7 @@
 
 /* Card body containing the form content */
 .card-body {
+    background-color: #cecdcd;
     padding: 30px 40px; /* Adjust padding for card */
     margin: 0;
     border-radius: 10px;
