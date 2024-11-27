@@ -1,5 +1,16 @@
-
-
+/* General Styles for the Login and Register Forms */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #cecdcd;
+    display: flex;
+    flex-direction: column; /* Stack navbar and content vertically */
+    margin: 0;
+    padding: 0;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+}
 
 /* Container for the form */
 .container {
@@ -17,7 +28,6 @@
 
 /* Card body containing the form content */
 .card-body {
-    background:grey;
     padding: 30px 40px; /* Adjust padding for card */
     margin: 0;
     border-radius: 10px;
@@ -130,4 +140,3 @@ form button:active {
         font-size: 14px;
     }
 }
-
