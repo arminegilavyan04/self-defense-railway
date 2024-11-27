@@ -1,25 +1,10 @@
-/* General Styles for the Login and Register Forms */
-body {
-    font-family: Arial, sans-serif;
-    background-color: #cecdcd;
-    display: flex;
-    flex-direction: column; /* Stack navbar and content vertically */
-    margin: 0;
-    padding: 0;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    text-align: center;
-}
-
-/* Container for the form */
 .container {
     max-width: 500px;
     width: 100%;
     padding: 20px;
     background-color: #cecdcd;
     border-radius: 10px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    box-shadow: 0;
     display: flex;
     flex-direction: column; /* Stack content vertically */
     justify-content: flex-start; /* Align to the top */
