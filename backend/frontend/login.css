@@ -2,7 +2,7 @@
     max-width: 500px;
     width: 100%;
     padding: 20px;
-    background-color: grey;
+    background-color: #f5f3f3;
     border-radius: 10px;
     box-shadow: 0;
     display: flex;
@@ -13,7 +13,7 @@
 
 /* Card body containing the form content */
 .card-body {
-    background-color: #cecdcd;
+    background-color: #f5f3f3;
     padding: 30px 40px; /* Adjust padding for card */
     margin: 0;
     border-radius: 10px;
