@@ -6,39 +6,27 @@
   <title>Self-Defense</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="canv.css">
-  
-  <!-- Include jQuery from CDN -->
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
 </head>
 <body>
-  <div id="login-warning" class="alert alert-warning" style="display: none;">
-    <strong>Warning!</strong> You need to log in to access the Quiz and Chat sections. 
-    <a href="login.html" class="alert-link">Login here</a>.
-  </div>
 
   <!-- Navigation Bar -->
-  <nav class="navbar" id="navbar-placeholder">
+  <nav class="navbar">
     <img src="logo.png" alt="Logo" class="logo">
     <ul class="nav-links">
-        <li><a href="javascript:void(0);" onclick="loadPage('home')" class="active">Home</a></li>
-        <li><a href="javascript:void(0);" onclick="loadPage('about')">About Us</a></li>
-        <li><a href="javascript:void(0);" onclick="loadPage('vr')">VR Glasses</a></li>
-        <li><a href="javascript:void(0);" id="chat-link">Chat</a></li>
-        <li><a href="javascript:void(0);" id="quiz-link">Quiz</a></li>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="vr-glasses.html">VR Glasses</a></li>
+        <li><a href="chat.html" id="chat-link">Chat</a></li>
+        <li><a href="quiz.html" id="quiz-link">Quiz</a></li>
     </ul>
     <div class="login-register">
-      <a href="javascript:void(0);" onclick="loadPage('login')">Login/Register</a>
+      <a href="login.html">Login/Register</a>
     </div>
     <div class="flag-icon">
       <img src="armenian-flag.png" alt="Armenian Flag">
     </div>
   </nav>
 
-  <!-- Dynamic Content Container -->
-  <div id="dynamic-content"></div> <!-- This will contain the dynamic content -->
-
-  <!-- Static Home Content (only shown when "Home" is clicked) -->
   <div id="home-content" class="page-content">
     <div class="image-container">
       <img src="home.png" alt="Self-defense Image" class="image">
@@ -51,11 +39,6 @@
       <a class="get-started-btn">LET’S GET STARTED</a>
     </div>
   </div>
-
-  <!-- External JavaScript files -->
-  <script src="navigation.js" defer></script> <!-- Navigation JS -->
-  
-
   <script>
     window.onload = function () {
         const isLoggedIn = sessionStorage.getItem('userLoggedIn') === 'true';
@@ -94,3 +77,4 @@
   </script>
 </body>
 </html>
+

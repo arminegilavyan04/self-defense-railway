@@ -5,33 +5,37 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Self-Defense</title>
   <link rel="stylesheet" href="canv.css">
-    
+  <script src="navigation.js" defer></script> <!-- External JavaScript file -->
+  
 </head>
 <body>
   <!-- Navigation Bar -->
   <nav class="navbar" id="navbar-placeholder">
     <img src="logo.png" alt="Logo" class="logo">
     <ul class="nav-links">
-        <li><a href="javascript:void(0);" onclick="loadPage('home')" class="active">Home</a></li>
-        <li><a href="javascript:void(0);" onclick="loadPage('about')">About Us</a></li>
-        <li><a href="javascript:void(0);" onclick="loadPage('vr')">VR Glasses</a></li>
-        <li><a href="javascript:void(0);" onclick="loadPage('chat')">Chat</a></li>
-        <li><a href="javascript:void(0);" onclick="loadPage('quiz')">Quiz</a></li>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="vrglasses.html">VR Glasses</a></li>
+        <li><a href="chat.html" id="chat-link">Chat</a></li>
+        <li><a href="quiz.html" id="quiz-link">Quiz</a></li>
     </ul>
-    
+    <a href="index.html">Log out</a>
     <div class="person-icon" onclick="toggleDropdown()">
-        <img src="person-icon.png" alt="Person Icon" class="person-icon img">
-        <div class="dropdown-menu" id="dropdown-menu">
-          <a href="javascript:void(0);" onclick="loadPage('logout')">Log out</a>
-        </div>
-    </div>
+      <img src="person-icon.png" alt="Person Icon" class="person-icon img">
+      <div class="dropdown-menu" id="dropdown-menu">
+        <a href="index.html">Log out</a>
+      </div>
+   </div>
     <div class="flag-icon">
       <img src="armenian-flag.png" alt="Armenian Flag">
     </div>
-</nav>
-   
-<div id="dynamic-content"></div>
-  <div id="main-content" class="page-content">
+  </nav>
+
+  <!-- Dynamic Content Container -->
+  <div id="dynamic-content"></div> <!-- This will contain the dynamic content -->
+
+  <!-- Static Home Content (only shown when "Home" is clicked) -->
+  <div id="home-content" class="page-content">
     <div class="image-container">
       <img src="home.png" alt="Self-defense Image" class="image">
     </div>
@@ -40,13 +44,25 @@
       <h3><span style="color: red;">STAY PREPARED, STAY PROTECTED</span></h3>
       <p>SafeSense is a self-defense platform that assesses your safety skills, matches you with expert trainers, and guides you through personalized training to boost your confidence and preparedness.</p>
       <h3>Ready to defend confidently?</h3>
-      <a href="javascript:void(0);" onclick="loadPage('quiz')" class="get-started-btn">LET’S GET STARTED</a>
+      <a href="quiz.html">LET’S GET STARTED</a>
     </div>
   </div>
-
-  
-  <script src="navigation.js" defer></script>
   <script src="script.js" defer></script>
-  
-</body>
-</html>
+  <script>
+    // Toggle the dropdown menu
+    function toggleDropdown() {
+      const dropdown = document.getElementById('dropdown-menu');
+      dropdown.classList.toggle('show'); // Toggle the "show" class to show/hide the menu
+    }
+
+    // Close dropdown if clicked outside the dropdown
+    window.onclick = function(event) {
+      const dropdown = document.getElementById('dropdown-menu');
+      const personIcon = document.querySelector('.person-icon');
+      if (!personIcon.contains(event.target)) {
+        dropdown.classList.remove('show'); // Hide dropdown if click is outside the icon
+      }
+    }
+  </script>
+  </body>
+  </html>
