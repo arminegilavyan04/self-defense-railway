@@ -67,19 +67,20 @@ $(document).ready(function () {
             contentType: 'application/json',
             data: JSON.stringify({ email, password }),
             success: function (data) {
-        
+                console.log('Login successful:', data); // Check if the server sends the expected data
+                
                 localStorage.setItem('userLoggedIn', true); 
                 localStorage.setItem('user', JSON.stringify(data.user)); 
-        
+                
                 console.log('Redirecting to home.html');
                 window.location.href = 'home.html';
             },
             error: function (error) {
-
                 console.error('Login failed:', error);
                 alert('Login failed: ' + (error.responseJSON ? error.responseJSON.error : 'Unknown error'));
             }
         });
+        
         
         
     });
