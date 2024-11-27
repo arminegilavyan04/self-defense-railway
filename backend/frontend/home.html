@@ -4,12 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Self-Defense</title>
-  <link rel="stylesheet" href="canv.css">
-  <!-- <script src="navigation.js" defer></script> External JavaScript file -->
-  
+  <link rel="stylesheet" href="canv.css">  
 </head>
 <body>
-  <!-- Navigation Bar -->
   <nav class="navbar" id="navbar-placeholder">
     <img src="logo.png" alt="Logo" class="logo">
     <ul class="nav-links">
@@ -19,7 +16,6 @@
         <li><a href="chat.html" id="chat-link">Chat</a></li>
         <li><a href="quiz.html" id="quiz-link">Quiz</a></li>
     </ul>
-    <!-- <a href="index.html">Log out</a> -->
     <div class="person-icon" onclick="toggleDropdown()">
       <img src="person-icon.png" alt="Person Icon" class="person-icon img">
       <div class="dropdown-menu" id="dropdown-menu">
@@ -30,15 +26,13 @@
       <img src="armenian-flag.png" alt="Armenian Flag">
     </div>
   </nav>
-
-  <!-- Dynamic Content Container -->
-  <div id="dynamic-content"></div> <!-- This will contain the dynamic content -->
-
-  <!-- Static Home Content (only shown when "Home" is clicked) -->
-  <div id="home-content" class="page-content">
-    <div class="image-container">
-      <img src="home.png" alt="Self-defense Image" class="image">
+  <div id="dynamic-content"></div> 
+  <div class="person-icon" onclick="toggleDropdown()">
+    <img src="person-icon.png" alt="Person Icon" class="person-icon img">
+    <div class="dropdown-menu" id="dropdown-menu">
+      <a href="index.html">Log out</a>
     </div>
+ </div>
     <div class="text-container">
       <h1>Welcome to SelfSense</h1>
       <h3><span style="color: red;">STAY PREPARED, STAY PROTECTED</span></h3>
@@ -47,20 +41,16 @@
       <a class="get-started-btn" href="quiz.html">LET’S GET STARTED</a>
     </div>
   </div>
-  <!-- <script src="script.js" defer></script> -->
   <script>
-    // Toggle the dropdown menu
     function toggleDropdown() {
       const dropdown = document.getElementById('dropdown-menu');
-      dropdown.classList.toggle('show'); // Toggle the "show" class to show/hide the menu
+      dropdown.classList.toggle('show'); 
     }
-
-    // Close dropdown if clicked outside the dropdown
     window.onclick = function(event) {
       const dropdown = document.getElementById('dropdown-menu');
       const personIcon = document.querySelector('.person-icon');
       if (!personIcon.contains(event.target)) {
-        dropdown.classList.remove('show'); // Hide dropdown if click is outside the icon
+        dropdown.classList.remove('show'); 
       }
     }
   </script>
