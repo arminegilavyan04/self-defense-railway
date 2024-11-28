@@ -31,21 +31,7 @@
         <div id="chat-content" class="container">
             <p class="text-container">Make sure you pass the quiz first.</p>
             <p class="btn-secondary" onclick="window.location.href='chat.html';">Start chatting here</p>
-
-    
-        <script>
-                // Function to dynamically load the navbar
-                function loadNavbar() {
-                    fetch('navbar.html')
-                        .then(response => response.text())
-                        .then(data => {
-                            document.getElementById('navbar-placeholder').innerHTML = data;
-                        });
-                }
-        
-                // Load the navbar when the page loads
-                window.onload = loadNavbar;
-        </script>    
+  
         <script src="script.js"></script> 
         
     </body>

@@ -39,9 +39,9 @@
         <div class="result-text-container" id="result"> </div>
         <div class> </div>
     </div>
-
-    <button class="btn btn-primary" onclick="loadPage('chat')">Start Chatting</button>
-
+    <a href="chat.html">
+        <button class="btn btn-primary">Start Chatting</button>
+    </a>
     <script>
         // Retrieve quiz results from sessionStorage
         const result = JSON.parse(sessionStorage.getItem('quizResult'));
@@ -67,7 +67,7 @@
             loadPage('chat'); // Redirect to the chat page (adjust URL accordingly)
         }
     </script>
-    <script src="navigation.js" defer></script> 
+    <!-- <script src="navigation.js" defer></script>  -->
     <script src="quiz.js"></script> 
 
 </body>
