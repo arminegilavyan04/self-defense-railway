@@ -6,7 +6,6 @@
     padding: 120px 40px 40px 40px; /* Optional padding for spacing */
 }
 
-
 /* Image container (left side) */
 .about-image-container {
     flex: 1; /* Takes up 1/2 of the available space */
