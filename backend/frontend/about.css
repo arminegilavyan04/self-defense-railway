@@ -3,11 +3,9 @@
     display: flex; /* Enables Flexbox layout */
     justify-content: space-between; /* Spaces out the items */
     align-items: flex-start; /* Aligns the image and text to the top */
-    padding: 20px; /* Optional padding for spacing */
+    padding: 120px 40px 40px 40px; /* Optional padding for spacing */
 }
-#dynamic-content * {
-    justify-content: unset; /* Resets all inherited styles */
-}
+
 
 /* Image container (left side) */
 .about-image-container {
