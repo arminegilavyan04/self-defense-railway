@@ -393,13 +393,6 @@ button {
     border-radius: 10px;
     width: 150px;  
 }
-.button-container {
-    display: flex;
-    justify-content: center; /* Center buttons horizontally */
-    gap: 10px;
-    margin-top: 20px;
-    flex-wrap: wrap;
-}
 
 .btn-primary:hover, .btn-secondary:hover, .btn-success:hover {
     background-color: darkred;

@@ -1,55 +1,46 @@
-
 .quiz-result-content {
-    display: flex;                
-    justify-content:right;  
-    align-items:flex-start;     
+    display: flex;                        /* Use Flexbox for layout */
+    justify-content: center;               /* Center the content horizontally */
+    align-items: center;                   /* Center the content vertically */
+    flex-direction: column;                /* Stack the elements vertically */
     padding: 20px;
-    height: auto;                
-    gap: 20px;                  
+    height: 100vh;                         /* Ensure the container takes full viewport height */
+    gap: 20px;                             /* Add space between image and button */
+    text-align: center;                    /* Center text inside the container */
 }
 
-.coach-image-container {   
-    margin-top: 20px;           
-    flex: 1; 
+.coach-image-container {
     display: flex;
-    justify-content: center; 
-    align-items: center;       
+    justify-content: center;               /* Center the image horizontally */
+    align-items: center;                   /* Center the image vertically */
+    margin-bottom: 20px;                   /* Space between image and button */
 }
 
 .coach-image {
-    width: 100%; 
-    max-width: 500px; 
-    height: auto; 
-    border-radius: 20px;       
+    max-width: 100%; 
+    width: 400px;                      /* Ensure image doesn't overflow */
+    height: auto;                          /* Maintain the aspect ratio */
+    border-radius: 20px;                   /* Optional: round the corners of the image */
 }
 
 .result-text-container {
-    flex: 1;                      
-    height: 50%;                
-    display: flex;
-    flex-direction: column;        
-    justify-content: center;       
-    padding-left: 20px;
-    padding-bottom: 20px;          
-    text-align: left;            
+    font-size: 18px;                       /* Style the result text */
+    color: #333;                           /* Dark color for text */
+    margin-bottom: 20px;                   /* Space before the button */
 }
-
-#result p {
-    font-size: 18px;
-    color: #555;
-    margin-bottom: 10px;
-}
-
 
 .res-btn-primary {
-    margin-top: 20px;
-    font-size: 18px;
-    padding: 12px 25px;
-    border-radius: 30px;
-    background-color: #ff0000;
+    background-color: #ff0000;             /* Red button color */
     color: white;
+    font-size: 18px;
+    padding: 12px 24px;                    /* Button padding */
+    border-radius: 30px;
+    text-decoration: none;                 /* Remove underline from the link */
+    width: 200px;                          /* Set width for the button */
+    display: inline-block;
+    text-align: center;                    /* Center text inside button */
 }
 
 .res-btn-primary:hover {
-    background-color: darkred;
+    background-color: darkred;             /* Darken button color on hover */
 }
