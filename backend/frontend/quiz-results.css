@@ -26,7 +26,7 @@
 .result-text-container {
     font-size: 18px;                       /* Style the result text */
     color: #333;                           /* Dark color for text */
-    margin-bottom: 20px;                   /* Space before the button */
+    margin-bottom: 10px;                   /* Space before the button */
 }
 
 .res-btn-primary {
