@@ -17,10 +17,8 @@
 /* Image styling */
 .about-image {
     width: 100%; /* Image takes up 100% of the container width */
-    max-width: 750px; 
-    height: 810px; /* Maintain aspect ratio */
-    border-top-left-radius: 20px; /* Apply border-radius to top-left */
-    border-top-right-radius: 20px; /* Apply border-radius to top-right */
+    max-width: 600px; 
+    height: 800px; /* Maintain aspect ratio */
     border-radius: 20px; 
 }
 

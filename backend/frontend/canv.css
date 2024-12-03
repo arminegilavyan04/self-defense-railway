@@ -218,27 +218,27 @@ p {
 
 
 .quiz-container {
-    padding: 120px 40px 40px 40px;
+    padding: 120px 40px 40px 40px; /* Large top padding for spacing */
     display: flex; /* Use Flexbox to arrange the content */
     justify-content: space-between; /* Space out the image and text content */
     align-items: center; /* Vertically center the items */
-    padding: 20px; /* Add padding around the container */
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
 }
 
 .quiz-image-container {
     flex: 1; /* Make the image container take up remaining space */
     display: flex; /* Flexbox to center image inside container */
     justify-content: center; /* Horizontally center the image */
+    align-items: center; /* Vertically center the image */
+    padding-right: 20px; /* Optional: Add a bit of space on the right if needed */
 }
 
 .quiz-image {
     width: 100%; /* Image takes up 100% of the container width */
     max-width: 800px; /* Optional: limit the image size */
     height: auto; /* Maintain aspect ratio */
-    border-top-left-radius: 20px; /* Apply border-radius to top-left */
-    border-top-right-radius: 20px; /* Apply border-radius to top-right */
-    border-radius: 10px; /* Maintain aspect ratio */
-    padding-top: 40px;
+    border-radius: 20px; /* Apply border-radius to all corners */
+    box-sizing: border-box; /* Include padding/borders in size calculation */
 }
 
 .quiz-page-content {
@@ -248,8 +248,27 @@ p {
     justify-content: center; /* Center content vertically */
     align-items: center; /* Center content horizontally */
     text-align: center; /* Center text */
-    padding-top: 40px;
+    padding-top: 0; /* Adjust padding to avoid duplication */
+    padding-left: 20px; /* Optional: Space between the image and the text */
 }
+
+/* Optional: Media query to adjust layout on smaller screens */
+@media (max-width: 768px) {
+    .quiz-container {
+        flex-direction: column; /* Stack image and content vertically on smaller screens */
+        padding: 80px 20px 20px 20px; /* Adjust padding for smaller screens */
+    }
+
+    .quiz-image-container {
+        width: 100%; /* Ensure the image takes full width on smaller screens */
+        margin-bottom: 20px; /* Add space between image and text */
+    }
+
+    .quiz-page-content {
+        width: 100%; /* Ensure content takes full width on smaller screens */
+    }
+}
+
 .start-quiz-btn {
     display: inline-block;
     text-decoration: none;
