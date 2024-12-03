@@ -18,7 +18,7 @@
 
 .coach-image {
     max-width: 100%; 
-    width: 400px;                      /* Ensure image doesn't overflow */
+    width: 300px;                      /* Ensure image doesn't overflow */
     height: auto;                          /* Maintain the aspect ratio */
     border-radius: 20px;                   /* Optional: round the corners of the image */
 }
