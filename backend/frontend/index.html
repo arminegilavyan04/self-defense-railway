@@ -6,6 +6,7 @@
   <title>Self-Defense</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="canv.css">
+  <script src="limitChatQuiz.js"></script>
 </head>
 <body>
 
@@ -14,8 +15,8 @@
     <img src="logo.png" alt="Logo" class="logo">
     <ul class="nav-links">
         <li><a href="index.html">Home</a></li>
-        <li><a href="about.html">About Us</a></li>
-        <li><a href="vr-glasses.html">VR Glasses</a></li>
+        <li><a href="about.html" id="about-link">About Us</a></li>
+        <li><a href="vr-glasses.html" id="vr-link">VR Glasses</a></li>
         <li><a href="chat.html" id="chat-link">Chat</a></li>
         <li><a href="quiz.html" id="quiz-link">Quiz</a></li>
     </ul>
@@ -42,42 +43,8 @@
       <a class="get-started-btn">LET’S GET STARTED</a>
     </div>
   </div>
-  <script>
-    window.onload = function () {
-        const isLoggedIn = sessionStorage.getItem('userLoggedIn') === 'true';
-        
-        // Get the warning element
-        const loginWarning = document.getElementById('login-warning');
-        
-        // Get the links for Quiz and Chat
-        const quizLink = document.getElementById('quiz-link');
-        const chatLink = document.getElementById('chat-link');
-        
-        // If user is not logged in, block navigation
-        if (!isLoggedIn) {
-            // Prevent navigation for Quiz link
-            quizLink.addEventListener('click', function(event) {
-                event.preventDefault();
-                loginWarning.style.display = 'block';  // Show the login warning
-                setTimeout(function() {
-                    loginWarning.style.display = 'none';
-                }, 5000); // Hide the warning after 5 seconds
-            });
-
-            // Prevent navigation for Chat link
-            chatLink.addEventListener('click', function(event) {
-                event.preventDefault();
-                loginWarning.style.display = 'block';  // Show the login warning
-                setTimeout(function() {
-                    loginWarning.style.display = 'none';
-                }, 5000); // Hide the warning after 5 seconds
-            });
-        } else {
-            // If logged in, remove the warning
-            loginWarning.style.display = 'none';
-        }
-    };
-  </script>
+  
+  
 </body>
 </html>
 
