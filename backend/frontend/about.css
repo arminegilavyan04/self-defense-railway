@@ -3,7 +3,7 @@
     display: flex; /* Enables Flexbox layout */
     justify-content: space-between; /* Spaces out the items */
     align-items: flex-start; /* Aligns the image and text to the top */
-    padding: 80px 40px 40px 40px; /* Optional padding for spacing */
+    padding: 40px 40px 20px 20px; /* Optional padding for spacing */
 }
 
 /* Image container (left side) */
@@ -17,17 +17,17 @@
 /* Image styling */
 .about-image {
     width: 100%; /* Image takes up 100% of the container width */
-    max-width: 400px; /* Optional: limit the image size */
-    height: auto; /* Maintain aspect ratio */
+    max-width: 750px; 
+    height: 810px; /* Maintain aspect ratio */
     border-top-left-radius: 20px; /* Apply border-radius to top-left */
     border-top-right-radius: 20px; /* Apply border-radius to top-right */
-    border-radius: 10px; /* Apply general border-radius to other corners */
+    border-radius: 20px; 
 }
 
 /* Text container (right side) */
 .about-text-container {
-    flex: 1.5; /* Takes up 1.5 times the space of the image */
-    padding-left: 20px;
+    flex: 1; /* Takes up 1.5 times the space of the image */
+    padding-left: 40px;
     padding-top: 100px; /* Optional padding between the image and text */
     display: flex;
     flex-direction: column; /* Stack text vertically */
