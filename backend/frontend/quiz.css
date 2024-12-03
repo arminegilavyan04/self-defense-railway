@@ -75,7 +75,27 @@ h1 {
 }
 
 /* Button Styling */
-.btn-primary, .btn-secondary, .btn-success {
+.btn-primary {
+    text-decoration: none;
+    background-color: red;
+    color: white;
+    padding-bottom: 120px; /* Larger padding */
+    border-radius: 30px;
+    font-size: 18px; /* Increased font size */
+    font-weight: bold;
+    margin-right: 20px; 
+}
+.btn-secondary{
+    text-decoration: none;
+    background-color: red;
+    color: white;
+    padding: 12px 25px; /* Larger padding */
+    border-radius: 30px;
+    font-size: 18px; /* Increased font size */
+    font-weight: bold;
+    margin-right: 20px; 
+}
+.btn-success {
     text-decoration: none;
     background-color: red;
     color: white;

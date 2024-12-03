@@ -317,13 +317,12 @@ p {
     display:flex;
     align-items: center; 
     flex-direction: column; 
-    height: 100vh; 
+    height: auto; 
     width: 100%;
-    text-align: center; 
-    padding: 40px 40px 40px 40px;
+    text-align: center;    
     box-sizing: 10px solid black;
     border-radius: 10px;
-    margin-top: -300px;
+    margin-top: -800px;
 }
 
 .question h3 {
@@ -378,12 +377,13 @@ p {
     transition: background-color 0.3s ease;
 }
 
-.buttons-container {
+.button-container {
     display: flex;
-    justify-content: center; 
-    align-items: center;
-    width: 100%;
-    padding: 10px 0;
+    flex-direction: column; /* Change direction to column to stack buttons vertically */
+    justify-content: center; /* Center buttons horizontally (if you want to keep this behavior) */
+    align-items: center; /* Center buttons vertically */
+    gap: 10px; /* Space between buttons */
+    margin-top: 20px;
 }
 
 button {
@@ -393,11 +393,17 @@ button {
     border-radius: 10px;
     width: 150px;  
 }
+.button-container {
+    display: flex;
+    justify-content: center; /* Center buttons horizontally */
+    gap: 10px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
 
 .btn-primary:hover, .btn-secondary:hover, .btn-success:hover {
     background-color: darkred;
 }
-
 
 .result {
     margin-top: 20px;
