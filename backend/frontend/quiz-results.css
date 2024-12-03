@@ -41,7 +41,7 @@
 }
 
 
-button {
+.res-btn-primary {
     margin-top: 20px;
     font-size: 18px;
     padding: 12px 25px;
@@ -50,6 +50,6 @@ button {
     color: white;
 }
 
-button:hover {
+.res-btn-primary:hover {
     background-color: darkred;
 }
