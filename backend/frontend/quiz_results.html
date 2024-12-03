@@ -30,42 +30,56 @@
         <div class="flag-icon">
           <img src="armenian-flag.png" alt="Armenian Flag">
         </div>
-      </nav>
-      <div class="quiz-result-content">
-        <div class="coach-image-container">
-            <img src="coach.png" alt="Coach Image" class="coach-image">
-        </div>
+    </nav>
+    <div class="quiz-result-content">
         <div class="result-text-container" id="result">Your result message here</div> 
         <a href="chat.html">
             <button class="res-btn-primary">Start Chatting</button>
         </a>
     </div>
     <script>
-        // Retrieve quiz results from sessionStorage
+ 
         const result = JSON.parse(sessionStorage.getItem('quizResult'));
 
         if (result) {
             const scoreMessage = `Your score is ${result.score} out of ${result.totalQuestions}.`;
             let personalizedMessage = '';
+            let coachImage = ''; // Variable to hold the image URL
 
+            // Determine personalized message and coach image based on score
             if (result.score >= 6) {
-                personalizedMessage = 'Excellent job! Keep up the great work!';
+                personalizedMessage = 'Excellent job! Just a few final steps to finish. Please contact our coach, Morgan Fireman, for further assistance';
+                coachImage = 'coach_1.png'; // Replace with the path to the image for Morgan Fireman
             } else if (result.score >= 4) {
-                personalizedMessage = 'Good effort! You’re almost there!';
+                personalizedMessage = 'Good effort! You’re almost there! Please contact our coach, Michael Levis, for further assistance';
+                coachImage = 'coach_1.png'; // Replace with the path to the image for Michael Levis
             } else {
                 personalizedMessage = 'Please contact our coach, Devis More, for further assistance.';
+                coachImage = 'coach_1.png'; // Replace with the path to the image for Devis More
             }
 
+            // Display score and personalized message
             document.getElementById('result').innerHTML = `<p>${scoreMessage}</p><p>${personalizedMessage}</p>`;
+
+            // Display the coach's image
+            const imageContainer = document.createElement('div');
+            imageContainer.classList.add('coach-image-container');
+            const imageElement = document.createElement('img');
+            imageElement.src = coachImage;
+            imageElement.alt = 'Coach Image';
+            imageElement.classList.add('coach-image');
+            imageContainer.appendChild(imageElement);
+            document.getElementById('result').appendChild(imageContainer);
+
         } else {
             document.getElementById('result').innerHTML = 'No results available. Please complete the quiz.';
         }
 
+        // Optional: go to chat page function
         function goTo() {
             loadPage('chat'); // Redirect to the chat page (adjust URL accordingly)
         }
     </script>
-    <!-- <script src="navigation.js" defer></script>  -->
     <script src="quiz.js"></script> 
 
 </body>
