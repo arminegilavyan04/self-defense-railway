@@ -216,6 +216,38 @@ p {
     text-align: center; 
 }
 
+#chat-content {
+    display: flex;                          /* Enable Flexbox */
+    flex-direction: column;                  /* Stack the content vertically */
+    justify-content: center;                 /* Center the content vertically */
+    align-items: center;                     /* Center the content horizontally */
+    height: 100vh;                           /* Take up the full viewport height */
+    text-align: center;                      /* Center text inside the container */
+    padding: 20px;                           /* Add some padding around */
+}
+
+.chat-text-container {
+    font-size: 30px;                         /* Larger font size for the first text */
+    color: #333;                             /* Dark text color */
+    margin-bottom: 20px;                     /* Space below the text */
+}
+
+.chat-btn-secondary {
+    display: inline-block;                   /* Ensure the button-like text is inline */
+    font-size: 20px;                         /* Font size for the button text */
+    color: white;                            /* Text color for the button */
+    background-color: red;                  /* Background color for the button */
+    padding: 12px 25px;                      /* Padding for the button */
+    border-radius: 30px;                     /* Rounded corners for the button */
+    cursor: pointer;                         /* Pointer cursor on hover */
+    transition: background-color 0.3s ease;  /* Smooth background color transition */
+    text-decoration: none;                   /* Remove the underline from the link */
+}
+
+.chat-btn-secondary:hover {
+    background-color: darkred;                  /* Darken the background on hover */
+}
+
 
 .quiz-container {
     padding: 120px 40px 40px 40px; /* Large top padding for spacing */
