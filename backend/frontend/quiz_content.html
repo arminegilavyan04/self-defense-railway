@@ -40,20 +40,20 @@
     </div>
     <div id="validationMessage" class="text-danger"></div>
     <div id="result" style="display:none;"></div>
-    <script>
-      if (sessionStorage.getItem("quizStarted") !== "true") {
-        window.location.href = "quiz.html"; 
-      }
-      window.history.forward();
-      function noBack() {
-        window.history.forward();
-      }
-      setTimeout(noBack, 0);
+    <script>  
+        if (sessionStorage.getItem("quizStarted") !== "true") {
+          window.location.href = "quiz.html"; 
+        } 
+
+        window.onpopstate = function(event) {
+          // Clear sessionStorage when trying to go back
+          sessionStorage.removeItem("quizStarted");
+          
+          // Redirect to quiz.html when the user tries to go back
+          window.location.href = "quiz.html";
+        };
   
-      window.onunload = function () {
-        sessionStorage.removeItem("quizStarted");
-      };
-    </script>
-   
+        history.pushState(null, null, location.href); 
+    </script>   
 </body> 
 </html>
