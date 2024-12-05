@@ -349,7 +349,7 @@ p {
     display:flex;
     align-items: center; 
     flex-direction: column; 
-    height: auto; 
+    height: 700px; 
     width: 100%;
     text-align: center;    
     box-sizing: 10px solid black;
