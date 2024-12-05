@@ -38,8 +38,22 @@
         <button id="retryButton" class="btn btn-secondary" style="display:none;">Retry</button>
         <button id="finalSubmissionButton" class="btn btn-success" style="display:none;">Final Submission</button>
     </div>
-        <div id="validationMessage" class="text-danger"></div>
-        <div id="result" style="display:none;"></div>
+    <div id="validationMessage" class="text-danger"></div>
+    <div id="result" style="display:none;"></div>
+    <script>
+      if (sessionStorage.getItem("quizStarted") !== "true") {
+        window.location.href = "quiz.html"; 
+      }
+      window.history.forward();
+      function noBack() {
+        window.history.forward();
+      }
+      setTimeout(noBack, 0);
+  
+      window.onunload = function () {
+        sessionStorage.removeItem("quizStarted");
+      };
+    </script>
    
 </body> 
 </html>

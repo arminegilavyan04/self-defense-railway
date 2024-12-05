@@ -36,28 +36,31 @@
     <div class="quiz-image-container">
         <img src="quiz.png" alt="Quiz Image" class="quiz-image">
     </div>
-    
-    <!-- Text content (on the right) -->
     <div class="quiz-page-content">
         <h1>Find Out Your Self-Protection Level</h1>
         <p>Take our 10–15 question quiz to gauge your current self-defense preparedness. This quiz assesses what you already know, your reaction skills, and how prepared you are in real-life situations. Your score will help us match you with a trainer to enhance your self-defense skills.</p>
         <a href="quiz_content.html" class="start-quiz-btn">Start Quiz</a>
     </div>
   </div>
-      <script>
-        function toggleDropdown() {
-          const dropdown = document.getElementById('dropdown-menu');
-          dropdown.classList.toggle('show'); 
-        }
+  <script>
+    function startQuiz() {
+      sessionStorage.setItem("quizStarted", "true");
+    }
+  </script>
+  <script>
+    function toggleDropdown() {
+      const dropdown = document.getElementById('dropdown-menu');
+        dropdown.classList.toggle('show'); 
+    }
     
-        // Close dropdown if clicked outside the dropdown
-        window.onclick = function(event) {
-          const dropdown = document.getElementById('dropdown-menu');
-          const personIcon = document.querySelector('.person-icon');
-          if (!personIcon.contains(event.target)) {
-            dropdown.classList.remove('show'); // Hide dropdown if click is outside the icon
-          }
-        }
-      </script>
+        
+    window.onclick = function(event) {
+      const dropdown = document.getElementById('dropdown-menu');
+      const personIcon = document.querySelector('.person-icon');
+       if (!personIcon.contains(event.target)) {
+        dropdown.classList.remove('show'); 
+      }
+    }
+  </script>
 </body>
 </html>
