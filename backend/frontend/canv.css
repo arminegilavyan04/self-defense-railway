@@ -223,7 +223,7 @@ p {
     align-items: center;                     /* Center the content horizontally */
     height: 100vh;                           /* Take up the full viewport height */
     text-align: center;                      /* Center text inside the container */
-    padding: 20px;                           /* Add some padding around */
+    padding: 20px;                           /* 
 }
 
 .chat-text-container {
@@ -354,7 +354,7 @@ p {
     text-align: center;    
     box-sizing: 10px solid black;
     border-radius: 10px;
-    margin-top: -800px;
+    margin-top: -700px;
 }
 
 .question h3 {
