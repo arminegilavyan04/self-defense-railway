@@ -13,15 +13,15 @@ body {
     flex-direction: column; 
 }
 h1 {
-    font-size: 28px; 
+    font-size: 50px; 
     color: #333;
     font-weight: bold;
     margin-bottom: 20px;
 }
 
 p {
-    font-size: 18px; 
-    color: #555;
+    font-size: 20px; 
+    color: black;
     margin-bottom: 30px;
 }
 
@@ -100,7 +100,7 @@ p {
 
 .login-register a {
     text-decoration: none;
-    background-color: red;
+    background-color: rgb(128,0,32);
     color: white;
     padding: 12px 25px; 
     border-radius: 30px;
@@ -110,12 +110,12 @@ p {
 }
 
 .login-register a:hover {
-    background-color: darkred;
+    background-color: grey;
 }
 
 .get-started-btn {
     text-decoration: none;
-    background-color: red;
+    background-color: rgb(128,0,32);
     color: white;
     font-size: 18px;
     padding: 12px 25px; /* Larger padding */
