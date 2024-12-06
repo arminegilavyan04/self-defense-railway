@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const question = questions[currentQuestionIndex];  // Get the current question
         const questionHTML = `
             <div class="question">
-                <h3>${question.question}</h3>
+                <h3>${question.question}</h3> <br><br>
                 <div>
                     ${question.options.map((option, index) => 
                         `<div>

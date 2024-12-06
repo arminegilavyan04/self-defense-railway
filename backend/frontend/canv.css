@@ -344,23 +344,23 @@ p {
         text-align: center;
     }
 }
-
 .quiz-content {
 
     display:flex;
     align-items: center; 
     flex-direction: column; 
-    height: 700px; 
+    height: 400px; 
     width: 100%;
     text-align: center;    
     box-sizing: 10px solid black;
     border-radius: 10px;
-    margin-top: -700px;
+    margin-top: -800px;
 }
 
 .question h3 {
-    font-size: 18px;
-    color: #333;
+    font-weight: bold;
+    font-size: 30px;
+    color: #555;
     margin-bottom: 10px; 
 }
 .question div {
@@ -372,18 +372,12 @@ p {
 .question label {
     display: flex; 
     align-items: center; 
-    font-size: 16px;
+    font-size: 20px;
     cursor: pointer;
     color: #555;
+    margin-bottom: 10px;
 }
 
-.question label {
-    display: flex; 
-    align-items: center; 
-    font-size: 16px;
-    cursor: pointer;
-    color: #555;
-}
 
 .question input[type="radio"] {
     margin-right: 10px; 
