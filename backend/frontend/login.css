@@ -45,12 +45,12 @@
 }
 
 .nav-tabs .nav-link.active {
-    background-color: red;
+    background-color: rgb(128,0,32);
     color: white;
 }
 
 .nav-tabs .nav-link:hover {
-    background-color: #e04d3a; /* Slightly lighter red on hover */
+    background-color:rgb(128,0,32); /* Slightly lighter red on hover */
     color: white;
 }
 
@@ -84,7 +84,7 @@ form input {
 form button {
     display: inline-block;
     text-decoration: none;
-    background-color: red;
+    background-color: rgb(128,0,32);
     color: white; /* White text */
     padding: 15px 30px;
     border-radius: 30px; /* Oval shape */
@@ -95,14 +95,14 @@ form button {
 }
 
 form button:hover {
-    background-color: #e04d3a; /* Lighter red on hover */
+    background-color: darkgray; /* Lighter red on hover */
 }
 
 form button:active {
-    background-color: #cc4329; /* Even darker red on active */
+
+    background-color:rgb(128,0,32);
 }
 
-/* Responsive Styles */
 @media (max-width: 768px) {
     .container {
         width: 90%;  /* Make the container responsive on smaller screens */

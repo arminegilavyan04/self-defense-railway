@@ -246,12 +246,12 @@ p {
 }
 
 .chat-btn-secondary:hover {
-    background-color: darkred;                  /* Darken the background on hover */
+    background-color: darkgray;                  /* Darken the background on hover */
 }
 
 
 .quiz-container {
-    padding: 120px 40px 40px 40px; /* Large top padding for spacing */
+    padding: 40px 40px 40px 40px; /* Large top padding for spacing */
     display: flex; /* Use Flexbox to arrange the content */
     justify-content: space-between; /* Space out the image and text content */
     align-items: center; /* Vertically center the items */
@@ -260,18 +260,17 @@ p {
 
 .quiz-image-container {
     flex: 1; /* Make the image container take up remaining space */
-    display: flex; /* Flexbox to center image inside container */
+    display:flex; /* Flexbox to center image inside container */
     justify-content: center; /* Horizontally center the image */
     align-items: center; /* Vertically center the image */
-    padding-right: 20px; /* Optional: Add a bit of space on the right if needed */
+
 }
 
 .quiz-image {
     width: 100%; /* Image takes up 100% of the container width */
-    max-width: 800px; /* Optional: limit the image size */
+    max-width: 700px; 
     height: auto; /* Maintain aspect ratio */
-    border-radius: 20px; /* Apply border-radius to all corners */
-    box-sizing: border-box; /* Include padding/borders in size calculation */
+    border-radius: 20px;  /* Include padding/borders in size calculation */
 }
 
 .quiz-page-content {
@@ -281,8 +280,8 @@ p {
     justify-content: center; /* Center content vertically */
     align-items: center; /* Center content horizontally */
     text-align: center; /* Center text */
-    padding-top: 0; /* Adjust padding to avoid duplication */
-    padding-left: 20px; /* Optional: Space between the image and the text */
+    
+    
 }
 
 /* Optional: Media query to adjust layout on smaller screens */
@@ -461,7 +460,7 @@ button {
 }
 
 #login-warning button {
-    background-color: rgb(230, 104, 104);
+    background-color: rgb(128,0,32);
     border: none;
     color:white;
     font-size: 16px;
