@@ -1,13 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz</title>    
-    <link rel="stylesheet" href="canv.css"> 
-    <script src="quiz.js"></script>   
-    
+    <title>Quiz</title>   
+    <link rel="stylesheet" href="quiz.css"> 
+    <script src="quiz.js"></script>  <!-- Ensure quiz.js is correctly linked -->
 </head>
 
 <body>
@@ -30,42 +28,65 @@
       <img src="armenian-flag.png" alt="Armenian Flag">
     </div>
   </nav>
-    <div id="dynamic-content"></div>
-    <div id="quizContainer" class="quiz-content"> </div>
-    <div class="button-container">
-        <button id="nextButton" class="btn btn-primary" style="display:none;">Next</button>
-        <button id="retryButton" class="btn btn-secondary" style="display:none;">Retry</button>
-        <button id="finalSubmissionButton" class="btn btn-success" style="display:none;">Final Submission</button>
-    </div>
-    <div id="validationMessage" class="text-danger"></div>
-    <div id="result" style="display:none;"></div>
-    <script>  
-        if (sessionStorage.getItem("quizStarted") !== "true") {
-          window.location.href = "quiz.html"; 
-        } 
 
-        window.onpopstate = function(event) {
+  <div id="dynamic-content"></div>
+  <div id="quizContainer" class="quiz-content"></div>
+  <div class="button-container">
+    <button id="nextButton" class="btn btn-primary" style="display:none;">Next</button>
+    <button id="retryButton" class="btn btn-secondary" style="display:none;">Retry</button>
+    <button id="finalSubmissionButton" class="btn btn-success" style="display:none;">Final Submission</button>
+  </div>
+  <div id="validationMessage" class="text-danger"></div>
+  <div id="result" style="display:none;"></div>
+
+  <!-- <script>
+    if (sessionStorage.getItem("quizStarted") !== "true") {
+        window.location.href = "quiz.html"; 
+    } 
+
+    window.onpopstate = function(event) {
+        sessionStorage.removeItem("quizStarted");
+        window.location.href = "quiz.html";
+    };
+  
+    history.pushState(null, null, location.href); 
+  </script> -->
+
+ 
+  <script>
+    function toggleDropdown() {
+    const dropdown = document.getElementById('dropdown-menu');
+    dropdown.classList.toggle('show'); 
+      }
+
+      // Close the dropdown if the user clicks anywhere outside of the person icon
+    window.onclick = function(event) {
+          const dropdown = document.getElementById('dropdown-menu');
+          const personIcon = document.querySelector('.person-icon');
+          
+          // Close the dropdown if the clicked target is not the person icon or dropdown menu
+          if (!personIcon.contains(event.target) && !dropdown.contains(event.target)) {
+              dropdown.classList.remove('show');
+          }
+      };
+
+      // Optional: Prevent the default behavior for back button if session storage is set
+      if (sessionStorage.getItem("quizStarted") !== "true") {
+          window.location.href = "quiz.html"; 
+      }
+
+      window.onpopstate = function(event) {
           // Clear sessionStorage when trying to go back
           sessionStorage.removeItem("quizStarted");
           
           // Redirect to quiz.html when the user tries to go back
           window.location.href = "quiz.html";
-        };
+      };
+
+      history.pushState(null, null, location.href); 
+
+  </script>
+
   
-        history.pushState(null, null, location.href); 
-    </script>
-    <script>
-      function toggleDropdown() {
-        const dropdown = document.getElementById('dropdown-menu');
-        dropdown.classList.toggle('show'); 
-      }
-      window.onclick = function(event) {
-        const dropdown = document.getElementById('dropdown-menu');
-        const personIcon = document.querySelector('.person-icon');
-        if (!personIcon.contains(event.target)) {
-          dropdown.classList.remove('show'); 
-        }
-      }
-    </script>   
 </body> 
 </html>

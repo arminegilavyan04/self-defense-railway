@@ -1,146 +1,258 @@
-/* General Body Styling */
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f9;
+* {
     margin: 0;
     padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;  /* Align to the top of the screen instead of center */
-    min-height: 100vh;  /* Ensure content fits */
+    box-sizing: border-box;
 }
 
-/* Form Container Styling */
-#quiz-content {
-    width: 100%;
-    margin: 0 auto; /* Center it horizontally */
-    padding: 40px 40px 40px 40px;
-    box-sizing: border-box;
-    background-color: grey;
-    border-radius: 10px;
+body {
+    font-family: Arial, sans-serif;
+    background-color: #cecdcd;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: flex-start;
+    padding: 0;
+    margin: 0;
+    height: auto; /* Allow body height to grow naturally */
 }
 
-/* Header Styling */
+#dynamic-content {
+    width: 100%;
+    padding: 0; 
+    display: flex; 
+    flex-direction: column;
+    justify-content: flex-start; /* Align content to the top of the container */
+    align-items: center; /* Horizontally center the content */
+    text-align: center; /* Center text */
+    flex-grow: 1; /* Allow it to grow if needed */
+}
+
+.image-container {
+    flex: 1;
+    margin-bottom: 20px;
+}
+
+.image {
+    width: 100%;
+    height: 300px; /* Control image height */
+    max-width: 600px;
+    object-fit: cover;
+    border-radius: 20px;
+}
+
 h1 {
-    text-align: center;
+    font-size: 50px; 
     color: #333;
-    font-size: 24px;
+    font-weight: bold;
     margin-bottom: 20px;
 }
 
-.question {
-    width: 100%; /* Ensure questions take the full width of the container */
-    margin-bottom: 20px;
+p {
+    font-size: 20px; 
+    color: black;
+    margin-bottom: 30px;
+}
+
+/* General Navbar Styling */
+.navbar {
+    font-size: 20px !important ;
+    display: flex !important ;
+    align-items: center !important ;
+    justify-content: flex-start !important ;
+    background-color: rgb(102, 100, 100); 
+    padding: 20px 40px !important ; 
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    height: auto; 
+}
+
+/* Logo Styling */
+.logo {
+    max-width: 200px; /* Set a max-width for the logo */
+    max-height: 100%;
+    height: auto;
+    display: block;
+    background-image: url('logo.png');
+    background-size: contain; 
+    background-repeat: no-repeat;
+    background-position: center; 
+    border-radius: 50px;
+}
+
+/* Person Icon Styling */
+.person-icon {
+    width: 50px; /* Increase size to match the flag icon */
+    height: 50px;
+    background-color: #eee;
+    border-radius: 50%; /* Keep it round */
+    overflow: hidden;
     display: flex;
-    flex-direction: column; /* Stack the question text and inputs vertically */
-    align-items: flex-start; /* Align items to the left */
+    align-items: center; /* Center the content vertically */
+    justify-content: center; /* Center the content horizontally */
+    position: relative; /* Important for positioning the dropdown */
 }
 
-/* Question Text Styling */
-.question h3 {
-    font-size: 18px;
-    color: #333;
-    margin-bottom: 10px; /* Space between the question and options */
+.person-icon img {
+    width: 100%; /* Ensure image fills the container */
+    height: 100%;
+    object-fit: cover;
 }
 
-/* Option Styling */
-.question div {
+/* Flag Icon Styling */
+.flag-icon {
+    width: 50px;
+    height: 50px;
+    background-color: #eee;
+    border-radius: 50%; /* Make it round */
+    margin-left: 20px;
+    overflow: hidden;
     display: flex;
-    flex-direction: column; /* Stack radio buttons and labels vertically */
-    gap: 10px; /* Space between the options */
+    align-items: center; /* Center the content vertically */
+    justify-content: center; /* Center the content horizontally */
 }
 
-/* Radio button label styling */
-.question label {
-    display: flex; /* Align radio button and label text horizontally */
-    align-items: center; /* Vertically center the radio button with the label */
-    font-size: 16px;
+/* Flag Icon Image */
+.flag-icon img {
+    width: 100%; /* Fill the container horizontally */
+    height: 100%; /* Fill the container vertically */
+    object-fit: cover; /* Maintain aspect ratio and fill container */
+}
+
+
+.dropdown-menu {
+    display: none; /* Make sure it is hidden by default */
+    position: absolute; /* Ensure it’s positioned relative to person icon */
+    top: 60px; /* Adjust as needed */
+    right: 0; 
+    background-color: #cecdcd;
+    border-radius: 8px;
+    padding: 10px 0;
+    width: 150px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+  }
+  
+  .dropdown-menu.show {
+    display: block; /* Show it when the class 'show' is added */
+  }
+  
+
+/* Logout Button Styling */
+.logout {
+    color: #343435;
+    background-color: #cecdcd;
     cursor: pointer;
-    color: #555;
-}
-
-/* Radio button input styling */
-.question input[type="radio"] {
-    margin-right: 10px; /* Space between radio button and label */
-    width: 10px; /* Size of the radio button */
-    height: 10px; /* Size of the radio button */
-}
-
-/* Style when the radio button is checked */
-.question input[type="radio"]:checked {
-    background-color: #4CAF50; /* Change color when the radio button is checked */
-}
-
-/* Button Styling */
-.btn-primary {
-    text-decoration: none;
-    background-color: rgb(128,0,32);
-    color: white;
-    padding-bottom: 120px; /* Larger padding */
-    border-radius: 30px;
-    font-size: 18px; /* Increased font size */
-    font-weight: bold;
-    margin-right: 20px;
-    outline: none; 
-}
-.btn-secondary{
-    text-decoration: none;
-    background-color: rgb(128,0,32);
-    color: white;
-    padding: 12px 25px; /* Larger padding */
-    border-radius: 30px;
-    font-size: 18px; /* Increased font size */
-    font-weight: bold;
-    margin-right: 20px; 
-    outline: none; 
-}
-.btn-success {
-    text-decoration: none;
-    background-color:rgb(128,0,32);
-    color: white;
-    padding: 12px 25px; /* Larger padding */
-    border-radius: 30px;
-    font-size: 18px; /* Increased font size */
-    font-weight: bold;
-    margin-right: 20px;
-    outline: none; 
-}
-/* Button hover effects */
-.btn-primary:hover, .btn-secondary:hover, .btn-success:hover {
-    background-color: darkgray;
-}
-
-/* Buttons container */
-.buttons-container {
+    padding: 10px;
     text-align: center;
+    width: 100%;
+    border-radius: 5px;
 }
 
-/* Result Styling */
-.result {
-    margin-top: 20px;
-    font-size: 18px;
-    font-weight: bold;
-    text-align: center;
+/* Hover Effect for Logout Button */
+.logout:hover {
+    background-color: #b0b0b0; /* Darken background on hover */
 }
 
-.result.correct {
-    color: green;
+/* Navbar Link Container */
+.nav-links {
+    display: flex;
+    list-style: none;
+    flex-grow: 1; 
+    justify-content: center; 
 }
 
-.result.incorrect {
+/* Navbar Links */
+.nav-links li {
+    margin: 0 20px; 
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: white;
+    font-size: 30px; 
+    padding: 12px 20px; 
+}
+
+.nav-links a:hover {
     color: rgb(128,0,32);
 }
 
-/* Responsive Design */
-@media (max-width: 600px) {
-    .quiz-container {
-        padding: 15px;
-    }
 
-    h1 {
-        font-size: 20px;
-    }
+.question {
+    display: flex;
+    flex-direction: column; /* Stack questions vertically */
+    gap: 15px; /* Space between questions */
+}
+
+.question div {
+    display: flex;
+    flex-direction: row; /* Align label and radio button horizontally */
+    align-items: center; /* Vertically center radio button with label text */
+}
+
+.question label {
+    font-size: 20px;
+    cursor: pointer;
+    color: #555;
+    display: flex;
+    align-items: center; /* Align radio button and label text vertically */
+}
+
+.question input[type="radio"] {
+    margin-right: 10px; /* Space between radio button and label text */
+    width: 15px;
+    height: 15px;
+    vertical-align: middle; /* Align radio button vertically with text */
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-between; /* Space buttons evenly */
+    margin-top: 20px; /* Space above buttons */
+}
+
+#quizContainer {
+    width: 100%;
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.btn-primary, .btn-secondary, .btn-success {
+    justify-content: center;
+    display: flex;
+    width :300px;
+    text-decoration: none;
+    background-color: rgb(128,0,32); 
+    color: white; 
+    padding: 10px;
+    border-radius: 30px; 
+    font-size: 18px;
+    font-weight: bold;
+    margin:0 auto;
+    border: none;           /* Remove the border */
+    outline: none;          /* Remove the outline */
+    box-shadow: none;
+    
+}
+
+.button-container {
+    display: flex;
+    flex-direction: column; /* Change direction to column to stack buttons vertically */
+    justify-content: center; /* Center buttons horizontally (if you want to keep this behavior) */
+    align-items: center; /* Center buttons vertically */
+    gap: 10px; /* Space between buttons */
+    margin-top: 20px;
+}
+
+button {
+    margin: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 10px;
+    width: 150px;  
+}
+
+.btn-primary:hover, .btn-secondary:hover, .btn-success:hover {
+    background-color:darkgray; 
 }
