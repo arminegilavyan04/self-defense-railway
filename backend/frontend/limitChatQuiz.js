@@ -42,7 +42,7 @@ window.onload = function () {
 // Function for Login/Register action
 function loginRegister() {
     // Show the login/register modal or trigger the login/register page logic
-    window.location.href = 'login-register.html';  // Or show the login modal directly
+    window.location.href = 'login.html';  // Or show the login modal directly
 }
 
 // Function for logout action
