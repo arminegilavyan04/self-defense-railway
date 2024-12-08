@@ -126,3 +126,20 @@ form button:active {
         font-size: 14px;
     }
 }
+.login-btn-primary {
+    justify-content: center;
+    display: flex;
+    width :300px;
+    text-decoration: none;
+    background-color: rgb(128,0,32); 
+    color: white; 
+    padding: 10px;
+    border-radius: 30px; 
+    font-size: 18px;
+    font-weight: bold;
+    margin:0 auto;
+    border: none;           /* Remove the border */
+    outline: none;          /* Remove the outline */
+    box-shadow: none;
+    
+}
