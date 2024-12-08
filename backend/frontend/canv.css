@@ -98,6 +98,7 @@ p {
     color:  rgb(128,0,32);
 }
 
+
 .login-register a {
     text-decoration: none;
     background-color: rgb(128,0,32);
@@ -111,6 +112,26 @@ p {
 
 .login-register a:hover {
     background-color: grey;
+}
+.about-login-btn {
+    /* justify-content: center;    
+    width :auto;
+    background-color: rgb(128,0,32); 
+    color: white; 
+   
+    border-radius: 30px; 
+    font-size: 18px;
+    font-weight: bold; */
+    width :auto;
+    text-decoration: none;
+    background-color: rgb(128,0,32);
+    color: white;
+    padding: 10px 20px; 
+    border-radius: 30px;
+    font-size: 25px; 
+    font-weight: bold;
+    margin-right: 20px;    
+   
 }
 
 .get-started-btn {
@@ -446,6 +467,7 @@ button {
     font-size: 16px;
     margin-top: 20px;
 }
+
 #login-warning {
     display: none;
     position: fixed;
