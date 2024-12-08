@@ -23,9 +23,9 @@
     <div class="person-icon" onclick="toggleDropdown()">
       <img src="person-icon.png" alt="Person Icon" class="person-icon img">
       <div class="dropdown-menu" id="dropdown-menu">
-        <a href="index.html">Log out</a>
+        <div class="logout" onclick="logout()">Log out</div>
       </div>
-   </div>
+  </div>
     <div class="flag-icon">
       <img src="armenian-flag.png" alt="Armenian Flag">
     </div>
@@ -49,14 +49,12 @@
   <script>
     function toggleDropdown() {
       const dropdown = document.getElementById('dropdown-menu');
-        dropdown.classList.toggle('show'); 
+      dropdown.classList.toggle('show'); 
     }
-    
-        
     window.onclick = function(event) {
       const dropdown = document.getElementById('dropdown-menu');
       const personIcon = document.querySelector('.person-icon');
-       if (!personIcon.contains(event.target)) {
+      if (!personIcon.contains(event.target)) {
         dropdown.classList.remove('show'); 
       }
     }
