@@ -95,7 +95,7 @@ p {
 }
 
 .nav-links a:hover {
-    color: red;
+    color:  rgb(128,0,32);
 }
 
 .login-register a {
@@ -201,7 +201,7 @@ p {
 
 .vr-text-container p {
     font-size: 18px; /* Regular paragraph font size */
-    color: red; /* Red color for the construction message */
+    color:  rgb(128,0,32); /* Red color for the construction message */
 }
 
 
@@ -223,20 +223,20 @@ p {
     align-items: center;                     /* Center the content horizontally */
     height: 100vh;                           /* Take up the full viewport height */
     text-align: center;                      /* Center text inside the container */
-    padding: 20px;                           /* 
+    padding: 20px;                           
 }
 
 .chat-text-container {
-    font-size: 30px;                         /* Larger font size for the first text */
-    color: #333;                             /* Dark text color */
-    margin-bottom: 20px;                     /* Space below the text */
+    font-size: 30px;                         
+    color: #333;                            
+    margin-bottom: 20px;                     
 }
 
 .chat-btn-secondary {
     display: inline-block;                   /* Ensure the button-like text is inline */
     font-size: 20px;                         /* Font size for the button text */
     color: white;                            /* Text color for the button */
-    background-color: red;                  /* Background color for the button */
+    background-color: rgb(128,0,32);                /* Background color for the button */
     padding: 12px 25px;                      /* Padding for the button */
     border-radius: 30px;                     /* Rounded corners for the button */
     cursor: pointer;                         /* Pointer cursor on hover */
@@ -422,7 +422,7 @@ button {
 }
 
 .btn-primary:hover, .btn-secondary:hover, .btn-success:hover {
-    background-color: darkred;
+    background-color:darkgray; 
 }
 
 .result {
