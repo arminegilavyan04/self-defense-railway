@@ -318,8 +318,8 @@ p {
 }
 
 .nav-links a.active {
-    color: red;
-    border-bottom: 2px solid red;
+    color:  rgb(128,0,32); 
+    border-bottom: 2px solid  rgb(128,0,32); 
     padding-bottom: 8px;
 }
 
@@ -394,7 +394,7 @@ p {
     display: flex;
     width :300px;
     text-decoration: none;
-    background-color: red; 
+    background-color: rgb(128,0,32); 
     color: white; 
     padding: 10px;
     border-radius: 30px; 
@@ -437,12 +437,12 @@ button {
 }
 
 .incorrect {
-    color: red;
+    color:  rgb(128,0,32); 
     font-weight: bold;
 }
 
 #validationMessage {
-    color: red;
+    color: rgb(128,0,32); 
     font-size: 16px;
     margin-top: 20px;
 }
@@ -455,7 +455,7 @@ button {
     background-color: rgb(230, 104, 104);
     color: white;
     padding: 10px 20px;
-    border-radius: 5px;
+    border-radius: 20px;
     z-index: 1000;
 }
 
