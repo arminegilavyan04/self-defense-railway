@@ -1,5 +1,5 @@
 /* Container for the image and text */
-.content-container {
+.about-container {
     display: flex; /* Enables Flexbox layout */
     justify-content: space-between; /* Spaces out the items */
     align-items: flex-start; /* Aligns the image and text to the top */
@@ -18,7 +18,7 @@
 .about-image {
     width: 100%; /* Image takes up 100% of the container width */
     max-width: 600px; 
-    height: 800px; /* Maintain aspect ratio */
+    height: 720px; /* Maintain aspect ratio */
     border-radius: 20px; 
 }
 
