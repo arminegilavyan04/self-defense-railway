@@ -69,8 +69,8 @@ $(document).ready(function () {
             success: function (data) {
                 console.log('Login successful:', data); // Check if the server sends the expected data
                 
-                localStorage.setItem('userLoggedIn', true); 
-                localStorage.setItem('user', JSON.stringify(data.user)); 
+                sessionStorage.setItem('userLoggedIn', true); 
+                sessionStorage.setItem('user', JSON.stringify(data.user)); 
                 
                 console.log('Redirecting to home.html');
                 window.location.href = 'home.html';

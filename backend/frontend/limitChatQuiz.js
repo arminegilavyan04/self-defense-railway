@@ -1,5 +1,5 @@
 window.onload = function () {
-    const isLoggedIn = localStorage.getItem('userLoggedIn') === 'true';
+    const isLoggedIn = sessionStorage.getItem('userLoggedIn') === 'true';
     
     // Get the warning element
     const loginWarning = document.getElementById('login-warning');
