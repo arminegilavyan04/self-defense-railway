@@ -5,7 +5,7 @@
     flex-direction: column;                /* Stack the elements vertically */
     padding: 20px;
     height: 100vh;                         /* Ensure the container takes full viewport height */
-    gap: 20px;                             /* Add space between image and button */
+    gap: 10px;                             /* Add space between image and button */
     text-align: center;                    /* Center text inside the container */
 }
 
@@ -13,24 +13,24 @@
     display: flex;
     justify-content: center;               /* Center the image horizontally */
     align-items: center;                   /* Center the image vertically */
-    margin-bottom: 20px;                   /* Space between image and button */
+                     /* Space between image and button */
 }
 
 .coach-image {
     max-width: 100%; 
-    width: 300px;                      /* Ensure image doesn't overflow */
-    height: auto;                          /* Maintain the aspect ratio */
+    width: 450px;                      /* Ensure image doesn't overflow */
+    height: 550px;                          /* Maintain the aspect ratio */
     border-radius: 20px;                   /* Optional: round the corners of the image */
 }
 
 .result-text-container {
     font-size: 18px;                       /* Style the result text */
     color: #333;                           /* Dark color for text */
-    margin-bottom: 10px;                   /* Space before the button */
+    margin-bottom: 5px;                   /* Space before the button */
 }
 
 .res-btn-primary {
-    background-color: #ff0000;             /* Red button color */
+    background-color: rgb(128,0,32);             /* Red button color */
     color: white;
     font-size: 18px;
     padding: 12px 24px;                    /* Button padding */
@@ -38,9 +38,12 @@
     text-decoration: none;                 /* Remove underline from the link */
     width: 200px;                          /* Set width for the button */
     display: inline-block;
-    text-align: center;                    /* Center text inside button */
+    text-align: center;
+    border: none;           /* Remove the border */
+    outline: none;          /* Remove the outline */
+    box-shadow: none;                   /* Center text inside button */
 }
 
 .res-btn-primary:hover {
-    background-color: darkred;             /* Darken button color on hover */
+    background-color: darkgray;             /* Darken button color on hover */
 }

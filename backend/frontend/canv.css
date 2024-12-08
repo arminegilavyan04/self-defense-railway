@@ -426,7 +426,10 @@ p {
     font-size: 18px;
     font-weight: bold;
     margin:0 auto;
-    transition: background-color 0.3s ease;
+    border: none;           /* Remove the border */
+    outline: none;          /* Remove the outline */
+    box-shadow: none;
+    
 }
 
 .button-container {
