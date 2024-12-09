@@ -43,7 +43,7 @@ body {
 }
 
 h3 {
-    font-size: 50px; 
+    font-size: 30px; 
     color: #333;
     font-weight: bold;
     margin-bottom: 20px;
@@ -178,7 +178,7 @@ p {
 }
 
 .question div {
-    font-size: 50px;
+    font-size: 30px;
     display: flex;
     flex-direction: row;  
     align-items: center;   
@@ -212,7 +212,7 @@ p {
     justify-content: flex-start; 
     align-items: flex-start;   
     height: 100%;  
-    padding-top: 30px;;          
+    padding-bottom:200px;;          
 }
 
 .btn-primary, .btn-secondary, .btn-success {
@@ -226,22 +226,21 @@ p {
     border-radius: 30px;
     font-size: 18px;
     font-weight: bold;
-    margin-top: 20px;            
+    margin-top: 0;            
     margin-bottom: 10px;           
     border: none;
     outline: none;
-    box-shadow: none;
-    
+    box-shadow: none;    
     margin-left: 200px;   
 }
 
 .button-container {
-    display: block;
+    display: flex;
     flex-direction: column;      
     justify-content: flex-start; 
     align-items: flex-start;      
-    gap: 10px;                     
-    margin-top: 20px;             
+    gap: 5px;                     
+    margin-bottom: 200px;             
     width: 100%;                    
 }
 
