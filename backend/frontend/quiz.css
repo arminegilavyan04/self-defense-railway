@@ -15,7 +15,7 @@ body {
     justify-content: flex-start;
     padding: 0;
     margin: 0;
-    height: 100vh; /* Ensure the body takes up the full height of the viewport */
+    min-height: 100vh; /* Ensure the body takes up the full height of the viewport */
 }
 
 
@@ -43,15 +43,16 @@ body {
     border-radius: 20px;
 }
 
-h1 {
+h3 {
     font-size: 50px; 
     color: #333;
     font-weight: bold;
     margin-bottom: 20px;
 }
 
+
 p {
-    font-size: 20px; 
+    font-size: 50px; 
     color: black;
     margin-bottom: 30px;
 }
@@ -190,6 +191,7 @@ p {
 
 /* Individual Question Styling (Radio buttons and labels) */
 .question div {
+    font-size: 50px;
     display: flex;
     flex-direction: row;     /* Align radio button and label horizontally */
     align-items: center;     /* Vertically center radio button with label text */
@@ -220,7 +222,7 @@ p {
     margin-bottom: 10px;
 }
 
-.quiz-content {
+.quiz-content {    
     display: flex;
     flex-direction: column;    /* Stack questions vertically */
     justify-content: flex-start; /* Align all children (questions) to the top */
