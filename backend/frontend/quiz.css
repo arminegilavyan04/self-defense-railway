@@ -49,7 +49,6 @@ h3 {
     margin-bottom: 20px;
 }
 
-
 p {
     font-size: 50px; 
     color: black;
@@ -170,30 +169,27 @@ p {
 
 .question {
     display: flex;
-    flex-direction: column; 
-    gap: 15px;               
+    flex-direction: column;  /* Ensures the questions are stacked vertically */
+    gap: 15px;               /* Adds space between questions */
     text-align: left;        
     padding-left: 20px;     
     margin-bottom: 15px;  
 }
 
 .question div {
-    font-size: 30px;
-    display: flex;
-    flex-direction: row;  
-    align-items: center;   
-    gap: 10px; 
-    align-self: flex-start;       
+    display: block;          /* Makes each option on a new line */
 }
 
 .question label {
     font-size: 20px;
     cursor: pointer;
     color: #555;
-    display: inline-block;
+    display: inline-block; 
+    padding-bottom: 5px;   /* Ensures the label and radio button are on the same line */
 }
 
 .question input[type="radio"] {
+    outline: none; 
     width: 20px; 
     height: 20px;
     margin-right: 10px; 
@@ -212,7 +208,7 @@ p {
     justify-content: flex-start; 
     align-items: flex-start;   
     height: 100%;  
-    padding-bottom:200px;;          
+    padding-bottom: 200px;           
 }
 
 .btn-primary, .btn-secondary, .btn-success {
