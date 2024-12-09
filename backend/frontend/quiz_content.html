@@ -39,7 +39,7 @@
   <div id="validationMessage" class="text-danger"></div>
   <div id="result" style="display:none;"></div>
 
-  <!-- <script>
+  <script>
     if (sessionStorage.getItem("quizStarted") !== "true") {
         window.location.href = "quiz.html"; 
     } 
@@ -50,37 +50,19 @@
     };
   
     history.pushState(null, null, location.href); 
-  </script> -->
-
- 
+  </script> 
   <script>
     function toggleDropdown() {
-    const dropdown = document.getElementById('dropdown-menu');
-    dropdown.classList.toggle('show'); 
-      }
-
+      const dropdown = document.getElementById('dropdown-menu');
+      dropdown.classList.toggle('show'); 
+    }
     window.onclick = function(event) {
-          const dropdown = document.getElementById('dropdown-menu');
-          const personIcon = document.querySelector('.person-icon');
-          
-          if (!personIcon.contains(event.target) && !dropdown.contains(event.target)) {
-              dropdown.classList.remove('show');
-          }
-      };
-
-      if (sessionStorage.getItem("quizStarted") !== "true") {
-          window.location.href = "quiz.html"; 
+      const dropdown = document.getElementById('dropdown-menu');
+      const personIcon = document.querySelector('.person-icon');
+      if (!personIcon.contains(event.target)) {
+        dropdown.classList.remove('show'); 
       }
-
-      window.onpopstate = function(event) {
-          
-          sessionStorage.removeItem("quizStarted");          
-          
-          window.location.href = "quiz.html";
-      };
-
-      history.pushState(null, null, location.href); 
-
+    }
   </script>
 
   
