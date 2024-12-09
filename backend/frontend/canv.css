@@ -172,6 +172,7 @@ p {
 }
 
 .image {
+    flex-direction: row;
     width: 100%;
     height: 600px;
     max-width: 800px; 
@@ -234,6 +235,12 @@ p {
     align-items: center; 
     text-align: center; 
 }
+.coach-image-chat {
+    width: 320px;
+    height: 400px;
+    max-width: 100%; 
+    border-radius: 20px;  
+}
 
 #chat-content {
     display: flex;                          
@@ -246,9 +253,10 @@ p {
 }
 
 .chat-text-container {
+    max-width: 1000px;
     font-size: 30px;                         
     color: #333;                            
-    margin-bottom: 20px;                     
+    margin-top: 20px;                     
 }
 
 .chat-btn-secondary {
