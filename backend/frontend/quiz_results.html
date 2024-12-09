@@ -44,24 +44,20 @@
         if (result) {
             const scoreMessage = `Your score is ${result.score} out of ${result.totalQuestions}.`;
             let personalizedMessage = '';
-            let coachImage = ''; // Variable to hold the image URL
-
-            // Determine personalized message and coach image based on score
+            let coachImage = ''; 
+            
             if (result.score >= 6) {
                 personalizedMessage = 'Excellent job! Just a few final steps to finish. Please contact our coach, Morgan Fireman, for further assistance';
-                coachImage = 'coach_1.png'; // Replace with the path to the image for Morgan Fireman
+                coachImage = 'coach_1.png'; 
             } else if (result.score >= 1) {
                 personalizedMessage = 'Good effort! You’re almost there! Please contact our coach, Michael Levis, for further assistance';
-                coachImage = 'coach_2.png'; // Replace with the path to the image for Michael Levis
+                coachImage = 'coach_2.png'; 
             } else {
                 personalizedMessage = 'Please contact our coach, Devis More, for further assistance.';
-                coachImage = 'coach_3.png'; // Replace with the path to the image for Devis More
+                coachImage = 'coach_3.png'; 
             }
-
-            // Display score and personalized message
             document.getElementById('result').innerHTML = `<p>${scoreMessage}<br>${personalizedMessage}</p>`;
 
-            // Display the coach's image
             const imageContainer = document.createElement('div');
             imageContainer.classList.add('coach-image-container');
             const imageElement = document.createElement('img');
@@ -75,9 +71,8 @@
             document.getElementById('result').innerHTML = 'No results available. Please complete the quiz.';
         }
 
-        // Optional: go to chat page function
         function goTo() {
-            loadPage('chat'); // Redirect to the chat page (adjust URL accordingly)
+            loadPage('chat'); 
         }
     </script>
     <script src="quiz.js"></script> 

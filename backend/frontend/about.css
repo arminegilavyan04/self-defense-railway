@@ -1,46 +1,41 @@
-/* Container for the image and text */
 .about-container {
-    display: flex; /* Enables Flexbox layout */
-    justify-content: space-between; /* Spaces out the items */
-    align-items: flex-start; /* Aligns the image and text to the top */
-    padding: 40px 40px 20px 20px; /* Optional padding for spacing */
+    display: flex; 
+    justify-content: space-between; 
+    align-items: flex-start; 
+    padding: 40px 40px 20px 20px; 
 }
 
-/* Image container (left side) */
 .about-image-container {
-    flex: 1; /* Takes up 1/2 of the available space */
+    flex: 1; 
     display: flex;
-    justify-content: center; /* Center the image horizontally */
-    align-items: center; /* Center the image vertically */
+    justify-content: center; 
+    align-items: center; 
 }
 
-/* Image styling */
 .about-image {
-    width: 100%; /* Image takes up 100% of the container width */
+    width: 100%; 
     max-width: 600px; 
-    height: 720px; /* Maintain aspect ratio */
+    height: 720px; 
     border-radius: 20px; 
 }
 
-/* Text container (right side) */
 .about-text-container {
-    flex: 1; /* Takes up 1.5 times the space of the image */
+    flex: 1; 
     padding-left: 40px;
-    padding-top: 100px; /* Optional padding between the image and text */
+    padding-top: 100px;
     display: flex;
-    flex-direction: column; /* Stack text vertically */
+    flex-direction: column; 
     
 }
 
-/* Heading and Paragraph styling */
 h1, h3 {
+
     margin-bottom: 15px;
-     /* Space between headings */
 }
 
 p {
-    margin-bottom: 15px; /* Space between paragraphs */
-    font-size: 18px; /* Adjust text size */
+    margin-bottom: 15px; 
+    font-size: 18px; 
     color: #555;
 }
 

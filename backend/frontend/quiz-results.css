@@ -1,49 +1,49 @@
 .quiz-result-content {
-    display: flex;                        /* Use Flexbox for layout */
-    justify-content: center;               /* Center the content horizontally */
-    align-items: center;                   /* Center the content vertically */
-    flex-direction: column;                /* Stack the elements vertically */
+    display: flex;                    
+    justify-content: center;               
+    align-items: center;                   
+    flex-direction: column;                
     padding: 20px;
-    height: 100vh;                         /* Ensure the container takes full viewport height */
-    gap: 10px;                             /* Add space between image and button */
-    text-align: center;                    /* Center text inside the container */
+    height: 100vh;                         
+    gap: 10px;                             
+    text-align: center;                    
 }
 
 .coach-image-container {
     display: flex;
-    justify-content: center;               /* Center the image horizontally */
-    align-items: center;                   /* Center the image vertically */
-                     /* Space between image and button */
+    justify-content: center;               
+    align-items: center;                   
+                   
 }
 
 .coach-image {
     max-width: 100%; 
-    width: 450px;                      /* Ensure image doesn't overflow */
-    height: 550px;                          /* Maintain the aspect ratio */
-    border-radius: 20px;                   /* Optional: round the corners of the image */
+    width: 450px;                      
+    height: 550px;                         
+    border-radius: 20px;                 
 }
 
 .result-text-container {
-    font-size: 18px;                       /* Style the result text */
-    color: #333;                           /* Dark color for text */
-    margin-bottom: 5px;                   /* Space before the button */
+    font-size: 18px;                       
+    color: #333;                           
+    margin-bottom: 5px;                   
 }
 
 .res-btn-primary {
-    background-color: rgb(128,0,32);             /* Red button color */
+    background-color: rgb(128,0,32);           
     color: white;
     font-size: 18px;
-    padding: 12px 24px;                    /* Button padding */
+    padding: 12px 24px;                   
     border-radius: 30px;
-    text-decoration: none;                 /* Remove underline from the link */
-    width: 200px;                          /* Set width for the button */
+    text-decoration: none;                 
+    width: 200px;                          
     display: inline-block;
     text-align: center;
-    border: none;           /* Remove the border */
-    outline: none;          /* Remove the outline */
-    box-shadow: none;                   /* Center text inside button */
+    border: none;         
+    outline: none;          
+    box-shadow: none;                 
 }
 
 .res-btn-primary:hover {
-    background-color: darkgray;             /* Darken button color on hover */
+    background-color: darkgray;          
 }

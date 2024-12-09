@@ -67,7 +67,7 @@ $(document).ready(function () {
             contentType: 'application/json',
             data: JSON.stringify({ email, password }),
             success: function (data) {
-                console.log('Login successful:', data); // Check if the server sends the expected data
+                console.log('Login successful:', data); 
                 
                 sessionStorage.setItem('userLoggedIn', true); 
                 sessionStorage.setItem('user', JSON.stringify(data.user)); 
