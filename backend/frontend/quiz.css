@@ -6,14 +6,18 @@
 
 body {
     font-family: Arial, sans-serif;
-    background-color: #cecdcd;
+    background-image: url('quiz_background.png');
+    background-size: cover;      /* Ensures the image covers the entire body */
+    background-position: center; /* Centers the image */
+    background-repeat: no-repeat; /* Prevents the image from repeating */
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     padding: 0;
     margin: 0;
-    height: auto; /* Allow body height to grow naturally */
+    height: 100vh; /* Ensure the body takes up the full height of the viewport */
 }
+
 
 #dynamic-content {
     width: 100%;
@@ -175,74 +179,86 @@ p {
     color: rgb(128,0,32);
 }
 
-
 .question {
     display: flex;
-    flex-direction: column; /* Stack questions vertically */
-    gap: 15px; /* Space between questions */
+    flex-direction: column;  /* Stack questions vertically */
+    gap: 15px;               /* Space between questions */
+    text-align: left;        /* Left-align text inside questions */
+    padding-left: 20px;      /* Add padding to the left for spacing */
+    margin-bottom: 15px;     /* Space between individual questions */
 }
 
+/* Individual Question Styling (Radio buttons and labels) */
 .question div {
     display: flex;
-    flex-direction: row; /* Align label and radio button horizontally */
-    align-items: center; /* Vertically center radio button with label text */
+    flex-direction: row;     /* Align radio button and label horizontally */
+    align-items: center;     /* Vertically center radio button with label text */
+    gap: 10px; 
+    align-self: flex-start;               /* Space between radio button and label */
 }
 
+/* Label Styling */
 .question label {
     font-size: 20px;
     cursor: pointer;
     color: #555;
-    display: flex;
-    align-items: center; /* Align radio button and label text vertically */
+    display: inline-block;
 }
 
+/* Radio Button Styling */
 .question input[type="radio"] {
+    width: 20px; /* Slightly larger radio button */
+    height: 20px;
     margin-right: 10px; /* Space between radio button and label text */
-    width: 15px;
-    height: 15px;
     vertical-align: middle; /* Align radio button vertically with text */
 }
 
-.button-container {
-    display: flex;
-    justify-content: space-between; /* Space buttons evenly */
-    margin-top: 20px; /* Space above buttons */
+/* Optional: Adjust the spacing of the question text (if you use <p> for questions) */
+.question p {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 10px;
 }
 
-#quizContainer {
-    width: 100%;
-    max-width: 600px;
-    margin: 20px auto;
-    padding: 20px;
+.quiz-content {
     display: flex;
-    flex-direction: column;
-    gap: 20px;
+    flex-direction: column;    /* Stack questions vertically */
+    justify-content: flex-start; /* Align all children (questions) to the top */
+    align-items: flex-start;    /* Align items to the left */
+    height: 100%;  
+    padding-top: 30px;;             /* Ensure it takes up the full height of the container */
 }
+
+
+/* Button Styling */
 .btn-primary, .btn-secondary, .btn-success {
     justify-content: center;
     display: flex;
-    width :300px;
+    width: 300px;                  /* Control the width of the buttons */
     text-decoration: none;
-    background-color: rgb(128,0,32); 
-    color: white; 
+    background-color: rgb(128, 0, 32);
+    color: white;
     padding: 10px;
-    border-radius: 30px; 
+    border-radius: 30px;
     font-size: 18px;
     font-weight: bold;
-    margin:0 auto;
-    border: none;           /* Remove the border */
-    outline: none;          /* Remove the outline */
+    margin-top: 20px;              /* Add some space above buttons */
+    margin-bottom: 10px;           /* Add some space below buttons */
+    border: none;
+    outline: none;
     box-shadow: none;
     
+    margin-left: 200px;     /* Align buttons to the left (same as questions) */
 }
 
 .button-container {
-    display: flex;
-    flex-direction: column; /* Change direction to column to stack buttons vertically */
-    justify-content: center; /* Center buttons horizontally (if you want to keep this behavior) */
-    align-items: center; /* Center buttons vertically */
-    gap: 10px; /* Space between buttons */
-    margin-top: 20px;
+    display: block;
+    flex-direction: column;        /* Stack buttons vertically */
+    justify-content: flex-start;   /* Align buttons to the top */
+    align-items: flex-start;       /* Align buttons to the left */
+    gap: 10px;                     /* Space between buttons */
+    margin-top: 20px;               /* Space above the buttons */
+    width: 100%;                    /* Ensure full-width for alignment */
 }
 
 button {
@@ -250,9 +266,9 @@ button {
     padding: 10px 20px;
     font-size: 16px;
     border-radius: 10px;
-    width: 150px;  
+    width: 150px;
 }
 
 .btn-primary:hover, .btn-secondary:hover, .btn-success:hover {
-    background-color:darkgray; 
+    background-color: darkgray;
 }

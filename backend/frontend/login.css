@@ -95,7 +95,7 @@ form button {
 }
 
 form button:hover {
-    background-color: darkgray; /* Lighter red on hover */
+    background-color: darkred; /* Lighter red on hover */
 }
 
 form button:active {
@@ -142,4 +142,7 @@ form button:active {
     outline: none;          /* Remove the outline */
     box-shadow: none;
     
+}
+.login-btn-primary:hover {
+    background-color: darkgray; 
 }
