@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quiz</title>   
-    <link rel="stylesheet" href="quiz.css"> 
-    <script src="quiz.js"></script>  <!-- Ensure quiz.js is correctly linked -->
+    <link rel="stylesheet" href="quiz_content.css"> 
+    <script src="quiz.js"></script>  
 </head>
 
 <body>
@@ -59,27 +59,23 @@
     dropdown.classList.toggle('show'); 
       }
 
-      // Close the dropdown if the user clicks anywhere outside of the person icon
     window.onclick = function(event) {
           const dropdown = document.getElementById('dropdown-menu');
           const personIcon = document.querySelector('.person-icon');
           
-          // Close the dropdown if the clicked target is not the person icon or dropdown menu
           if (!personIcon.contains(event.target) && !dropdown.contains(event.target)) {
               dropdown.classList.remove('show');
           }
       };
 
-      // Optional: Prevent the default behavior for back button if session storage is set
       if (sessionStorage.getItem("quizStarted") !== "true") {
           window.location.href = "quiz.html"; 
       }
 
       window.onpopstate = function(event) {
-          // Clear sessionStorage when trying to go back
-          sessionStorage.removeItem("quizStarted");
           
-          // Redirect to quiz.html when the user tries to go back
+          sessionStorage.removeItem("quizStarted");          
+          
           window.location.href = "quiz.html";
       };
 
