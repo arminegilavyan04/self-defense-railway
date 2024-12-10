@@ -169,15 +169,15 @@ p {
 
 .question {
     display: flex;
-    flex-direction: column;  /* Ensures the questions are stacked vertically */
-    gap: 15px;               /* Adds space between questions */
+    flex-direction: column;  
+    gap: 15px;               
     text-align: left;        
     padding-left: 20px;     
     margin-bottom: 15px;  
 }
 
 .question div {
-    display: block;          /* Makes each option on a new line */
+    display: block;        
 }
 
 .question label {
