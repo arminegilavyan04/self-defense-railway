@@ -5,6 +5,7 @@ function toggleDropdown() {
   function logout() {
 
     window.location.href = 'index.html';
+    sessionStorage.clear();
   }
   window.onclick = function(event) {
     const dropdown = document.getElementById('dropdown-menu');
