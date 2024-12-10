@@ -22,7 +22,7 @@
 .about-text-container {
     flex: 1; 
     padding-left: 40px;
-    padding-top: 100px;
+    padding-top: 50px;
     display: flex;
     flex-direction: column; 
     

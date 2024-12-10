@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
         q9: 'a',
         q10: 'a',
         q11: 'a',
+        q12: 'a'
     };
 
     let currentQuestionIndex = 0;
@@ -73,6 +74,11 @@ document.addEventListener('DOMContentLoaded', function() {
             question: 'How do you react in high-pressure situations?',
             options: ['I stay calm and think logically', 'I stay calm and think logically', 'I panic and struggle to respond'],
             id: 'q11'
+        },
+        {
+            question: 'If faced with danger, are you able to make quick decisions?',
+            options: ['Yes, I’m confident in my decisions', 'Sometimes, but I hesitate', 'No, I often feel paralyzed'],
+            id: 'q12'
         }
 
 
