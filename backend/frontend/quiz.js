@@ -6,7 +6,9 @@ document.addEventListener('DOMContentLoaded', function() {
         q4: 'a',
         q5: 'd',
         q6: 'b',
-        q7: 'a'
+        q7: 'a',
+        q8: 'b',
+        q9: 'c'
     };
 
     let currentQuestionIndex = 0;
@@ -16,51 +18,61 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const questions = [
         {
-            question: 'What is the first step in self-defense?',
-            options: ['Avoid confrontation', 'Strike first', 'Call for help', 'None of the above'],
+            question: 'Do you have a sports background?',
+            options: ['Yes, I regularly practice sports','Yes, but only occasionally','No, I don’t have any sports background'],
             id: 'q1'
         },
         {
-            question: 'When should you call for help?',
-            options: ['Before taking any action', 'When attacked', 'Only after striking', 'Never'],
+            question: 'Have you ever practiced any form of martial arts or self-defense training?',
+            options: ['Yes, I’m trained', 'I’ve tried it a few times ', 'No, never'],
             id: 'q2'
         },
         {
-            question: 'What is the best way to defend yourself against a chokehold?',
-            options: ['Punch the attacker', 'Use your hands to break the grip', 'Kick the attacker in the knee', 'None of the above'],
+            question: 'How physically active are you on a weekly basis?',
+            options: ['Very active (5+ days a week)', 'Moderately active (2–4 days a week)', 'Rarely active (1 day or less a week)'],
             id: 'q3'
         },
         {
-            question: 'Which of these is a common self-defense move?',
-            options: ['Palm strike', 'Kick to the chest', 'Chokehold', 'All of the above'],
+            question: 'Do you engage in regular strength or endurance training?',
+            options: ['Yes, frequently', 'Occasionally', 'No, never'],
             id: 'q4'
         },
         {
-            question: 'What should you do if someone is following you?',
-            options: ['Walk faster', 'Confront the person', 'Go to a public place', 'Ignore them'],
+            question: 'How would you rate your physical stamina in challenging situations? ',
+            options: ['High, I can last long under physical stress', 'Moderate, I can manage but not for long', 'Low, I struggle with physical stress'],
             id: 'q5'
         },
         {
-            question: 'How can you increase your situational awareness?',
-            options: ['Look at your phone', 'Walk with headphones on', 'Scan your surroundings', 'Ignore your environment'],
+            question: 'If someone suddenly approaches you aggressively, what would you do?',
+            options: ['Stay calm and prepare to defend myself', 'Look for an escape route', 'Freeze and hope the situation resolves itself'],
             id: 'q6'
         },
         {
-            question: 'What is the best way to stay safe when walking alone at night?',
-            options: ['Walk in isolated areas', 'Stay alert and keep your phone ready', 'Walk with a friend', 'None of the above'],
+            question: 'Are you comfortable using objects around you as tools for self-defense?',
+            options: ['Yes, I can improvise easily', 'Maybe, I’d need time to think', 'No, I wouldn’t know what to do'],
             id: 'q7'
+        },
+        {
+            question: 'How often do you plan an escape route when entering a new environment?',
+            options: ['Always, it’s a habit', 'Sometimes, when I feel uneasy', 'Rarely or never'],
+            id: 'q8'
+        },
+        {
+            question: 'If you suspect someone is following you, what’s your first response?',
+            options: ['Change my route and stay alert', 'Confront the person', 'Ignore and hope it’s nothing'],
+            id: 'q9'
         }
+
     ];
     
     function loadQuestion() {
-        console.log('Loading Question...');
     
         if (currentQuestionIndex >= totalQuestions) {
-            displayResult();  // Display the result when all questions are answered
+            displayResult();  
             return;
         }
     
-        const question = questions[currentQuestionIndex];  // Get the current question
+        const question = questions[currentQuestionIndex];  
         const questionHTML = `
             <div class="question">
                 <h3>${question.question}</h3> <br><br>
