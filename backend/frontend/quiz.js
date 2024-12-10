@@ -2,13 +2,13 @@ document.addEventListener('DOMContentLoaded', function() {
     const answers = {
         q1: 'a',
         q2: 'a',
-        q3: 'c',
+        q3: 'a',
         q4: 'a',
-        q5: 'd',
-        q6: 'b',
+        q5: 'a',
+        q6: 'a',
         q7: 'a',
-        q8: 'b',
-        q9: 'c'
+        q8: 'a',
+        q9: 'a'
     };
 
     let currentQuestionIndex = 0;
