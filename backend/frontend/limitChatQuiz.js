@@ -39,8 +39,8 @@ function loginRegister() {
     window.location.href = 'login.html';  
 }
 
-function logout() {
-    localStorage.removeItem('userLoggedIn');
-    localStorage.removeItem('user');
-    window.location.reload(); 
-}
+// function logout() {
+//     localStorage.removeItem('userLoggedIn');
+//     localStorage.removeItem('user');
+//     window.location.reload(); 
+// }
