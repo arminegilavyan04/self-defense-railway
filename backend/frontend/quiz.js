@@ -8,7 +8,9 @@ document.addEventListener('DOMContentLoaded', function() {
         q6: 'a',
         q7: 'a',
         q8: 'a',
-        q9: 'a'
+        q9: 'a',
+        q10: 'a',
+        q11: 'a',
     };
 
     let currentQuestionIndex = 0;
@@ -61,7 +63,18 @@ document.addEventListener('DOMContentLoaded', function() {
             question: 'If you suspect someone is following you, what’s your first response?',
             options: ['Change my route and stay alert', 'Confront the person', 'Ignore and hope it’s nothing'],
             id: 'q9'
+        },
+        {
+            question: 'How prepared are you to defend yourself in case of a physical confrontation?',
+            options: ['I feel very prepared', 'I feel somewhat prepared', 'I’m not prepared at all'],
+            id: 'q10'
+        },
+        {
+            question: 'How do you react in high-pressure situations?',
+            options: ['I stay calm and think logically', 'I stay calm and think logically', 'I panic and struggle to respond'],
+            id: 'q11'
         }
+
 
     ];
     
