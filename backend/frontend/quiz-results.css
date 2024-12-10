@@ -47,3 +47,24 @@
 .res-btn-primary:hover {
     background-color: darkgray;          
 }
+
+.logout {
+    color: #343435;
+    background-color: #cecdcd;
+    cursor: pointer;   
+    padding: 3px 3px;   
+    text-align: center;
+    align-items: center;    
+    
+}
+  
+  .logout:hover {
+    background-color:  #cecdcd;
+}
+
+.dropdown-menu {   
+    justify-content: center;
+    align-items: center; 
+    background-color: #cecdcd;
+
+}
