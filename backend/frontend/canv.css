@@ -236,14 +236,15 @@ p {
     text-align: center; 
 }
 .coach-image-chat {
-    width: 320px;
-    height: 400px;
+    width: 250px;
+    height: 450px;
     max-width: 100%; 
     border-radius: 20px;  
 }
 
 #chat-content {
-    display: flex;                          
+    display: flex;  
+    background-color: #f8f8f88e;                        
     flex-direction: column;                  
     justify-content: center;                 
     align-items: center;                     
