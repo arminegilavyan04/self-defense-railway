@@ -276,6 +276,13 @@ p {
     background-color: darkgray;                  
 }
 
+iframe {
+    border: none;
+    width: 350px;   /* Set your desired width */
+    height: 430px;  /* Set your desired height */
+    background-color: grey;
+}
+
 
 .quiz-container {
     padding: 40px 40px 40px 40px;
