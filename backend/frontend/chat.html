@@ -36,98 +36,48 @@
           Otherwise, take our <a href="quiz.html" style="color:rgb(128,0,32); font-weight:bold; text-decoration:none;">QUIZ</a> to help us match you with the coach best suited to your needs.
       </p>
       <p>
-          <!-- Image for Coach 1 -->
-          <img src="coach_1.png" alt="coach_1" class="coach-image-chat" id="coach_1_image">
-          <!-- Image for Coach 2 -->
+          <img src="coach_1.png" alt="coach_1" class="coach-image-chat" id="coach_1_image" onclick="openTawkChat()">
           <img src="coach_2.png" alt="coach_2" class="coach-image-chat" id="coach_2_image">
-          <!-- Image for Coach 3 -->
           <img src="coach_3.png" alt="coach_3" class="coach-image-chat" id="coach_3_image">
       </p>
-  
-      <!-- Coach 1's Chatbot -->
-      <div id="chatbot-container-coach_1" class="chatbot-container" style="display: none;">
-     <!--Start of Tawk.to Script-->
-          <script type="text/javascript">
-              var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-              (function(){
-              var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-              s1.async=true;
-              s1.src='https://embed.tawk.to/6758a23749e2fd8dfef5fa5d/1iep3jau7';
-              s1.charset='UTF-8';
-              s1.setAttribute('crossorigin','*');
-              s0.parentNode.insertBefore(s1,s0);
-              })();
-          </script>
-  <!--End of Tawk.to Script-->
-      </div>
-          
-      <!-- Coach 2's Chatbot -->
-      <div id="chatbot-container-coach_2" class="chatbot-container" style="display: none;">
-        <script type="text/javascript">
-          var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-          (function(){
-          var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-          s1.async=true;
-          s1.src='https://embed.tawk.to/6758a23749e2fd8dfef5fa5d/1iep3jau7';
-          s1.charset='UTF-8';
-          s1.setAttribute('crossorigin','*');
-          s0.parentNode.insertBefore(s1,s0);
-          })();
-      </script>
-  `</div>
-      <!-- Coach 3's Chatbot -->
-      <div id="chatbot-container-coach_3" class="chatbot-container" style="display: none;">
-        <script type="text/javascript">
-          var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-          (function(){
-          var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-          s1.async=true;
-          s1.src='https://embed.tawk.to/6758a23749e2fd8dfef5fa5d/1iep3jau7';
-          s1.charset='UTF-8';
-          s1.setAttribute('crossorigin','*');
-          s0.parentNode.insertBefore(s1,s0);
-          })();
-      </script>    
-      </div>
-  </div>
-  
-  <script>
-      // Get the coach image elements
-      const coach1Image = document.getElementById('coach_1_image');
-      const coach2Image = document.getElementById('coach_2_image');
-      const coach3Image = document.getElementById('coach_3_image');
-      
-      // Get the chatbot containers for each coach
-      const chatbotContainerCoach1 = document.getElementById('chatbot-container-coach_1');
-      const chatbotContainerCoach2 = document.getElementById('chatbot-container-coach_2');
-      const chatbotContainerCoach3 = document.getElementById('chatbot-container-coach_3');
-  
-      // Add click event listeners to coach images
-      coach1Image.addEventListener('click', function() {
-          // Hide all chatbots
-          chatbotContainerCoach1.style.display = 'block';
-          chatbotContainerCoach2.style.display = 'none';
-          chatbotContainerCoach3.style.display = 'none';
-      });
-  
-      coach2Image.addEventListener('click', function() {
-          // Hide all chatbots
-          chatbotContainerCoach1.style.display = 'none';
-          chatbotContainerCoach2.style.display = 'block';
-          chatbotContainerCoach3.style.display = 'none';
-      });
-  
-      coach3Image.addEventListener('click', function() {
-          // Hide all chatbots
-          chatbotContainerCoach1.style.display = 'none';
-          chatbotContainerCoach2.style.display = 'none';
-          chatbotContainerCoach3.style.display = 'block';
-      });
-  </script>
-  
+
+      <!-- Tawk.to Chat Container (Initially Hidden) -->
+      <div id="chatbot-container-coach_1" class="chatbot-container" style="display: none;"></div>
 
     <script src="script.js"></script>
-    <script src="toggle.js"></script>  
+    <script src="toggle.js"></script>
 
+    <!-- JavaScript to load Tawk.to only on click -->
+    <script>
+        function openTawkChat() {
+            // Show the chat container
+            document.getElementById("chatbot-container-coach_1").style.display = "block";
+
+            // Load Tawk.to script if it's not already loaded
+            if (typeof Tawk_API === 'undefined') {
+                var Tawk_API = Tawk_API || {};
+                var Tawk_LoadStart = new Date();
+                
+                var script = document.createElement("script");
+                script.async = true;
+                script.src = 'https://embed.tawk.to/6758a23749e2fd8dfef5fa5d/1iep3jau7';
+                script.charset = 'UTF-8';
+                script.setAttribute('crossorigin', '*');
+                document.getElementsByTagName('body')[0].appendChild(script);
+
+                // Wait until Tawk_API is fully loaded before calling methods
+                script.onload = function() {
+                    // Since we're using the free version, we don't use setAttributes
+                    // Simply call Tawk_API onLoad and make basic customizations
+                    if (Tawk_API) {
+                        Tawk_API.onLoad = function () {
+                            // Example of setting a simple offline message without attributes
+                            Tawk_API.setOfflineMessage('Sorry, we are currently offline. Leave a message!');
+                        };
+                    }
+                };
+            }
+        }
+    </script>
 </body>
 </html>
