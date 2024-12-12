@@ -47,13 +47,13 @@
             let coachImage = ''; 
             
             if (result.score >= 6) {
-                personalizedMessage = 'Excellent job! Just a few final steps to finish. Please contact our coach, John Doe, for further assistance';
+                personalizedMessage = 'Excellent job! Just a few final steps to finish. Please contact our coach, Ethan Miller, for further assistance';
                 coachImage = 'coach_1.png'; 
             } else if (result.score >= 1) {
-                personalizedMessage = 'Good effort! You’re almost there! Please contact our coach, Michael Levis, for further assistance';
+                personalizedMessage = 'Good effort! You’re almost there! Please contact our coach, Olivia Jhonson, for further assistance';
                 coachImage = 'coach_2.png'; 
             } else {
-                personalizedMessage = 'Please contact our coach, Devis More, for further assistance.';
+                personalizedMessage = 'Great job! To continue your journey in SafeSense please contact our coach, John Doe, for further assistance.';
                 coachImage = 'coach_3.png'; 
             }
             document.getElementById('result').innerHTML = `<p>${personalizedMessage}</p>`;
