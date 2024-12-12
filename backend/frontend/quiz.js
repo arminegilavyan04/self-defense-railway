@@ -1,17 +1,17 @@
 document.addEventListener('DOMContentLoaded', function() {
     const answers = {
         q1: 'a',
-        q2: 'a',
-        q3: 'a',
-        q4: 'a',
+        q2: 'c',
+        q3: 'b',
+        q4: 'b',
         q5: 'a',
         q6: 'a',
-        q7: 'a',
+        q7: 'b',
         q8: 'a',
-        q9: 'a',
+        q9: 'c',
         q10: 'a',
         q11: 'a',
-        q12: 'a'
+        q12: 'c'
     };
 
     let currentQuestionIndex = 0;
