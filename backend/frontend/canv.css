@@ -275,6 +275,9 @@ p {
 .chat-btn-secondary:hover {
     background-color: darkgray;                  
 }
+#chatbot-container {
+    display: none; 
+}
 
 iframe {
     border: none;
