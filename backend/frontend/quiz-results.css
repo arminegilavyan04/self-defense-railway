@@ -6,7 +6,8 @@
     padding: 20px;
     height: 100vh;                         
     gap: 10px;                             
-    text-align: center;                    
+    text-align: center;  
+    background-color: #c0bebe;                  
 }
 
 .coach-image-container {
