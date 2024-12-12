@@ -42,7 +42,7 @@
         const result = JSON.parse(sessionStorage.getItem('quizResult'));
 
         if (result) {
-            const scoreMessage = `Your score is ${result.score} out of ${result.totalQuestions}.`;
+            // const scoreMessage = `Your score is ${result.score} out of ${result.totalQuestions}.`;
             let personalizedMessage = '';
             let coachImage = ''; 
             
@@ -56,7 +56,7 @@
                 personalizedMessage = 'Please contact our coach, Devis More, for further assistance.';
                 coachImage = 'coach_3.png'; 
             }
-            document.getElementById('result').innerHTML = `<p>${scoreMessage}<br>${personalizedMessage}</p>`;
+            document.getElementById('result').innerHTML = `<p>${personalizedMessage}</p>`;
 
             const imageContainer = document.createElement('div');
             imageContainer.classList.add('coach-image-container');
