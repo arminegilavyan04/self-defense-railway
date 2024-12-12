@@ -17,6 +17,7 @@
 <!--Start of Tawk.to Script-->
 <!--Start of Tawk.to Script-->
 <!--Start of Tawk.to Script-->
+<!--Start of Tawk.to Script-->
 <script type="text/javascript">
   var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
   (function(){
@@ -27,7 +28,8 @@
   s1.setAttribute('crossorigin','*');
   s0.parentNode.insertBefore(s1,s0);
   })();
-  </script>
+</script>
+  <!--End of Tawk.to Script-->
   
   <!--End of Tawk.to Script-->
     <!-- End of Tawk.to Script -->
@@ -56,41 +58,93 @@
     </nav>
 
     <div id="chat-content" class="container">
-        <p class="chat-text-container" style="color:rgb(58, 57, 57);">
-            If you have a preferred coach, please select them from the options below. <br>
-            Otherwise, take our <a href="quiz.html" style="color:rgb(128,0,32); font-weight:bold; text-decoration:none;">QUIZ</a> to help us match you with the coach best suited to your needs.
-        </p>
-        <p>
-            <img src="coach_1.png" alt="coach_1" class="coach-image-chat">
-            <img src="coach_2.png" alt="coach_2" class="coach-image-chat">
-            <img src="coach_3.png" alt="coach_3" class="coach-image-chat">          
-        </p>
-
-        <!-- The chat widget will appear here when a coach image is clicked -->
-        <div id="chatbot-container">
-            <!-- The Tawk.to widget is loaded dynamically, this is only a placeholder container -->
-        </div>
-
-    </div>
-
-    <script>
-        // Select all images with the class 'coach-image-chat'
-        const coachImages = document.querySelectorAll('.coach-image-chat');
-
-        // Add click event listeners to all coach images
-        coachImages.forEach(image => {
-            image.addEventListener('click', function() {
-                // Show the Tawk.to chatbot when an image is clicked
-                const chatbotContainer = document.getElementById('chatbot-container');
-                chatbotContainer.style.display = 'block'; // Make the Tawk.to widget visible
-                
-                // Optionally, you could also trigger the Tawk.to chat manually after the container is visible
-                if (typeof Tawk_API !== 'undefined') {
-                    Tawk_API.toggle();  // This forces the chat window to open
-                }
-            });
-        });
-    </script>
+      <p class="chat-text-container" style="color:rgb(58, 57, 57);">
+          If you have a preferred coach, please select them from the options below. <br>
+          Otherwise, take our <a href="quiz.html" style="color:rgb(128,0,32); font-weight:bold; text-decoration:none;">QUIZ</a> to help us match you with the coach best suited to your needs.
+      </p>
+      <p>
+          <!-- Image for Coach 1 -->
+          <img src="coach_1.png" alt="coach_1" class="coach-image-chat" id="coach_1_image">
+          <!-- Image for Coach 2 -->
+          <img src="coach_2.png" alt="coach_2" class="coach-image-chat" id="coach_2_image">
+          <!-- Image for Coach 3 -->
+          <img src="coach_3.png" alt="coach_3" class="coach-image-chat" id="coach_3_image">
+      </p>
+  
+      <!-- Coach 1's Chatbot -->
+      <div id="chatbot-container-coach_1" class="chatbot-container" style="display: none;">
+        <div id='tawk_6758a23749e2fd8dfef5fa5d'></div>
+<!--Start of Tawk.to Script-->
+          <script type="text/javascript">
+              var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date(); Tawk_API.embedded='tawk_6758a23749e2fd8dfef5fa5d';
+              (function(){
+              var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+              s1.async=true;
+              s1.src='https://embed.tawk.to/6758a23749e2fd8dfef5fa5d/1iesmu9rn';
+              s1.charset='UTF-8';
+              s1.setAttribute('crossorigin','*');
+              s0.parentNode.insertBefore(s1,s0);})();
+          </script>
+<!--End of Tawk.to Script-->
+      </div>
+  
+      <!-- Coach 2's Chatbot -->
+      <div id="chatbot-container-coach_2" class="chatbot-container" style="display: none;">
+        <!--Start of Tawk.to Script-->
+<script type="text/javascript">
+    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+    (function(){
+    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+    s1.async=true;
+    s1.src='https://embed.tawk.to/6758a23749e2fd8dfef5fa5d/1iep3jau7';
+    s1.charset='UTF-8';
+    s1.setAttribute('crossorigin','*');
+    s0.parentNode.insertBefore(s1,s0);
+    })();
+  </script>
+  <!--End of Tawk.to Script-->
+      </div>
+  
+      <!-- Coach 3's Chatbot -->
+      <div id="chatbot-container-coach_3" class="chatbot-container" style="display: none;">
+         
+      </div>
+  </div>
+  
+  <script>
+      // Get the coach image elements
+      const coach1Image = document.getElementById('coach_1_image');
+      const coach2Image = document.getElementById('coach_2_image');
+      const coach3Image = document.getElementById('coach_3_image');
+      
+      // Get the chatbot containers for each coach
+      const chatbotContainerCoach1 = document.getElementById('chatbot-container-coach_1');
+      const chatbotContainerCoach2 = document.getElementById('chatbot-container-coach_2');
+      const chatbotContainerCoach3 = document.getElementById('chatbot-container-coach_3');
+  
+      // Add click event listeners to coach images
+      coach1Image.addEventListener('click', function() {
+          // Hide all chatbots
+          chatbotContainerCoach1.style.display = 'block';
+          chatbotContainerCoach2.style.display = 'none';
+          chatbotContainerCoach3.style.display = 'none';
+      });
+  
+      coach2Image.addEventListener('click', function() {
+          // Hide all chatbots
+          chatbotContainerCoach1.style.display = 'none';
+          chatbotContainerCoach2.style.display = 'block';
+          chatbotContainerCoach3.style.display = 'none';
+      });
+  
+      coach3Image.addEventListener('click', function() {
+          // Hide all chatbots
+          chatbotContainerCoach1.style.display = 'none';
+          chatbotContainerCoach2.style.display = 'none';
+          chatbotContainerCoach3.style.display = 'block';
+      });
+  </script>
+  
 
     <script src="script.js"></script>
     <script src="toggle.js"></script>  
