@@ -138,6 +138,7 @@ p {
     text-decoration: none;
     background-color: rgb(128,0,32);
     color: white;
+    cursor:pointer;
     font-size: 18px;
     padding: 12px 25px; 
     border-radius: 30px;

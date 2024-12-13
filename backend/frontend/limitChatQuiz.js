@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const quizLink = document.getElementById('quiz-link');
     const chatLink = document.getElementById('chat-link');
     const vrLink = document.getElementById('vr-link');
+    const getStarted = document.getElementById('get-started');
 
     console.log(quizLink, chatLink, vrLink); // Log elements to see if they exist
 
@@ -15,8 +16,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
     if (!isLoggedIn) {
         // Only add event listeners if elements exist
-        if (quizLink && chatLink && vrLink) {
-            [quizLink, chatLink, vrLink].forEach(link => {
+        if (quizLink && chatLink && vrLink && getStarted) {
+            [quizLink, chatLink, vrLink, getStarted].forEach(link => {
                 link.addEventListener('click', function(event) {
                     event.preventDefault(); // Prevent default link behavior
                     loginWarning.style.display = 'block'; // Show the login warning
