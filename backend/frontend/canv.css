@@ -221,7 +221,8 @@ p {
 }
 
 .vr-text-container p {
-    font-size: 18px; 
+    font-size: 40px;
+    font-weight: bold;
     color:  rgb(128,0,32); 
 }
 
