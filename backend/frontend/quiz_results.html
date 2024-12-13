@@ -45,20 +45,20 @@
         if (result) {
             let personalizedMessage = '';
             let coachImage = ''; 
-            let chatFunction = 'openTawkChat_3'; // Default to coach 3's function
+            let chatFunction = 'openTawkChat_3'; 
             
             if (result.score >= 25) {
                 personalizedMessage = 'Excellent job! Just a few final steps to finish. Please contact our coach, Ethan Miller, for further assistance';
                 coachImage = 'coach_1.png'; 
-                chatFunction = 'openTawkChat_1'; // Use function for coach 1
+                chatFunction = 'openTawkChat_1'; 
             } else if (result.score >= 15) {
                 personalizedMessage = 'Good effort! You’re almost there! Please contact our coach, Olivia Jhonson, for further assistance';
                 coachImage = 'coach_2.png'; 
-                chatFunction = 'openTawkChat_2'; // Use function for coach 2
+                chatFunction = 'openTawkChat_2'; 
             } else {
                 personalizedMessage = 'Great job! To continue your journey in SafeSense please contact our coach, John Doe, for further assistance.';
                 coachImage = 'coach_3.png'; 
-                chatFunction = 'openTawkChat_3'; // Use function for coach 3
+                chatFunction = 'openTawkChat_3'; 
             }
 
             document.getElementById('result').innerHTML = `<p>${personalizedMessage}</p>`;
@@ -73,7 +73,6 @@
             imageContainer.appendChild(imageElement);
             document.getElementById('result').appendChild(imageContainer);
 
-            // Modify the button to call the appropriate chat function
             const chatButton = document.querySelector('.res-btn-primary');
             chatButton.setAttribute('onclick', `${chatFunction}()`);
         } else {
