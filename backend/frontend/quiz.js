@@ -121,6 +121,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 // If it's the last question, hide the next button and show submit button
                 if (currentQuestionIndex === totalQuestions - 1) {
                     nextButton.style.display = 'none';  // Hide next button
+                    document.getElementById('retryButton').style.display = 'inline-block'; 
                     document.getElementById('finalSubmissionButton').style.display = 'inline-block';  // Show submit button
                 }
             });
