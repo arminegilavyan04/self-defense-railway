@@ -33,28 +33,34 @@
     </nav>
     <div class="quiz-result-content">
         <div class="result-text-container" id="result">Your result message here</div> 
-        <button class="res-btn-primary" onclick="openTawkChat()">Start Chatting</button>
+        <button class="res-btn-primary">Start Chatting</button>
         <div id="chatbot-container-coach_1" class="chatbot-container" style="display: none;"></div>
+        <div id="chatbot-container-coach_2" class="chatbot-container" style="display: none;"></div>
+        <div id="chatbot-container-coach_3" class="chatbot-container" style="display: none;"></div>
     </div>
     <script>
  
         const result = JSON.parse(sessionStorage.getItem('quizResult'));
 
         if (result) {
-            // const scoreMessage = `Your score is ${result.score} out of ${result.totalQuestions}.`;
             let personalizedMessage = '';
             let coachImage = ''; 
+            let chatFunction = 'openTawkChat_3'; // Default to coach 3's function
             
             if (result.score >= 25) {
                 personalizedMessage = 'Excellent job! Just a few final steps to finish. Please contact our coach, Ethan Miller, for further assistance';
                 coachImage = 'coach_1.png'; 
+                chatFunction = 'openTawkChat_1'; // Use function for coach 1
             } else if (result.score >= 15) {
                 personalizedMessage = 'Good effort! You’re almost there! Please contact our coach, Olivia Jhonson, for further assistance';
                 coachImage = 'coach_2.png'; 
+                chatFunction = 'openTawkChat_2'; // Use function for coach 2
             } else {
                 personalizedMessage = 'Great job! To continue your journey in SafeSense please contact our coach, John Doe, for further assistance.';
                 coachImage = 'coach_3.png'; 
+                chatFunction = 'openTawkChat_3'; // Use function for coach 3
             }
+
             document.getElementById('result').innerHTML = `<p>${personalizedMessage}</p>`;
 
             const imageContainer = document.createElement('div');
@@ -67,13 +73,13 @@
             imageContainer.appendChild(imageElement);
             document.getElementById('result').appendChild(imageContainer);
 
+            // Modify the button to call the appropriate chat function
+            const chatButton = document.querySelector('.res-btn-primary');
+            chatButton.setAttribute('onclick', `${chatFunction}()`);
         } else {
             document.getElementById('result').innerHTML = 'No results available. Please complete the quiz.';
         }
 
-        function goTo() {
-            loadPage('chat'); 
-        }
     </script>
     <script src="toggle.js"></script>
     <script src="quiz.js"></script> 
