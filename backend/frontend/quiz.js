@@ -106,6 +106,9 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('quizContainer').innerHTML = questionHTML;
 
         const radios = document.querySelectorAll(`input[name="${question.id}"]`);
+        const nextButton = document.getElementById('nextButton');
+        nextButton.style.display = 'none'; // Hide next button initially
+
         radios.forEach(radio => {
             radio.addEventListener('change', function() {
                 const selectedOption = this.value;
@@ -113,7 +116,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 score += questionScores[question.id][selectedOption];  // Update score based on selected option
 
                 // Show next button once an answer is selected
-                document.getElementById('nextButton').style.display = 'inline-block';
+                nextButton.style.display = 'inline-block';
+                
+                // If it's the last question, hide the next button and show submit button
+                if (currentQuestionIndex === totalQuestions - 1) {
+                    nextButton.style.display = 'none';  // Hide next button
+                    document.getElementById('finalSubmissionButton').style.display = 'inline-block';  // Show submit button
+                }
             });
         });
     }
@@ -122,9 +131,8 @@ document.addEventListener('DOMContentLoaded', function() {
         const result = document.getElementById('result');
         result.innerHTML = `You scored ${score} out of ${totalQuestions * 3}.`;  // Maximum possible score is 3 * totalQuestions
         result.classList.add(score === totalQuestions * 3 ? 'correct' : 'incorrect');
-        document.getElementById('retryButton').style.display = 'inline-block';
-        document.getElementById('finalSubmissionButton').style.display = 'inline-block';
-        document.getElementById('nextButton').style.display = 'none';
+        document.getElementById('retryButton').style.display = 'inline-block';  // Show retry button after completion
+        document.getElementById('finalSubmissionButton').style.display = 'inline-block';  // Show submit button
     }
 
     function retryButtonHandler() {
@@ -132,8 +140,8 @@ document.addEventListener('DOMContentLoaded', function() {
         userAnswers = {};
         score = 0;
         document.getElementById('result').innerHTML = '';
-        document.getElementById('retryButton').style.display = 'none';
-        document.getElementById('finalSubmissionButton').style.display = 'none';
+        document.getElementById('retryButton').style.display = 'none';  // Hide retry button
+        document.getElementById('finalSubmissionButton').style.display = 'none';  // Hide submit button
 
         loadQuestion();
     }
@@ -157,17 +165,4 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     loadQuestion();
-
-    // Ensure cleanup of quiz state on page navigation (via the navigation logic)
-    window.addEventListener('beforeunload', function() {
-        cleanupQuiz();
-    });
-
-    // Add cleanup when navigating away (from a different page)
-    window.addEventListener('popstate', function() {
-        cleanupQuiz();
-    });
 });
-
-
-    
