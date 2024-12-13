@@ -1,4 +1,5 @@
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', function() {
+    // Check if the user is logged in
     const isLoggedIn = sessionStorage.getItem('userLoggedIn') === 'true';
     console.log('Is logged in:', isLoggedIn); // Log the login state
 
@@ -9,30 +10,27 @@ document.addEventListener('DOMContentLoaded', function () {
     const vrLink = document.getElementById('vr-link');
     const getStarted = document.getElementById('get-started');
 
-    console.log(quizLink, chatLink, vrLink); // Log elements to see if they exist
-
     const loginRegisterBtn = document.getElementById('login-register-btn');
     const personIconContainer = document.getElementById('person-icon-container');
 
+    // Manage visibility of elements based on login status
     if (!isLoggedIn) {
-        // Only add event listeners if elements exist
-        if (quizLink && chatLink && vrLink && getStarted) {
-            [quizLink, chatLink, vrLink, getStarted].forEach(link => {
-                link.addEventListener('click', function(event) {
-                    event.preventDefault(); // Prevent default link behavior
-                    loginWarning.style.display = 'block'; // Show the login warning
-                    setTimeout(function() {
-                        loginWarning.style.display = 'none'; // Hide the warning after 5 seconds
-                    }, 5000); 
-                });
+        // Restrict access to certain links
+        [quizLink, chatLink, vrLink, getStarted].forEach(link => {
+            link.addEventListener('click', function(event) {
+                event.preventDefault(); // Prevent default link behavior
+                loginWarning.style.display = 'block'; // Show the login warning
+                setTimeout(function() {
+                    loginWarning.style.display = 'none'; // Hide the warning after 5 seconds
+                }, 5000); 
             });
-        } else {
-            console.error('Links not found!');
-        }
+        });
 
+        // Display login-related UI
         loginRegisterBtn.style.display = 'block';
         personIconContainer.style.display = 'none';
     } else {
+        // Logged-in state
         loginRegisterBtn.style.display = 'none';
         personIconContainer.style.display = 'block';
         loginWarning.style.display = 'none';
@@ -52,8 +50,25 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     });
+
+    // Get all the links in the navigation
+    const navLinks = document.querySelectorAll('.nav-links li a');
+    
+    // Loop through the links to check which one matches the current page URL
+    navLinks.forEach(link => {
+        // Only proceed with adding the active class if the user is logged in
+        if (isLoggedIn) {
+            // Remove active class from all links
+            link.classList.remove('active');
+            
+            // Add active class to the link that matches the current URL
+            if (window.location.pathname.includes(link.getAttribute('href'))) {
+                link.classList.add('active');
+            }
+        } else {
+            // Optionally, prevent activation of navigation links when not logged in
+            link.classList.remove('active');
+        }
+    });
 });
 
-function loginRegister() {
-    window.location.href = 'login.html';  // Redirect to the login page
-}
