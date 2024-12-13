@@ -10,59 +10,101 @@ document.addEventListener('DOMContentLoaded', function() {
     const vrLink = document.getElementById('vr-link');
     const getStarted = document.getElementById('get-started');
 
+    // Navbar elements to check for logged-in access
+    const navQuizLink = document.getElementById('nav-quiz-link');
+    const navChatLink = document.getElementById('nav-chat-link');
+    const navVrLink = document.getElementById('nav-vr-link');
+
+    // Login-related UI elements
     const loginRegisterBtn = document.getElementById('login-register-btn');
     const personIconContainer = document.getElementById('person-icon-container');
 
-    // Manage visibility of elements based on login status
+    // If not logged in, restrict access to certain links
     if (!isLoggedIn) {
-        // Only add event listeners if elements exist
-        if (quizLink && chatLink && vrLink && getStarted) {
-            [quizLink, chatLink, vrLink, getStarted].forEach(link => {
-                link.addEventListener('click', function(event) {
-                    event.preventDefault(); // Prevent default link behavior
-                    loginWarning.style.display = 'block'; // Show the login warning
-                    setTimeout(function() {
-                        loginWarning.style.display = 'none'; // Hide the warning after 5 seconds
-                    }, 5000); 
-                });
+        // Restricting body links
+        if (quizLink) {
+            quizLink.addEventListener('click', function(event) {
+                event.preventDefault(); // Prevent default link behavior
+                showLoginWarning();
+            });
+        }
+        if (chatLink) {
+            chatLink.addEventListener('click', function(event) {
+                event.preventDefault(); // Prevent default link behavior
+                showLoginWarning();
+            });
+        }
+        if (vrLink) {
+            vrLink.addEventListener('click', function(event) {
+                event.preventDefault(); // Prevent default link behavior
+                showLoginWarning();
+            });
+        }
+        if (getStarted) {
+            getStarted.addEventListener('click', function(event) {
+                event.preventDefault(); // Prevent default link behavior
+                showLoginWarning();
             });
         }
 
-        // Display login-related UI
+        // Restricting navbar links
+        if (navQuizLink) {
+            navQuizLink.addEventListener('click', function(event) {
+                event.preventDefault();
+                showLoginWarning();
+            });
+        }
+        if (navChatLink) {
+            navChatLink.addEventListener('click', function(event) {
+                event.preventDefault();
+                showLoginWarning();
+            });
+        }
+        if (navVrLink) {
+            navVrLink.addEventListener('click', function(event) {
+                event.preventDefault();
+                showLoginWarning();
+            });
+        }
+
+        // Show login/register UI
         loginRegisterBtn.style.display = 'block';
         personIconContainer.style.display = 'none';
     } else {
-        // Logged-in state
+        // If logged in, show these UI elements
         loginRegisterBtn.style.display = 'none';
         personIconContainer.style.display = 'block';
         loginWarning.style.display = 'none';
     }
 
-    // Add validation for anchor links inside .about-text-container
+    // Function to show login warning
+    function showLoginWarning() {
+        loginWarning.style.display = 'block'; // Show the login warning
+        setTimeout(function() {
+            loginWarning.style.display = 'none'; // Hide the warning after 5 seconds
+        }, 5000);
+    }
+
+    // Add validation for anchor links inside .about-text-container (or any other section)
     const aboutContainerLinks = document.querySelectorAll('.about-text-container a');
 
     aboutContainerLinks.forEach(link => {
         link.addEventListener('click', function(event) {
             if (!isLoggedIn) {
                 event.preventDefault(); // Prevent the default link behavior
-                loginWarning.style.display = 'block'; // Show the login warning
-                setTimeout(function() {
-                    loginWarning.style.display = 'none'; // Hide the warning after 5 seconds
-                }, 5000);
+                showLoginWarning();
             }
         });
     });
 
-    // Get all the links in the navigation
+    // Manage active state in the navbar when user is logged in
     const navLinks = document.querySelectorAll('.nav-links li a');
-    
-    // Loop through the links to check which one matches the current page URL
     navLinks.forEach(link => {
         // Only proceed with adding the active class if the user is logged in
         if (isLoggedIn) {
             // Remove active class from all links
             link.classList.remove('active');
-            
+
             // Add active class to the link that matches the current URL
             if (window.location.pathname.includes(link.getAttribute('href'))) {
                 link.classList.add('active');
