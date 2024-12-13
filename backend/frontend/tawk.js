@@ -3,7 +3,6 @@
             // Show the chat container
             document.getElementById("chatbot-container-coach_1").style.display = "block";
 
-            // Load Tawk.to script if it's not already loaded
             if (typeof Tawk_API === 'undefined') {
                 var Tawk_API = Tawk_API || {};
                 var Tawk_LoadStart = new Date();
