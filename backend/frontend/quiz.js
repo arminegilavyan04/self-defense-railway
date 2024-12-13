@@ -1,33 +1,33 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const answers = {
-        q1: 'a',
-        q2: 'c',
-        q3: 'b',
-        q4: 'b',
-        q5: 'a',
-        q6: 'a',
-        q7: 'b',
-        q8: 'a',
-        q9: 'c',
-        q10: 'a',
-        q11: 'a',
-        q12: 'c'
-    };
-
     let currentQuestionIndex = 0;
-    const totalQuestions = Object.keys(answers).length;
+    const totalQuestions = 12;  // Total number of questions
     let userAnswers = {};
     let score = 0;  // Track score internally
+
+    const questionScores = {
+        q1: { a: 3, b: 2, c: 1 },
+        q2: { a: 3, b: 2, c: 1 },
+        q3: { a: 3, b: 2, c: 1 },
+        q4: { a: 3, b: 2, c: 1 },
+        q5: { a: 3, b: 2, c: 1 },
+        q6: { a: 3, b: 2, c: 1 },
+        q7: { a: 3, b: 2, c: 1 },
+        q8: { a: 3, b: 2, c: 1 },
+        q9: { a: 3, b: 2, c: 1 },
+        q10: { a: 3, b: 2, c: 1 },
+        q11: { a: 3, b: 2, c: 1 },
+        q12: { a: 3, b: 2, c: 1 }
+    };
 
     const questions = [
         {
             question: 'Do you have a sports background?',
-            options: ['Yes, I regularly practice sports','Yes, but only occasionally','No, I don’t have any sports background'],
+            options: ['Yes, I regularly practice sports', 'Yes, but only occasionally', 'No, I don’t have any sports background'],
             id: 'q1'
         },
         {
             question: 'Have you ever practiced any form of martial arts or self-defense training?',
-            options: ['Yes, I’m trained', 'I’ve tried it a few times ', 'No, never'],
+            options: ['Yes, I’m trained', 'I’ve tried it a few times', 'No, never'],
             id: 'q2'
         },
         {
@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function() {
             id: 'q4'
         },
         {
-            question: 'How would you rate your physical stamina in challenging situations? ',
+            question: 'How would you rate your physical stamina in challenging situations?',
             options: ['High, I can last long under physical stress', 'Moderate, I can manage but not for long', 'Low, I struggle with physical stress'],
             id: 'q5'
         },
@@ -80,21 +80,18 @@ document.addEventListener('DOMContentLoaded', function() {
             options: ['Yes, I’m confident in my decisions', 'Sometimes, but I hesitate', 'No, I often feel paralyzed'],
             id: 'q12'
         }
-
-
     ];
-    
+
     function loadQuestion() {
-    
         if (currentQuestionIndex >= totalQuestions) {
-            displayResult();  
+            displayResult();
             return;
         }
-    
-        const question = questions[currentQuestionIndex];  
+
+        const question = questions[currentQuestionIndex];
         const questionHTML = `
             <div class="question">
-                <h3>${question.question}</h3> <br><br>
+                <h3>${question.question}</h3><br><br>
                 <div>
                     ${question.options.map((option, index) => 
                         `<div>
@@ -105,151 +102,60 @@ document.addEventListener('DOMContentLoaded', function() {
                 </div>
             </div>
         `;
-    
-        document.getElementById('quizContainer').innerHTML = questionHTML;  // Display the question HTML
-    
-        // Ensure all radio buttons are enabled for the current question
-        const allRadios = document.querySelectorAll('input[type="radio"]');
-        allRadios.forEach(radio => {
-            radio.disabled = false;  // Explicitly enable the radio buttons
-            radio.checked = false;   // Uncheck them
-            console.log(`Radio button with ID: ${radio.id}, Disabled: ${radio.disabled}, Checked: ${radio.checked}`);
-        });
-    
-        const nextButton = document.getElementById('nextButton');
-        if (nextButton) {
-            nextButton.style.display = 'none';
-        }
-    
-        document.getElementById('validationMessage').innerHTML = '';
-    
-        // Add event listeners for the radio buttons to update answers and show next button
+
+        document.getElementById('quizContainer').innerHTML = questionHTML;
+
         const radios = document.querySelectorAll(`input[name="${question.id}"]`);
         radios.forEach(radio => {
             radio.addEventListener('change', function() {
-                userAnswers[question.id] = this.value;
-                nextButton.style.display = 'inline-block';
-            });
-        });
-    
-        // Check if it's the last question, and if so, disable radio buttons when next is clicked
-        if (currentQuestionIndex === totalQuestions - 1) {
-            nextButton.addEventListener('click', function() {
-                // Disable all radio buttons when on the last question
-                allRadios.forEach(radio => {
-                    radio.disabled = true;  // Disable the radio buttons after Next is clicked
-                });
-                console.log('Radio buttons disabled on the last question');
-            });
-        }
-    }
-    
-    function retryButtonHandler() {
-        console.log('Retry button clicked!');  // Log when Retry is clicked
-    
-        currentQuestionIndex = 0;  // Reset to the first question
-        userAnswers = {};          // Reset answers
-        score = 0;                 // Reset score
-        document.getElementById('result').innerHTML = '';  // Clear results
-        document.getElementById('retryButton').style.display = 'none';  // Hide Retry button
-        document.getElementById('finalSubmissionButton').style.display = 'none';  // Hide Final Submission button
-    
-        // Get all radio buttons and log their current state
-        const allRadios = document.querySelectorAll('input[type="radio"]');
-        allRadios.forEach(radio => {
-            console.log(`Before reset - ID: ${radio.id}, Disabled: ${radio.disabled}, Checked: ${radio.checked}`);
-        });
-    
-        // Reset all radio buttons to be enabled and unchecked for retry
-        allRadios.forEach(radio => {
-            radio.disabled = false;  // Re-enable all radio buttons
-            radio.checked = false;   // Uncheck any previously selected options
-            console.log(`After reset - ID: ${radio.id}, Disabled: ${radio.disabled}, Checked: ${radio.checked}`);
-        });
-    
-        loadQuestion();  // Reload the first question
-    }
-    
-    document.getElementById('retryButton').addEventListener('click', retryButtonHandler);
+                const selectedOption = this.value;
+                userAnswers[question.id] = selectedOption;
+                score += questionScores[question.id][selectedOption];  // Update score based on selected option
 
-    
-   
-    // Display the result after quiz is completed
+                // Show next button once an answer is selected
+                document.getElementById('nextButton').style.display = 'inline-block';
+            });
+        });
+    }
+
     function displayResult() {
-        // Calculate score
-        score = 0;  
-        for (let [question, answer] of Object.entries(userAnswers)) {
-            if (answers[question] === answer) {
-                score++;
-            }
-        }
-
-        // Display score and results only at the end
         const result = document.getElementById('result');
-        result.innerHTML = `You scored ${score} out of ${totalQuestions}.`;
-        result.classList.add(score === totalQuestions ? 'correct' : 'incorrect');
-
-        // Show "Retry" and "Submit" buttons after quiz is complete
+        result.innerHTML = `You scored ${score} out of ${totalQuestions * 3}.`;  // Maximum possible score is 3 * totalQuestions
+        result.classList.add(score === totalQuestions * 3 ? 'correct' : 'incorrect');
         document.getElementById('retryButton').style.display = 'inline-block';
         document.getElementById('finalSubmissionButton').style.display = 'inline-block';
         document.getElementById('nextButton').style.display = 'none';
     }
 
-    // Cleanup function to reset everything when navigating away from the quiz
-    function cleanupQuiz() {
-        // Remove event listeners for buttons and quiz interactions
-        const nextButton = document.getElementById('nextButton');
-        if (nextButton) {
-            nextButton.removeEventListener('click', nextButtonHandler);
-        }
-
-        const retryButton = document.getElementById('retryButton');
-        if (retryButton) {
-            retryButton.removeEventListener('click', retryButtonHandler);
-        }
-
-        const finalSubmissionButton = document.getElementById('finalSubmissionButton');
-        if (finalSubmissionButton) {
-            finalSubmissionButton.removeEventListener('click', finalSubmissionButtonHandler);
-        }
-
-        // Clear the content
-        document.getElementById('quizContainer').innerHTML = '';
+    function retryButtonHandler() {
+        currentQuestionIndex = 0;
+        userAnswers = {};
+        score = 0;
         document.getElementById('result').innerHTML = '';
-        document.getElementById('nextButton').style.display = 'none';
         document.getElementById('retryButton').style.display = 'none';
         document.getElementById('finalSubmissionButton').style.display = 'none';
-        document.getElementById('validationMessage').innerHTML = '';
-    }
 
-    // Next question handler
-    function nextButtonHandler() {
-        currentQuestionIndex++;
         loadQuestion();
     }
 
-    // Final submission handler
-    // Final submission handler
-function finalSubmissionButtonHandler() {
-    const result = {
-        score: score,
-        totalQuestions: totalQuestions
-    };
+    function finalSubmissionButtonHandler() {
+        const result = {
+            score: score,
+            totalQuestions: totalQuestions
+        };
 
-    // Store the result in sessionStorage
-    sessionStorage.setItem('quizResult', JSON.stringify(result));
+        sessionStorage.setItem('quizResult', JSON.stringify(result));
+        window.location.href = 'quiz_results.html';  // Redirect to results page
+    }
 
-    // Redirect to a results page
-    window.location.href = 'quiz_results.html';  // Change 'quiz-results.html' to your actual results page URL
-}
-
-
-    // Attach event listeners to buttons
-    document.getElementById('nextButton').addEventListener('click', nextButtonHandler);
     document.getElementById('retryButton').addEventListener('click', retryButtonHandler);
     document.getElementById('finalSubmissionButton').addEventListener('click', finalSubmissionButtonHandler);
 
-    // Load the first question
+    document.getElementById('nextButton').addEventListener('click', function() {
+        currentQuestionIndex++;
+        loadQuestion();
+    });
+
     loadQuestion();
 
     // Ensure cleanup of quiz state on page navigation (via the navigation logic)
@@ -262,3 +168,6 @@ function finalSubmissionButtonHandler() {
         cleanupQuiz();
     });
 });
+
+
+    
