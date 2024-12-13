@@ -15,16 +15,18 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Manage visibility of elements based on login status
     if (!isLoggedIn) {
-        // Restrict access to certain links
-        [quizLink, chatLink, vrLink, getStarted].forEach(link => {
-            link.addEventListener('click', function(event) {
-                event.preventDefault(); // Prevent default link behavior
-                loginWarning.style.display = 'block'; // Show the login warning
-                setTimeout(function() {
-                    loginWarning.style.display = 'none'; // Hide the warning after 5 seconds
-                }, 5000); 
+        // Only add event listeners if elements exist
+        if (quizLink && chatLink && vrLink && getStarted) {
+            [quizLink, chatLink, vrLink, getStarted].forEach(link => {
+                link.addEventListener('click', function(event) {
+                    event.preventDefault(); // Prevent default link behavior
+                    loginWarning.style.display = 'block'; // Show the login warning
+                    setTimeout(function() {
+                        loginWarning.style.display = 'none'; // Hide the warning after 5 seconds
+                    }, 5000); 
+                });
             });
-        });
+        }
 
         // Display login-related UI
         loginRegisterBtn.style.display = 'block';
@@ -71,4 +73,3 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
-
