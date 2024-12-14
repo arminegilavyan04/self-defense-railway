@@ -114,7 +114,7 @@ p {
 }
 
 .login-register a:hover {
-    background-color: grey;
+    background-color: rgb(121, 119, 119);
 }
 
 .get-started-btn {
@@ -258,7 +258,7 @@ p {
 }
 
 .chat-btn-secondary:hover {
-    background-color: darkgray;                  
+    background-color: rgb(121, 119, 119);                 
 }
 #chatbot-container {
     display: none; 
@@ -336,7 +336,7 @@ iframe {
 }
 
 .start-quiz-btn:hover {
-    background-color: darkgray; 
+    background-color: rgb(121, 119, 119);
 }
 
 .nav-links a.active {
@@ -403,7 +403,7 @@ button {
 }
 
 .btn-primary:hover, .btn-secondary:hover, .btn-success:hover {
-    background-color:rgb(99, 97, 97); 
+    background-color:rgb(121, 119, 119);
 }
 
 .result {
@@ -445,7 +445,7 @@ button {
 }
   
   .logout:hover {
-    background-color:  #cecdcd;
+    background-color:  rgb(121, 119, 119);
 }
 
 .dropdown-menu {   

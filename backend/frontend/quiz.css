@@ -136,7 +136,7 @@ h3 {
 }
 
 .logout:hover {
-    background-color: #b0b0b0; 
+    background-color: rgb(121, 119, 119);
 }
 
 .nav-links {
@@ -245,7 +245,8 @@ h3 {
     border: none;
     outline: none;
     box-shadow: none;    
-    margin-left: 200px;   
+    margin-left: 200px; 
+    cursor: pointer;  
 }
 
 .button-container {
@@ -267,5 +268,5 @@ button {
 }
 
 .btn-primary:hover, .btn-secondary:hover, .btn-success:hover {
-    background-color: darkgray;
+    background-color: rgb(121, 119, 119);
 }
