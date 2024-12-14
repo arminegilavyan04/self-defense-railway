@@ -46,7 +46,7 @@
 }
 
 .res-btn-primary:hover {
-    background-color: darkgray;          
+    background-color: rgb(121, 119, 119);         
 }
 
 .logout {
@@ -60,7 +60,7 @@
 }
   
   .logout:hover {
-    background-color:  #cecdcd;
+    background-color:  rgb(121, 119, 119);
 }
 
 .dropdown-menu {   
