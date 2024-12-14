@@ -182,13 +182,43 @@ h3 {
     padding-bottom: 5px;
 }
 
+/* Remove the default radio button appearance */
 .question input[type="radio"] {
-    outline: none; 
-    width: 20px; 
+    -webkit-appearance: none;  /* Chrome, Safari */
+    -moz-appearance: none;     /* Firefox */
+    appearance: none;          /* Standard syntax */
+    width: 20px;
     height: 20px;
-    margin-right: 10px; 
-    vertical-align: middle; 
+    margin-right: 10px;
+    vertical-align: middle;
+    border-radius: 50%;        /* Ensure it's circular */
+    background-color: white;   /* Background color of the radio button */
+    border: 2px solid rgb(128,0,32) !important;  /* Red border */
 }
+
+/* Style the inner circle when checked */
+.question input[type="radio"]:checked {
+    background-color: rgb(128,0,32) !important; /* Red when checked */
+}
+
+/* Create the checkmark using ::after pseudo-element */
+.question input[type="radio"]::after {
+    content: '';
+    position: absolute;
+    top: 4px;  /* Adjust to place inside the circle */
+    left: 4px; /* Adjust to place inside the circle */
+    width: 10px;
+    height: 10px;
+    background-color: white; /* Inner circle color */
+    border-radius: 50%; /* Make it circular */
+    transition: background-color 0.3s ease; /* Smooth transition */
+}
+
+/* Change inner circle color when the radio is checked */
+.question input[type="radio"]:checked::after {
+    background-color: white !important; /* White inner circle when checked */
+}
+
 
 .quiz-content {    
     display: flex;
