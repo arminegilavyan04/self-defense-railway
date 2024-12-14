@@ -1,7 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Check if the user is logged in
     const isLoggedIn = sessionStorage.getItem('userLoggedIn') === 'true';
-    console.log('Is logged in:', isLoggedIn); // Log the login state
+    console.log('Is logged in:', isLoggedIn);
 
     const loginWarning = document.getElementById('login-warning');
 
@@ -24,25 +23,25 @@ document.addEventListener('DOMContentLoaded', function() {
         // Restricting body links
         if (quizLink) {
             quizLink.addEventListener('click', function(event) {
-                event.preventDefault(); // Prevent default link behavior
+                event.preventDefault(); // Prevent redirection
                 showLoginWarning();
             });
         }
         if (chatLink) {
             chatLink.addEventListener('click', function(event) {
-                event.preventDefault(); // Prevent default link behavior
+                event.preventDefault(); // Prevent redirection
                 showLoginWarning();
             });
         }
         if (vrLink) {
             vrLink.addEventListener('click', function(event) {
-                event.preventDefault(); // Prevent default link behavior
+                event.preventDefault(); // Prevent redirection
                 showLoginWarning();
             });
         }
         if (getStarted) {
             getStarted.addEventListener('click', function(event) {
-                event.preventDefault(); // Prevent default link behavior
+                event.preventDefault(); // Prevent redirection
                 showLoginWarning();
             });
         }
@@ -50,19 +49,19 @@ document.addEventListener('DOMContentLoaded', function() {
         // Restricting navbar links
         if (navQuizLink) {
             navQuizLink.addEventListener('click', function(event) {
-                event.preventDefault();
+                event.preventDefault(); // Prevent redirection
                 showLoginWarning();
             });
         }
         if (navChatLink) {
             navChatLink.addEventListener('click', function(event) {
-                event.preventDefault();
+                event.preventDefault(); // Prevent redirection
                 showLoginWarning();
             });
         }
         if (navVrLink) {
             navVrLink.addEventListener('click', function(event) {
-                event.preventDefault();
+                event.preventDefault(); // Prevent redirection
                 showLoginWarning();
             });
         }
@@ -85,9 +84,8 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 5000);
     }
 
-    // Add validation for anchor links inside .about-text-container (or any other section)
+    // Prevent default link behavior for restricted links in .about-text-container
     const aboutContainerLinks = document.querySelectorAll('.about-text-container a');
-
     aboutContainerLinks.forEach(link => {
         link.addEventListener('click', function(event) {
             if (!isLoggedIn) {
@@ -95,23 +93,5 @@ document.addEventListener('DOMContentLoaded', function() {
                 showLoginWarning();
             }
         });
-    });
-
-    // Manage active state in the navbar when user is logged in
-    const navLinks = document.querySelectorAll('.nav-links li a');
-    navLinks.forEach(link => {
-        // Only proceed with adding the active class if the user is logged in
-        if (isLoggedIn) {
-            // Remove active class from all links
-            link.classList.remove('active');
-
-            // Add active class to the link that matches the current URL
-            if (window.location.pathname.includes(link.getAttribute('href'))) {
-                link.classList.add('active');
-            }
-        } else {
-            // Optionally, prevent activation of navigation links when not logged in
-            link.classList.remove('active');
-        }
     });
 });
