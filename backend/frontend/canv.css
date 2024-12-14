@@ -116,23 +116,6 @@ p {
 .login-register a:hover {
     background-color: grey;
 }
-.about-login-btn {
-
-    width :auto;
-    cursor: pointer;
-    text-decoration: none;
-    background-color: rgb(128,0,32);
-    color: white;
-    padding: 10px 20px; 
-    border-radius: 30px;
-    font-size: 25px; 
-    font-weight: bold;
-    margin-right: 20px;    
-   
-}
-.about-login-btn:hover {
-    background-color: grey;
-}
 
 .get-started-btn {
     text-decoration: none;
