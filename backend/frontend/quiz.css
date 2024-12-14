@@ -216,7 +216,7 @@ h3 {
 
 /* Change inner circle color when the radio is checked */
 .question input[type="radio"]:checked::after {
-    background-color: white !important; /* White inner circle when checked */
+    background-color: white !important; 
 }
 
 
