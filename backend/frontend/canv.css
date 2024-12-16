@@ -267,8 +267,8 @@ p {
 
 iframe {
     border: none;
-    width: 350px;   /* Set your desired width */
-    height: 430px;  /* Set your desired height */
+    width: 350px;  
+    height: 430px;  
     background-color: grey;
 }
 
