@@ -245,7 +245,8 @@ h3 {
     border: none;
     outline: none;
     box-shadow: none;    
-    margin-left: 200px;   
+    margin-left: 200px; 
+    cursor: pointer;  
 }
 
 .button-container {

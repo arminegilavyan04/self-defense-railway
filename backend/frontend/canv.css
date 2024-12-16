@@ -114,7 +114,7 @@ p {
 }
 
 .login-register a:hover {
-    background-color: grey;
+    background-color: darkgray
 }
 
 .get-started-btn {
@@ -224,7 +224,8 @@ p {
     width: 300px;
     height: 450px;
     max-width: 100%; 
-    border-radius: 20px;  
+    border-radius: 20px;
+    cursor: pointer;  
 }
 
 #chat-content {
@@ -258,7 +259,7 @@ p {
 }
 
 .chat-btn-secondary:hover {
-    background-color: darkgray;                  
+    background-color: rgb(121, 119, 119);                 
 }
 #chatbot-container {
     display: none; 
@@ -266,8 +267,8 @@ p {
 
 iframe {
     border: none;
-    width: 350px;   /* Set your desired width */
-    height: 430px;  /* Set your desired height */
+    width: 350px;  
+    height: 430px;  
     background-color: grey;
 }
 
@@ -301,11 +302,9 @@ iframe {
     flex-direction: column; 
     justify-content: center; 
     align-items: center; 
-    text-align: center; 
-    
+    text-align: center;     
     
 }
-
 
 @media (max-width: 768px) {
     .quiz-container {
@@ -326,7 +325,7 @@ iframe {
 .start-quiz-btn {
     display: inline-block;
     text-decoration: none;
-    background-color: black; 
+    background-color: rgb(56, 55, 55); 
     color: white; 
     padding: 15px 30px;
     border-radius: 30px; 
@@ -336,7 +335,7 @@ iframe {
 }
 
 .start-quiz-btn:hover {
-    background-color: darkgray; 
+    background-color: rgb(121, 119, 119);
 }
 
 .nav-links a.active {
@@ -381,8 +380,7 @@ iframe {
     margin:0 auto;
     border: none;         
     outline: none;     
-    box-shadow: none;
-    
+    box-shadow: none;    
 }
 
 .button-container {
@@ -403,7 +401,7 @@ button {
 }
 
 .btn-primary:hover, .btn-secondary:hover, .btn-success:hover {
-    background-color:rgb(99, 97, 97); 
+    background-color:rgb(121, 119, 119);
 }
 
 .result {
@@ -445,7 +443,7 @@ button {
 }
   
   .logout:hover {
-    background-color:  #cecdcd;
+    background-color: darkgray;
 }
 
 .dropdown-menu {   
