@@ -60,7 +60,7 @@
 }
   
   .logout:hover {
-    background-color: rgb(121, 119, 119);
+    background-color: darkgray;
 }
 
 .dropdown-menu {   

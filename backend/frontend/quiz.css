@@ -136,7 +136,7 @@ h3 {
 }
 
 .logout:hover {
-    background-color: #b0b0b0; 
+    background-color: rgb(121, 119, 119);; 
 }
 
 .nav-links {
@@ -216,7 +216,7 @@ h3 {
 
 /* Change inner circle color when the radio is checked */
 .question input[type="radio"]:checked::after {
-    background-color: white !important; /* White inner circle when checked */
+    background-color: white !important; 
 }
 
 
@@ -265,8 +265,9 @@ button {
     font-size: 16px;
     border-radius: 10px;
     width: 150px;
+    cursor: pointer;
 }
 
 .btn-primary:hover, .btn-secondary:hover, .btn-success:hover {
-    background-color: rgb(126, 124, 124);
+    background-color: rgb(121, 119, 119);
 }
