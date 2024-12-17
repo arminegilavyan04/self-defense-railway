@@ -59,7 +59,7 @@ npm start
 
 <ol>
   <li><strong>GitHub Push</strong>: Once you push your code changes to the repository (usually to the <code>main</code> branch), the application will trigger the build and deployment automatically.</li>
-  <li><strong>Build and Deploy</strong>: The build process generates a production-ready version of the app, and the deployment is automatically handled by your hosting platform (e.g., <strong>Vercel</strong>, <strong>Netlify</strong>, etc.).</li>
+  <li><strong>Build and Deploy</strong>: The build process generates a production-ready version of the app, and the deployment is automatically handled by your hosting platform (e.g., <strong>Railway</strong>, <strong>Vercel</strong>, etc.).</li>
   <li><strong>No Manual Steps</strong>: There is no need for manual intervention in the deployment process. Once the code is pushed to GitHub, the deployment will occur automatically.</li>
 </ol>
 
