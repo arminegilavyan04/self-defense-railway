@@ -30,7 +30,7 @@ If you're working on the project locally (for development purposes), follow thes
 ```bash
 git clone https://github.com/your-username/self-defense-platform.git
 cd self-defense-platform
-
+```
 <h3>Run the application locally</h3>
 
 <pre><code>npm start</code></pre>
