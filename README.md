@@ -1,4 +1,4 @@
-# Self-Defense Platform
+# SafeSense Platform
 
 Welcome to the Self-Defense Platform! This web application helps users assess their self-defense knowledge through quizzes, connect with coaches for personalized chat support, and explore VR-based training (coming soon!).
 
