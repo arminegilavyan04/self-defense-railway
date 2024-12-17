@@ -28,7 +28,7 @@ If you're working on the project locally (for development purposes), follow thes
 #### 1. Clone the repository
 
 ```bash
-git clone https://github.com/your-username/self-defense-platform.git
+git clone https://github.com/arminegilavyan04/self-defense-railway.git
 cd self-defense-platform
 ```
 #### 2. Install dependencies
