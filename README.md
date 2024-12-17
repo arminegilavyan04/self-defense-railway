@@ -53,7 +53,7 @@ npm start
 ```
 <p>The application will be live on <a href="http://localhost:3000" target="_blank">http://localhost:3000</a> by default.</p>
 
-#### 5.Automatic Deployment (via GitHub Push)
+#### 5. Automatic Deployment (via GitHub Push)
 
 <p>This project is automatically built and deployed to production <strong>whenever changes are pushed to GitHub</strong>. Here’s how it works:</p>
 
