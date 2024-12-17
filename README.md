@@ -31,14 +31,13 @@ If you're working on the project locally (for development purposes), follow thes
 git clone https://github.com/your-username/self-defense-platform.git
 cd self-defense-platform
 ```
-<h3>Run the application locally</h3>
+#### 2. Install dependencies
 
-<pre><code>npm start</code></pre>
-<h4>2. Install dependencies</h4>
+```bash
+npm install
+```
 
-<pre><code>npm install</code></pre>
-
-<h4>3. Set up environment variables (local)</h4>
+#### 3. Set up environment variables (local)
 
 <p>Create a <code>.env</code> file at the root of your project and add the necessary configuration for your local development environment.</p>
 
@@ -47,16 +46,14 @@ cd self-defense-platform
 <pre><code>MYSQL_URL=
 MYSQL_PUBLIC_URL</code></pre>
 
-<h4>4. Run the application locally</h4>
+#### 4. Run the application locally
 
-<pre><code>npm start</code></pre>
-
+```bash
+npm start
+```
 <p>The application will be live on <a href="http://localhost:3000" target="_blank">http://localhost:3000</a> by default.</p>
 
-
-<p>The application will be live on <a href="http://localhost:3000" target="_blank">http://localhost:3000</a> by default.</p>
-
-<h3>Automatic Deployment (via GitHub Push)</h3>
+#### 5.Automatic Deployment (via GitHub Push)
 
 <p>This project is automatically built and deployed to production <strong>whenever changes are pushed to GitHub</strong>. Here’s how it works:</p>
 
