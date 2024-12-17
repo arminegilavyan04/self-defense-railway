@@ -30,3 +30,39 @@ If you're working on the project locally (for development purposes), follow thes
 ```bash
 git clone https://github.com/your-username/self-defense-platform.git
 cd self-defense-platform
+
+<h3>Run the application locally</h3>
+
+<pre><code>npm start</code></pre>
+<h4>2. Install dependencies</h4>
+
+<pre><code>npm install</code></pre>
+
+<h4>3. Set up environment variables (local)</h4>
+
+<p>Create a <code>.env</code> file at the root of your project and add the necessary configuration for your local development environment.</p>
+
+<p>For example:</p>
+
+<pre><code>MYSQL_URL=
+MYSQL_PUBLIC_URL</code></pre>
+
+<h4>4. Run the application locally</h4>
+
+<pre><code>npm start</code></pre>
+
+<p>The application will be live on <a href="http://localhost:3000" target="_blank">http://localhost:3000</a> by default.</p>
+
+
+<p>The application will be live on <a href="http://localhost:3000" target="_blank">http://localhost:3000</a> by default.</p>
+
+<h3>Automatic Deployment (via GitHub Push)</h3>
+
+<p>This project is automatically built and deployed to production <strong>whenever changes are pushed to GitHub</strong>. Here’s how it works:</p>
+
+<ol>
+  <li><strong>GitHub Push</strong>: Once you push your code changes to the repository (usually to the <code>main</code> branch), the application will trigger the build and deployment automatically.</li>
+  <li><strong>Build and Deploy</strong>: The build process generates a production-ready version of the app, and the deployment is automatically handled by your hosting platform (e.g., <strong>Vercel</strong>, <strong>Netlify</strong>, etc.).</li>
+  <li><strong>No Manual Steps</strong>: There is no need for manual intervention in the deployment process. Once the code is pushed to GitHub, the deployment will occur automatically.</li>
+</ol>
+
