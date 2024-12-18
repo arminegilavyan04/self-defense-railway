@@ -44,7 +44,7 @@ npm install
 <p>For example:</p>
 
 <pre><code>MYSQL_URL=
-MYSQL_PUBLIC_URL</code></pre>
+MYSQL_PUBLIC_URL=</code></pre>
 
 #### 4. Run the application locally
 
