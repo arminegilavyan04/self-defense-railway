@@ -147,7 +147,7 @@ We welcome contributions! If you'd like to help improve this project, follow the
 
 Please make sure to test your changes before submitting a pull request.
 
-### Additional Information
+### Summary Notes
 
 - **Automatic Deployment**: After pushing changes to GitHub, the build and deployment process will occur automatically, thanks to the connected hosting platform (Railway).
 - **Environment Variables**: Make sure to configure your production environment with the necessary environment variables for proper functionality (e.g., Tawk.to API key, database credentials).
