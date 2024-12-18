@@ -6,14 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quiz</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="canv.css"> 
-    <link rel="stylesheet" href="quiz-results.css"> 
+    <link rel="stylesheet" href="css/canv.css"> 
+    <link rel="stylesheet" href="css/quiz-results.css"> 
       
 </head>
 
 <body>
     <nav class="navbar" id="navbar-placeholder">
-        <img src="logo.png" alt="Logo" class="logo">
+        <img src="images/logo.png" alt="Logo" class="logo">
         <ul class="nav-links">
             <li><a href="index.html">Home</a></li>
             <li><a href="about.html">About Us</a></li>
@@ -22,13 +22,13 @@
             <li><a href="quiz.html" id="quiz-link">Quiz</a></li>
         </ul>
         <div class="person-icon" onclick="toggleDropdown()">
-          <img src="person.png" alt="Person Icon" class="person-icon img">
+          <img src="images/person.png" alt="Person Icon" class="person-icon img">
           <div class="dropdown-menu" id="dropdown-menu">
             <div class="logout" onclick="logout()">Log out</div>
           </div>
        </div>
         <div class="flag-icon">
-          <img src="armenian-flag.png" alt="Armenian Flag">
+          <img src="images/armenian-flag.png" alt="Armenian Flag">
         </div>
     </nav>
     <div class="quiz-result-content">
@@ -49,15 +49,15 @@
             
             if (result.score >= 25) {
                 personalizedMessage = 'Excellent job! Just a few final steps to finish. Please contact our coach, Ethan Miller, for further assistance';
-                coachImage = 'coach_1.png'; 
+                coachImage = 'images/coach_1.png'; 
                 chatFunction = 'openTawkChat_1'; 
             } else if (result.score >= 15) {
                 personalizedMessage = 'Good effort! You’re almost there! Please contact our coach, Olivia Jhonson, for further assistance';
-                coachImage = 'coach_2.png'; 
+                coachImage = 'images/coach_2.png'; 
                 chatFunction = 'openTawkChat_2'; 
             } else {
                 personalizedMessage = 'Great job! To continue your journey in SafeSense please contact our coach, John Doe, for further assistance.';
-                coachImage = 'coach_3.png'; 
+                coachImage = 'images/coach_3.png'; 
                 chatFunction = 'openTawkChat_3'; 
             }
 
