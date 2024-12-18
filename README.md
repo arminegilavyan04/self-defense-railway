@@ -59,7 +59,7 @@ npm start
 
 <ol>
   <li><strong>GitHub Push</strong>: Once you push your code changes to the repository (to the <code>main</code> branch), the application will trigger the build and deployment automatically.</li>
-  <li><strong>Build and Deploy</strong>: The build process generates a production-ready version of the app, and the deployment is automatically handled by your hosting platform (e.g., <strong>Railway</strong>, <strong>Vercel</strong>, etc.).</li>
+  <li><strong>Build and Deploy</strong>: The build process generates a production-ready version of the app, and the deployment is automatically handled by your hosting platform (e.g., <strong>Railway</strong> in our case).</li>
   <li><strong>No Manual Steps</strong>: There is no need for manual intervention in the deployment process. Once the code is pushed to GitHub, the deployment will occur automatically.</li>
 </ol>
 <h3>File Structure</h3>
@@ -144,6 +144,12 @@ We welcome contributions! If you'd like to help improve this project, follow the
 6. Create a pull request.
 
 Please make sure to test your changes before submitting a pull request.
+
+### Additional Information
+
+- **Automatic Deployment**: After pushing changes to GitHub, the build and deployment process will occur automatically, thanks to the connected hosting platform (Railway).
+- **Environment Variables**: Make sure to configure your production environment with the necessary environment variables for proper functionality (e.g., Tawk.to API key, database credentials).
+
 
 
 
