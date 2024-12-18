@@ -63,6 +63,7 @@ npm start
   <li><strong>No Manual Steps</strong>: There is no need for manual intervention in the deployment process. Once the code is pushed to GitHub, the deployment will occur automatically.</li>
   <li><strong>As soon as the deployment is over, the updated public version will be live on <a href="https://self-defense-railway-production.up.railway.app" target="_blank">https://self-defense-railway-production.up.railway.app</a></li>
 </ol>
+    
 <h3>File Structure</h3>
 
 <p>Here’s an overview of the folder structure:</p>
