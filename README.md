@@ -123,4 +123,27 @@ The VR training page is under development and will offer immersive training scen
 
 We use [Tawk.to](https://www.tawk.to/) for real-time chat integration. If you want to modify or update the Tawk.to integration, check the `/backend/tawk.js` file. You'll need to replace the Tawk.to widget code with your unique API key.
 
+### Technologies Used
+
+- **Ajax**: To send requests from the frontend 
+- **Node.js**: Server-side environment.
+- **Express.js**: For backend server handling.
+- **Tawk.to**: Real-time chat integration.
+- **MySQL DB**: For storing user data.
+- **Railway**: For hosting and deployment.
+
+### Contributing
+
+We welcome contributions! If you'd like to help improve this project, follow these steps:
+
+1. Fork the repository.
+2. Create a new branch: `git checkout -b feature-branch`.
+3. Make your changes.
+4. Commit your changes: `git commit -m 'Add new feature'`.
+5. Push to your forked repository: `git push origin feature-branch`.
+6. Create a pull request.
+
+Please make sure to test your changes before submitting a pull request.
+
+
 
