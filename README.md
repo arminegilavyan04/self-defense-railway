@@ -58,8 +58,55 @@ npm start
 <p>This project is automatically built and deployed to production <strong>whenever changes are pushed to GitHub</strong>. Here’s how it works:</p>
 
 <ol>
-  <li><strong>GitHub Push</strong>: Once you push your code changes to the repository (usually to the <code>main</code> branch), the application will trigger the build and deployment automatically.</li>
+  <li><strong>GitHub Push</strong>: Once you push your code changes to the repository (to the <code>main</code> branch), the application will trigger the build and deployment automatically.</li>
   <li><strong>Build and Deploy</strong>: The build process generates a production-ready version of the app, and the deployment is automatically handled by your hosting platform (e.g., <strong>Railway</strong>, <strong>Vercel</strong>, etc.).</li>
   <li><strong>No Manual Steps</strong>: There is no need for manual intervention in the deployment process. Once the code is pushed to GitHub, the deployment will occur automatically.</li>
 </ol>
+<h3>File Structure</h3>
+
+<p>Here’s an overview of the folder structure:</p>
+
+<pre><code>
+/self-defense-railway
+│
+├── /backend              
+├──├──frontend 
+├──├──├──/images
+├──├──├──/css  
+├──├──├──/index.html 
+├──├──├──/home.html 
+├──├──├──/login.html
+├──├──├──/about.html      
+├──├──├──/chat.html          
+├──├──├──/quiz.html
+├──├──├──/quiz-content.html
+├──├──├──/quiz-results.html
+├──├──├──/quiz.js 
+├──├──├──/vr-glasses.html 
+├──├──/node_modules        
+├──├──.env                 
+├──├──/routes
+├──├──├──/auth.js
+├──├──/db.js
+├──├──/index.js
+├──├──package.json         
+├──├──package-lock.json
+├── railway.json  
+└── README.md            
+</code></pre>
+
+<h3>Features in Detail</h3>
+
+<h4>User Authentication</h4>
+
+<p>Users must register and log in to access the platform. Authentication ensures that only registered users can take the quiz and start chatting with a coach.</p>
+
+<h4>Quiz</h4>
+
+<p>Users are prompted with a series of self-defense questions to evaluate their knowledge level. The quiz score determines which coach is the best match, but users are free to choose any coach.</p>
+
+<ul>
+  <li><strong>Quiz</strong>: A set of multiple-choice questions designed to assess users' knowledge of self-defense techniques.</li>
+  <li><strong>Coach Matching</strong>: Based on the quiz score, users are provided with a coach recommendation. However, they are free to select any available coach.</li>
+</ul>
 
