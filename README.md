@@ -147,6 +147,30 @@ We welcome contributions! If you'd like to help improve this project, follow the
 
 Please make sure to test your changes before submitting a pull request.
 
+### Current Supported Browsers
+
+Currently we support **Desktop** browsers only, with **Google Chrome** being the primary and most optimized browser. Users can expect full functionality and performance when using the application on a desktop platform with Chrome.
+
+## Future Plans
+
+We are actively working on extending support to a wider range of platforms. In the near future, we plan to:
+
+- **Add support for other browsers**: We will expand compatibility to include major browsers such as:
+  - Mozilla Firefox
+  - Microsoft Edge
+  - Safari
+  - And potentially others based on demand and testing
+
+- **Mobile Web Views**: We are also planning to extend support for mobile web views, ensuring that the application will function seamlessly on:
+  - iOS mobile web views (Safari)
+  - Android mobile web views (Chrome)
+
+This will allow users to access the application not only on desktop platforms but also on mobile devices, providing a more versatile and cross-platform experience.
+
+## Stay Updated
+
+Keep an eye on future releases and changelogs for updates on when these features will be available. Your feedback and suggestions are always welcome to help improve compatibility and user experience across different platforms.
+
 ### Summary Notes
 
 - **Automatic Deployment**: After pushing changes to GitHub, the build and deployment process will occur automatically, thanks to the connected hosting platform (Railway).
