@@ -61,7 +61,7 @@ npm start
   <li><strong>GitHub Push</strong>: Once you push your code changes to the repository (to the <code>main</code> branch), the application will trigger the build and deployment automatically.</li>
   <li><strong>Build and Deploy</strong>: The build process generates a production-ready version of the app, and the deployment is automatically handled by your hosting platform (e.g., <strong>Railway</strong> in our case).</li>
   <li><strong>No Manual Steps</strong>: There is no need for manual intervention in the deployment process. Once the code is pushed to GitHub, the deployment will occur automatically.</li>
-  <li><strong>As soon as the deployment is over, the updated public version will be live on <a href="https://self-defense-railway-production.up.railway.app" target="_blank">https://self-defense-railway-production.up.railway.app </strong></a></li>
+  <li><strong>As soon as the deployment is over, the updated public version will be live on </strong><a href="https://self-defense-railway-production.up.railway.app" target="_blank">https://self-defense-railway-production.up.railway.app</a></li>
 </ol>
     
 <h3>File Structure</h3>
