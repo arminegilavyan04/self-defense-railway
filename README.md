@@ -109,4 +109,18 @@ npm start
   <li><strong>Quiz</strong>: A set of multiple-choice questions designed to assess users' knowledge of self-defense techniques.</li>
   <li><strong>Coach Matching</strong>: Based on the quiz score, users are provided with a coach recommendation. However, they are free to select any available coach.</li>
 </ul>
+<h4>Chat</h4>
+
+Once logged in, users can choose a coach and start chatting. The platform uses <code>Tawk.to</code> for real-time chat functionality, where users can communicate directly with a coach or platform representative.
+
+- **Real-Time Messaging**: Users can instantly message coaches for advice and guidance.
+
+<h4>VR-Glasses Page</h4>  (Under Construction)
+
+The VR training page is under development and will offer immersive training scenarios for self-defense.
+
+<h4>Integration with Tawk.to</h4>
+
+We use [Tawk.to](https://www.tawk.to/) for real-time chat integration. If you want to modify or update the Tawk.to integration, check the `/backend/tawk.js` file. You'll need to replace the Tawk.to widget code with your unique API key.
+
 
