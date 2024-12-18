@@ -134,6 +134,11 @@ We use [Tawk.to](https://www.tawk.to/) for real-time chat integration. If you wa
 - **MySQL DB**: For storing user data.
 - **Railway**: For hosting and deployment.
 
+### Summary Notes
+
+- **Automatic Deployment**: After pushing changes to GitHub, the build and deployment process will occur automatically, thanks to the connected hosting platform (Railway).
+- **Environment Variables**: Make sure to configure your production environment with the necessary environment variables for proper functionality (e.g., Tawk.to API key, database credentials).
+
 ### Contributing
 
 We welcome contributions! If you'd like to help improve this project, follow these steps:
@@ -170,12 +175,3 @@ This will allow users to access the application not only on desktop platforms bu
 ## Stay Updated
 
 Keep an eye on future releases and changelogs for updates on when these features will be available. Your feedback and suggestions are always welcome to help improve compatibility and user experience across different platforms.
-
-### Summary Notes
-
-- **Automatic Deployment**: After pushing changes to GitHub, the build and deployment process will occur automatically, thanks to the connected hosting platform (Railway).
-- **Environment Variables**: Make sure to configure your production environment with the necessary environment variables for proper functionality (e.g., Tawk.to API key, database credentials).
-
-
-
-
