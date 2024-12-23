@@ -1,6 +1,5 @@
 
 function openTawkChat(n) {
-    console.log(111);
     
     document.getElementById(`chatbot-container-coach_${n}`).style.display = "block";
 

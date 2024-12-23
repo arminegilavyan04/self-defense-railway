@@ -23,10 +23,8 @@ window.onclick = function(event) {
 
 }
 const homeLink = document.querySelector('.homelink')
-console.log(homeLink);
 
 homeLink.addEventListener('click',()=>{
-  console.log(1);
   
   sessionStorage.getItem('userLoggedIn') ? location.href = 'home.html':location.href = 'index.html'
 
