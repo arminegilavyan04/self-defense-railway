@@ -1,8 +1,8 @@
 document.addEventListener('DOMContentLoaded', function() {
     let currentQuestionIndex = 0;
-    const totalQuestions = 12;  // Total number of questions
+    const totalQuestions = 12;  
     let userAnswers = {};
-    let score = 0;  // Track score internally
+    let score = 0;  
 
     const questionScores = {
         q1: { a: 3, b: 2, c: 1 },
@@ -107,22 +107,22 @@ document.addEventListener('DOMContentLoaded', function() {
 
         const radios = document.querySelectorAll(`input[name="${question.id}"]`);
         const nextButton = document.getElementById('nextButton');
-        nextButton.style.display = 'none'; // Hide next button initially
+        nextButton.style.display = 'none'; 
 
         radios.forEach(radio => {
             radio.addEventListener('change', function() {
                 const selectedOption = this.value;
                 userAnswers[question.id] = selectedOption;
-                score += questionScores[question.id][selectedOption];  // Update score based on selected option
+                score += questionScores[question.id][selectedOption];  
 
-                // Show next button once an answer is selected
+                
                 nextButton.style.display = 'inline-block';
                 
-                // If it's the last question, hide the next button and show submit button
+                
                 if (currentQuestionIndex === totalQuestions - 1) {
-                    nextButton.style.display = 'none';  // Hide next button
+                    nextButton.style.display = 'none';  
                     document.getElementById('retryButton').style.display = 'inline-block'; 
-                    document.getElementById('finalSubmissionButton').style.display = 'inline-block';  // Show submit button
+                    document.getElementById('finalSubmissionButton').style.display = 'inline-block';  
                 }
             });
         });
@@ -130,10 +130,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function displayResult() {
         const result = document.getElementById('result');
-        result.innerHTML = `You scored ${score} out of ${totalQuestions * 3}.`;  // Maximum possible score is 3 * totalQuestions
+        result.innerHTML = `You scored ${score} out of ${totalQuestions * 3}.`; 
         result.classList.add(score === totalQuestions * 3 ? 'correct' : 'incorrect');
-        document.getElementById('retryButton').style.display = 'inline-block';  // Show retry button after completion
-        document.getElementById('finalSubmissionButton').style.display = 'inline-block';  // Show submit button
+        document.getElementById('retryButton').style.display = 'inline-block';  
+        document.getElementById('finalSubmissionButton').style.display = 'inline-block';  
     }
 
     function retryButtonHandler() {
@@ -141,8 +141,8 @@ document.addEventListener('DOMContentLoaded', function() {
         userAnswers = {};
         score = 0;
         document.getElementById('result').innerHTML = '';
-        document.getElementById('retryButton').style.display = 'none';  // Hide retry button
-        document.getElementById('finalSubmissionButton').style.display = 'none';  // Hide submit button
+        document.getElementById('retryButton').style.display = 'none';  
+        document.getElementById('finalSubmissionButton').style.display = 'none';  
 
         loadQuestion();
     }
@@ -154,7 +154,7 @@ document.addEventListener('DOMContentLoaded', function() {
         };
 
         sessionStorage.setItem('quizResult', JSON.stringify(result));
-        window.location.href = 'quiz_results.html';  // Redirect to results page
+        window.location.href = 'quiz_results.html';  
     }
 
     document.getElementById('retryButton').addEventListener('click', retryButtonHandler);
